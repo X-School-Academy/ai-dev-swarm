@@ -80,6 +80,13 @@ Follow these steps in order:
    - User specifies backlog or feature to review
    - Or review latest completed backlog from sprint
 
+```
+project-root/
+├── 09-sprints/
+│   └── sprint-name/
+│       └── [BACKLOG-TYPE]-feature-name.md # find entry point for a task
+```
+
 2. **Read backlog from `09-sprints/`:**
    - Understand original task requirements
    - Note acceptance criteria

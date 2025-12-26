@@ -68,23 +68,15 @@ project-root/
 │
 ├─ 09-sprints/                       # Stage 9: AI-accelerated development execution (3–6 hour sprints)
 │  ├─ README.md                      # Folder overview and guide
-│  ├─ sprints-index.md                # Entry point: sprint list + goals + status
-│  ├─ release-notes.md               # If kept, consider redirecting to 09-deployment/releases/*
-│  ├─ changelog.md
 │  │
-│  ├─ sprint-001-auth-login/          # Sprint folder named by ID + goal (recommended)
-│  │  ├─ README.md                    # Sprint overview and status
-│  │  ├─ sprint.md                    # Sprint plan: goal, backlogs, scope rules
-│  │  ├─ backlogs/                    # Jira issues (small, testable)
-│  │  │  ├─ README.md                 # Backlog items index
-│  │  │  ├─ FEATURE-auth-login.md     # New capability
-│  │  │  ├─ CHANGE-login-error.md        # Bug fix
-│  │  │  ├─ BUG-login-error.md        # Bug fix
-│  │  │  └─ IMPROVE-rate-limits.md    # Improvement/refactor
-│  │  ├─ test-results.md              # REQUIRED: evidence of tests + commands + outputs
-│  │  └─ sprint-review.md             # Approval + what shipped + learnings
+│  ├─ user-auth/                      # Sprint folder named by ID + goal (recommended)
+│  │  ├─ README.md                    # Sprint overview, status, and plan
+│  │  ├─ FEATURE-auth-login.md        # New capability
+│  │  ├─ CHANGE-login-error.md        # Bug fix
+│  │  ├─ BUG-login-error.md           # Bug fix
+│  │  └─ IMPROVE-rate-limits.md       # Improvement/refactor
 │  │
-│  └─ sprint-002-profile-basics/
+│  └─ profile-basics/
 │     └─ ...
 │
 ├─ 10-deployment/                    # Stage 10: Cloud infra + deploy process + release verification

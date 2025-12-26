@@ -1,6 +1,6 @@
 ---
 name: dev-swarms-project-management
-description: Manage sprints and backlogs in a feature-driven AI development workflow. Create, prioritize, schedule backlogs (feature/change/bug/improve), archive completed sprints, and maintain features knowledge base. Use when managing development lifecycle, creating sprints, or organizing backlogs.
+description: Plan sprints and backlogs in a feature-driven AI development workflow. Create, prioritize, schedule backlogs (feature/change/bug/improve), archive completed sprints, and maintain features knowledge base. Use when managing development lifecycle, creating sprints, or organizing backlogs.
 ---
 
 # AI Builder - Project Management
@@ -27,7 +27,6 @@ This skill works with the following folder structure:
 - `06-architecture/` - System structure and dependencies that affect sequencing
 
 - `09-sprints/` - Active sprint and backlog management
-- `features/` - Coding knowledge base (feature index and implementations)
 - `99-archive/` - Archived completed sprints (same structure as project root)
 
 ## Your Roles in This Skill
@@ -69,10 +68,10 @@ This communication pattern ensures transparency and allows for human-in-the-loop
 
 There are 4 types of backlogs:
 
-1. **feature** - New functionality (initial development)
-2. **change** - Modifications to existing features (initial implementation didn't meet design requirements)
-3. **bug** - Defects found during code review or testing
-4. **improve** - Optimization or enhancement of existing code
+1. **feature** - A new feature request (initial development)
+2. **change** - Modifications to an existing feature (initial eature request didn't meet design requirements)
+3. **bug** - Defects found during code review or testing to a feature
+4. **improve** - Optimization or enhancement of existing code related to a feature
 
 ## Instructions
 
@@ -90,11 +89,11 @@ Follow these steps in order:
    - `08-devops/` for environment/tooling readiness and constraints
 
 1. **Check if `09-sprints/` folder exists:**
-   - If NOT found: Create new folder structure with `sprints-index.md`
+   - If NOT found: Create new folder structure with `README.md` refer to `templates/sprints-readme.md`
    - If found: Read `sprints-index.md` to understand current sprint status
 
 2. **Check if `features/` folder exists:**
-   - If NOT found: Create folder with `features-index.md`
+   - If NOT found: no any feature completed, ignore it for now
    - If found: Read `features-index.md` to understand implemented features
 
 3. **Use templates for consistency:**
@@ -125,7 +124,7 @@ When creating backlogs, each must include:
    - Success criteria
 
 3. **Reference Features:**
-   - List features from `features/` that are related
+   - List features from `features/` that are related if have
    - These provide context without reading entire project
    - Reference `features/features-index.md` to find relevant features
 
@@ -146,7 +145,6 @@ Track backlog lifecycle:
 - **In Review** - Code complete, awaiting review
 - **Testing** - Under test
 - **Done** - Completed and verified
-- **Blocked** - Cannot proceed (identify blocker)
 
 ### Step 2: Sprint Planning
 
@@ -174,188 +172,62 @@ Each sprint should have:
    - Estimated duration
    - Key milestones
 
-#### Sprint Structure
-
-```
-09-sprints/
-├── sprints-index.md (links to all sprints, sorted by priority)
-├── sprint-01/
-│   ├── README.md (sprint goals, timeline, status)
-│   ├── backlog-01-feature-user-auth.md
-│   ├── backlog-02-bug-login-error.md
-│   ├── backlog-03-improve-api-performance.md
-│   └── test-plan.md (end user test plan for sprint)
-├── sprint-02/
-│   └── ...
-```
-
-### Step 3: Archiving Completed Sprints
-
-When a sprint is completed:
-
-1. **Move Sprint to Archive:**
-   - Move entire sprint folder from `09-sprints/` to `99-archive/09-sprints/`
-   - Maintain exact same structure in archive
-   - Update `sprints-index.md` to mark sprint as archived
-
-2. **Create Feature Entries:**
-   - For each completed feature in the sprint
-   - Create entry in `features/` folder
-   - Update `features/features-index.md` with new features
-
-3. **Feature Entry Should Include:**
-   - Feature name and description
-   - Reference to archived sprint/backlog
-   - Key implementation details
-   - Contracts/flows if necessary
-   - Implementation documentation location
-
-### Step 4: Maintaining Features Knowledge Base
-
-The `features/` folder serves as a coding knowledge base (RAG for LLM):
-
-1. **features-index.md:**
-   - Index of all features with brief descriptions
-   - Serves as LLM RAG index for quick reference
-   - Should be concise but comprehensive
-   - Include links to feature details
-
-2. **Feature Files:**
-   - `features/{feature-name}.md` - Design and approach
-   - `features/flows/{feature-name}.md` - User flows and process flows (when needed)
-   - `features/contracts/{feature-name}.md` - API contracts and interfaces (when needed)
-   - `features/impl/{feature-name}.md` - Implementation tracking and coding notes
-
-3. **Usage Pattern:**
-   - Developers read `features-index.md` first
-   - Only read detailed feature files when needed
-   - Avoids reading entire project for each backlog
-
-### Step 5: Prioritizing and Scheduling
+### Step 3: Prioritizing and Scheduling
 
 #### Prioritization Criteria
 
 When new backlogs are created (by code review or test skills):
 
 1. **Assess Priority:**
-   - Critical bugs: highest priority
-   - Blocking changes: high priority
-   - Improvements: medium priority
-   - New features: based on business value
+   - sprints and backlogs are ordered by priority
+   - the top one is the highest priority
 
 2. **Assign to Sprint:**
    - Add to current sprint if capacity allows
-   - Otherwise, add to next planned sprint
-   - Update `sprints-index.md` with priority order
+   - Otherwise, add to a planned sprint or create a new sprint
+   - Update both `README.md` files in folder `09-sprints/` and sprint folder with priority order
 
-3. **Check Dependencies:**
-   - Ensure prerequisite backlogs are complete
-   - Schedule dependent work in logical order
+### Step 4: Archiving Completed Sprints
 
-### Step 6: Status Reporting
+When a sprint is completed:
 
-Keep stakeholders informed:
-
-1. **Sprint Progress:**
-   - Update sprint README with current status
-   - Track completed vs. remaining backlogs
-   - Highlight any blockers or risks
-
-2. **Overall Project Status:**
-   - Update `sprints-index.md` with:
-     - Current sprint status
-     - Completed sprints count
-     - Upcoming sprint plans
-     - Backlog pipeline
-
-3. **Features Delivered:**
-   - Maintain count in `features-index.md`
-   - Celebrate milestone deliveries
+   **Move Sprint to Archive:**
+      - Move entire sprint folder from `09-sprints/` to `99-archive/09-sprints/`
+      - Maintain exact same structure in archive
+      - Update `README.md` to mark sprint as archived
 
 ## Expected Project Structure
 
 ```
 project-root/
 ├── 09-sprints/
-│   ├── sprints-index.md (all sprints with priority sorted links)
-│   ├── sprint-01/
+│   ├── README.md (all sprints with priority sorted links)
+│   ├── sprint-name-b/
 │   │   ├── README.md
-│   │   ├── backlog-01-feature-*.md
-│   │   ├── backlog-02-change-*.md
-│   │   ├── backlog-03-bug-*.md
-│   │   ├── backlog-04-improve-*.md
-│   │   └── test-plan.md
-│   └── sprint-02/
+│   │   ├── {BACKLOG_TYPE}-{feature-name-d}.md
+│   │   ├── {BACKLOG_TYPE}-{feature-name-e}.md
+│   │   ├── {BACKLOG_TYPE}-{feature-name-f}.md
+│   └── sprint-name-c/
 │       └── ...
-├── features/
-│   ├── features-index.md (LLM RAG index)
-│   ├── feature-user-auth.md
-│   ├── feature-payment-processing.md
-│   ├── flows/
-│   │   └── feature-checkout-flow.md
-│   ├── contracts/
-│   │   └── api-contracts.md
-│   └── impl/
-│       └── feature-user-auth-impl.md
 └── 99-archive/
     ├── 09-sprints/
-    │   └── sprint-01/ (completed sprints)
-    └── features/
-        └── (optional archived features)
+    │   ├── sprint-name-a/ (completed sprints)
+    │   │   ├── README.md
+    │   │   ├── {BACKLOG_TYPE}-{feature-name-a}.md
+    │   │   ├── {BACKLOG_TYPE}-{feature-name-b}.md
+    └── ideas.md  
 ```
-
-**Note**: Templates for sprints and backlogs are located in:
-`dev-swarms-skills/dev-swarms-project-management/templates/`
 
 ## Available Templates
 
 This skill provides the following templates in the `templates/` folder:
 
-1. **sprint-template.md** - Template for creating new sprint folders
-   - Sprint goals and timeline
-   - Backlog tracking
-   - Progress reporting structure
-
-2. **backlog-template.md** - Template for creating backlog items
-   - Comprehensive backlog structure
-   - All backlog types (feature/change/bug/improve)
-   - Test plan section
-
-3. **sprints-index-template.md** - Template for sprints index file
-   - Overall project tracking
-   - Sprint pipeline
-   - Statistics and metrics
+1. **sprints-readme.md** - Template for README.md in `09-sprints/`
+2. **sprint-readme.md** - Template for README.md in each sprint folder
+3. **backlog.md** - Template for creating backlog file in each sprint folder
 
 Use these templates when creating new sprints and backlogs to ensure consistency across the project.
 
-## Key Project Management Principles
 
-1. **Small Batches**: 5-7 backlogs per sprint keeps velocity steady
-2. **User Focus**: Test plans should be executable by end users
-3. **Knowledge Base**: Features folder prevents context overload
-4. **Clear Priorities**: Backlog order reflects business value and dependencies
-5. **Sprint Goals**: Each sprint should deliver demonstrable user value
-6. **Documentation**: Every feature has a home in the knowledge base
-7. **Showcase Ready**: Sprint test plans should support demo meetings
 
-## Sprint Planning Best Practices
 
-1. **Balance Backlog Types:**
-   - Don't fill sprint with only new features
-   - Include bug fixes and improvements
-   - Address technical debt regularly
-
-2. **Consider Dependencies:**
-   - Backend before frontend
-   - Infrastructure before features
-   - Core features before enhancements
-
-3. **Realistic Sizing:**
-   - Better to under-commit and over-deliver
-   - Leave buffer for unexpected issues
-   - Track velocity over time
-
-4. **End User Focus:**
-   - Sprint test plans should demonstrate real user value
-   - Think about what you'd show in a customer demo
-   - Every sprint should have a "story" to tell
