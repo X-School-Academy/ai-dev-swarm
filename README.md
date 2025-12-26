@@ -1,10 +1,23 @@
-# Dev Swarms
+## 🤖 What is AI Dev Swarm?
 
-A structured AI-powered development framework that guides you from initial idea to production deployment through a proven 10-stage methodology.
+AI Dev Swarm is an AI-powered development framework designed to turn a simple idea into a full-stack, commercial-ready product — automatically.
 
-## Overview
+No coding knowledge required.
+No tech background needed.
+Just an idea.
 
-Dev Swarms is a comprehensive development workflow system that uses AI agents to accelerate product development. It transforms informal ideas into professional products by breaking down the entire development process into manageable stages with clear deliverables and quality gates.
+AI Dev Swarm guides you step by step through the entire product lifecycle.
+
+AI handles everything.
+You focus on vision and decisions.
+
+Our goal is simple but ambitious:
+
+Enable a one-person company to become real — powered by AI.
+
+## Support
+
+Discord support: https://juniorit.ai/virtual-office
 
 ## How It Works
 
@@ -79,3 +92,28 @@ Each stage builds upon the previous, ensuring alignment from business goals thro
 ## Documentation
 
 All project documentation is organized in numbered folders (00-10) representing each stage, with supporting documentation in `features/` for the knowledge base and `99-archive/` for completed work.
+
+## 🤝 Want to Contribute?
+
+If you’re interested in contributing:
+
+No prior experience required.
+No coding skills required.
+Just curiosity and willingness to learn.
+
+Once you show interest, I’ll personally guide you on how to contribute.
+
+## ⭐ Call to Action
+
+🙏 Please:
+
+⭐ Star the repo.
+🍴 Fork the project.
+💬 Share feedback.
+🤝 Join us as a contributor.
+
+Let’s redefine how products are built in the AI era.
+
+One idea. One person. One AI swarm. 🚀
+
+Join our Discord server for discussion: https://juniorit.ai/virtual-office
