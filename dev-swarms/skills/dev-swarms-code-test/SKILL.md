@@ -1,5 +1,5 @@
 ---
-name: ai-builder-code-test
+name: dev-swarms-code-test
 description: Create and execute comprehensive tests including unit tests, integration tests, CLI tests, web/mobile UI tests, API tests, and log analysis. Find bugs, verify requirements, identify improvements, and create change/bug/improve backlogs. Use when testing implementations or ensuring quality.
 ---
 

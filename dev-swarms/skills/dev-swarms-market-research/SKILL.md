@@ -1,5 +1,5 @@
 ---
-name: ai-builder-market-research
+name: dev-swarms-market-research
 description: Conduct comprehensive market research and competitive analysis to validate the problem and understand the market landscape. Use when user asks to conduct market research, validate market, analyze competitors, or start Stage 1 after init-ideas.
 ---
 

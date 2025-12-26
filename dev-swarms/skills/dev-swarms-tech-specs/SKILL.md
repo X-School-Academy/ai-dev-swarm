@@ -1,5 +1,5 @@
 ---
-name: ai-builder-tech-specs
+name: dev-swarms-tech-specs
 description: Define technical specifications including tech stack, security, theme standards (from UX mockup), coding standards, and testing standards. Use when user asks to define tech specs, choose tech stack, or start Stage 7 after architecture.
 ---
 

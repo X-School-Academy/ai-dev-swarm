@@ -1,5 +1,5 @@
 ---
-name: ai-builder-deployment
+name: dev-swarms-deployment
 description: Deploy application to staging/production environments, setup CI/CD pipelines, manage cloud infrastructure, and configure monitoring. Use when user asks to deploy application, setup production environment, or configure automated deployment.
 ---
 

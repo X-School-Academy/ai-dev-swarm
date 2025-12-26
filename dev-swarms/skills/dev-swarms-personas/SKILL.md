@@ -1,5 +1,5 @@
 ---
-name: ai-builder-personas
+name: dev-swarms-personas
 description: Create/Updates detailed user personas and prioritized user stories based on target users and market research. Use when user asks to create personas, define user stories, or start Stage 2 after market research or init-ideas.
 ---
 

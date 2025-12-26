@@ -1,5 +1,5 @@
 ---
-name: ai-builder-project-management
+name: dev-swarms-project-management
 description: Manage sprints and backlogs in a feature-driven AI development workflow. Create, prioritize, schedule backlogs (feature/change/bug/improve), archive completed sprints, and maintain features knowledge base. Use when managing development lifecycle, creating sprints, or organizing backlogs.
 ---
 
@@ -305,7 +305,7 @@ project-root/
 ```
 
 **Note**: Templates for sprints and backlogs are located in:
-`ai-builder-skills/ai-builder-project-management/templates/`
+`dev-swarms-skills/dev-swarms-project-management/templates/`
 
 ## Available Templates
 

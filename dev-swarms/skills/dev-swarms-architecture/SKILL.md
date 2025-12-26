@@ -1,5 +1,5 @@
 ---
-name: ai-builder-architecture
+name: dev-swarms-architecture
 description: Design system architecture including components, data flow, and deployment boundaries. Use when user asks to design architecture, create architecture diagrams, or start Stage 6 after UX design.
 ---
 

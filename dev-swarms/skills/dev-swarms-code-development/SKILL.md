@@ -1,5 +1,5 @@
 ---
-name: ai-builder-code-development
+name: dev-swarms-code-development
 description: Complete backlog implementation in feature-driven development. Read backlog requirements, reference implemented features, design approach, implement code, and document. Use when implementing features, changes, bug fixes, or improvements.
 ---
 

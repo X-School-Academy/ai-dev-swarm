@@ -1,5 +1,5 @@
 ---
-name: ai-builder-init-ideas
+name: dev-swarms-init-ideas
 description: Transform non-technical ideas into professional project kickoff documentation. Use when user asks to init, kickoff, or start a new project, or when ideas.md needs to be formalized into structured documentation.
 ---
 

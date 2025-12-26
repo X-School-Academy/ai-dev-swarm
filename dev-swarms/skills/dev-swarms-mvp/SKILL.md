@@ -1,5 +1,5 @@
 ---
-name: ai-builder-mvp
+name: dev-swarms-mvp
 description: Define MVP scope, success metrics, and explicit out-of-scope items to focus on the smallest testable product. Use when user asks to define MVP, scope MVP, or start Stage 3 after personas.
 ---
 

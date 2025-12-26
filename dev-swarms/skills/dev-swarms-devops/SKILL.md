@@ -1,5 +1,5 @@
 ---
-name: ai-builder-devops
+name: dev-swarms-devops
 description: Setup development environment, MCP tools, GitHub repository, and Docker configurations. Use when user asks to setup devops, configure development environment, or start Stage 8 after tech specs.
 ---
 

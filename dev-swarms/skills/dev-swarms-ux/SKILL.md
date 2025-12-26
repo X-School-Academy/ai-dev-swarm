@@ -1,5 +1,5 @@
 ---
-name: ai-builder-ux
+name: dev-swarms-ux
 description: Design user experience including flows, interactions, mockups, and accessibility. Use when user asks to design UX, create mockups, or start Stage 5 after PRD.
 ---
 

@@ -1,5 +1,5 @@
 ---
-name: ai-builder-code-review
+name: dev-swarms-code-review
 description: Review and audit code quality, architecture, and implementation. Verify code meets design specs, find bugs, identify improvements, and create change/bug/improve backlogs. Use when reviewing completed code, auditing implementations, or ensuring quality.
 ---
 

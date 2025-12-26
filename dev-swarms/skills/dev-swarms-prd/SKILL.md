@@ -1,5 +1,5 @@
 ---
-name: ai-builder-prd
+name: dev-swarms-prd
 description: Create comprehensive Product Requirements Document (PRD) defining product behavior, functional and non-functional requirements. Use when user asks to create PRD, write requirements, or start Stage 4 after MVP definition.
 ---
 
