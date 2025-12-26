@@ -21,6 +21,8 @@ Discord support: https://juniorit.ai/virtual-office
 
 ## How It Works
 
+Fork and clone this project, then work with Claude Code and OpenAI Codex by default via Agent Skills integration.
+
 Start with your ideas in `ideas.md`, then progress through structured stages:
 
 **Planning & Strategy (Stages 0-4)**
