@@ -7,6 +7,7 @@ project-root/
 │  ├─ problem-statement.md           
 │  ├─ target-users.md                # Who has the problem (high-level), primary audience
 │  ├─ value-proposition.md 
+│  ├─ cost-budget.md                 # total tokens and tokens for each stage maybe used, and estimation $ for these tokens
 │  └─ owner-requirement.md           # from ideas.md, any other requirments for the late stage
 │ 
 ├─ 01-market-research/               # Stage 1: validate problem + understand landscape
@@ -53,8 +54,8 @@ project-root/
 │
 ├─ 07-tech-specs/                    # Stage 7: engineering decisions & standards (policy level)
 │  ├─ README.md                      # Folder overview and guide
+│  ├─ tech-solution-research.md      # Rearch for framework/package/library/cloud provider/API provider/AI model/open source AI model etc to use
 │  ├─ tech-stack.md                  # Languages/frameworks/db/cloud provider choices
-│  ├─ security.md                    # Security posture (auth approach, secrets handling, threat notes)
 │  ├─ theme-standards.md             # UI theme rules (fonts/sizes/colors) if doing infographic/UI consistency - based on the approved ux - mockup
 │  ├─ coding-standards.md            # Code style rules, repo conventions, naming, formatting
 │  ├─ testing-standards.md           # What tests are required, how to name/run them, minimum gates
@@ -66,10 +67,10 @@ project-root/
 │  ├─ mcp-setup.md           # MCP tool setup: Playwright/GitHub/AWS + permissions model
 │  ├─ vscode-devcontainer.md # VS Code Dev Container + Docker configuration
 │
-├─ 09-sprints/                       # Stage 9: AI-accelerated development execution (3–6 hour sprints)
+├─ 09-sprints/                       # Stage 9: AI-accelerated development execution with differnet type backlogs
 │  ├─ README.md                      # Folder overview and guide
 │  │
-│  ├─ user-auth/                      # Sprint folder named
+│  ├─ user-auth/                      # Backlogs of each sprint
 │  │  ├─ README.md                    # Sprint overview, status, and plan
 │  │  ├─ FEATURE-auth-login.md        # New feature request
 │  │  ├─ CHANGE-login-error.md        # Feature change request
