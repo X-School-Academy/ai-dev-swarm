@@ -13,15 +13,11 @@ This skill provides instructions for creating Mermaid diagrams and converting th
 
 ## Installation
 
-If `mmdc` is not available, install it globally using pnpm:
+We recommend using `pnpm dlx` to execute the Mermaid CLI without a permanent global installation.
 
+Verify `mmdc` availability:
 ```bash
-pnpm add -g @mermaid-js/mermaid-cli
-```
-
-Verify installation:
-```bash
-mmdc --version
+pnpm dlx @mermaid-js/mermaid-cli --version
 ```
 
 ## Usage
@@ -41,15 +37,15 @@ mmdc --version
     ```
 
 2.  **Generate Image:**
-    Use `mmdc` to convert the `.mmd` file to an image (SVG recommended for scalability).
+    Use `pnpm dlx` to run the Mermaid CLI and convert the `.mmd` file to an image (SVG recommended for scalability).
 
     ```bash
-    mmdc -i diagram.mmd -o diagram.svg
+    pnpm dlx @mermaid-js/mermaid-cli -i diagram.mmd -o diagram.svg
     ```
 
     For PNG output:
     ```bash
-    mmdc -i diagram.mmd -o diagram.png
+    pnpm dlx @mermaid-js/mermaid-cli -i diagram.mmd -o diagram.png
     ```
 
 ## Common Diagram Types

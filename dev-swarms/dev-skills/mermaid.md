@@ -2,8 +2,8 @@ This skill is for creating Mermaid images.
 
 Node.js and pnpm must be installed first.
 
-pnpm add -g @mermaid-js/mermaid-cli
-mmdc --version
+Verify `mmdc` availability or use `pnpm dlx`:
+`pnpm dlx @mermaid-js/mermaid-cli --version`
 
 Example diagram file: `diagram.mmd`
 
@@ -17,4 +17,4 @@ flowchart TD
 ```
 
 Generate SVG:
-`mmdc -i diagram.mmd -o diagram.svg`
+`pnpm dlx @mermaid-js/mermaid-cli -i diagram.mmd -o diagram.svg`

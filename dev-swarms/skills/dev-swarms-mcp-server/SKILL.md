@@ -22,7 +22,7 @@ To add an MCP server:
 claude mcp add --transport [http|sse] <name> <URL>
 
 # Stdio transport (example with environment variable)
-claude mcp add --transport stdio <name> --env AIRTABLE_API_KEY=YOUR_KEY -- npx -y airtable-mcp-server
+claude mcp add --transport stdio <name> --env AIRTABLE_API_KEY=YOUR_KEY -- pnpm dlx airtable-mcp-server
 ```
 
 ### Codex Code

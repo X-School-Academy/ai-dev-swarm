@@ -3,10 +3,10 @@ Use this skill when adding an MCP server to an AI agent.
 For Claude Code:
 `claude mcp list`
 `claude mcp add --transport [http | sse ] <name> <URL>`
-`claude mcp add --transport stdio <name> --env AIRTABLE_API_KEY=YOUR_KEY -- npx -y airtable-mcp-server`
+`claude mcp add --transport stdio <name> --env AIRTABLE_API_KEY=YOUR_KEY -- pnpm dlx airtable-mcp-server`
 
 For Codex Code:
-`claude mcp list`
+`codex mcp list`
 `codex mcp add [OPTIONS] <name> (--url <URL> | -- <COMMAND>...)`
 
 For Gemini CLI:
