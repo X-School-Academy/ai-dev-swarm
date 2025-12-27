@@ -2,7 +2,7 @@ Please check `dev-swarms/py_scripts/screen_stream.py`, then:
 1. Use `uv add` to add any required packages to `dev-swarms/py_scripts/pyproject.toml`.
 2. Update `dev-swarms/py_scripts/screen_stream.py` to make it executable from any path by adding a shebang (`#!`) to the top of the script.
 
-### Skill: screen_snapshot
+### Skill: screen-snapshot
 
 When an AI agent needs to inspect a mobile app, an iOS/Android simulator, or any specific part of the screen, it should use this skill.
 
