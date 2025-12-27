@@ -65,6 +65,14 @@ Follow these steps in order for coding development:
 1. Identify the backlog which you will work on:
    - User specifies which backlog to work on
    - Or you select next backlog from `09-sprints/` in order
+
+```
+project-root/
+├── 09-sprints/
+│   └── sprint-name/
+│       └── [BACKLOG-TYPE]-feature-name.md # find entry point for a task
+```
+
 2. Read all the content in folder `07-tech-specs/` to understand the full project requirement
 3. Read backlog file from `09-sprints/`:
    - Understand task description
@@ -90,6 +98,9 @@ Before writing code, create the feature design document:
    - If backlog type is `change/bug/improve` or the feature file is exist, update existing feature file
    - Use the provided templates for consistency
 2. Create/update `flow` and `contract` files if it is needed
+
+   - `features/flows/{feature-name}.md` - User flows and process flows (when needed)
+   - `features/contracts/{feature-name}.md` - API contracts and interfaces (when needed)
 
 3. Present design to user for approval
    - Show the feature design document
@@ -221,7 +232,7 @@ Before marking complete:
 project-root/
 ├── 09-sprints/
 │   └── sprint-name/
-│       └── [TYPE]-backlog-name.md
+│       └── [BACKLOG-TYPE]-feature-name.md # the entry point for a task
 ├── features/
 │   ├── features-index.md 
 │   ├── feautue-name.md
@@ -242,7 +253,8 @@ project-root/
 ```markdown
 # Features Index
 
-* [feature name](feature-file.md)
+- [feature name a](feature-name-a.md)
+- [feature name b](feature-name-b.md)
 ```
 
 2. **feature.md**
@@ -261,19 +273,19 @@ The details of this feature's implementation
 * [Implement](impl/feature-name.md)
 ```
 
-3. `feature-flow.md` - help to understand the code logic
+3. `flows/feature-name.md` - help to understand the code logic
    - User flow diagrams (mermaid)
    - Process flows and sequence diagrams
    - State transitions
    - Integration flows
 
-4. `**feature-contract.md` - the interface between services, pacakges, workflows
+4. `contracts/feature-name.md` - the interface between services, pacakges, workflows
    - REST API used or endpoint definitions
    - Request/response schemas
    - Data models and database schemas
    - Event contracts
 
-5. `feature-impl.md` - help to find the code location in the source code file for codeo review, trouble shooting or further development
+5. `impl/feature-name.md` - help to find the code location in the source code file for codeo review, trouble shooting or further development
    - searchable keywords - function name, class name, even comment text in the file
    - file path
    - Dependencies and integration details

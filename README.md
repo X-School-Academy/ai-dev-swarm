@@ -1,25 +1,49 @@
-# MCP Skills Server
+## 🤖 What is AI Dev Swarm?
 
-**Status**: Stage 0 - Init Ideas (In Progress)
+AI Dev Swarm is an AI-powered development framework designed to turn a simple idea into a full-stack, commercial-ready product — automatically.
 
-A Model Context Protocol (MCP) server that enables AI agents without built-in skills support to access and utilize the dev-swarms development framework through standardized MCP tools.
+No coding knowledge required.
+No tech background needed.
+Just an idea.
 
-## Project Overview
+AI Dev Swarm guides you step by step through the entire product lifecycle.
 
-This project creates an MCP server that bridges the gap between AI agents and the dev-swarms skills framework. It allows any MCP-compatible AI agent to leverage the comprehensive 10-stage development methodology provided by dev-swarms, from initial idea through production deployment.
+AI handles everything.
+You focus on vision and decisions.
 
-## Current Stage
+Our goal is simple but ambitious:
 
-📍 **Stage 0: Init Ideas** - [View Documentation](./00-init-ideas/)
+Enable a one-person company to become real — powered by AI.
 
-Initial project documentation has been created. Review the problem statement, target users, value proposition, and requirements in the `00-init-ideas/` folder.
+## Support
 
-## How Dev Swarms Works
+Discord support: https://juniorit.ai/virtual-office
 
-Dev Swarms is a structured AI-powered development framework that guides you from initial idea to production deployment through a proven 10-stage methodology.
+## How It Works
 
-### Planning & Strategy (Stages 0-4)
-- **Stage 0: Init Ideas** - Transform informal ideas into professional project documentation ✅ Current
+Fork and clone this project, then work with `Claude Code` and `OpenAI Codex` by default via Agent Skills integration.
+
+For `Gemini CLI` or other AI Agents that do not support Agent skills natively, you can use them as an MCP server by configuring:
+
+```json
+{
+  "mcpServers": {
+    "skillz": {
+      "command": "uvx",
+      "args": [
+        "skillz@latest",
+        "/project-root-absolute-path/dev-swarms/skills",
+        "--verbose"
+      ]
+    }
+  }
+}
+```
+
+Start with your ideas in `ideas.md`, then progress through structured stages:
+
+**Planning & Strategy (Stages 0-4)**
+- **Stage 0: Init Ideas** - Transform informal ideas into professional project documentation
 - **Stage 1: Market Research** - Validate the problem and analyze competitive landscape
 - **Stage 2: Personas** - Define user personas and prioritized user stories (P0/P1/P2)
 - **Stage 3: MVP** - Define minimum viable product scope and success metrics
@@ -76,8 +100,27 @@ This project uses the dev-swarms framework skills:
 
 All project documentation is organized in numbered folders (00-10) representing each stage, with supporting documentation in `features/` for the knowledge base and `99-archive/` for completed work.
 
-## About Dev Swarms
+## 🤝 Want to Contribute?
 
-Dev Swarms is a comprehensive development workflow system that uses AI agents to accelerate product development. It transforms informal ideas into professional products by breaking down the entire development process into manageable stages with clear deliverables and quality gates.
+If you’re interested in contributing:
 
-Each stage builds upon the previous, ensuring alignment from business goals through to implementation.
+No prior experience required.
+No coding skills required.
+Just curiosity and willingness to learn.
+
+Once you show interest, I’ll personally guide you on how to contribute.
+
+## ⭐ Call to Action
+
+🙏 Please:
+
+⭐ Star the repo.
+🍴 Fork the project.
+💬 Share feedback.
+🤝 Join us as a contributor.
+
+Let’s redefine how products are built in the AI era.
+
+One idea. One person. One AI swarm. 🚀
+
+Join our Discord server for discussion: https://juniorit.ai/virtual-office

@@ -14,7 +14,7 @@
 
 ## Original Feature/Backlog (For change/bug/improve types)
 
-- [backlog name]({TYPE}-backlog-file.md)
+- [BACKLOG_TYPE - feature name a]({BACKLOG_TYPE}-{feature-name-a}.md)
 
 ## User Story (For feature types)
 
