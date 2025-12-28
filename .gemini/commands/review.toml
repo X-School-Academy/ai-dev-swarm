@@ -1,0 +1,12 @@
+description = "Review backlog implementation only"
+prompt = """
+Review the backlog implementation for quality and compliance.
+
+Backlog file location: @09-sprints/**/*{{args}}*.md
+
+Use agent skill `dev-swarms-code-review` to review the implementation.
+
+Backlog name: {{args}}
+
+Please locate the backlog file and execute the review phase.
+"""

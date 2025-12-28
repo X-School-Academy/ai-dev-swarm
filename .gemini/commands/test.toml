@@ -1,0 +1,12 @@
+description = "Test backlog implementation only"
+prompt = """
+Test the backlog implementation comprehensively.
+
+Backlog file location: @09-sprints/**/*{{args}}*.md
+
+Use agent skill `dev-swarms-code-test` to test the implementation.
+
+Backlog name: {{args}}
+
+Please locate the backlog file and execute the testing phase.
+"""
