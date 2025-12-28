@@ -10,11 +10,3 @@
   - [ ] [BACKLOG_TYPE - feature name c]({BACKLOG_TYPE}-{feature-name-c}.md)
 
 > [x] marked as finished
-
-
-## Archived Sprints
-
-* [Sprint name](sprint-path)
-  - [BACKLOG_TYPE - feature name a]({BACKLOG_TYPE}-{feature-name-a}.md)
-  - [BACKLOG_TYPE - feature name b]({BACKLOG_TYPE}-{feature-name-b}.md)
-  - [BACKLOG_TYPE - feature name c]({BACKLOG_TYPE}-{feature-name-c}.md)

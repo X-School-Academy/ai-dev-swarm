@@ -124,7 +124,6 @@ Create the following documentation:
 1. **If user confirms the contents are good:**
    - Ask if they want to commit to git
 2. **If user wants to commit:**
-   - Create `99-archive/` folder if it doesn't exist
    - Stage all changes in `00-init-ideas/`
    - Stage the updated README.md
    - Commit with message: "Initialize project with ideas documentation"
@@ -147,4 +146,3 @@ project-root/
 - Transform informal ideas into professional business documentation
 - Maintain clear ownership and accountability
 - Create actionable, structured documentation
-- Archive original ideas after formalization

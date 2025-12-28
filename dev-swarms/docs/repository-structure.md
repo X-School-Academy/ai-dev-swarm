@@ -120,7 +120,7 @@ project-root/
 │     ├─ E-deploy-staging.md          # Staging deployment evidence
 │     └─ E-deploy-production.md       # Production deployment evidence
 │
-├─ 99-archive/                       # Finished/deprecated docs and sprints (keep repo clean)
+├─ 99-archive/                       # Finished projects
 │
 ├─ features/                         # AI compressed product knowledge (AI loads on-demand per backlog)
 │  ├─ README.md                      # Features index and overview

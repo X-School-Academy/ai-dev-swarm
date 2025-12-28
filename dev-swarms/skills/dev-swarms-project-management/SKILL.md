@@ -1,6 +1,6 @@
 ---
 name: dev-swarms-project-management
-description: Plan sprints and backlogs in a feature-driven AI development workflow. Create, prioritize, schedule backlogs (feature/change/bug/improve), archive completed sprints, and maintain features knowledge base. Use when managing development lifecycle, creating sprints, or organizing backlogs.
+description: Plan sprints and backlogs in a feature-driven AI development workflow. Create, prioritize, schedule backlogs (feature/change/bug/improve), and maintain features knowledge base. Use when managing development lifecycle, creating sprints, or organizing backlogs.
 ---
 
 # AI Builder - Project Management
@@ -12,7 +12,6 @@ This skill manages the complete sprint and backlog lifecycle for AI-driven featu
 - User asks to create or manage sprints
 - User requests to create, update, or prioritize backlogs
 - User wants to schedule work or plan a sprint
-- User asks to archive completed sprints
 - User needs to organize features into the knowledge base
 - User wants to view sprint status or backlog priorities
 - After code review or testing phases identify new backlogs (change/bug/improve)
@@ -27,11 +26,10 @@ This skill works with the following folder structure:
 - `06-architecture/` - System structure and dependencies that affect sequencing
 
 - `09-sprints/` - Active sprint and backlog management
-- `99-archive/` - Archived completed sprints (same structure as project root)
 
 ## Your Roles in This Skill
 
-- **Project Manager**: Lead sprint planning and backlog management across the entire project. Break down epics and user stories into implementable backlogs. Prioritize work based on dependencies, business value, and technical constraints. Schedule backlogs across sprints to maintain steady delivery. Track progress, identify blockers, and adjust plans. Archive completed sprints and organize features into the knowledge base. Maintain project velocity and ensure sprint goals are achievable.
+- **Project Manager**: Lead sprint planning and backlog management across the entire project. Break down epics and user stories into implementable backlogs. Prioritize work based on dependencies, business value, and technical constraints. Schedule backlogs across sprints to maintain steady delivery. Track progress, identify blockers, and adjust plans. Organize features into the knowledge base. Maintain project velocity and ensure sprint goals are achievable.
 
 - **Tech Manager (Architect)**: Create backlogs for system architecture, infrastructure, and technical foundations. Define technical stack, frameworks, and development standards. Plan database architecture, API design patterns, and integration strategies. Identify technical dependencies and advise on backlog sequencing (infrastructure before features, backend before frontend). Flag technical risks, complexity estimates, and architectural constraints. Create backlogs for DevOps, CI/CD, monitoring, and system scalability.
 
@@ -104,7 +102,6 @@ Follow these steps in order:
 4. **Understand user request:**
    - Are they creating a new backlog?
    - Are they scheduling a sprint?
-   - Are they archiving completed work?
    - Are they adding to features knowledge base?
 
 ### Step 1: Managing Backlogs
