@@ -38,7 +38,11 @@ For `Gemini CLI` or other AI Agents that do not support Agent skills natively, y
     }
   }
 }
+
+// refer to `.gemini/settings.json`
 ```
+
+📖 **New to AI Dev Swarm?** Check out the [Complete User Manual](USER-MANUAL.md) for a step-by-step guide designed for non-technical users.
 
 Start with your ideas in `ideas.md`, then progress through structured stages:
 
@@ -67,12 +71,14 @@ Start with your ideas in `ideas.md`, then progress through structured stages:
 - **Smart Path Resolution**: Handles file paths relative to project root
 - **Python + FastMCP**: Modern, reliable implementation with uv for dependency management
 
-## Repository Structure
-
-See `dev-swarms/docs/repository-structure.md` for the complete folder structure and file organization.
-
 ## Getting Started
 
+**For Beginners:**
+1. Read the [Complete User Manual](USER-MANUAL.md) - designed for non-technical users
+2. Write your ideas in `ideas.md`
+3. Use `/stage 0` command to start your AI-powered development journey
+
+**For Experienced Users:**
 1. Review the initial project documentation in `00-init-ideas/`
 2. Follow the dev-swarms methodology through each stage
 3. Use AI agents to accelerate development and maintain quality
@@ -98,7 +104,11 @@ This project uses the dev-swarms framework skills:
 
 ## Documentation
 
-All project documentation is organized in numbered folders (00-10) representing each stage, with supporting documentation in `features/` for the knowledge base and `99-archive/` for completed work.
+- **[User Manual](USER-MANUAL.md)** - Complete beginner-friendly guide covering all stages, workflows, and examples
+- **Repository Structure** - See `dev-swarms/docs/repository-structure.md` for folder organization
+- **Stage Documentation** - Organized in numbered folders (00-10) representing each development stage
+- **Knowledge Base** - Feature documentation in `features/` for AI reference
+- **Archive** - Completed work in `99-archive/`
 
 ## 🤝 Want to Contribute?
 
