@@ -71,8 +71,33 @@ Only implement the command for the agent the user asked for. Do not create cross
 
 **Location:**
 - Custom prompts: `~/.codex/prompts/` (or `$CODEX_HOME/prompts`)
+- Must use subfolder name `prompts`
+
+**Codex does not support project level commands**
 
 **File format:** Markdown (`.md`)
+
+```markdown
+---
+description: Prep a branch, commit, and open a draft PR
+argument-hint: [FILES=<paths>] [PR_TITLE="<title>"]
+---
+
+Create a branch named `dev/<feature_name>` for this work.
+If files are specified, stage them first: $FILES.
+Commit the staged changes with a clear message.
+Open a draft PR on the same branch. Use $PR_TITLE when supplied; otherwise write a concise summary yourself.
+```
+
+#### Add metadata and arguments
+Codex reads prompt metadata and resolves placeholders the next time the session starts.
+
+- Description: Shown under the command name in the popup. Set it in YAML front matter as description:.
+- Argument hint: Document expected parameters with argument-hint: KEY=<value>.
+- Positional placeholders: $1 through $9 expand from space-separated arguments you provide after the command. $ARGUMENTS includes them all.
+- Named placeholders: Use uppercase names like $FILE or $TICKET_ID and supply values as KEY=value. Quote values with spaces (for example, FOCUS="loading state").
+- Literal dollar signs: Write $$ to emit a single $ in the expanded prompt.
+
 
 **Naming:**
 - Commands invoked as `/prompts:<name>`
