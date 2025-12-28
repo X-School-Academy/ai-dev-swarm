@@ -17,3 +17,4 @@ The AI will use this as the foundation to guide you through the development proc
 
 ## Your Ideas
 
+[Start writing your ideas here...]
