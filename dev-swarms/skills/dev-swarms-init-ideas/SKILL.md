@@ -203,7 +203,7 @@ Create folders from `00-init-ideas` through `10-deployment`. For each folder:
      - target-users.md (who has the problem, primary audience)
      - value-proposition.md (why this solution matters, core benefits)
      - owner-requirement.md (from ideas.md + constraints for later stages)
-     - cost-budget.md (optional - LLM token budget estimation)
+     - cost-budget.md (REQUIRED - LLM token budget estimation and cost approval)
 
 **File Content Guidelines:**
 
@@ -237,18 +237,58 @@ Create folders from `00-init-ideas` through `10-deployment`. For each folder:
 - Organized by priority or category
 - Clear and actionable items
 
+**cost-budget.md (REQUIRED for L2+ projects):**
+- **Token Budget Estimation Per Stage:**
+  - Estimate tokens needed for each stage based on project scale
+  - Consider: research depth, documentation thoroughness, code complexity, testing coverage
+  - Breakdown by stage: 01-market-research, 02-personas, 03-mvp, 04-prd, 05-ux, 06-architecture, 07-tech-specs, 08-devops, 09-sprints, 10-deployment
+
+- **Estimated Cost in USD:**
+  - Calculate based on current LLM pricing (e.g., Claude Sonnet rates)
+  - Include buffer for iterations and refinements (typically 20-30%)
+  - Total estimated cost range (min-max)
+
+- **Budget Impact on Project Scope:**
+  - How budget affects research time (market research, competitor analysis)
+  - How budget affects code quality (testing thoroughness, code reviews)
+  - How budget affects documentation completeness
+  - Trade-offs if budget is limited
+
+- **Budget Allocation Strategy:**
+  - Which stages get more budget allocation based on project priorities
+  - Critical vs optional activities per stage
+
+- **Budget Guidelines by Scale:**
+  - **L2 (Tool)**: 50k-200k tokens (~$2-$10)
+  - **L3 (Single Service)**: 200k-500k tokens (~$10-$25)
+  - **L4 (MVP)**: 500k-1M tokens (~$25-$50)
+  - **L5 (Multi-Platform)**: 1M-2M tokens (~$50-$100)
+  - **L6-L7 (Growth/Platform)**: 2M+ tokens (~$100+)
+
+- **User Approval Required:**
+  - User must review and approve the budget before proceeding to later stages
+  - Budget acts as a constraint for all subsequent AI agent activities
+
 ### Step 9: User Confirmation on 00-init-ideas Content
 
 1. **Ask the user to review:**
    - All generated documentation in `00-init-ideas/`
    - The classification and project structure
    - Content accuracy and completeness
+   - **For L2+ projects: CRITICAL - Review and approve the cost-budget.md:**
+     - Estimated token usage per stage
+     - Estimated cost in USD
+     - Budget constraints that will affect later stages
+     - User must explicitly approve the budget to proceed
 
 2. **Make any adjustments based on user feedback**
+   - If user wants to reduce budget: Adjust stage scope, research depth, or testing coverage
+   - If user wants to increase budget: Expand scope, add more thorough research/testing
+   - Update cost-budget.md accordingly
 
 3. **Ask if they want to proceed to the next stage:**
    - For L0-L1: "Would you like me to implement the script in src/?"
-   - For L2+: "Would you like me to proceed to the next stage (market-research or personas)?"
+   - For L2+: "Do you approve the estimated budget? Would you like me to proceed to the next stage (market-research or personas)?"
 
 ### Step 10: Initialize Git Repository (if needed)
 
@@ -290,7 +330,8 @@ project-root/
 │   ├── problem-statement.md
 │   ├── target-users.md
 │   ├── value-proposition.md
-│   └── owner-requirement.md
+│   ├── owner-requirement.md
+│   └── cost-budget.md (REQUIRED)
 ├── 01-market-research/SKIP.md
 ├── 02-personas/README.md (or SKIP.md)
 ├── 03-mvp/SKIP.md (or README.md)
@@ -310,7 +351,13 @@ project-root/
 ```
 project-root/
 ├── README.md (with classification statement)
-├── 00-init-ideas/ (full documentation)
+├── 00-init-ideas/ (full documentation including cost-budget.md)
+│   ├── README.md
+│   ├── problem-statement.md
+│   ├── target-users.md
+│   ├── value-proposition.md
+│   ├── owner-requirement.md
+│   └── cost-budget.md (REQUIRED)
 ├── 01-market-research/README.md
 ├── 02-personas/README.md
 ├── 03-mvp/README.md
@@ -331,8 +378,13 @@ project-root/
 - **Scale-Appropriate Development**: Create only the documentation and structure necessary for the project scale
 - **Prevent Over-Engineering**: Explicitly skip stages that don't apply to the project purpose and scale
 - **Clear Classification**: Document project purpose and scale to guide all future decisions
+- **Budget-Conscious AI Development**: Since every AI action costs tokens, budget planning is CRITICAL
+  - L2+ projects MUST include cost-budget.md with token estimates and USD costs
+  - Budget directly constrains research depth, testing thoroughness, and documentation completeness
+  - User approval of budget is required before proceeding to later stages
+  - Budget acts as a constraint for all subsequent AI agent activities
 - **Transform Informal to Professional**: Convert non-technical ideas into structured business documentation
 - **Maintain Ownership**: Clear ownership and accountability for each stage
 - **Explicit Exclusions**: Document what the project will NOT include based on its scale
 - **Actionable Documentation**: Create clear, actionable documentation that guides development
-- **Human-in-the-Loop**: Confirm structure and content with user before proceeding
+- **Human-in-the-Loop**: Confirm structure, content, and budget with user before proceeding
