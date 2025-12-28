@@ -34,17 +34,32 @@ This communication pattern ensures transparency and allows for human-in-the-loop
 
 Follow these steps in order:
 
-### Step 1: Check for ideas.md and Existing Documentation
+### Step 1: Check for Existing Project and ideas.md
 
-1. **Check if `00-init-ideas/` folder exists:**
-   - If exists: Read all existing files to understand current state
+1. **Check if `src/` folder exists and contains files:**
+   - Check if `src/` directory exists
+   - Check if `src/` contains any files (other than just `.gitkeep`)
+   - **If src/ contains an existing project:**
+     - Inform the user: "An existing project was found in src/. Before starting a new project, the current project should be archived."
+     - Ask the user: "Would you like me to archive the existing project using the project-archive skill?"
+     - **If user says yes:**
+       - Use the Skill tool to invoke `dev-swarms-project-archive`
+       - Wait for archiving to complete
+       - Then proceed with this skill
+     - **If user says no:**
+       - Stop execution and inform the user they need to handle the existing project first
+       - Exit the skill
+
+2. **Check if `00-init-ideas/` folder exists and has content:**
+   - If exists with content: Read all existing files to understand current state
+   - If exists but empty (only .gitkeep): Will create new structure
    - If NOT exists: Will create new structure
 
-2. **Check if `ideas.md` exists in the project root:**
+3. **Check if `ideas.md` exists in the project root:**
    - If exists: Read and analyze the content as input
    - If NOT exists: Ask the user to provide basic ideas for the project, then create `ideas.md`
 
-3. Proceed to Step 2 with gathered context
+4. Proceed to Step 2 with gathered context
 
 ### Step 2: Classify Project Complexity and Scale
 
