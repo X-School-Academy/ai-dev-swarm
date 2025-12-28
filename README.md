@@ -98,8 +98,6 @@ This project uses the dev-swarms framework skills:
 
 ## Documentation
 
-- [中文用户手册 (User Manual in Chinese)](user-manual_CN.md)
-
 All project documentation is organized in numbered folders (00-10) representing each stage, with supporting documentation in `features/` for the knowledge base and `99-archive/` for completed work.
 
 ## 🤝 Want to Contribute?
