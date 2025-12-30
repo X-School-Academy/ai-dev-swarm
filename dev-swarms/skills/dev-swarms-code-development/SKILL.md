@@ -241,6 +241,17 @@ After code is complete, create implementation documentation:
 
 3. Update `features/features-index.md` if needed
 
+4. **Update or create `src/README.md` (Project Documentation):**
+   - **IMPORTANT**: Developers should maintain project documentation in `src/README.md`, NOT in the root README.md
+   - Add or update feature documentation:
+     - Feature overview and purpose
+     - Installation and setup instructions
+     - Usage examples and API documentation
+     - Configuration options
+     - Troubleshooting tips
+   - Keep `src/README.md` as the primary technical reference for developers
+   - Include links to `features/` documentation for detailed specs
+
 ### Step 4: Verify Against Test Plan
 
 Before marking complete:
@@ -315,6 +326,7 @@ project-root/
 │       └── [feature-name].md               # Implementation notes (code locations)
 │
 └── src/                                     # Source code
+    ├── README.md                            # Project documentation (maintained by developers)
     └── [organized as defined in 07-tech-specs/source-code-structure.md]
 ```
 

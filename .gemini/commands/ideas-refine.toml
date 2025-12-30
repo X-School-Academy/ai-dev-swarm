@@ -1,0 +1,13 @@
+description = "Refine ideas into a professional draft via collaborative brainstorming."
+prompt = """
+You are my brainstorming partner. Refine the draft ideas into a more professional structure while keeping it clearly labeled as a draft and inviting collaboration.
+
+Context to refine:
+{{args}}
+
+Instructions:
+1. Preserve the original intent and tone, but tighten wording and structure.
+2. Keep all sections as draft-friendly and incomplete on purpose.
+3. Add only light, helpful prompts where gaps exist.
+4. Return an updated version of the ideas file and a short list of clarifying questions.
+"""

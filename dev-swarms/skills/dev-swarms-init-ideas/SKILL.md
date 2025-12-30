@@ -129,23 +129,9 @@ Based on the determined scale level, decide which stages are needed:
 - Note: The files listed in repository-structure.md are samples; adapt based on project needs
  - Read `dev-swarms/docs/dev-swarms-roles.md` to map stage owners/attendances for README requirements (role-appropriate ownership)
 
-### Step 5: Create Project Root README with Classification
-
-1. **Create or update README.md** at project root with:
-   - Project name (from ideas.md)
-   - Brief description
-   - **Project Classification Statement:**
-     ```
-     Project Purpose: Px
-     Development Scale: Lx
-
-     This project explicitly DOES NOT include:
-     - [Exclusion 1 based on scale]
-     - [Exclusion 2 based on scale]
-     - [Exclusion 3 based on scale]
-     ```
-   - Project status
-   - Reference to stage folders
+### Step 5: Project Root README.md
+   - **IMPORTANT: DO NOT create or modify the root README.md file**
+   - The project readme file we are developing should be maintained in `src/README.md` by developers
 
 ### Step 6: Create Stage Folder Structure
 
@@ -204,7 +190,8 @@ Create folders from `00-init-ideas` through `10-deployment`. For each folder:
    - Ask if user wants to proceed with implementation in src/
 
 2. **For L2+ projects:**
-   - Create all documentation files in 00-init-ideas/:
+   - Create 00-init-ideas/README.md first, then ask the user to approve before creating any other files in 00-init-ideas/
+   - After approval, create all remaining documentation files in 00-init-ideas/:
      - README.md (owner: Business Owner, attendances: Product Manager)
      - problem-statement.md (clear problem definition)
      - target-users.md (who has the problem, primary audience)
@@ -248,7 +235,8 @@ Create folders from `00-init-ideas` through `10-deployment`. For each folder:
 - **Token Budget Estimation Per Stage:**
   - Estimate tokens needed for each stage based on project scale
   - Consider: research depth, documentation thoroughness, code complexity, testing coverage
-  - Breakdown by stage: 01-market-research, 02-personas, 03-mvp, 04-prd, 05-ux, 06-architecture, 07-tech-specs, 08-devops, 09-sprints, 10-deployment
+  - Breakdown by stage for only the stages that are NOT skipped: 01-market-research, 02-personas, 03-mvp, 04-prd, 05-ux, 06-architecture, 07-tech-specs, 08-devops, 09-sprints, 10-deployment
+  - If a stage is skipped, its cost is $0 and should be omitted from the breakdown
 
 - **Estimated Cost in USD:**
   - Calculate based on current LLM pricing (e.g., Claude Sonnet rates)
@@ -320,10 +308,11 @@ The output structure varies based on project scale:
 ### For L0-L1 (Very Small Projects):
 ```
 project-root/
-├── README.md (with classification statement)
+├── README.md (root readme - not modified by this skill)
 ├── 00-init-ideas/
 │   └── README.md (how to implement the script)
 ├── src/
+│   ├── README.md (project documentation maintained by developers)
 │   └── script_name.sh (or appropriate file)
 └── features/, 99-archive/ (with .gitkeep)
 ```
@@ -331,7 +320,7 @@ project-root/
 ### For L2 (Tool with Environment Setup):
 ```
 project-root/
-├── README.md (with classification statement)
+├── README.md (root readme - not modified by this skill)
 ├── 00-init-ideas/
 │   ├── README.md
 │   ├── problem-statement.md
@@ -351,13 +340,14 @@ project-root/
 ├── 10-deployment/SKIP.md
 ├── features/
 ├── src/
+│   └── README.md (project documentation maintained by developers)
 └── 99-archive/
 ```
 
 ### For L3+ (Full-Scale Applications):
 ```
 project-root/
-├── README.md (with classification statement)
+├── README.md (root readme - not modified by this skill)
 ├── 00-init-ideas/ (full documentation including cost-budget.md)
 │   ├── README.md
 │   ├── problem-statement.md
@@ -377,6 +367,7 @@ project-root/
 ├── 10-deployment/README.md (or SKIP.md if not deploying yet)
 ├── features/
 ├── src/
+│   └── README.md (project documentation maintained by developers)
 └── 99-archive/
 ```
 
