@@ -24,12 +24,7 @@ This skill helps you create new agent skills or update existing ones following t
 
 As an expert in your assigned roles, you must announce your actions before performing them using the following format:
 
-- As a Project Manager, I will review the skill requirements and plan the structure
-- As a Backend Developer, I will create the skill directory and required files
-- As a Technical Writer, I will write clear documentation following the specification
-- As a Project Manager, I will verify all required sections are present before completion
-
-**Note:** Combine multiple roles when performing related tasks. For example: "As a Tech Manager and Backend Architect, I will..." or "As a Frontend Architect and AI Engineer, I will..."
+- As a {Role} [and {Role}, ...], I will {action description}
 
 This communication pattern ensures transparency and allows for human-in-the-loop oversight at key decision points.
 
@@ -56,7 +51,7 @@ Follow these steps to create or update an agent skill:
 
 1. Create the skill directory: `dev-swarm/skills/dev-swarm-{skill-name}/`
 2. Create any needed subdirectories:
-   - `references/` for reference documentation
+   - `references/` for reference documentation (preferred)
    - `scripts/` for executable scripts (if needed)
    - `assets/` for static resources (if needed)
 
@@ -173,23 +168,23 @@ Detailed instructions for this step...
 
 ### Step 4: Create Reference Files (if needed)
 
-If your skill needs additional reference documentation:
+If your skill needs additional reference documentation, prefer routing details to `references/` files to keep `SKILL.md` short.
 
-1. **Create `references/` directory** (if not exists)
-2. **Add reference files** with focused content:
-   - Keep files under 500 lines when possible
-   - Use clear, descriptive filenames
-   - Link to them from `SKILL.md` using relative paths
-   - Use symbolic link for any file under `dev-swarm/` in the project's root if ask to reference as an entire file
+Use this conditional routing format:
 
-Example reference structure:
-```
-dev-swarm-skill-name/
-├── SKILL.md
-└── references/
-    ├── api-reference.md
-    └── examples.md
-```
+- If {situation 1}, refer to `references/{file-1}.md`.
+- If {situation 2}, refer to `references/{file-2}.md`.
+
+Include conditions for platform, scale, or software type when relevant. Examples:
+
+- If platform-specific requirements apply (web, mobile, desktop, CLI, backend/API, data/ML), refer to `references/platform-{platform}.md`.
+- If scale/type requirements apply (prototype, MVP, growth, enterprise; SaaS, internal tools, data pipeline, open source), refer to `references/scale-{level}.md` or `references/type-{type}.md`.
+
+**Reference file guidance:**
+- Keep files under 500 lines when possible
+- Use clear, descriptive filenames
+- Link to them from `SKILL.md` using relative paths
+- Use a symbolic link for any file under `dev-swarm/` in the project's root if asked to reference an entire file
 
 ### Step 5: Add Scripts (if needed)
 
@@ -223,6 +218,7 @@ If your skill includes executable scripts:
    - [ ] Roles are appropriate for the task
    - [ ] Examples are provided where helpful
    - [ ] File references use relative paths
+   - [ ] `SKILL.md` is concise, defers details to references
 
 4. **File structure:**
    - [ ] No references outside skill folder (unless explicitly required)
