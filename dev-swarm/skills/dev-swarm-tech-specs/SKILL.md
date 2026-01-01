@@ -17,7 +17,7 @@ This skill creates/updates the technical specifications documentation defining t
 
 ## Prerequisites
 
-This skill requires **06-architecture** to be completed. The tech specs will define HOW to implement the architecture with specific technologies and standards.
+This skill requires **06-architecture** to be completed for L3+ projects. For L2 projects, this stage can proceed without architecture documentation.
 
 ## Your Roles in This Skill
 
@@ -49,17 +49,20 @@ Follow these steps in order:
 
 First read and understand rules: `dev-swarm/docs/research-specs-rules.md` then:
 
-1. **Check if `06-architecture/` folder exists (mandatory):**
-   - If NOT found: Inform user they need to create architecture first, then STOP
-   - If found: Read all files to understand:
-     - System components
-     - Data flow patterns
-     - Deployment boundaries
-     - Scaling requirements
+1. **Check for Project Scale (L2 vs L3+):**
+   - Check `00-init-ideas/README.md` or classification to determine project scale.
 
-2. **Check if `05-ux/` folder exists (mandatory for theme-standards.md):**
-   - If NOT found: Warn user that theme standards cannot be extracted
-   - If found: Read mockups/ folder to understand:
+2. **Check if `06-architecture/` folder exists:**
+   - **For L3+ projects (Mandatory):**
+     - If NOT found: Inform user they need to create architecture first, then STOP.
+     - If found: Read all files.
+   - **For L2 projects (Optional):**
+     - If found: Read files.
+     - If NOT found: Proceed without it.
+
+3. **Check if `05-ux/` folder exists (Mandatory for L3+):**
+   - If NOT found and project is L3+: Warn user.
+   - For L2: Skip if not relevant.
      - **CSS variables and design tokens**
      - **Color palette**
      - **Typography (fonts, sizes)**
@@ -115,7 +118,8 @@ First read and understand rules: `dev-swarm/docs/research-specs-rules.md` then:
    - Consider cost-budget constraints for this stage
 
 2. **Create or update 07-tech-specs/README.md with refined requirements:**
-   - List deliverables explicitly in README (typical: tech-stack.md, security.md, theme-standards.md, coding-standards.md, source-code-structure.md, testing-standards.md, security-standards.md)
+   - **For L2 projects:** Create a simple README (just several lines) indicating the project level and that only `tech-stack.md` is required.
+   - **For L3+ projects:** List deliverables explicitly in README (typical: tech-stack.md, security.md, theme-standards.md, coding-standards.md, source-code-structure.md, testing-standards.md, security-standards.md)
    - **Stage overview and objectives** (based on previous stage context)
    - **Owners:** Tech Manager (lead), Security Engineer, UI Designer, DevOps Engineer
    - **What tech specs will include:**
@@ -738,6 +742,7 @@ Verify that:
 
 ## Expected Project Structure
 
+### For L3+ Projects (Full Scale)
 ```
 project-root/
 ├── 00-init-ideas/
@@ -763,6 +768,16 @@ project-root/
     ├── source-code-structure.md (src/ organization)
     ├── testing-standards.md (coverage, frameworks, gates)
     └── security-standards.md (secure coding, logging redaction)
+```
+
+### For L2 Projects (Tools)
+```
+project-root/
+├── 00-init-ideas/
+│   └── [existing files]
+└── 07-tech-specs/
+    ├── README.md (minimal requirements)
+    └── tech-stack.md (language and package selection)
 ```
 
 ## Key Tech Specs Principles

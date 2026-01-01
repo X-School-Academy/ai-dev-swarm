@@ -46,6 +46,8 @@ Built for an individual or a very small group, primarily to save time or automat
 
 * Shell scripts
 * Personal Python tools
+* Simple Agent SKill
+* Simple MCP Server
 * Local automation
 
 **Key Characteristics:**
@@ -187,13 +189,30 @@ Python script, Node script
 Needs dependencies, setup, or packaging.
 
 **Typical Tech:**
-CLI tools, small services
+CLI tools, small services, Simple MCP Server, Simple Agent Skill
 
 **Included:**
 
 * Dependency management
 * Install instructions
 * Basic tests
+
+**Required Stages & Files:**
+
+*   **00-init-ideas/**
+    *   `README.md`: Project level indication & file list.
+    *   `problem-statement.md`
+    *   `owner-requirement.md`
+*   **07-tech-specs/**
+    *   `README.md`
+    *   `tech-stack.md`: Coding language (default Python) & packages.
+*   **08-devops/**
+    *   `README.md`
+    *   `development_environment.md`: Dev env setup. Python (default `venv` via `uv`) or Node.js (default `pnpm`).
+*   **10-deployment/** (Mandatory for Tools/Agent Skills)
+    *   `README.md`: Indicate target (e.g., `dev-swarm/py_scripts`, `dev-swarm/skills`).
+    *   `deployment.md`
+*   **09-sprints/**: Skip.
 
 **NOT Included:**
 

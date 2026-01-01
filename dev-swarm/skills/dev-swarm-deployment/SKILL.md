@@ -94,6 +94,7 @@ Follow these steps in order:
    Based on the tech stack (from `07-tech-specs/`) and project requirements:
 
    - Determine deployment needs:
+     - **L2 Tools/Skills**: Deploy to `dev-swarm/py_scripts`, `dev-swarm/js_scripts`, or `dev-swarm/skills`.
      - **Hosting Platform**: Static hosting (Netlify, Vercel), PaaS (Heroku, Railway), IaaS (AWS EC2, Azure VMs), Container (ECS, Kubernetes), Serverless (Lambda, Cloud Functions)
      - **Database Hosting**: Managed database service vs self-hosted
      - **Storage**: Object storage (S3, Azure Blob), CDN requirements
@@ -130,10 +131,12 @@ Follow these steps in order:
    - Assess application readiness from Step 0
 
 2. **Create or update 10-deployment/README.md with refined requirements:**
-   - List deliverables explicitly in README (typical: infrastructure-plan.md, cicd-pipeline.md, deployment-strategy.md, monitoring-logging.md, environment-config.md)
+   - **For L2 projects:** Create a simple README (just several lines) indicating the project level and the target deployment directory (e.g., `dev-swarm/py_scripts` or `dev-swarm/skills`).
+   - **For L3+ projects:** List deliverables explicitly in README (typical: infrastructure-plan.md, cicd-pipeline.md, deployment-strategy.md, monitoring-logging.md, environment-config.md)
    - **Stage overview and objectives** (based on previous stage context)
    - **Owners:** Deployment Engineer (lead), DevOps Engineer, SysOps Engineer, Site Reliability Engineer
    - **What deployment will include:**
+     - For L2: Deployment to local script/skill directories (`deployment.md`)
      - Infrastructure setup (hosting, database, storage)
      - CI/CD pipeline configuration
      - Deployment strategy (blue-green, rolling, canary)
@@ -143,7 +146,7 @@ Follow these steps in order:
      - How infrastructure will be provisioned
      - How CI/CD will be configured
    - **Deliverables planned:**
-     - List of files that will be created (infrastructure-plan.md, cicd-pipeline.md, etc.)
+     - List of files that will be created (deployment.md for L2; infrastructure-plan.md, cicd-pipeline.md, etc. for L3+)
    - **Budget allocation for deployment** (from cost-budget.md)
    - **Status:** In Progress (update to "Completed" after deployment)
 
@@ -188,6 +191,14 @@ Follow these steps in order:
 - Links to all deployment documentation files
 - Current deployment status (will be updated after execution)
 - Quick links to deployed environments
+
+**deployment.md (Deployment Plan - For L2 Projects):**
+Write as a deployment plan with:
+- **Target Location**: `dev-swarm/py_scripts`, `dev-swarm/js_scripts`, or `dev-swarm/skills`.
+- **Files to Deploy**: List of source files to copy/move.
+- **Dependencies**: Any dependencies that need to be packaged or installed in the target.
+- **Configuration**: Any config changes needed for the target environment.
+- **Step-by-Step Instructions**: How to perform the deployment.
 
 **infrastructure-plan.md (Deployment Plan):**
 Write as a deployment plan with:

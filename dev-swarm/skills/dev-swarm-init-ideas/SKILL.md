@@ -111,13 +111,10 @@ Based on the determined scale level, decide which stages are needed:
 
 **For L2 (Tool with Environment):**
 - 00-init-ideas/ (required)
-- 02-personas/ (optional - may SKIP)
-- 03-mvp/ (may SKIP for simple tools)
-- 04-prd/ (simplified requirements)
 - 07-tech-specs/ (minimal)
-- 08-devops/ (basic setup)
-- 09-sprints/ (feature backlogs)
-- SKIP: 01-market-research, 05-ux, 06-architecture, 10-deployment
+- 08-devops/ (basic setup with development_environment.md)
+- 10-deployment/ (required for tools/agent skills)
+- SKIP: 01-market-research, 02-personas, 03-mvp, 04-prd, 05-ux, 06-architecture, 09-sprints
 
 **For L3-L4 (Single Service / MVP):**
 - All stages except possibly 10-deployment (if not deploying to cloud yet)
@@ -154,9 +151,11 @@ Create folders from `00-init-ideas` through `10-deployment`. For each folder:
        This stage is not required for this project because:
        - [Reason based on project scale and purpose]
        ```
+     - **For 09-sprints/SKIP.md in L2 projects**, add: "Implementation will proceed directly in the `src/` directory without the need for formal sprints or backlogs."
 
    - **If the stage IS needed:**
-     - Create `README.md` listing the docs that will be created in this stage (README is the design requirement file for the stage)
+     - **For L2 projects**, create a very simple `README.md` (just several lines) indicating the project level and the specific files required for that stage (e.g., "This is an L2 project. We only need tech-stack.md in this stage.").
+     - **For L3+ projects**, create `README.md` listing the docs that will be created in this stage (README is the design requirement file for the stage)
      - Use `dev-swarm/docs/repository-structure.md` as reference but adapt to project needs
      - Include Owner/Attendances based on `dev-swarm/docs/dev-swarm-roles.md` (role-appropriate ownership)
      - Include comments explaining why each doc is needed

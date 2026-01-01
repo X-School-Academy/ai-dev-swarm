@@ -99,19 +99,21 @@ Follow these steps in order:
    - Assess current environment status
 
 2. **Create or update 08-devops/README.md with refined requirements:**
-   - List deliverables explicitly in README (typical: github-setup.md, mcp-setup.md, vscode-devcontainer.md)
+   - **For L2 projects:** Create a simple README (just several lines) indicating the project level and that only `development_environment.md` (for local setup) is required.
+   - **For L3+ projects:** List deliverables explicitly in README (typical: github-setup.md, mcp-setup.md, vscode-devcontainer.md)
    - **Stage overview and objectives** (based on previous stage context)
    - **Owners:** DevOps Engineer (lead), Infrastructure Architect
    - **What devops setup will include:**
      - GitHub repository setup (if needed)
      - MCP tools configuration (list which tools)
+     - Development Environment setup (development_environment.md) - **Required for L2 projects**
      - Development container setup (if needed)
      - CI/CD pipeline configuration (if applicable)
    - **Methodology:**
      - How environment will be configured
      - What tools will be installed
    - **Deliverables planned:**
-     - List of files that will be created (github-setup.md, mcp-setup.md, etc.)
+     - List of files that will be created (github-setup.md, mcp-setup.md, development_environment.md, etc.)
    - **Budget allocation for this stage** (from cost-budget.md)
    - **Status:** In Progress (update to "Completed" after implementation)
 
@@ -174,6 +176,18 @@ Write as a setup plan with:
 - Permission requirements
 - Test commands to verify each tool
 - Clear step-by-step setup instructions
+
+**development_environment.md (Setup Plan - For L2 Projects):**
+Write as a setup plan with:
+- **Python Projects**:
+  - Setup using `uv` package manager (default)
+  - Create virtual environment (`uv init`)
+  - Install dependencies (`uv add package`)
+  - Activation command
+- **Node.js Projects**:
+  - Setup using `pnpm` (default)
+  - `pnpm install`
+- Final environment setup information should be integrated into the `src/` directory.
 
 **vscode-devcontainer.md (Setup Plan):**
 Write as a setup plan with:

@@ -106,6 +106,7 @@ Follow these steps in order:
 
 1.  **Analyze Context:** Read all stage folders.
 2.  **Create `09-sprints/README.md` (The Master Plan):**
+    *   **Keep it simple:** Just several lines to indicate as the project level, and the master plan.
     *   **Owners:** Project Manager & Tech Manager.
     *   **Strategy:** Define how the product evolves through **Cumulative Demo-able Milestones** (Sprints).
     *   **Timeline:** Estimated number of sprints to reach MVP.

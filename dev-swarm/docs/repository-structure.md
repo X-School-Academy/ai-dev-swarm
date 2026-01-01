@@ -9,6 +9,10 @@ project-root/
 │
 │  NOTE:
 │  - This is the max doc list for each stage (large-scale projects).
+│  - The files structure under each stage from 00 to 10 are just samples.
+│  - Each project is different, it needs to have different design document files, different file names.
+│  - Do not copy these structure directly without analysis the project actually need to avoid any over development.
+│  - For a small project create tons of documents files is bad practice.
 │  - Smaller scale projects (per dev-swarm/docs/software-dev-classification.md) can skip stages/files.
 │  - Example for very small projects (L0-L1):
 │    00-init-ideas/README.md         # How to implement `src/script_name.sh` or refined requirements
