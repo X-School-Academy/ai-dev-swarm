@@ -360,8 +360,29 @@ def load_mcp_settings(path: Path) -> list[ServerConfig]:
         if not isinstance(config, dict):
             continue
         merged = {"id": server_id, **config}
+
+        # Handle command as array: split into command (first element) and args (rest)
+        if isinstance(merged.get("command"), list):
+            cmd_list = merged["command"]
+            if cmd_list:
+                merged["command"] = cmd_list[0]
+                # Merge with existing args if any
+                existing_args = merged.get("args", [])
+                merged["args"] = cmd_list[1:] + existing_args
+            else:
+                merged["command"] = None
+
         configs.append(ServerConfig(**merged))
     return configs
+
+
+def camel_to_kebab(value: str) -> str:
+    """Convert camelCase or PascalCase to kebab-case."""
+    # Insert hyphen before uppercase letters that follow lowercase letters
+    value = re.sub(r"([a-z0-9])([A-Z])", r"\1-\2", value)
+    # Insert hyphen before uppercase letters that are followed by lowercase letters
+    value = re.sub(r"([A-Z]+)([A-Z][a-z])", r"\1-\2", value)
+    return value.lower()
 
 
 def slugify(value: str) -> str:
@@ -374,7 +395,9 @@ def slugify(value: str) -> str:
 
 
 def skill_dir(base_dir: Path, server_id: str, tool_name: str) -> Path:
-    skill_name = slugify(f"{server_id}-{tool_name}")
+    # Convert server_id to kebab-case first (e.g., backgroundProcess -> background-process)
+    kebab_server_id = camel_to_kebab(server_id)
+    skill_name = slugify(f"{kebab_server_id}-{tool_name}")
     return base_dir / skill_name
 
 
@@ -383,8 +406,10 @@ def render_skill(tool: ToolDef, server_id: str, port: int) -> str:
     description = " ".join(description.splitlines()).strip()
     description = description.replace("\"", "\\\"")
     input_schema = json.dumps(tool.input_schema or {}, indent=2, ensure_ascii=True)
+    # Convert server_id to kebab-case for skill name (e.g., backgroundProcess -> background-process)
+    kebab_server_id = camel_to_kebab(server_id)
     template = f"""---
-name: {slugify(f"{server_id}-{tool.name}")}
+name: {slugify(f"{kebab_server_id}-{tool.name}")}
 description: "{description}"
 ---
 
@@ -447,7 +472,9 @@ def get_all_skill_dirs(mcp_skills_dir: Path, server_id: str) -> list[Path]:
     """Get all skill directories for a given server."""
     if not mcp_skills_dir.exists():
         return []
-    pattern = f"{slugify(server_id)}-*"
+    # Convert server_id to kebab-case first (e.g., backgroundProcess -> background-process)
+    kebab_server_id = camel_to_kebab(server_id)
+    pattern = f"{slugify(kebab_server_id)}-*"
     return sorted([d for d in mcp_skills_dir.glob(pattern) if d.is_dir()])
 
 

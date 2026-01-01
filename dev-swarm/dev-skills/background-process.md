@@ -16,6 +16,12 @@ When an AI agent needs to run a background process, the AI agent should check if
 
 After configuration, the AI agent should tell the user to connect the TUI to a running background process server via its port `31337`:
 
-`pnpm dlx @waylaidwanderer/background-process-mcp ui --port 31337`
+`pnpm dlx @waylaidwanderer/background-process-mcp@latest ui --port 31337`
 
 If the port is in use, check if the MCP server has already started and attempt to connect to it; do not kill it or use a new port unless necessary.
+
+Manual Usage
+
+If user wish to run the server manually outside of an MCP client, you can use the following commands.
+
+`pnpm dlx @waylaidwanderer/background-process-mcp@latest server --port 31337`
