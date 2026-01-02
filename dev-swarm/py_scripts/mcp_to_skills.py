@@ -11,6 +11,8 @@ import threading
 import urllib.error
 import urllib.request
 from dataclasses import dataclass
+import hashlib
+import socket
 from pathlib import Path
 from typing import Any, Iterable
 
@@ -21,6 +23,7 @@ import uvicorn
 
 LOGGER = logging.getLogger("mcp-to-skills")
 DEFAULT_PORT = 28080
+LOCK_FILENAME = "mcp_settings.lock"
 
 
 class InvokeRequest(BaseModel):
@@ -445,27 +448,103 @@ curl -s -X POST http://127.0.0.1:{port}/mcp \\
     return template
 
 
-def write_skills(
-    output_dir: Path,
-    manager: MCPManager,
-    server_ids: Iterable[str],
-    port: int,
-    force_refresh: bool,
-) -> None:
-    output_dir.mkdir(parents=True, exist_ok=True)
+@dataclass(frozen=True)
+class SkillEntry:
+    name: str
+    path: Path
+    content: str
+
+
+def is_port_available(port: int) -> bool:
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+        sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        try:
+            sock.bind(("127.0.0.1", port))
+        except OSError:
+            return False
+    return True
+
+
+def find_available_port(start_port: int) -> int:
+    port = start_port
+    while port <= 65535 and not is_port_available(port):
+        port += 1
+    if port > 65535:
+        raise MCPError("No available port found")
+    return port
+
+
+def load_lock(path: Path) -> dict[str, Any] | None:
+    if not path.exists():
+        return None
+    try:
+        data = json.loads(path.read_text())
+    except json.JSONDecodeError:
+        LOGGER.warning("invalid_mcp_settings_lock", extra={"path": str(path)})
+        return None
+    if not isinstance(data, dict):
+        return None
+    return data
+
+
+def write_lock(path: Path, hash_value: str, port: int) -> None:
+    payload = {"hash": hash_value, "port": port}
+    path.write_text(json.dumps(payload, indent=2, ensure_ascii=True))
+
+
+def gather_tools(manager: MCPManager, server_ids: Iterable[str]) -> dict[str, list[ToolDef]]:
+    tools_by_server: dict[str, list[ToolDef]] = {}
     for server_id in server_ids:
         try:
-            tools = manager.list_tools(server_id)
+            tools_by_server[server_id] = manager.list_tools(server_id)
         except Exception as exc:
             LOGGER.error(f"tools_list_failed, for server_id={server_id}: {exc}")
-            continue
+    return tools_by_server
+
+
+def build_skill_entries(
+    output_dir: Path,
+    tools_by_server: dict[str, list[ToolDef]],
+    port: int,
+) -> list[SkillEntry]:
+    entries: list[SkillEntry] = []
+    for server_id in sorted(tools_by_server.keys()):
+        tools = sorted(tools_by_server[server_id], key=lambda tool: tool.name)
         for tool in tools:
             tool_path = skill_dir(output_dir, server_id, tool.name)
             skill_path = tool_path / "SKILL.md"
-            if tool_path.exists() and not force_refresh:
-                continue
-            tool_path.mkdir(parents=True, exist_ok=True)
-            skill_path.write_text(render_skill(tool, server_id, port))
+            entries.append(
+                SkillEntry(
+                    name=tool.name,
+                    path=skill_path,
+                    content=render_skill(tool, server_id, port),
+                )
+            )
+    return entries
+
+
+def compute_skills_hash(entries: list[SkillEntry], base_dir: Path) -> str:
+    payload: list[dict[str, str]] = []
+    for entry in sorted(entries, key=lambda item: (item.name, str(item.path))):
+        try:
+            path_value = str(entry.path.relative_to(base_dir))
+        except ValueError:
+            path_value = str(entry.path)
+        payload.append({"name": entry.name, "path": path_value, "content": entry.content})
+    raw = json.dumps(payload, ensure_ascii=True, sort_keys=True).encode("utf-8")
+    return hashlib.sha256(raw).hexdigest()
+
+
+def write_skills(
+    entries: list[SkillEntry],
+    force_refresh: bool,
+) -> None:
+    for entry in entries:
+        tool_path = entry.path.parent
+        if tool_path.exists() and not force_refresh:
+            continue
+        tool_path.mkdir(parents=True, exist_ok=True)
+        entry.path.write_text(entry.content)
 
 
 def get_all_skill_dirs(mcp_skills_dir: Path, server_id: str) -> list[Path]:
@@ -572,38 +651,102 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def main() -> None:
-    args = parse_args()
-    logging.basicConfig(level=args.log_level.upper(), format="%(levelname)s %(message)s")
-    settings_path = Path(args.mcp_settings).expanduser().resolve()
+def build_bridge(
+    *,
+    mcp_settings_path: Path,
+    port: int,
+    force_refresh: bool,
+    output_dir: Path | None,
+    skills_only: bool,
+    log_level: str,
+) -> tuple[FastAPI | None, int, bool]:
+    logging.basicConfig(level=log_level.upper(), format="%(levelname)s %(message)s")
     base_dir = Path(__file__).resolve().parents[1]
-    output_dir = Path(args.output_dir).expanduser().resolve() if args.output_dir else base_dir / "mcp-skills"
+    output_root = output_dir or base_dir / "mcp-skills"
     skills_dir = base_dir / "skills"
+    lock_path = base_dir / LOCK_FILENAME
 
-    all_configs = load_mcp_settings(settings_path)
+    lock_data = load_lock(lock_path)
+    lock_port = None
+    lock_hash = None
+    if lock_data:
+        lock_port = lock_data.get("port")
+        lock_hash = lock_data.get("hash")
 
-    # Separate enabled and disabled servers
+    requested_port = int(lock_port) if isinstance(lock_port, int) else port
+    resolved_port = find_available_port(requested_port)
+
+    all_configs = load_mcp_settings(mcp_settings_path)
     enabled_configs = [c for c in all_configs if not c.disabled]
     disabled_configs = [c for c in all_configs if c.disabled]
 
     enabled_server_ids = {config.id for config in enabled_configs}
     disabled_server_ids = {config.id for config in disabled_configs}
 
-    # Only create manager with enabled servers
     manager = MCPManager(enabled_configs)
     server_ids = [config.id for config in enabled_configs]
 
-    write_skills(output_dir, manager, server_ids, args.port, args.force_refresh)
+    tools_by_server = gather_tools(manager, server_ids)
+    entries = build_skill_entries(output_root, tools_by_server, resolved_port)
+    skills_hash = compute_skills_hash(entries, base_dir)
 
-    # Manage symlinks: create for enabled, remove for disabled
-    manage_symlinks(output_dir, skills_dir, enabled_server_ids, disabled_server_ids)
+    lock_changed = skills_hash != lock_hash or resolved_port != lock_port
+    should_refresh = force_refresh or lock_changed
+
+    write_skills(entries, should_refresh)
+    manage_symlinks(output_root, skills_dir, enabled_server_ids, disabled_server_ids)
+
+    if lock_changed:
+        write_lock(lock_path, skills_hash, resolved_port)
+
+    if skills_only:
+        return None, resolved_port, lock_changed
+    return create_app(manager), resolved_port, lock_changed
+
+
+def start_bridge_server(
+    *,
+    mcp_settings_path: Path,
+    port: int,
+    log_level: str = "INFO",
+) -> tuple[int, bool]:
+    app, resolved_port, lock_changed = build_bridge(
+        mcp_settings_path=mcp_settings_path,
+        port=port,
+        force_refresh=False,
+        output_dir=None,
+        skills_only=False,
+        log_level=log_level,
+    )
+    if app is None:
+        raise MCPError("bridge_app_unavailable")
+    config = uvicorn.Config(app, host="127.0.0.1", port=resolved_port, log_level=log_level.lower())
+    server = uvicorn.Server(config)
+    thread = threading.Thread(target=server.run, daemon=True)
+    thread.start()
+    return resolved_port, lock_changed
+
+
+def main() -> None:
+    args = parse_args()
+    settings_path = Path(args.mcp_settings).expanduser().resolve()
+    output_dir = Path(args.output_dir).expanduser().resolve() if args.output_dir else None
+    app, resolved_port, _lock_changed = build_bridge(
+        mcp_settings_path=settings_path,
+        port=args.port,
+        force_refresh=args.force_refresh,
+        output_dir=output_dir,
+        skills_only=args.skills_only,
+        log_level=args.log_level,
+    )
 
     if args.skills_only:
         return
-    app = create_app(manager)
+    if app is None:
+        raise MCPError("bridge_app_unavailable")
 
-    LOGGER.info("mcp_skill_bridge_started", extra={"port": args.port, "output_dir": str(output_dir)})
-    uvicorn.run(app, host="127.0.0.1", port=args.port)
+    LOGGER.info("mcp_skill_bridge_started", extra={"port": resolved_port, "output_dir": str(output_dir)})
+    uvicorn.run(app, host="127.0.0.1", port=resolved_port)
 
 
 if __name__ == "__main__":
