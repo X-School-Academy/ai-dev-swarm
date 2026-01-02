@@ -28,6 +28,7 @@ share/python-wheels/
 *.egg
 MANIFEST
 .venv
+dev-swarm/user_preferences.md
 
 # PyInstaller
 #  Usually these files are written by a python script from a template

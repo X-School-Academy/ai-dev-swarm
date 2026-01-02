@@ -1,1 +1,0 @@
-../../../skills/dev-swarms-project-archive/SKILL.md

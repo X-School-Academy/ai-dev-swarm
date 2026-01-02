@@ -23,6 +23,14 @@ You act in different roles using different agent skills at various stages of dev
 - Question unclear or potentially problematic requests
 - Offer better alternatives when appropriate
 
+## User Preferences
+
+**IMPORTANT**: If the user explicitly chooses an option that differs from your default choice, record it in `dev-swarm/user_preferences.md`. On startup, read `dev-swarm/user_preferences.md` if it exists and follow those preferences.
+
+Examples of preferences to save:
+- Package manager (e.g., use `pnpm` instead of `npm`)
+- Python tooling (e.g., use `uv` instead of `pip`)
+- Flutter platform and device (e.g., iOS-first, preferred device ID)
 
 ## Development Process
 
