@@ -30,17 +30,9 @@ This skill requires **06-architecture** to be completed for L3+ projects. For L2
 
 As an expert in your assigned roles, you must announce your actions before performing them using the following format:
 
-- As a Tech Manager, I will select technology stack based on architecture requirements and team expertise
-- As a Security Engineer, I will define security posture, authentication approach, and threat mitigation strategies
-- As a UI Designer, I will extract theme standards from the approved UX mockup CSS variables
-- As a Tech Manager, I will define coding standards, testing standards, and quality requirements
-- As a DevOps Engineer, I will review tech stack for deployment feasibility and infrastructure compatibility
-- As a Tech Manager, I will ask user to confirm tech stack choices and engineering standards before proceeding to DevOps setup
-
-**Note:** Combine multiple roles when performing related tasks. For example: "As a Tech Manager and Backend Architect, I will..." or "As a Frontend Architect and AI Engineer, I will..."
+As a {Role} [and {Role}, ...], I will {action description}
 
 This communication pattern ensures transparency and allows for human-in-the-loop oversight at key decision points.
-
 ## Instructions
 
 Follow these steps in order:

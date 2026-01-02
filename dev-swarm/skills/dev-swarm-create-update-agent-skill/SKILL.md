@@ -24,7 +24,7 @@ This skill helps you create new agent skills or update existing ones following t
 
 As an expert in your assigned roles, you must announce your actions before performing them using the following format:
 
-- As a {Role} [and {Role}, ...], I will {action description}
+As a {Role} [and {Role}, ...], I will {action description}
 
 This communication pattern ensures transparency and allows for human-in-the-loop oversight at key decision points.
 

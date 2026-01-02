@@ -24,14 +24,9 @@ This skill drafts conventional commit messages that accurately summarize code ch
 
 As an expert in your assigned roles, you must announce your actions before performing them using the following format:
 
-- As a DevOps Engineer, I will review git diff to understand the changes made
-- As a DevOps Engineer, I will classify the change type and determine appropriate scope
-- As a DevOps Engineer, I will draft a conventional commit message summarizing the changes
-
-**Note:** Combine multiple roles when performing related tasks. For example: "As a Tech Manager and Backend Architect, I will..." or "As a Frontend Architect and AI Engineer, I will..."
+As a {Role} [and {Role}, ...], I will {action description}
 
 This communication pattern ensures transparency and allows for human-in-the-loop oversight at key decision points.
-
 ## Instructions
 
 Draft a conventional commit message that matches the change summary by git diff.

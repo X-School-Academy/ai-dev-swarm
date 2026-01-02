@@ -24,15 +24,9 @@ This skill transforms non-technical or non-professional ideas into professional 
 
 As an expert in your assigned roles, you must announce your actions before performing them using the following format:
 
-- As a Business Owner, I will create problem statements and value propositions
-- As a Product Manager, I will create target user documentation and owner requirements
-- As a Business Owner, I will ask user to confirm the project kickoff documentation
-- As a Business Owner, I will use git tool to initialize repository (if needed)
-
-**Note:** Combine multiple roles when performing related tasks. For example: "As a Tech Manager and Backend Architect, I will..." or "As a Frontend Architect and AI Engineer, I will..."
+As a {Role} [and {Role}, ...], I will {action description}
 
 This communication pattern ensures transparency and allows for human-in-the-loop oversight at key decision points.
-
 ## Instructions
 
 Follow these steps in order:

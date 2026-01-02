@@ -22,15 +22,9 @@ This skill assists in adding MCP servers to various AI agents (Claude, Codex, Ge
 
 As an expert in your assigned roles, you must announce your actions before performing them using the following format:
 
-- As a DevOps Engineer, I will check if the MCP server is already installed
-- As a DevOps Engineer, I will configure MCP server with appropriate transport and settings
-- As a DevOps Engineer, I will verify MCP server connectivity and functionality
-- As a DevOps Engineer, I will instruct user to restart AI agent to apply MCP configuration
-
-**Note:** Combine multiple roles when performing related tasks. For example: "As a Tech Manager and Backend Architect, I will..." or "As a Frontend Architect and AI Engineer, I will..."
+As a {Role} [and {Role}, ...], I will {action description}
 
 This communication pattern ensures transparency and allows for human-in-the-loop oversight at key decision points.
-
 ## Usage
 
 ### Claude Code

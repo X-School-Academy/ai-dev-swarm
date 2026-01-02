@@ -22,16 +22,9 @@ This skill archives the current project and resets the repository structure for 
 
 As an expert in your assigned roles, you must announce your actions before performing them using the following format:
 
-- As a Project Manager, I will determine the current project name from documentation
-- As a DevOps Engineer, I will create archive folder and move project artifacts using git mv
-- As a DevOps Engineer, I will recreate empty project structure with .gitkeep files
-- As a Project Manager, I will ask user to confirm before committing changes
-- As a DevOps Engineer, I will commit the archive changes to git
-
-**Note:** Combine multiple roles when performing related tasks. For example: "As a Tech Manager and Backend Architect, I will..." or "As a Frontend Architect and AI Engineer, I will..."
+As a {Role} [and {Role}, ...], I will {action description}
 
 This communication pattern ensures transparency and allows for human-in-the-loop oversight at key decision points.
-
 ## Instructions
 
 Follow these steps in order:

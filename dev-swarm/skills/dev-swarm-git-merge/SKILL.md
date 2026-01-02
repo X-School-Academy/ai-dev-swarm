@@ -24,14 +24,9 @@ This skill helps you perform advanced git merge strategies including partial mer
 
 As an expert in your assigned roles, you must announce your actions before performing them using the following format:
 
-- As a DevOps Engineer, I will check the current branch and git status
-- As a Project Manager, I will confirm the merge strategy with the user
-- As a DevOps Engineer, I will execute the merge commands
-
-**Note:** Combine multiple roles when performing related tasks. For example: "As a Project Manager and DevOps Engineer, I will..."
+As a {Role} [and {Role}, ...], I will {action description}
 
 This communication pattern ensures transparency and allows for human-in-the-loop oversight at key decision points.
-
 ## Instructions
 
 Follow these steps to perform git partial or clean merges:

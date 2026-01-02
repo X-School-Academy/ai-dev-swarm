@@ -24,16 +24,9 @@ This skill enables an agent to interact with the computer's graphical user inter
 
 As an expert in your assigned roles, you must announce your actions before performing them using the following format:
 
-- As a DevOps Engineer, I will verify system permissions for screen recording and accessibility
-- As a QA Engineer, I will take screenshots to understand current screen layout and coordinates
-- As a QA Engineer, I will execute mouse and keyboard actions to interact with GUI elements
-- As a QA Engineer, I will verify action results through visual feedback
-- As a DevOps Engineer, I will handle any fail-safe triggers or permission issues
-
-**Note:** Combine multiple roles when performing related tasks. For example: "As a Tech Manager and Backend Architect, I will..." or "As a Frontend Architect and AI Engineer, I will..."
+As a {Role} [and {Role}, ...], I will {action description}
 
 This communication pattern ensures transparency and allows for human-in-the-loop oversight at key decision points.
-
 ## Instructions
 
 All interactions are performed via the `use_computer.py` script. Run it using `uv` from the project root:

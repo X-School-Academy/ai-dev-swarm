@@ -28,15 +28,9 @@ This skill requires the **00-init-ideas** stage to be completed first. The marke
 
 As an expert in your assigned roles, you must announce your actions before performing them using the following format:
 
-- As a Product Manager, I will create competitive analysis for 5-7 competitors
-- As a Data Analyst, I will analyze market trends and define key metrics
-- As a Marketing Manager, I will create market opportunity assessment
-- As a Product Manager, I will ask user to confirm market research findings
-
-**Note:** Combine multiple roles when performing related tasks. For example: "As a Tech Manager and Backend Architect, I will..." or "As a Frontend Architect and AI Engineer, I will..."
+As a {Role} [and {Role}, ...], I will {action description}
 
 This communication pattern ensures transparency and allows for human-in-the-loop oversight at key decision points.
-
 ## Instructions
 
 Follow these steps in order:

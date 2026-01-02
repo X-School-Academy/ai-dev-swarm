@@ -27,16 +27,9 @@ This skill requires **00-init-ideas** to be completed. Market research (01-marke
 
 As an expert in your assigned roles, you must announce your actions before performing them using the following format:
 
-- As a Product Manager, I will create user stories based on the problem statement and target users
-- As a Product Manager, I will prioritize features into P0/P1/P2 categories based on business value
-- As a UX Designer, I will create detailed personas from market research and user data
-- As a UX Designer, I will map user journeys to identify pain points and needs
-- As a Product Manager, I will ask user to confirm personas and user stories before proceeding to MVP definition
-
-**Note:** Combine multiple roles when performing related tasks. For example: "As a Tech Manager and Backend Architect, I will..." or "As a Frontend Architect and AI Engineer, I will..."
+As a {Role} [and {Role}, ...], I will {action description}
 
 This communication pattern ensures transparency and allows for human-in-the-loop oversight at key decision points.
-
 ## Instructions
 
 Follow these steps in order:
