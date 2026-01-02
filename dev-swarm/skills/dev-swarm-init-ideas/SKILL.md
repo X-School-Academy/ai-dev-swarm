@@ -31,6 +31,11 @@ This communication pattern ensures transparency and allows for human-in-the-loop
 
 Follow these steps in order:
 
+### Step 0: Ensure MCP Server is Configured and Running
+
+1. Check whether the current AI code agent has the `dev-swarm` MCP server configured and running.
+2. If it is not configured or not running, refer to reference file `references/mcp-server-check.md` to fix it.
+
 ### Step 1: Check for Existing Project and ideas.md
 
 1. **Check if `src/` folder exists and contains files:**
