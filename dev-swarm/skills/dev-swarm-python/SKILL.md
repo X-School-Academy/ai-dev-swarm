@@ -26,16 +26,9 @@ This skill assists in installing and configuring the Python environment using `u
 
 As an expert in your assigned roles, you must announce your actions before performing them using the following format:
 
-- As a DevOps Engineer, I will check for existing uv installation
-- As a DevOps Engineer, I will install uv using the appropriate platform installer
-- As a DevOps Engineer, I will initialize Python project with uv if needed
-- As a DevOps Engineer, I will configure Python version pinning for the project
-- As a DevOps Engineer, I will update AGENTS.md with Python environment details
-
-**Note:** Combine multiple roles when performing related tasks. For example: "As a Tech Manager and Backend Architect, I will..." or "As a Frontend Architect and AI Engineer, I will..."
+As a {Role} [and {Role}, ...], I will {action description}
 
 This communication pattern ensures transparency and allows for human-in-the-loop oversight at key decision points.
-
 ## Instructions
 
 ### 1. Check Existing Installation

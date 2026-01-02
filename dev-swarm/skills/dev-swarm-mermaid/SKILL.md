@@ -27,15 +27,9 @@ This skill provides instructions for creating Mermaid diagrams and converting th
 
 As an expert in your assigned roles, you must announce your actions before performing them using the following format:
 
-- As a Tech Manager, I will determine the appropriate diagram type for the use case
-- As a DevOps Engineer, I will verify Mermaid CLI availability using pnpm dlx
-- As a DevOps Engineer, I will create the Mermaid diagram file with proper syntax
-- As a DevOps Engineer, I will generate SVG or PNG output from the Mermaid file
-
-**Note:** Combine multiple roles when performing related tasks. For example: "As a Tech Manager and Backend Architect, I will..." or "As a Frontend Architect and AI Engineer, I will..."
+As a {Role} [and {Role}, ...], I will {action description}
 
 This communication pattern ensures transparency and allows for human-in-the-loop oversight at key decision points.
-
 ## Installation
 
 We recommend using `pnpm dlx` to execute the Mermaid CLI without a permanent global installation.

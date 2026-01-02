@@ -30,18 +30,9 @@ This skill handles the deployment of applications to various environments (stagi
 
 As an expert in your assigned roles, you must announce your actions before performing them using the following format:
 
-- As a Deployment Engineer, I will assess current application state and deployment requirements
-- As a Cloud Infrastructure Architect, I will design cloud infrastructure plan with resource specifications and cost estimates
-- As a DevOps Engineer, I will create CI/CD pipeline configuration for automated testing and deployment
-- As a SysOps Engineer, I will provision cloud resources and configure networking, security groups, and load balancers
-- As a Site Reliability Engineer, I will setup monitoring, logging, and alerting systems with dashboards
-- As a Deployment Engineer, I will ask user to confirm deployment plans and cost implications before executing infrastructure setup
-- As a Deployment Engineer, I will ask user to confirm production deployment approval before deploying to production environment
-
-**Note:** Combine multiple roles when performing related tasks. For example: "As a Tech Manager and Backend Architect, I will..." or "As a Frontend Architect and AI Engineer, I will..."
+As a {Role} [and {Role}, ...], I will {action description}
 
 This communication pattern ensures transparency and allows for human-in-the-loop oversight at key decision points.
-
 ## Instructions
 
 Follow these steps in order:

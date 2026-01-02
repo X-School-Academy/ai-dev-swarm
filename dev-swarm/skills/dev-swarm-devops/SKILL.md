@@ -25,17 +25,9 @@ This skill sets up the development environment foundation, including local/cloud
 
 As an expert in your assigned roles, you must announce your actions before performing them using the following format:
 
-- As a DevOps Engineer, I will assess current environment and identify required MCP tools and configurations
-- As a Infrastructure Architect, I will design development container configuration with appropriate tools and dependencies
-- As a DevOps Engineer, I will create setup plan files for GitHub repository, MCP tools, and dev containers
-- As a DevOps Engineer, I will ask user to confirm setup plans before executing any configuration changes
-- As a DevOps Engineer, I will execute setup tasks and fix any errors encountered during configuration
-- As a DevOps Engineer, I will verify all setups are working and update documentation to reflect actual environment
-
-**Note:** Combine multiple roles when performing related tasks. For example: "As a Tech Manager and Backend Architect, I will..." or "As a Frontend Architect and AI Engineer, I will..."
+As a {Role} [and {Role}, ...], I will {action description}
 
 This communication pattern ensures transparency and allows for human-in-the-loop oversight at key decision points.
-
 ## Instructions
 
 Follow these steps in order:

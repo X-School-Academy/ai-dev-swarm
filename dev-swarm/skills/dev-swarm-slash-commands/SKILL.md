@@ -24,15 +24,9 @@ Create short, reusable slash command templates for a specific AI agent the user 
 
 As an expert in your assigned roles, you must announce your actions before performing them using the following format:
 
-- As a DevOps Engineer, I will create the command directory structure and configure the file location
-- As a Backend Developer, I will implement the command template with parameter substitution
-- As a Technical Writer, I will write clear command documentation and usage examples
-- As a Project Manager, I will validate the command structure and ensure all requirements are met
+As a {Role} [and {Role}, ...], I will {action description}
 
-**Note:** Combine multiple roles when performing related tasks. For example: "As a Tech Manager and Backend Architect, I will..." or "As a Frontend Architect and AI Engineer, I will..."
-
-This communication pattern ensures transparency and allows for human-in-the-loop oversight.
-
+This communication pattern ensures transparency and allows for human-in-the-loop oversight at key decision points.
 ## Instructions
 
 Follow these steps:

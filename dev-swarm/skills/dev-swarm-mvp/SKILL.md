@@ -29,16 +29,9 @@ This skill requires **02-personas** to be completed. The MVP scope will build up
 
 As an expert in your assigned roles, you must announce your actions before performing them using the following format:
 
-- As a Product Manager, I will define MVP scope by selecting only P0 features from user stories
-- As a Product Manager, I will create success metrics and validation criteria for the MVP
-- As a Tech Manager, I will identify technical shortcuts acceptable for MVP and document technical debt
-- As a UX Designer, I will simplify user flows to MVP essentials while maintaining usability
-- As a Product Manager, I will ask user to confirm MVP scope and success metrics before proceeding to PRD creation
-
-**Note:** Combine multiple roles when performing related tasks. For example: "As a Tech Manager and Backend Architect, I will..." or "As a Frontend Architect and AI Engineer, I will..."
+As a {Role} [and {Role}, ...], I will {action description}
 
 This communication pattern ensures transparency and allows for human-in-the-loop oversight at key decision points.
-
 ## Instructions
 
 Follow these steps in order:

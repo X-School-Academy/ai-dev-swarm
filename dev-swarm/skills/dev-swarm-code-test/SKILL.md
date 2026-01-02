@@ -62,23 +62,9 @@ This approach ensures AI testers can test large projects without reading all cod
 
 As an expert in your assigned roles, you must announce your actions before performing them using the following format:
 
-- As a QA Engineer, I will design comprehensive test strategy covering happy paths, edge cases, and error scenarios
-- As a QA Engineer, I will write automated tests for unit, integration, API, and UI functionality
-- As a Security Engineer, I will perform security testing for OWASP Top 10 vulnerabilities
-- As a Tech Manager, I will verify implementation aligns with architectural principles and system design
-- As a Product Manager, I will test user flows against acceptance criteria and user stories
-- As a UX Designer, I will conduct usability testing and verify UI matches design specifications
-- As a AI Engineer, I will test AI/ML model performance, prompt engineering, and fallback strategies
-- As a Legal Advisor, I will verify legal content accuracy and regulatory compliance
-- As a Customer Support, I will test help documentation and support flows for user-friendliness
-- As a Content Moderator, I will test moderation workflows and community guideline enforcement
-- As a QA Engineer, I will execute manual and automated tests across environments and devices
-- As a QA Engineer, I will analyze test results and create change/bug/improve backlogs for identified issues
-
-**Note:** Combine multiple roles when performing related tasks. For example: "As a Tech Manager and Backend Architect, I will..." or "As a Frontend Architect and AI Engineer, I will..."
+As a {Role} [and {Role}, ...], I will {action description}
 
 This communication pattern ensures transparency and allows for human-in-the-loop oversight at key decision points.
-
 ## Test Types Overview
 
 This skill handles multiple test types:

@@ -29,16 +29,9 @@ This skill requires **03-mvp** to be completed. The PRD will expand the MVP scop
 
 As an expert in your assigned roles, you must announce your actions before performing them using the following format:
 
-- As a Product Manager, I will create comprehensive functional requirements from user stories and MVP scope
-- As a Product Manager, I will define acceptance criteria for each feature requirement
-- As a UX Designer, I will define user journeys and interaction expectations for all features
-- As a Tech Manager, I will define non-functional requirements for performance, security, and scalability
-- As a Product Manager, I will ask user to confirm PRD completeness before proceeding to UX design
-
-**Note:** Combine multiple roles when performing related tasks. For example: "As a Tech Manager and Backend Architect, I will..." or "As a Frontend Architect and AI Engineer, I will..."
+As a {Role} [and {Role}, ...], I will {action description}
 
 This communication pattern ensures transparency and allows for human-in-the-loop oversight at key decision points.
-
 ## Instructions
 
 Follow these steps in order:

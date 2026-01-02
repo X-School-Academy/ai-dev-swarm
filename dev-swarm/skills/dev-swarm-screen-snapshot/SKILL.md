@@ -23,16 +23,9 @@ This skill allows an AI agent to inspect a mobile app, an iOS/Android simulator,
 
 As an expert in your assigned roles, you must announce your actions before performing them using the following format:
 
-- As a DevOps Engineer, I will start the screen streaming background process with appropriate parameters
-- As a QA Engineer, I will guide user through positioning the capture window over target UI
-- As a QA Engineer, I will verify screen capture is working by accessing the preview URL
-- As a QA Engineer, I will fetch snapshots to inspect UI elements and debug visual issues
-- As a DevOps Engineer, I will troubleshoot any permission or connectivity issues
-
-**Note:** Combine multiple roles when performing related tasks. For example: "As a Tech Manager and Backend Architect, I will..." or "As a Frontend Architect and AI Engineer, I will..."
+As a {Role} [and {Role}, ...], I will {action description}
 
 This communication pattern ensures transparency and allows for human-in-the-loop oversight at key decision points.
-
 ## Instructions
 
 1.  **Start the Screen Stream Process**:
