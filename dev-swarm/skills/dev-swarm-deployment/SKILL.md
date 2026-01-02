@@ -166,6 +166,7 @@ Follow these steps in order:
    ```
    10-deployment/
    ├── README.md
+   ├── deployment-info.md (if independently runnable package/MCP server)
    ├── infrastructure-plan.md
    ├── cicd-pipeline.md
    ├── deployment-strategy.md
@@ -190,6 +191,32 @@ Write as a deployment plan with:
 - **Dependencies**: Any dependencies that need to be packaged or installed in the target.
 - **Configuration**: Any config changes needed for the target environment.
 - **Step-by-Step Instructions**: How to perform the deployment.
+
+**deployment-info.md (Deployment Plan - For Independently Runnable Packages/MCP Servers):**
+Write as a deployment plan with:
+- **Project Type**: Independently runnable package or MCP server
+- **Publishing Strategy**: Publish to GitHub as a release with version number
+- **Installation Commands for End Users:**
+  - For Node.js projects:
+    - `pnpm dlx github:username/repo-name#v1.0.0 [command] [options]`
+    - `npx github:username/repo-name@latest [command] [options]`
+  - For Python projects:
+    - `uvx --from 'git+https://github.com/username/repo-name.git@v1.0.0' package-name [command] [options]`
+  - Use these as examples and tailor to the actual project
+- **User Documentation Update**:
+  - Update `src/README.md` with instructions on how to run the package without installation
+  - Include usage examples and command-line options
+  - Document all available commands and their purposes
+- **Publishing Steps**:
+  - Ask for explicit user approval before publishing or creating releases
+  - Push code to GitHub remote
+  - Use playwright-browser-* agent skills to open GitHub website
+  - Create a new release with version number (e.g., v1.0.0) through GitHub UI
+  - Verify installation works from GitHub release
+- **Version Management**: How to create and manage releases through GitHub
+- **Clear step-by-step instructions**
+
+After user approves this plan, the `10-deployment/README.md` should reference this file to keep it clean and organized.
 
 **infrastructure-plan.md (Deployment Plan):**
 Write as a deployment plan with:
@@ -324,7 +351,33 @@ Write as a deployment plan with:
 
 ### Step 5: Initial Deployment
 
-1. **Deploy to Development/Staging First:**
+1. **For Independently Runnable Packages/MCP Servers:**
+   - Follow deployment strategy from `deployment-info.md`
+   - **Update src/README.md:**
+     - Add installation instructions for end users
+     - Include command examples (pnpm dlx, npx, or uvx --from)
+     - Document all available commands and options
+     - Add usage examples
+   - **Push code to GitHub:**
+     - Ask for explicit user approval before pushing
+     - Ensure all changes are committed
+     - Push code: `git push origin main` (or appropriate branch)
+   - **Create GitHub Release:**
+     - Ask for explicit user approval before opening the browser or creating the release
+     - Use playwright-browser-* agent skills to automate browser interactions
+     - Open GitHub repository releases page
+     - Create a new release through the GitHub UI
+     - Set version number (e.g., v1.0.0)
+     - Add release notes describing the changes
+     - Publish the release
+   - **Verify installation:**
+     - Test installation using the documented commands with the release version
+     - Verify all commands work as expected
+   - **Fix any errors encountered during deployment**
+   - Document deployment completion
+   - Update `deployment-info.md` with actual installation commands tested and release URL
+
+2. **Deploy to Development/Staging First (For Cloud Deployments):**
    - Follow deployment strategy from `deployment-strategy.md`
    - Execute pre-deployment checklist
    - Trigger deployment via CI/CD pipeline
@@ -335,7 +388,7 @@ Write as a deployment plan with:
    - Adjust configuration as needed
    - Document any issues and resolutions
 
-2. **Deploy to Production (if approved):**
+3. **Deploy to Production (if approved):**
    - Get explicit user confirmation for production deployment
    - Execute pre-deployment checklist
    - Trigger production deployment
@@ -386,7 +439,18 @@ For each deployed environment:
 
 **CRITICAL**: Update all deployment files to reflect actual environment:
 
-1. **Update infrastructure-plan.md:**
+1. **Update deployment-info.md (if applicable):**
+   - Change from "deployment plan" to "current deployment configuration"
+   - Document actual version numbers released
+   - Document actual installation commands tested and verified
+   - Add links to GitHub releases page
+   - Document the release creation process using playwright-browser-* agent skills
+   - Document actual src/README.md updates made
+   - Add verification results
+   - Add troubleshooting notes for any issues encountered
+   - Document how to create future releases using the browser automation approach
+
+2. **Update infrastructure-plan.md:**
    - Change from "deployment plan" to "current infrastructure"
    - Document actual resources created with IDs/ARNs
    - Document actual costs (if available)
@@ -394,7 +458,7 @@ For each deployed environment:
    - Add troubleshooting notes for any issues encountered
    - Document how to access and manage infrastructure
 
-2. **Update cicd-pipeline.md:**
+3. **Update cicd-pipeline.md:**
    - Change from "deployment plan" to "current pipeline configuration"
    - Document actual pipeline setup and workflow
    - Add links to pipeline runs
@@ -402,7 +466,7 @@ For each deployed environment:
    - Add troubleshooting notes for any issues encountered
    - Document how to trigger and monitor deployments
 
-3. **Update deployment-strategy.md:**
+4. **Update deployment-strategy.md:**
    - Change from "deployment plan" to "current deployment process"
    - Document actual deployment steps executed
    - Add verification results
@@ -410,7 +474,7 @@ For each deployed environment:
    - Document successful deployment timeline
    - Update rollback procedures based on actual setup
 
-4. **Update monitoring-logging.md:**
+5. **Update monitoring-logging.md:**
    - Change from "deployment plan" to "current monitoring setup"
    - Document actual monitoring tools configured
    - Add dashboard URLs
@@ -418,7 +482,7 @@ For each deployed environment:
    - Add troubleshooting notes for any issues encountered
    - Document how to access logs and metrics
 
-5. **Update environment-config.md:**
+6. **Update environment-config.md:**
    - Change from "deployment plan" to "current environment configuration"
    - Document actual environment variables (without sensitive values)
    - Document where secrets are stored
@@ -426,7 +490,7 @@ For each deployed environment:
    - Add troubleshooting notes for any issues encountered
    - Document how to update configuration
 
-6. **Update 10-deployment/README.md:**
+7. **Update 10-deployment/README.md:**
    - Update current deployment status to "Deployed"
    - Add environment URLs for each deployed environment
    - Add summary of deployed infrastructure
@@ -498,6 +562,7 @@ For each deployed environment:
 project-root/
 ├── 10-deployment/
 │   ├── README.md (with owner and attendances)
+│   ├── deployment-info.md (if independently runnable package/MCP server)
 │   ├── infrastructure-plan.md
 │   ├── cicd-pipeline.md
 │   ├── deployment-strategy.md

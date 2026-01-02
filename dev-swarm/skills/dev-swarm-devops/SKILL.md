@@ -96,7 +96,10 @@ Follow these steps in order:
    - **Stage overview and objectives** (based on previous stage context)
    - **Owners:** DevOps Engineer (lead), Infrastructure Architect
    - **What devops setup will include:**
-     - GitHub repository setup (if needed)
+     - **GitHub repository setup options (with checkboxes):**
+       - [ ] No Git repo (do not commit code)
+       - [ ] Using dev-swarm's git repo
+       - [x] Create a new GitHub repo (default when no remote exists)
      - MCP tools configuration (list which tools)
      - Development Environment setup (development_environment.md) - **Required for L2 projects**
      - Development container setup (if needed)
@@ -149,8 +152,18 @@ Follow these steps in order:
 
 **NOTE:** The content structure below provides GUIDELINES for typical devops setup files. Adapt based on the approved README and project needs.
 
-**github-setup.md (if specified in README - Setup Plan):**
+**github-setup.md or github-repo.md (if specified in README - Setup Plan):**
 Write as a setup plan with:
+- **Git repository approach selected by user:**
+  - If "No Git repo": Document decision and skip git setup
+  - If "Using dev-swarm's git repo": Use the current repo without changes
+  - If "Create a new GitHub repo" (default):
+    - Ask for user approval before opening the browser or creating the repo
+    - Use playwright-browser-* agent skills to help user create a new GitHub repo
+    - Add the remote repo to src/ as the project source
+    - Add src/ as a git submodule to the root project
+    - Record repository information in `08-devops/github-repo.md`
+  - If user provides a remote repo URL: Add it as a git submodule at src/ (no separate clone)
 - Proposed GitHub repository settings
 - Branch protection rules to be configured
 - PR template to be created
@@ -206,11 +219,29 @@ Write as a setup plan with:
 **ONLY AFTER USER CONFIRMATION**, execute each setup:
 
 1. **Execute GitHub Setup:**
-   - Follow steps in `github-setup.md`
-   - If no remote: Guide/help user create GitHub repository
-   - Link local repository to remote using `git remote add`
-   - Create branch protection rules (via GitHub CLI or web)
-   - Create PR templates in `.github/PULL_REQUEST_TEMPLATE.md`
+   - Follow steps in `github-setup.md` or `github-repo.md`
+   - **Based on user's selected option:**
+     - **If "No Git repo":** Skip git setup entirely
+     - **If "Using dev-swarm's git repo":** No changes needed, continue with existing repo
+     - **If "Create a new GitHub repo":**
+       - Ask for user approval before opening the browser or creating the repo
+       - Use playwright-browser-* agent skills to automate browser interactions for creating the GitHub repo
+       - Initialize git in src/ directory if not already initialized
+       - Add the remote repo to src/ using `git remote add origin <repo-url>`
+       - Add src/ as a git submodule to the root project using `git submodule add <repo-url> src`
+       - Set the submodule branch to `main` unless the user specifies another branch
+       - Record repository information in `08-devops/github-repo.md`:
+         - Repository URL
+         - Repository name
+         - Creation date
+         - Default branch (main unless specified)
+         - Submodule configuration
+     - **If user provides a remote repo URL:**
+       - Add src/ as a git submodule to root project using `git submodule add <repo-url> src`
+       - Set the submodule branch to `main` unless the user specifies another branch
+       - Record information in `08-devops/github-repo.md`
+   - Create branch protection rules (via GitHub CLI or web) if applicable
+   - Create PR templates in `.github/PULL_REQUEST_TEMPLATE.md` if specified
    - Create issue templates if specified
    - **Fix any errors encountered during setup**
    - Retry failed steps with corrections
@@ -241,9 +272,15 @@ Write as a setup plan with:
 For each completed setup:
 
 1. **Verify GitHub setup:**
-   - Run `git remote -v` to confirm remote is linked
-   - Check branch protection rules are applied
-   - Verify PR templates exist and are formatted correctly
+   - If a new repo was created or submodule was added:
+     - Run `git submodule status` to verify src/ is properly configured as a submodule
+     - Verify `08-devops/github-repo.md` contains accurate repository information
+     - Check that src/ has its own git repository with proper remote
+     - Run `git remote -v` in src/ directory to confirm remote is linked
+   - If using existing dev-swarm repo:
+     - Run `git remote -v` to confirm remote is linked
+   - Check branch protection rules are applied (if configured)
+   - Verify PR templates exist and are formatted correctly (if created)
    - Test creating a test PR (if applicable)
 
 2. **Verify MCP tools:**
@@ -265,8 +302,16 @@ For each completed setup:
 
 **CRITICAL**: Update all setup files to reflect actual environment:
 
-1. **Update github-setup.md:**
+1. **Update github-setup.md or github-repo.md:**
    - Change from "setup plan" to "current configuration"
+   - Document which git repository option was selected
+   - If git submodule was created:
+     - Document the submodule configuration
+     - Document repository URL and name
+     - Document default branch (`main` unless specified)
+     - Note whether the submodule is pinned to a commit/tag or tracking a branch
+     - Document how to initialize/update the submodule
+     - Document how to work with the submodule (commit, push, pull)
    - Document actual repository URL, settings applied
    - Document actual branch protection rules in place
    - Note any deviations from original plan

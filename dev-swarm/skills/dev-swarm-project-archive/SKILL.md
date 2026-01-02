@@ -52,19 +52,49 @@ Extract the title from the first `# Title` or `## Title` heading in these files.
    mkdir -p 99-archive/{archive-folder-name}
    ```
 
-### Step 3: Move Project Artifacts to Archive
+### Step 3: Handle src/ Submodule (if applicable)
+
+**Check if src/ is a git submodule:**
+
+1. **Run `git submodule status` to check if src/ is a submodule**
+2. **If src/ is a submodule:**
+   - Remove the submodule from the root project while keeping the working tree so it can be archived:
+     ```bash
+     # Remove the submodule entry from .git/config
+     git submodule deinit -f src
+
+     # Remove the gitlink from the index but keep the working tree
+     git rm -f --cached src
+
+     # Remove the src entry from .gitmodules
+     git config -f .gitmodules --remove-section submodule.src || true
+     git add .gitmodules
+
+     # Detach the submodule working tree so it becomes a normal folder
+     rm -f src/.git
+
+     # Remove the submodule's git metadata after detaching
+     rm -rf .git/modules/src
+     ```
+   - Verify `git status -s` shows src/ as untracked (not a submodule)
+   - The src/ directory will now be untracked, and can be moved like a normal folder
+3. **If src/ is NOT a submodule:**
+   - Continue to the next step
+
+### Step 4: Move Project Artifacts to Archive
 
 Use `git mv` to move the following items into the archive folder:
 
 1. **All stage folders:** `00-*` through `10-*` (e.g., `00-init-ideas/`, `01-market-research/`, etc.)
 2. **Features folder:** `features/`
-3. **Source code folder:** `src/`
+3. **Source code folder:** `src/` (now untracked if it was a submodule)
 4. **Ideas file:** `ideas.md` (if it exists)
 
 **Important:**
 - Leave `99-archive/` in place (do not move it into itself)
 - Do not touch unrelated files (e.g., `.*`, `dev-swarm/`, `README.md`, etc.)
-- Use `git mv` for all move operations to preserve git history
+- Use `git mv` for folders that are tracked by git
+- For `src/` that was a submodule (now untracked), use regular `mv` command and then `git add` to track it
 
 Example commands:
 ```bash
@@ -72,11 +102,18 @@ git mv 00-init-ideas 99-archive/{archive-folder-name}/
 git mv 01-market-research 99-archive/{archive-folder-name}/
 # ... continue for all stage folders that exist
 git mv features 99-archive/{archive-folder-name}/
+
+# If src/ was a submodule (now untracked):
+mv src 99-archive/{archive-folder-name}/
+git add 99-archive/{archive-folder-name}/src
+
+# If src/ was not a submodule:
 git mv src 99-archive/{archive-folder-name}/
+
 git mv ideas.md 99-archive/{archive-folder-name}/  # if it exists
 ```
 
-### Step 4: Recreate Empty Project Structure
+### Step 5: Recreate Empty Project Structure
 
 Create fresh empty folders for the new project:
 
@@ -88,7 +125,7 @@ Create fresh empty folders for the new project:
    done
    ```
 
-### Step 5: Handle ideas.md
+### Step 6: Handle ideas.md
 
 **If the user wants to start a new project from ideas.md:**
 - Ensure `ideas.md` remains at the repo root (do not archive it or move it back if already archived)
@@ -96,20 +133,21 @@ Create fresh empty folders for the new project:
 - Do not auto-generate any new documentation unless explicitly requested
 
 **If the user only wants to archive:**
-- The `ideas.md` file will have been archived in Step 3
+- The `ideas.md` file will have been archived in Step 4
 - The user can create a new `ideas.md` later
 
-### Step 6: Ask for User Confirmation
+### Step 7: Ask for User Confirmation
 
 Before committing, show the user:
 1. What has been archived (list the folders/files moved)
 2. The archive location (e.g., `99-archive/my-project/`)
 3. The new empty structure that has been created
+4. If src/ was a submodule, note that it has been removed from submodule configuration
 
 Ask the user:
 - "The project has been archived. Do you want to commit these changes to git?"
 
-### Step 7: Commit to Git (if user confirms)
+### Step 8: Commit to Git (if user confirms)
 
 **If the user confirms:**
 

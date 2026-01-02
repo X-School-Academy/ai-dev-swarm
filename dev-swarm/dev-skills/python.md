@@ -1,6 +1,6 @@
 Use this skill when you need to install Python, pip, or uv.
 
-This project uses `uv` to manage Python versions, packages, etc.
+This project uses `uv` and `uvx` to manage Python versions, packages, etc.
 
 ### Install uv
 **On macOS and Linux:**

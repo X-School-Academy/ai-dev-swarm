@@ -1,11 +1,11 @@
 ---
 name: dev-swarm-mcp-server
-description: Add and manage Model Context Protocol (MCP) servers for AI agents. Use when extending agent capabilities with new tools or data sources.
+description: Add and manage Model Context Protocol (MCP) servers for AI agents, including transports, scopes, and config files. Use when extending agent capabilities with new tools or data sources.
 ---
 
-# MCP Server Management
+# AI Builder - MCP Server Management
 
-This skill assists in adding MCP servers to various AI agents (Claude, Codex, Gemini, etc.).
+This skill assists in adding MCP servers to CLI AI agents (Claude, Codex, Gemini, etc.) with the correct transport, scope, and configuration locations.
 
 ## When to Use This Skill
 
@@ -13,10 +13,12 @@ This skill assists in adding MCP servers to various AI agents (Claude, Codex, Ge
 - User needs to list installed MCP servers
 - User wants to integrate new tools or data sources through MCP
 - User asks to configure MCP servers for different AI agents
+- User needs help choosing transport types or config scopes
 
 ## Your Roles in This Skill
 
-- **DevOps Engineer**: Install and configure MCP servers for various AI agents. Verify existing MCP server installations. Guide users through MCP server setup for different platforms (Claude Code, Codex, Gemini). Troubleshoot MCP server connectivity and configuration issues. Manage environment variables and credentials for MCP servers.
+- **DevOps Engineer**: Install and configure MCP servers for CLI AI agents, manage configuration files, and validate connectivity.
+- **Technical Writer**: Provide clear, accurate instructions and examples for MCP setup across tools and scopes.
 
 ## Role Communication
 
@@ -25,76 +27,45 @@ As an expert in your assigned roles, you must announce your actions before perfo
 As a {Role} [and {Role}, ...], I will {action description}
 
 This communication pattern ensures transparency and allows for human-in-the-loop oversight at key decision points.
-## Usage
 
-### Claude Code
+## Instructions
 
-To list installed MCP servers:
-```bash
-claude mcp list
-```
+Follow these steps in order:
 
-To add an MCP server:
-```bash
-# HTTP or SSE transport
-claude mcp add --transport [http|sse] <name> <URL>
+### Step 1: Detect the AI Agent Type
 
-# Stdio transport (example with environment variable)
-claude mcp add --transport stdio <name> --env AIRTABLE_API_KEY=YOUR_KEY -- pnpm dlx airtable-mcp-server
-```
+- Identify the current CLI agent (Claude Code, Codex CLI, Gemini CLI, or other).
+- If Claude Code, refer to `references/mcp-server-claude.md`.
+- If Codex CLI, refer to `references/mcp-server-codex.md`.
+- If Gemini CLI, refer to `references/mcp-server-gemini.md`.
+- If other, refer to `references/mcp-server-other-cli.md`.
 
-### Codex Code
+### Step 2: Confirm Requirements
 
-To list MCP servers:
-```bash
-codex mcp list
-```
+- Confirm transport type (stdio, HTTP, SSE), scope (project/user), and any required environment variables.
+- For general guidance, refer to `references/mcp-server-general.md`.
 
-To add an MCP server:
-```bash
-codex mcp add [OPTIONS] <name> (--url <URL> | -- <COMMAND>...)
-```
+### Step 3: Inspect Existing Configuration
 
-### Gemini CLI
+- Run the CLI list command to verify whether the server already exists.
+- If a server already exists, confirm whether to update, remove, or leave it.
 
-To list MCP servers:
-```bash
-gemini mcp list
-```
+### Step 4: Configure the MCP Server
 
-To add an MCP server:
-```bash
-gemini mcp add [options] <name> <commandOrUrl> [args...]
-```
+- Use the correct CLI command and flags for the chosen transport and scope.
+- If configuration is file-based, update the correct file location.
+- Keep sensitive values in environment variables, not committed files.
 
-Or update config file at 
+### Step 5: Validate and Restart
 
-~/.gemini/settings.json 
-{PROJECT_ROOT}/.gemini/settings.json 
-
-```json
-{
-  "mcpServers": {
-    "skillz": {
-      "command": "uvx",
-      "args": [
-        "skillz@latest",
-        "/path/skills",
-        "--verbose"
-      ]
-    }
-  }
-}
-```
-
-### Other AI Agents
-
-For other agents, try checking the help command first:
-```bash
-ai-agent-command -h
-```
+- Re-run the list command to confirm the server appears.
+- Instruct the user to restart the CLI so changes take effect.
+- If the server has a long startup time, set or recommend timeout options.
 
 ## Best Practices
 
-1.  **Check Installation:** Always check if the MCP server is already set up before attempting to install it.
-2.  **Restart Agent:** After adding an MCP server, instruct the user to exit and relaunch the AI agent CLI to ensure the changes take effect.
+1. **Check installation first**: Always verify existing MCP servers before changing configurations.
+2. **Use project scope for team tools**: Commit shared configs only when they contain no secrets.
+3. **Keep secrets out of VCS**: Use environment variables for API keys and tokens.
+4. **Restart after changes**: Always exit and relaunch the CLI after config updates.
+5. **Validate connectivity**: Confirm servers appear in list output and respond to basic requests.
