@@ -110,10 +110,7 @@ Choose roles from file `dev-swarm/docs/dev-swarm-roles.md`:
 
 As an expert in your assigned roles, you must announce your actions before performing them using the following format:
 
-- As a {Role}, I will {action description}
-- As a {Role}, I will {action description}
-
-**Note:** Combine multiple roles when performing related tasks. For example: "As a Tech Manager and Backend Architect, I will..." or "As a Frontend Architect and AI Engineer, I will..."
+As a {Role, and Role-XYZ if have more roles}, I will {action description}
 
 This communication pattern ensures transparency and allows for human-in-the-loop oversight at key decision points.
 ```
@@ -137,27 +134,38 @@ Detailed instructions for this step...
 
 #### Recommended Sections
 
-- **Examples**: Show concrete examples of usage
-- **Expected Output**: Describe what the skill produces
-- **Key Principles**: List important guidelines
-- **Common Issues**: Document known problems and solutions
+- **Expected Output**: Describe what the skill produces (RECOMMENDED)
+- **Key Principles**: List important guidelines (RECOMMENDED)
+- **Common Issues**: Document known problems and solutions (RECOMMENDED)
 
-### Step 4: Create Reference Files (if needed)
+#### Optional Sections
 
-If your skill needs additional reference documentation, prefer routing details to `references/` files to keep `SKILL.md` short.
+- **Examples**: Only include if the user specifically requests examples or if they are truly necessary for understanding. Prefer keeping skills concise.
 
-Use this conditional routing format:
+### Step 4: Create Reference Files (IMPORTANT)
 
-- If {situation 1}, refer to `references/{file-1}.md`.
-- If {situation 2}, refer to `references/{file-2}.md`.
+**ALWAYS use reference files to keep SKILL.md concise.** Prefer routing details to `references/` files rather than embedding everything in `SKILL.md`.
 
-Include conditions for platform, scale, or software type when relevant. Examples:
+**When to use reference files:**
+- **Multiple tools/technologies**: Create separate reference files for each tool (e.g., `references/claude-code.md`, `references/gemini-cli.md`)
+- **Platform-specific instructions**: Create files for different platforms (e.g., `references/macos.md`, `references/windows.md`, `references/linux.md`)
+- **Installation methods**: Create files for different installation approaches (e.g., `references/npm-install.md`, `references/docker-setup.md`)
+- **Detailed configurations**: Move lengthy config details to reference files
+- **Different frameworks/libraries**: Separate file per framework (e.g., `references/react.md`, `references/vue.md`)
 
-- If platform-specific requirements apply (web, mobile, desktop, CLI, backend/API, data/ML), refer to `references/platform-{platform}.md`.
-- If scale/type requirements apply (prototype, MVP, growth, enterprise; SaaS, internal tools, data pipeline, open source), refer to `references/scale-{level}.md` or `references/type-{type}.md`.
+**Use conditional routing format in SKILL.md:**
+
+```markdown
+- If installing **tool-a**, refer to `references/tool-a.md`
+- If installing **tool-b**, refer to `references/tool-b.md`
+- If on **macOS**, refer to `references/macos.md`
+- If on **Windows**, refer to `references/windows.md`
+```
 
 **Reference file guidance:**
-- Keep files under 500 lines when possible
+- Create reference files PROACTIVELY - don't wait to be asked
+- Keep SKILL.md under 200 lines when possible by using references
+- Keep reference files under 500 lines when possible
 - Use clear, descriptive filenames
 - Link to them from `SKILL.md` using relative paths
 - Use a symbolic link for any file under `dev-swarm/` in the project's root if asked to reference an entire file
@@ -192,9 +200,10 @@ If your skill includes executable scripts:
 3. **Content quality:**
    - [ ] Instructions are clear and step-by-step
    - [ ] Roles are appropriate for the task
-   - [ ] Examples are provided where helpful
    - [ ] File references use relative paths
-   - [ ] `SKILL.md` is concise, defers details to references
+   - [ ] `SKILL.md` is concise (under 200 lines preferred), defers details to references
+   - [ ] Reference files created for different tools/platforms/methods
+   - [ ] No steps to update documentation files (AGENTS.md, README.md, etc.) unless explicitly requested by user
 
 4. **File structure:**
    - [ ] No references outside skill folder (unless explicitly required)
@@ -222,13 +231,16 @@ Ask: "The skill has been created/updated. Would you like me to make any changes?
 ## Key Principles
 
 - **Follow the specification**: Always adhere to file `dev-swarm/docs/agent-skill-specification.md`
+- **Progressive disclosure**: ALWAYS keep SKILL.md concise (under 200 lines preferred), move detailed content to reference files
+- **Use reference files proactively**: Create separate reference files for different tools, platforms, installation methods, frameworks, etc.
+- **No unsolicited documentation updates**: NEVER add steps to update AGENTS.md, README.md, or other documentation files unless the user explicitly requests it
 - **Clear instructions**: Write step-by-step instructions that are easy to follow
 - **Appropriate roles**: Choose roles that match the task from file `dev-swarm/docs/dev-swarm-roles.md`
-- **Progressive disclosure**: Keep SKILL.md concise, move detailed content to reference files
 - **Self-contained**: Don't reference files outside the skill folder unless required
 - **Role communication**: Always include the role communication pattern
 - **Validate thoroughly**: Check all requirements before considering the skill complete
 - **Naming convention**: All skill names must start with `dev-swarm-`
+- **Minimize examples**: Only include Examples section if truly necessary or explicitly requested
 
 ## Common Issues
 
@@ -243,3 +255,12 @@ Ask: "The skill has been created/updated. Would you like me to make any changes?
 
 **Issue: Description too vague**
 - Solution: Describe both WHAT the skill does and WHEN to use it
+
+**Issue: SKILL.md too long (over 200 lines)**
+- Solution: Move detailed content to reference files. Create separate files for different tools, platforms, or methods
+
+**Issue: Including steps to update documentation files without user request**
+- Solution: NEVER add steps like "Update AGENTS.md" or "Update README.md" unless the user explicitly asks for it
+
+**Issue: Not using reference files when there are multiple tools/platforms**
+- Solution: Always create separate reference files for each tool, platform, or installation method instead of putting everything in SKILL.md
