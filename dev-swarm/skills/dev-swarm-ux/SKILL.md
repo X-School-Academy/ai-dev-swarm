@@ -30,17 +30,9 @@ This skill requires **04-prd** to be completed. The UX design will translate fun
 
 As an expert in your assigned roles, you must announce your actions before performing them using the following format:
 
-- As a UX Designer, I will create user flow diagrams for all critical journeys from the PRD
-- As a UI Designer, I will design interactive HTML/CSS/JS mockups showcasing the theme and user flows
-- As a UX Designer, I will define interaction specifications for all components with state transitions
-- As a Content Moderator, I will design moderation workflows and reporting interfaces in the UI
-- As a UX Designer, I will ensure WCAG 2.1 Level AA accessibility compliance across all designs
-- As a Product Manager, I will ask user to confirm UX design and mockups before proceeding to architecture
-
-**Note:** Combine multiple roles when performing related tasks. For example: "As a Tech Manager and Backend Architect, I will..." or "As a Frontend Architect and AI Engineer, I will..."
+As a {Role} [and {Role}, ...], I will {action description}
 
 This communication pattern ensures transparency and allows for human-in-the-loop oversight at key decision points.
-
 ## Instructions
 
 Follow these steps in order:

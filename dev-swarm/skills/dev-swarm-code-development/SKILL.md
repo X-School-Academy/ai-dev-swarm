@@ -60,23 +60,9 @@ This approach ensures AI developers can work on large projects without reading a
 
 As an expert in your assigned roles, you must announce your actions before performing them using the following format:
 
-- As a Project Manager, I will verify backlog requirements and identify referenced features from the knowledge base
-- As a Tech Manager, I will design implementation approach following architectural principles and patterns
-- As a Backend Developer, I will implement server-side APIs, business logic, and database integration
-- As a Frontend Developer, I will implement UI components and integrate with backend APIs
-- As a Database Administrator, I will design database schemas and optimize queries for performance
-- As a AI Engineer, I will implement AI/ML model integration and prompt engineering strategies
-- As a Legal Advisor, I will write legal compliance pages with accurate regulatory language
-- As a Customer Support, I will create help documentation and user-friendly support content
-- As a Content Moderator, I will implement moderation workflows and community guidelines
-- As a UI Designer, I will implement visual layouts ensuring design system consistency
-- As a Tech Manager, I will ask user to confirm feature design approach before implementing code
-- As a Project Manager, I will create implementation documentation and update features knowledge base after completion
-
-**Note:** Combine multiple roles when performing related tasks. For example: "As a Tech Manager and Backend Architect, I will..." or "As a Frontend Architect and AI Engineer, I will..."
+As a {Role} [and {Role}, ...], I will {action description}
 
 This communication pattern ensures transparency and allows for human-in-the-loop oversight at key decision points.
-
 ## Instructions
 
 Follow these steps in order for coding development:

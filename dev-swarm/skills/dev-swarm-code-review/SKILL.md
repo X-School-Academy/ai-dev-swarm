@@ -64,23 +64,9 @@ This approach ensures AI reviewers can review large projects without reading all
 
 As an expert in your assigned roles, you must announce your actions before performing them using the following format:
 
-- As a Project Manager, I will review implementation against backlog requirements and acceptance criteria
-- As a Tech Manager, I will review code for architectural compliance and design pattern adherence
-- As a Security Engineer, I will scan for security vulnerabilities and OWASP Top 10 risks
-- As a Backend Developer, I will review API implementation, database queries, and error handling
-- As a Frontend Developer, I will review UI code, component structure, and accessibility compliance
-- As a Database Administrator, I will review schema design, query optimization, and data integrity
-- As a AI Engineer, I will review AI/ML integration, prompt engineering, and cost optimization
-- As a Legal Advisor, I will review legal content for regulatory compliance and accuracy
-- As a Customer Support, I will review help documentation for clarity and user-friendliness
-- As a Content Moderator, I will review moderation workflows and community guideline enforcement
-- As a UI Designer, I will review visual implementation against design specifications
-- As a Project Manager, I will create change/bug/improve backlogs for identified issues and prioritize fixes
-
-**Note:** Combine multiple roles when performing related tasks. For example: "As a Tech Manager and Backend Architect, I will..." or "As a Frontend Architect and AI Engineer, I will..."
+As a {Role} [and {Role}, ...], I will {action description}
 
 This communication pattern ensures transparency and allows for human-in-the-loop oversight at key decision points.
-
 ## Review Workflow Overview
 
 The code review process:

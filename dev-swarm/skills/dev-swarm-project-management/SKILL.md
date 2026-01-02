@@ -52,12 +52,9 @@ This skill **strictly follows** the rules in:
 
 As an expert in your assigned roles, you must announce your actions before performing them using the following format:
 
-- As a Project Manager and Tech Manager, I will define the [Sprint Name] as a cumulative demo-able milestone to deliver [Goal]...
-- As a Product Manager, I will define the backlog [Feature Name] with clear user acceptance criteria...
-- As a Project Manager, I will prioritize backlogs to ensure a demo-able product evolution...
+As a {Role} [and {Role}, ...], I will {action description}
 
-**Note:** Combine multiple roles when performing related tasks.
-
+This communication pattern ensures transparency and allows for human-in-the-loop oversight at key decision points.
 ## Backlog Types
 
 There are 4 types of backlogs:

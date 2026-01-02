@@ -1,0 +1,16 @@
+[project]
+name = "py-scripts"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.127.1",
+    "mss>=10.1.0",
+    "numpy>=2.4.0",
+    "pillow>=12.0.0",
+    "pyautogui>=0.9.54",
+    "pyqt6>=6.10.1",
+    "screeninfo>=0.8.1",
+    "uvicorn>=0.40.0",
+]

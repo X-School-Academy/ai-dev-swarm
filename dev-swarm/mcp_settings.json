@@ -1,0 +1,33 @@
+{
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "@playwright/mcp@latest"
+      ],
+      "disabled": false
+    },
+    "dart": {
+      "command": "dart",
+      "args": [
+        "mcp-server"
+      ],
+      "disabled": false
+    },
+    "context7": {
+      "type": "http",
+      "url": "https://mcp.context7.com/mcp",
+      "disabled": false
+    },
+    "backgroundProcess": {
+      "command": [
+        "pnpm",
+        "dlx",
+        "github:angelinx-h/background-process-mcp#v1.0.0",
+        "--listen-port",
+        "31337"
+      ],
+      "disabled": false
+    }
+  }
+}
