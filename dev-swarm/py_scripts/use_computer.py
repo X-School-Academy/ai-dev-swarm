@@ -11,7 +11,7 @@ from typing import Dict, Any, List
 
 import pyautogui
 import screeninfo
-from PIL import Image
+from PIL import Image, ImageDraw
 
 
 # Disable PyAutoGUI fail-safe to prevent accidental stops if the mouse hits a corner,
@@ -44,12 +44,16 @@ def get_screen_info() -> Dict[str, Any]:
 def get_screenshot(params: Dict[str, Any]) -> Dict[str, Any]:
     bbox = params.get("bbox") # [x, y, width, height]
     scale = params.get("scale", 1.0)
+    draw_pointer = params.get("draw_pointer", False)
+    pointer_radius = params.get("pointer_radius", 8)
+    pointer_style = params.get("pointer_style", "contrast")
     
     region = None
     if bbox and len(bbox) == 4:
         region = (bbox[0], bbox[1], bbox[2], bbox[3])
     
     try:
+        mouse_x, mouse_y = pyautogui.position()
         # pyautogui.screenshot() returns a PIL Image
         img = pyautogui.screenshot(region=region)
         
@@ -57,6 +61,33 @@ def get_screenshot(params: Dict[str, Any]) -> Dict[str, Any]:
             new_width = int(img.width * scale)
             new_height = int(img.height * scale)
             img = img.resize((new_width, new_height), Image.LANCZOS)
+
+        if draw_pointer:
+            if pointer_style == "alert":
+                pointer_border_color = "#ff3b30"
+                pointer_fill_color = "#ffd60a"
+            else:
+                pointer_border_color = "#ffffff"
+                pointer_fill_color = "#000000"
+
+            # Calculate pointer position relative to the screenshot region.
+            rel_x, rel_y = mouse_x, mouse_y
+            if region:
+                rel_x = mouse_x - region[0]
+                rel_y = mouse_y - region[1]
+
+            # Only draw if the pointer is within the captured region bounds.
+            if 0 <= rel_x < (region[2] if region else img.width) and 0 <= rel_y < (region[3] if region else img.height):
+                draw = ImageDraw.Draw(img)
+                scaled_x = rel_x * scale
+                scaled_y = rel_y * scale
+                scaled_radius = max(1, int(pointer_radius * scale))
+                left = scaled_x - scaled_radius
+                top = scaled_y - scaled_radius
+                right = scaled_x + scaled_radius
+                bottom = scaled_y + scaled_radius
+                draw.ellipse([left, top, right, bottom], outline=pointer_border_color, width=max(1, int(2 * scale)))
+                draw.ellipse([left, top, right, bottom], fill=pointer_fill_color)
         
         # Save to temp file
         tmp_dir = tempfile.gettempdir()
@@ -71,7 +102,8 @@ def get_screenshot(params: Dict[str, Any]) -> Dict[str, Any]:
             "height": img.height,
             "original_width": int(img.width / scale) if scale != 1.0 else img.width,
             "original_height": int(img.height / scale) if scale != 1.0 else img.height,
-            "scale": scale
+            "scale": scale,
+            "mouse_position": {"x": mouse_x, "y": mouse_y}
         }
     except Exception as e:
         return {"error": str(e)}

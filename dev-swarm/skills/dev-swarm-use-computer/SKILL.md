@@ -46,21 +46,30 @@ Use this to understand the monitor setup and primary screen resolution.
 ```
 
 ### 2. Take a Screenshot
-Capture a region of the screen with optional scaling.
+Capture a region of the screen with optional scaling and optional pointer marker for coordination correction.
 
 **Command:**
 ```json
 {
   "action": "screenshot",
   "bbox": [x, y, width, height],
-  "scale": 1.0
+  "scale": 1.0,
+  "draw_pointer": true,
+  "pointer_style": "contrast",
+  "pointer_radius": 8
 }
 ```
 - `bbox`: (Optional) [left, top, width, height]. If omitted, captures the entire primary screen.
 - `scale`: (Optional) Scale factor for the output image (e.g., 0.5 for half size).
+- `draw_pointer`: (Optional) Draw a circular marker where the mouse pointer is.
+- `pointer_style`: (Optional) Marker style. `contrast` (white border + black dot) or `alert` (red border + yellow dot).
+- `pointer_radius`: (Optional) Marker radius in pixels (before scaling).
 
 **Returns:**
-Path to the saved image file (usually in the system temp directory).
+Path to the saved image file (usually in the system temp directory), plus `mouse_position` with current cursor coordinates.
+
+**Coordination Correction (Visual Check):**
+When `draw_pointer` is enabled, visually verify that the marker in the screenshot matches the returned `mouse_position`. If they do not align (e.g., due to scaling or bbox offsets), adjust your coordinate mapping before issuing the next `input` action.
 
 ### 3. Perform Actions
 Execute a sequence of mouse and keyboard events.
