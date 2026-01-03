@@ -1,6 +1,6 @@
 ---
 name: dev-swarm-flutter-installation
-description: Install and configure Flutter SDK. Use when setting up a Flutter development environment or updating AGENTS.md.
+description: Install and configure Flutter SDK. Use when setting up a Flutter development environment.
 ---
 
 # Flutter SDK Installation and Setup
@@ -12,7 +12,6 @@ This skill assists in installing and configuring the Flutter SDK for cross-platf
 - User needs to set up Flutter development environment
 - User wants to install or update Flutter SDK
 - User asks to configure Flutter for their platform
-- User needs to update AGENTS.md with Flutter setup details
 
 ## Prerequisites
 
@@ -235,18 +234,19 @@ This command checks for:
 
 Follow any recommendations from `flutter doctor` to complete the setup.
 
-### 9. Update Project Configuration
+### 9. Save User Preferences
 
-After successful installation, update the `AGENTS.md` file in the root of the project to indicate that Flutter has been installed.
+After successful installation, save the Flutter setup information to `dev-swarm/user_preferences.md` for future reference.
 
-**Example update to `AGENTS.md`:**
+**Example:**
+
+Create or update `dev-swarm/user_preferences.md` with:
 
 ```markdown
-...
 ## Flutter Development
 - **Flutter SDK**: Installed and configured (version X.X.X)
 - **Dart**: Included with Flutter SDK
-...
+- **Installation path**: ~/develop/flutter
 ```
 
 ## Troubleshooting

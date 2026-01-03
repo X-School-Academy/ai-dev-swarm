@@ -1,6 +1,6 @@
 ---
 name: dev-swarm-nodejs
-description: Install and configure Node.js, npm, and pnpm using nvm. Use when setting up a Node.js environment or updating AGENTS.md.
+description: Install and configure Node.js, npm, and pnpm using nvm. Use when setting up a Node.js environment.
 ---
 
 # Node.js Environment Setup
@@ -12,7 +12,6 @@ This skill assists in installing and configuring the Node.js environment, includ
 - User needs to set up Node.js development environment
 - User wants to install or update Node.js and pnpm
 - User asks to configure package management tools
-- User needs to update AGENTS.md with Node.js setup details
 
 ## Prerequisites
 
@@ -87,15 +86,17 @@ pnpm --version
 
 For any command that typically uses `npx package`, use `pnpm dlx package` in this project.
 
-### 6. Update Project Configuration
+### 6. Save User Preferences
 
-After successful installation, update the `AGENTS.md` file in the root of the project to indicate that `pnpm` will be used for package management.
+After successful installation, save the package manager preference to `dev-swarm/user_preferences.md` so future sessions remember to use `pnpm`.
 
-**Example update to `AGENTS.md`:**
+**Example:**
+
+Create or update `dev-swarm/user_preferences.md` with:
 
 ```markdown
-...
-## Package Manager
-- **pnpm**: Enabled and configured.
-...
+## Node.js Package Manager
+- Use **pnpm** for all Node.js package operations (instead of npm)
+- Node.js version: LTS (jod - v22.x)
+- For executing packages, use `pnpm dlx` instead of `npx`
 ```
