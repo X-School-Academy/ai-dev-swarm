@@ -1,6 +1,6 @@
 ---
 name: dev-swarm-python
-description: Install and configure Python and uv. Use when setting up a Python environment or updating AGENTS.md.
+description: Install and configure Python and uv. Use when setting up a Python environment.
 ---
 
 # Python Environment Setup (uv)
@@ -12,7 +12,6 @@ This skill assists in installing and configuring the Python environment using `u
 - User needs to set up Python development environment
 - User wants to install or configure uv package manager
 - User asks to initialize Python project
-- User needs to update AGENTS.md with Python setup details
 
 ## Prerequisites
 
@@ -74,15 +73,16 @@ To pin a specific version:
 uv python pin 3.12
 ```
 
-### 5. Update Project Configuration
+### 5. Save User Preferences
 
-After successful installation, update the `AGENTS.md` file in the root of the project to indicate that `uv` will be used for Python management.
+After successful installation, save the Python package manager preference to `dev-swarm/user_preferences.md` so future sessions remember to use `uv`.
 
-**Example update to `AGENTS.md`:**
+**Example:**
+
+Create or update `dev-swarm/user_preferences.md` with:
 
 ```markdown
-...
-## Python Management
-- **uv**: Installed and configured for Python 3.12+.
-...
+## Python Package Manager
+- Use **uv** for all Python package operations
+- Python version: 3.12+
 ```
