@@ -1,0 +1,94 @@
+---
+name: github-add-comment-to-pending-review
+description: "Add review comment to the requester's latest pending pull request review. A pending review needs to already exist to call this (check with the user if not sure)."
+---
+
+# MCP Tool: add_comment_to_pending_review
+Server: github
+
+## Usage
+Use the MCP tool `dev-swarm.request` to send the payload as a JSON string:
+
+```json
+{"server_id":"github","tool_name":"add_comment_to_pending_review","arguments":{}}
+```
+
+## Tool Description
+Add review comment to the requester's latest pending pull request review. A pending review needs to already exist to call this (check with the user if not sure).
+
+## Arguments Schema
+The schema below describes the `arguments` object in the request payload.
+```json
+{
+  "type": "object",
+  "required": [
+    "owner",
+    "repo",
+    "pullNumber",
+    "path",
+    "body",
+    "subjectType"
+  ],
+  "properties": {
+    "body": {
+      "type": "string",
+      "description": "The text of the review comment"
+    },
+    "line": {
+      "type": "number",
+      "description": "The line of the blob in the pull request diff that the comment applies to. For multi-line comments, the last line of the range"
+    },
+    "owner": {
+      "type": "string",
+      "description": "Repository owner"
+    },
+    "path": {
+      "type": "string",
+      "description": "The relative path to the file that necessitates a comment"
+    },
+    "pullNumber": {
+      "type": "number",
+      "description": "Pull request number"
+    },
+    "repo": {
+      "type": "string",
+      "description": "Repository name"
+    },
+    "side": {
+      "type": "string",
+      "description": "The side of the diff to comment on. LEFT indicates the previous state, RIGHT indicates the new state",
+      "enum": [
+        "LEFT",
+        "RIGHT"
+      ]
+    },
+    "startLine": {
+      "type": "number",
+      "description": "For multi-line comments, the first line of the range that the comment applies to"
+    },
+    "startSide": {
+      "type": "string",
+      "description": "For multi-line comments, the starting side of the diff that the comment applies to. LEFT indicates the previous state, RIGHT indicates the new state",
+      "enum": [
+        "LEFT",
+        "RIGHT"
+      ]
+    },
+    "subjectType": {
+      "type": "string",
+      "description": "The level at which the comment is targeted",
+      "enum": [
+        "FILE",
+        "LINE"
+      ]
+    }
+  }
+}
+```
+
+## Background Tasks
+If the tool returns a task id, poll the task status via the MCP request tool:
+
+```json
+{"server_id":"github","method":"tasks/status","params":{"task_id":"<task_id>"}}
+```

@@ -29,6 +29,7 @@ class ServerConfig(BaseModel):
     args: list[str] = Field(default_factory=list)
     env: dict[str, str] = Field(default_factory=dict)
     url: str | None = None
+    type: str | None = None
     transport: str | None = None
     headers: dict[str, str] = Field(default_factory=dict)
     disabled: bool = False
@@ -252,7 +253,7 @@ class MCPManager:
         elif transport in {"http", "streamable-http"}:
             if not config.url:
                 raise MCPError(f"Missing url for http server {server_id}")
-            client = HttpClient(config.url, config.headers, sse=False)
+            client = HttpClient(config.url, config.headers, sse=(transport == "streamable-http"))
         elif transport == "sse":
             if not config.url:
                 raise MCPError(f"Missing url for sse server {server_id}")
@@ -280,6 +281,11 @@ def resolve_transport(config: ServerConfig) -> str:
     if config.transport:
         normalized = config.transport.replace("_", "-").lower()
         if normalized == "streamable-http":
+            return "streamable-http"
+        return normalized
+    if config.type:
+        normalized = config.type.replace("_", "-").lower()
+        if normalized in {"streamable-http", "http"}:
             return "streamable-http"
         return normalized
     if config.command:
@@ -331,20 +337,23 @@ def _post_sse(url: str, payload: dict[str, Any], headers: dict[str, str]) -> dic
     body = json.dumps(payload).encode("utf-8")
     request = urllib.request.Request(url, data=body, method="POST")
     request.add_header("Content-Type", "application/json")
-    request.add_header("Accept", "text/event-stream")
+    # Some MCP servers require clients to accept both JSON and SSE responses.
+    request.add_header("Accept", "application/json, text/event-stream")
     for key, value in headers.items():
         request.add_header(key, value)
     try:
         with urllib.request.urlopen(request, timeout=30) as response:
-            return _parse_sse(response)
+            raw = response.read()
+            return _parse_sse_payload(raw)
     except urllib.error.HTTPError as exc:
         error_body = exc.read().decode("utf-8")
         raise MCPError(f"HTTP error {exc.code}: {error_body}") from exc
 
 
-def _parse_sse(response: Any) -> dict[str, Any]:
-    for raw_line in response:
-        line = raw_line.decode("utf-8").strip()
+def _parse_sse_payload(raw: bytes) -> dict[str, Any]:
+    text = raw.decode("utf-8", errors="replace")
+    for line in text.splitlines():
+        line = line.strip()
         if not line or not line.startswith("data:"):
             continue
         payload = line.replace("data:", "", 1).strip()
@@ -354,7 +363,10 @@ def _parse_sse(response: Any) -> dict[str, Any]:
             return json.loads(payload)
         except json.JSONDecodeError:
             continue
-    raise MCPError("No JSON response received from SSE stream")
+    try:
+        return json.loads(text)
+    except json.JSONDecodeError as exc:
+        raise MCPError("No JSON response received from SSE stream") from exc
 
 
 def load_mcp_settings_data(raw: dict[str, Any]) -> list[ServerConfig]:

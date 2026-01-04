@@ -1,0 +1,76 @@
+---
+name: github-pull-request-read
+description: "Get information on a specific pull request in GitHub repository."
+---
+
+# MCP Tool: pull_request_read
+Server: github
+
+## Usage
+Use the MCP tool `dev-swarm.request` to send the payload as a JSON string:
+
+```json
+{"server_id":"github","tool_name":"pull_request_read","arguments":{}}
+```
+
+## Tool Description
+Get information on a specific pull request in GitHub repository.
+
+## Arguments Schema
+The schema below describes the `arguments` object in the request payload.
+```json
+{
+  "type": "object",
+  "required": [
+    "method",
+    "owner",
+    "repo",
+    "pullNumber"
+  ],
+  "properties": {
+    "method": {
+      "type": "string",
+      "description": "Action to specify what pull request data needs to be retrieved from GitHub. \nPossible options: \n 1. get - Get details of a specific pull request.\n 2. get_diff - Get the diff of a pull request.\n 3. get_status - Get status of a head commit in a pull request. This reflects status of builds and checks.\n 4. get_files - Get the list of files changed in a pull request. Use with pagination parameters to control the number of results returned.\n 5. get_review_comments - Get review threads on a pull request. Each thread contains logically grouped review comments made on the same code location during pull request reviews. Returns threads with metadata (isResolved, isOutdated, isCollapsed) and their associated comments. Use cursor-based pagination (perPage, after) to control results.\n 6. get_reviews - Get the reviews on a pull request. When asked for review comments, use get_review_comments method.\n 7. get_comments - Get comments on a pull request. Use this if user doesn't specifically want review comments. Use with pagination parameters to control the number of results returned.\n",
+      "enum": [
+        "get",
+        "get_diff",
+        "get_status",
+        "get_files",
+        "get_review_comments",
+        "get_reviews",
+        "get_comments"
+      ]
+    },
+    "owner": {
+      "type": "string",
+      "description": "Repository owner"
+    },
+    "page": {
+      "type": "number",
+      "description": "Page number for pagination (min 1)",
+      "minimum": 1
+    },
+    "perPage": {
+      "type": "number",
+      "description": "Results per page for pagination (min 1, max 100)",
+      "minimum": 1,
+      "maximum": 100
+    },
+    "pullNumber": {
+      "type": "number",
+      "description": "Pull request number"
+    },
+    "repo": {
+      "type": "string",
+      "description": "Repository name"
+    }
+  }
+}
+```
+
+## Background Tasks
+If the tool returns a task id, poll the task status via the MCP request tool:
+
+```json
+{"server_id":"github","method":"tasks/status","params":{"task_id":"<task_id>"}}
+```

@@ -3,7 +3,7 @@
 Run the stdio MCP server that bootstraps the MCP Skill Bridge (from repo root):
 
 ```bash
-uv --project dev-swarm/py_scripts run dev-swarm/py_scripts/dev-swarm-mcp.py --mcp-settings=dev-swarm/mcp_settings.json --port=28080
+uv --project dev-swarm/py_scripts run dev-swarm/py_scripts/dev-swarm-mcp.py --mcp-settings=dev-swarm/mcp_settings.json
 ```
 
 Example MCP config snippet:
@@ -18,8 +18,7 @@ Example MCP config snippet:
         "dev-swarm/py_scripts",
         "run",
         "dev-swarm/py_scripts/dev-swarm-mcp.py",
-        "--mcp-settings=dev-swarm/mcp_settings.json",
-        "--port=28080"
+        "--mcp-settings=dev-swarm/mcp_settings.json"
       ]
     }
   }
