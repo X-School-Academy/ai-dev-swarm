@@ -80,6 +80,7 @@ project-root/
 │
 ├─ 08-devops/                        # Stage 8: development environment foundation (tooling + dev stack)
 │  ├─ README.md                      # Folder overview and guide
+│  ├─ ci-pipeline.md                 # Continuous Integration
 │  ├─ github-setup.md                # GitHub repo settings, branch protection, PR templates
 │  ├─ mcp-setup.md                   # MCP tool setup: Playwright/GitHub/AWS + permissions model
 │  └─ vscode-devcontainer.md         # VS Code Dev Container + Docker configuration
@@ -100,7 +101,7 @@ project-root/
 │
 ├─ 10-deployment/                    # Stage 10: cloud infra + deploy process + release verification
 │  ├─ README.md                      # Folder overview and guide
-│  ├─ deployment-index.md            # Entry point: staging/prod deploy paths + checklists
+│  ├─ cd-pipeline.md                 # Continuous Delivery or Deployment
 │  │
 │  ├─ _templates/                    # Deployment templates (repeatable and safe)
 │  │  ├─ README.md                    # Templates overview and usage guide

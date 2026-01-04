@@ -1,17 +1,17 @@
 ---
 name: dev-swarm-deployment
-description: Deploy application to staging/production environments, setup CI/CD pipelines, manage cloud infrastructure, and configure monitoring. Use when user asks to deploy application, setup production environment, or configure automated deployment.
+description: Deploy application to staging/production environments, setup CD pipelines, manage cloud infrastructure, and configure monitoring. Use when user asks to deploy application, setup production environment, or configure automated deployment.
 ---
 
 # AI Builder - Deployment
 
-This skill handles the deployment of applications to various environments (staging, production), sets up CI/CD pipelines, manages cloud infrastructure, and configures monitoring and logging systems.
+This skill handles the deployment of applications to various environments (staging, production), sets up CD pipelines, manages cloud infrastructure, and configures monitoring and logging systems.
 
 ## When to Use This Skill
 
 - User asks to deploy the application
 - User wants to setup production or staging environment
-- User needs CI/CD pipeline configuration
+- User needs CD pipeline configuration
 - User wants to configure cloud infrastructure (AWS, Azure, GCP, etc.)
 - User needs to setup monitoring, logging, or alerting
 - User wants to configure domain names and SSL certificates
@@ -77,7 +77,7 @@ Follow these steps in order:
    - Look for existing cloud configurations (AWS, Azure, GCP credentials)
    - Check for infrastructure as code files (Terraform, CloudFormation, etc.)
    - Review existing deployment scripts or CI/CD configurations
-   - Look for `.github/workflows/` (GitHub Actions)
+   - Look for `src/.github/workflows/` (GitHub Actions)
    - Check for other CI/CD configurations (Jenkins, GitLab CI, CircleCI, etc.)
 
 7. **Analyze Deployment Requirements:**
@@ -97,7 +97,7 @@ Follow these steps in order:
      - **Standard**: Multi-environment setup with managed services, basic CI/CD
      - **Complex**: Multi-region deployment, microservices, advanced CI/CD, infrastructure as code, auto-scaling
 
-   - Determine CI/CD requirements:
+   - Determine CD requirements:
      - Automated testing before deployment
      - Deployment approval process
      - Rollback strategy
@@ -123,21 +123,25 @@ Follow these steps in order:
 
 2. **Create or update 10-deployment/README.md with refined requirements:**
    - **For L2 projects:** Create a simple README (just several lines) indicating the project level and the target deployment directory (e.g., `dev-swarm/py_scripts` or `dev-swarm/skills`).
-   - **For L3+ projects:** List deliverables explicitly in README (typical: infrastructure-plan.md, cicd-pipeline.md, deployment-strategy.md, monitoring-logging.md, environment-config.md)
+   - **For L3+ projects:** List deliverables explicitly in README (typical: infrastructure-plan.md, cd-pipeline.md, deployment-strategy.md, monitoring-logging.md, environment-config.md)
    - **Stage overview and objectives** (based on previous stage context)
    - **Owners:** Deployment Engineer (lead), DevOps Engineer, SysOps Engineer, Site Reliability Engineer
    - **What deployment will include:**
      - For L2: Deployment to local script/skill directories (`deployment.md`)
      - Infrastructure setup (hosting, database, storage)
-     - CI/CD pipeline configuration
+     - **CD strategy options (with checkboxes):**
+       - [ ] Release to GitHub
+       - [ ] Deploy to Cloud
+       - [ ] Publish Package
+     - CD pipeline configuration
      - Deployment strategy (blue-green, rolling, canary)
      - Monitoring and logging setup
      - Environment configurations
    - **Methodology:**
      - How infrastructure will be provisioned
-     - How CI/CD will be configured
+     - How CD will be configured
    - **Deliverables planned:**
-     - List of files that will be created (deployment.md for L2; infrastructure-plan.md, cicd-pipeline.md, etc. for L3+)
+     - List of files that will be created (deployment.md for L2; infrastructure-plan.md, cd-pipeline.md, etc. for L3+)
    - **Budget allocation for deployment** (from cost-budget.md)
    - **Status:** In Progress (update to "Completed" after deployment)
 
@@ -168,7 +172,7 @@ Follow these steps in order:
    ├── README.md
    ├── deployment-info.md (if independently runnable package/MCP server)
    ├── infrastructure-plan.md
-   ├── cicd-pipeline.md
+   ├── cd-pipeline.md
    ├── deployment-strategy.md
    ├── monitoring-logging.md
    └── environment-config.md
@@ -233,9 +237,9 @@ Write as a deployment plan with:
 - Clear step-by-step setup instructions
 - Security considerations (IAM roles, secrets management)
 
-**cicd-pipeline.md (Deployment Plan):**
+**cd-pipeline.md (Deployment Plan):**
 Write as a deployment plan with:
-- CI/CD platform to use (GitHub Actions, GitLab CI, etc.)
+- CD platform to use (GitHub Actions, GitLab CI, etc.)
 - Pipeline workflow diagram (text description)
 - Build process steps
 - Testing stages (unit, integration, e2e)
@@ -246,6 +250,7 @@ Write as a deployment plan with:
 - Rollback procedures
 - Pipeline configuration files to create
 - Clear step-by-step setup instructions
+Use `references/cd-pipeline.md` for CD-specific requirements and triggers.
 
 **deployment-strategy.md (Deployment Plan):**
 Write as a deployment plan with:
@@ -313,13 +318,13 @@ Write as a deployment plan with:
    - Retry failed steps with corrections
    - Document any manual steps user needs to complete
 
-2. **Execute CI/CD Pipeline Setup:**
-   - Follow steps in `cicd-pipeline.md`
-   - Create CI/CD configuration files
+2. **Execute CD Pipeline Setup:**
+   - Follow steps in `cd-pipeline.md`
+   - Create CD configuration files
    - Configure build steps
    - Setup testing stages
    - Configure deployment stages for each environment
-   - Setup secrets and environment variables in CI/CD platform
+   - Setup secrets and environment variables in CD platform
    - Configure approval gates
    - Test pipeline with a sample deployment
    - **Fix any errors encountered during setup**
@@ -380,7 +385,7 @@ Write as a deployment plan with:
 2. **Deploy to Development/Staging First (For Cloud Deployments):**
    - Follow deployment strategy from `deployment-strategy.md`
    - Execute pre-deployment checklist
-   - Trigger deployment via CI/CD pipeline
+   - Trigger deployment via CD pipeline
    - Monitor deployment progress
    - Verify deployment success
    - Execute post-deployment verification
@@ -420,7 +425,7 @@ For each deployed environment:
    - Static assets are served via CDN
    - Performance is acceptable
 
-3. **Verify CI/CD Pipeline:**
+3. **Verify CD Pipeline:**
    - Pipeline executes successfully
    - Tests run and pass
    - Deployment completes without errors
@@ -458,7 +463,7 @@ For each deployed environment:
    - Add troubleshooting notes for any issues encountered
    - Document how to access and manage infrastructure
 
-3. **Update cicd-pipeline.md:**
+3. **Update cd-pipeline.md:**
    - Change from "deployment plan" to "current pipeline configuration"
    - Document actual pipeline setup and workflow
    - Add links to pipeline runs
@@ -495,7 +500,7 @@ For each deployed environment:
    - Add environment URLs for each deployed environment
    - Add summary of deployed infrastructure
    - Add links to monitoring dashboards
-   - Add links to CI/CD pipelines
+   - Add links to CD pipelines
    - Note date of deployment completion
    - Add quick troubleshooting guide
 
@@ -551,35 +556,11 @@ For each deployed environment:
 1. **Ask user if they want to commit the deployment documentation:**
    - Stage all changes in `10-deployment/`
    - Stage any infrastructure as code files created
-   - Stage CI/CD configuration files
-   - Commit with message: "Setup deployment infrastructure and CI/CD pipeline"
+   - Stage CD configuration files
+   - Commit with message: "Setup deployment infrastructure and CD pipeline"
 
 2. **Optionally push to remote**
 
-## Expected Output Structure
-
-```
-project-root/
-├── 10-deployment/
-│   ├── README.md (with owner and attendances)
-│   ├── deployment-info.md (if independently runnable package/MCP server)
-│   ├── infrastructure-plan.md
-│   ├── cicd-pipeline.md
-│   ├── deployment-strategy.md
-│   ├── monitoring-logging.md
-│   └── environment-config.md
-├── .github/workflows/ (if using GitHub Actions)
-│   ├── deploy-dev.yml
-│   ├── deploy-staging.yml
-│   └── deploy-production.yml
-├── terraform/ or cloudformation/ (if using IaC)
-│   ├── main.tf
-│   ├── variables.tf
-│   └── outputs.tf
-└── scripts/ (deployment scripts)
-    ├── deploy.sh
-    └── rollback.sh
-```
 
 ## Key Principles
 

@@ -92,23 +92,24 @@ Follow these steps in order:
 
 2. **Create or update 08-devops/README.md with refined requirements:**
    - **For L2 projects:** Create a simple README (just several lines) indicating the project level and that only `development_environment.md` (for local setup) is required.
-   - **For L3+ projects:** List deliverables explicitly in README (typical: github-setup.md, mcp-setup.md, vscode-devcontainer.md)
+   - **For L3+ projects:** List deliverables explicitly in README (typical: github-setup.md, mcp-setup.md, vscode-devcontainer.md, ci-pipeline.md if CI selected)
    - **Stage overview and objectives** (based on previous stage context)
    - **Owners:** DevOps Engineer (lead), Infrastructure Architect
    - **What devops setup will include:**
-     - **GitHub repository setup options (with checkboxes):**
-       - [ ] No Git repo (do not commit code)
-       - [ ] Using dev-swarm's git repo
-       - [x] Create a new GitHub repo (default when no remote exists)
+    - **GitHub repository setup options (with checkboxes):**
+      - [ ] No Git repo (do not commit code)
+      - [ ] Using dev-swarm's git repo
+      - [x] Create a new GitHub repo (default when no remote exists)
+      - [ ] GitHub Actions for Continuous Integration (CI)
      - MCP tools configuration (list which tools)
      - Development Environment setup (development_environment.md) - **Required for L2 projects**
      - Development container setup (if needed)
-     - CI/CD pipeline configuration (if applicable)
+     - CI pipeline configuration (if applicable)
    - **Methodology:**
      - How environment will be configured
      - What tools will be installed
    - **Deliverables planned:**
-     - List of files that will be created (github-setup.md, mcp-setup.md, development_environment.md, etc.)
+     - List of files that will be created (github-setup.md, mcp-setup.md, development_environment.md, ci-pipeline.md if CI selected, etc.)
    - **Budget allocation for this stage** (from cost-budget.md)
    - **Status:** In Progress (update to "Completed" after implementation)
 
@@ -143,6 +144,7 @@ Follow these steps in order:
    ├── README.md (already created and approved in Step 1)
    ├── github-setup.md (if specified in README)
    ├── mcp-setup.md (if specified in README)
+   ├── ci-pipeline.md (if CI selected in README)
    └── vscode-devcontainer.md (if specified in README)
    ```
 
@@ -181,6 +183,9 @@ Write as a setup plan with:
 - Permission requirements
 - Test commands to verify each tool
 - Clear step-by-step setup instructions
+
+**ci-pipeline.md (Setup Plan - if CI selected in README):**
+Write the CI plan using `references/ci-pipeline.md`.
 
 **development_environment.md (Setup Plan - For L2 Projects):**
 Write as a setup plan with:
@@ -375,23 +380,6 @@ For each completed setup:
 
 2. **Optionally push to remote** (if GitHub was set up)
 
-## Expected Output Structure
-
-```
-project-root/
-├── 08-devops/
-│   ├── README.md (with owner and attendances)
-│   ├── github-setup.md
-│   ├── mcp-setup.md
-│   └── vscode-devcontainer.md
-├── .devcontainer/ (if applicable)
-│   ├── devcontainer.json
-│   ├── Dockerfile
-│   └── docker-compose.yml (optional)
-└── .github/ (if GitHub setup)
-    ├── PULL_REQUEST_TEMPLATE.md
-    └── ISSUE_TEMPLATE/ (optional)
-```
 
 ## Key Principles
 
