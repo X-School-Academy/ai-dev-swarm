@@ -7,7 +7,7 @@ import re
 import os
 from pathlib import Path
 from typing import Any, Mapping
-
+import yaml
 from dotenv import load_dotenv
 from fastmcp import FastMCP
 from mcp_to_skills import build_bridge
@@ -72,12 +72,12 @@ def prepare_mcp_settings(settings_path: Path, env: Mapping[str, str]) -> dict[st
 
 
 def load_mcp_descriptions(base_dir: Path) -> dict[str, str]:
-    descriptions_path = base_dir / "mcp_descriptions.json"
+    descriptions_path = base_dir / "mcp_descriptions.yaml"
     if not descriptions_path.exists():
         return {}
     try:
-        raw = json.loads(descriptions_path.read_text())
-    except json.JSONDecodeError:
+        raw = yaml.safe_load(descriptions_path.read_text())
+    except Exception:
         return {}
     if not isinstance(raw, dict):
         return {}

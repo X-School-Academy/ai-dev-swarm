@@ -1,6 +1,6 @@
 ---
 name: dev-swarm-refine-mcp-skill-descriptions
-description: Review and refine MCP skill descriptions to follow the agent skill specification, and record approved overrides in dev-swarm/mcp_descriptions.json. Use when the user asks to update one MCP skill description, all skills from a server, or all MCP skills.
+description: Review and refine MCP skill descriptions to follow the agent skill specification, and record approved overrides in dev-swarm/mcp_descriptions.yaml. Use when the user asks to update one MCP skill description, all skills from a server, or all MCP skills.
 ---
 
 # AI Builder - Refine MCP Skill Descriptions
@@ -41,8 +41,8 @@ Clarify whether the request targets:
 ### Step 2: Inspect Current Descriptions
 
 For each target `dev-swarm/mcp-skills/**/SKILL.md`:
-- Read the YAML frontmatter `description`
-- Verify it follows the agent skill specification:
+- Read the file to understand the content
+- Read the YAML frontmatter `description` and verify `description` field if it follows the agent skill specification:
   - Explains what the tool does
   - Explains when to use it
   - Includes relevant keywords
@@ -50,20 +50,29 @@ For each target `dev-swarm/mcp-skills/**/SKILL.md`:
 
 ### Step 3: Refine Descriptions
 
-If the description is too long, too short, or missing context:
+If the description is too long, too short, or missing context for AI agent to pick up it:
 - Rewrite it to be concise and precise
 - Preserve any critical constraints (e.g., required prerequisites)
 - Avoid multi-line or overly verbose wording
 If the description already meets the specification, do not modify the skill or add an override entry.
 
+e.g. 
+"Navigate to a URL" -> "To open a http url, open a web page, open web browser, or navigate the current page in the web browser to a new URL"
+
 ### Step 4: Record Overrides
 
-Update or create `dev-swarm/mcp_descriptions.json` with:
+Update or create `dev-swarm/mcp_descriptions.yaml` with:
 
-```json
-{
-  "skill-name": "Updated description"
-}
+```yaml
+skill-name: >
+  Updated description
+
+```
+
+Example:
+```yaml
+playwright-browser-navigate: >
+  To open a http url, open a web page, open web browser, or navigate the current page in the web browser to a new URL
 ```
 
 - Use the skill name from the `name:` field in the SKILL.md frontmatter.
@@ -76,4 +85,4 @@ Apply edits to the relevant `SKILL.md` files and ensure the JSON file is valid.
 ## Expected Output
 
 - Updated MCP skill descriptions in `dev-swarm/mcp-skills/**/SKILL.md`
-- `dev-swarm/mcp_descriptions.json` containing the refined descriptions
+- `dev-swarm/mcp_descriptions.yaml` containing the refined descriptions
