@@ -47,11 +47,18 @@ def prepare_mcp_settings(settings_path: Path, env: Mapping[str, str]) -> dict[st
     raw = json.loads(settings_path.read_text())
     missing: set[str] = set()
     expanded: dict[str, Any] = {}
+
+    def is_server_enabled(config: dict[str, Any]) -> bool:
+        enabled = config.get("enabled")
+        if enabled is not None:
+            return bool(enabled)
+        return not config.get("disabled", False)
+
     for key, value in raw.items():
         if key == "mcpServers" and isinstance(value, dict):
             expanded_servers: dict[str, Any] = {}
             for server_name, server_config in value.items():
-                if isinstance(server_config, dict) and server_config.get("disabled", False):
+                if isinstance(server_config, dict) and not is_server_enabled(server_config):
                     expanded_servers[server_name] = server_config
                     continue
                 expanded_servers[server_name] = expand_env_placeholders(server_config, env, missing)

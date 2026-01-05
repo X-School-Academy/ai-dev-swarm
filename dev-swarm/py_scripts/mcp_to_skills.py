@@ -34,6 +34,7 @@ class ServerConfig(BaseModel):
     transport: str | None = None
     headers: dict[str, str] = Field(default_factory=dict)
     disabled: bool = False
+    enabled: bool | None = None
 
 
 @dataclass
@@ -398,6 +399,12 @@ def load_mcp_settings_data(raw: dict[str, Any]) -> list[ServerConfig]:
         configs.append(ServerConfig(**merged))
     return configs
 
+
+def is_server_enabled(config: ServerConfig) -> bool:
+    if config.enabled is not None:
+        return config.enabled
+    return not config.disabled
+
 def camel_to_kebab(value: str) -> str:
     """Convert camelCase or PascalCase to kebab-case."""
     # Insert hyphen before uppercase letters that follow lowercase letters
@@ -759,8 +766,8 @@ def build_bridge(
     if mcp_settings_data is None:
         raise MCPError("mcp_settings_data is required for build_bridge")
     all_configs = load_mcp_settings_data(mcp_settings_data)
-    enabled_configs = [c for c in all_configs if not c.disabled]
-    disabled_configs = [c for c in all_configs if c.disabled]
+    enabled_configs = [c for c in all_configs if is_server_enabled(c)]
+    disabled_configs = [c for c in all_configs if not is_server_enabled(c)]
 
     enabled_server_ids = {config.id for config in enabled_configs}
     disabled_server_ids = {config.id for config in disabled_configs}
