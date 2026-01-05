@@ -6,6 +6,7 @@ The argument can be:
 - A number: 0, 1, 2, etc.
 - A two-digit number: 00, 01, 02, etc.
 - A folder name contains: init-ideas, market-research, archive, etc.
+- "restore {archive-folder-name}" to restore a project from 99-archive
 
 Stage mapping:
 - 0 or 00 or init-ideas → Use agent skill `dev-swarm-init-ideas`
@@ -20,6 +21,7 @@ Stage mapping:
 - 9 or 09 or sprints → Use agent skill `dev-swarm-project-management`
 - 10 or deployment → Use agent skill `dev-swarm-deployment`
 - 99 or archive → Use agent skill `dev-swarm-project-archive`
+- restore {archive-folder-name} → Use agent skill `dev-swarm-project-restore` (match {archive-folder-name} under `99-archive/`)
 
 Requested stage: {{args}}
 
