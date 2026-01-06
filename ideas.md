@@ -1,44 +1,24 @@
-# Ideas (Draft)
+# Project Proposal: Free Subdomain Service
 
-This is the starting point for an AI-assisted project kickoff. Keep it rough, honest, and incomplete. You and the AI agent will iterate together to refine it into professional documentation.
+## Goal
+Create a simple web service where people can claim a free subdomain and manage it from one place.
 
-## How We’ll Brainstorm Together
+## What Users Can Do
+- Sign up and log in
+- Pick a subdomain under available parent domains
+- Manage basic domain settings for their subdomain
 
-- You write quick, imperfect notes
-- The AI proposes clearer structure, gaps, and options
-- You confirm, correct, or add details
-- We repeat until it is ready for formal stages
+## What the Admin Team Can Do
+- Offer multiple parent domains
+- Keep registrations unique and organized
+- Ensure each user only controls their own subdomains
 
-## Project Snapshot (Draft)
+## Phased Delivery
+1. Basic signup, login, and dashboard
+2. Subdomain registration and management tools
+3. Polishing, improved validation, and readiness for launch
 
-**Working title:** [Project name or codename]
-
-**One-line idea:** [What this is in a single sentence]
-
-**Problem to solve:** [Pain or inefficiency you want to fix]
-
-**Target users:** [Who feels the pain most]
-
-**Why now:** [Timing, trend, or trigger]
-
-## Goals and Outcomes (Draft)
-
-- Primary goal: [What success looks like]
-- Secondary goals: [Nice-to-haves or long-term bets]
-- Non-goals: [What this project will NOT do]
-
-## Requirements and Constraints (Draft)
-
-- Must have: [Core behaviors, features, or guarantees]
-- Constraints: [Budget, timeline, tech, compliance, or policy limits]
-- Dependencies: [APIs, vendors, datasets, teams]
-
-## Risks and Unknowns (Draft)
-
-- Biggest risks: [What could fail]
-- Open questions: [What you are unsure about]
-- Assumptions: [What you are currently betting on]
-
-## Notes and Rough Ideas (Draft)
-
-[Add bullets, sketches, or raw ideas here...]
+## Success Looks Like
+- Smooth signup and login experience
+- Users can claim a subdomain and manage it easily
+- Reliable system that prevents conflicts and mistakes
