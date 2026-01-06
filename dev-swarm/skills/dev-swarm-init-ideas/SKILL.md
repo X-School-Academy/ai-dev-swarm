@@ -88,8 +88,8 @@ Follow these steps in order:
      - L7: Platform/Ecosystem (others build on it)
 
 3. **Document the classification:**
-   - Create a classification statement to be included in project README
-   - List explicit exclusions based on the scale
+   - Record the classification using the README template checkboxes
+   - Do not add separate classification statements or exclusion sections outside the template
 
 ### Step 3: Extract Project Information
 
@@ -153,7 +153,7 @@ when that stage starts.
 1. **Present the proposed structure to the user:**
    - Show which stages will be created
    - Show which stages will be skipped (with reasons)
-   - Show the classification statement
+   - Show the classification selections (checkboxes)
 
 2. **Ask user to confirm:**
    - "Does this project structure match your expectations?"
@@ -176,6 +176,7 @@ when that stage starts.
    - Create 00-init-ideas/README.md first, then ask the user to approve before
      creating any other files in 00-init-ideas/
    - Use the README template in `references/README.md`
+   - Do not add extra headings beyond the template; use the Stage files checklist to list docs and avoid a separate Documents section
    - Refer to `references/deliverables.md` to select deliverables by project type
    - Any options or solutions in the README must be presented as checkboxes with
      a default selection

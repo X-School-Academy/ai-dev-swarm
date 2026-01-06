@@ -122,6 +122,7 @@ First read and understand rules: `dev-swarm/docs/research-specs-rules.md` then:
 
 2. **Create or update 07-tech-specs/README.md with refined requirements:**
    - Use the template in `references/README.md`
+   - Populate only the template sections; do not add new headings such as Documents or Deliverables
    - Follow `dev-swarm/docs/stage-readme-guidelines.md` before drafting
    - Refer to `references/deliverables.md` to select deliverables by project type
    - Present any choices as checkbox lists with a default selection
@@ -242,4 +243,3 @@ Verify that:
 2. **If user wants to commit:**
    - Stage all changes in `07-tech-specs/`
    - Commit with message: "Define tech stack and engineering standards (Stage 7)"
-

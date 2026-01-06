@@ -109,6 +109,7 @@ Follow these steps in order:
 
 2. **Create or update 04-prd/README.md with refined requirements:**
    - Use the template in `references/README.md`
+   - Populate only the template sections; do not add new headings such as Documents or Deliverables
    - Follow `dev-swarm/docs/stage-readme-guidelines.md` before drafting
    - Refer to `references/deliverables.md` to select deliverables by project type
    - Present any choices as checkbox lists with a default selection
@@ -210,4 +211,3 @@ Verify that:
 2. **If user wants to commit:**
    - Stage all changes in `04-prd/`
    - Commit with message: "Create Product Requirements Document (Stage 4)"
-

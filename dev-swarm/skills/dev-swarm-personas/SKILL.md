@@ -94,6 +94,7 @@ Follow these steps in order:
 
 2. **Create or update 02-personas/README.md with refined requirements:**
    - Use the template in `references/README.md`
+   - Populate only the template sections; do not add new headings such as Documents or Deliverables
    - Follow `dev-swarm/docs/stage-readme-guidelines.md` before drafting
    - Refer to `references/deliverables.md` to select deliverables by project type
    - Present any choices as checkbox lists with a default selection
@@ -188,4 +189,3 @@ Make sure user stories map back to:
 2. **If user wants to commit:**
    - Stage all changes in `02-personas/`
    - Commit with message: "Define user personas and prioritized user stories (Stage 2)"
-

@@ -28,6 +28,14 @@ Scale:
 - [ ] L6 Growth-stage product
 - [ ] L7 Platform/ecosystem
 
+## Stage files
+- [ ] README.md
+- [ ] problem-statement.md
+- [ ] target-users.md
+- [ ] value-proposition.md
+- [ ] owner-requirement.md
+- [ ] cost-budget.md
+
 ## Skipped stages
 - [ ] 01-market-research
 - [ ] 02-personas
@@ -39,11 +47,3 @@ Scale:
 - [ ] 08-devops
 - [ ] 09-sprints
 - [ ] 10-deployment
-
-## Stage files
-- [ ] README.md
-- [ ] problem-statement.md
-- [ ] target-users.md
-- [ ] value-proposition.md
-- [ ] owner-requirement.md
-- [ ] cost-budget.md

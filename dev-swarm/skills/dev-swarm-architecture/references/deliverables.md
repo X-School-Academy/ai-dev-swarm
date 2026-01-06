@@ -16,7 +16,7 @@ Only present files that are suitable for the project's type and level; omit the 
 - Stage overview and objectives
 - Owners: Tech Manager (lead), Backend Architect, Frontend Architect, DevOps Engineer
 - Summary of architectural approach and principles
-- Links to all architecture documentation files
+- Use the Deliverables checklist in the README template to list files; do not add a separate Documents section
 - Key architectural decisions and rationale
 
 ### system-overview.md

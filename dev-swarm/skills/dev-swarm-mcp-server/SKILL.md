@@ -54,6 +54,7 @@ Follow these steps in order:
 
 - Use the correct CLI command and flags for the chosen transport and scope.
 - If configuration is file-based, update the correct file location.
+- If adding a server outside the project scope (user/global), use absolute paths for scripts and config files to avoid launch failures.
 - Keep sensitive values in environment variables, not committed files.
 
 ### Step 5: Validate and Restart

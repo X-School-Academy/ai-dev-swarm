@@ -134,6 +134,7 @@ Follow these steps in order:
 
 2. **Create or update 10-deployment/README.md with refined requirements:**
    - Use the template in `references/README.md`
+   - Populate only the template sections; do not add new headings such as Documents or Deliverables
    - Follow `dev-swarm/docs/stage-readme-guidelines.md` before drafting
    - Refer to `references/deliverables.md` to select deliverables by project type
    - Present any choices as checkbox lists with a default selection
@@ -471,4 +472,3 @@ For each deployed environment:
    - Commit with message: "Setup deployment infrastructure and CD pipeline"
 
 2. **Optionally push to remote**
-

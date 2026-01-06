@@ -1,6 +1,8 @@
 # MCP Server Check (dev-swarm)
 
-when `dev-swarm` MCP is missing or not running. Use the `dev-swarm-mcp-server` skill to add or update the MCP server configuration as information below:
+when `dev-swarm` MCP is missing or not running. Use the `dev-swarm-mcp-server` skill to add or update the MCP server configuration as information below.
+
+If the MCP server is added at a non-project scope (user/global), use absolute paths for all scripts and config files, or the MCP process may fail to start.
 
 
 ## MCP Config Snippet
@@ -12,10 +14,10 @@ when `dev-swarm` MCP is missing or not running. Use the `dev-swarm-mcp-server` s
       "command": "uv",
       "args": [
         "--project",
-        "dev-swarm/py_scripts",
+        "/abs/path/to/dev-swarm/py_scripts",
         "run",
-        "dev-swarm/py_scripts/dev-swarm-mcp.py",
-        "--mcp-settings=dev-swarm/mcp_settings.json"
+        "/abs/path/to/dev-swarm/py_scripts/dev-swarm-mcp.py",
+        "--mcp-settings=/abs/path/to/dev-swarm/mcp_settings.json"
       ]
     }
   }
@@ -27,7 +29,7 @@ when `dev-swarm` MCP is missing or not running. Use the `dev-swarm-mcp-server` s
 Install `uv` or run `uv sync` if needed, then run:
 
 ```bash
-uv --project dev-swarm/py_scripts run dev-swarm/py_scripts/dev-swarm-mcp.py --mcp-settings=dev-swarm/mcp_settings.json --port=28080
+uv --project /abs/path/to/dev-swarm/py_scripts run /abs/path/to/dev-swarm/py_scripts/dev-swarm-mcp.py --mcp-settings=/abs/path/to/dev-swarm/mcp_settings.json --port=28080
 ```
 
 ## Restart Required

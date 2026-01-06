@@ -19,7 +19,7 @@ Only present files that are suitable for the project's type and level; omit the 
 - Owner: Deployment Engineer
 - Attendances: Cloud Infrastructure Architect, DevOps Engineer, SRE
 - Overview of deployment stage
-- Links to all deployment documentation files
+- Use the Deliverables checklist in the README template to list files; do not add a separate Documents section
 - Current deployment status (updated after execution)
 - Quick links to deployed environments
 

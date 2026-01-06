@@ -19,7 +19,7 @@ Only present files that are suitable for the project's type and level; omit the 
 - Stage overview and objectives
 - Owners: Tech Manager (lead), Security Engineer, UI Designer, DevOps Engineer
 - Summary of technical approach and key decisions
-- Links to all tech specs documentation files
+- Use the Deliverables checklist in the README template to list files; do not add a separate Documents section
 - Rationale for major technical decisions
 
 ### tech-stack.md

@@ -115,6 +115,7 @@ Follow these steps in order:
 1.  **Analyze Context:** Read all stage folders.
 2.  **Create `09-sprints/README.md` (The Master Plan):**
     *   Use the template in `references/README.md`.
+    *   Populate only the template sections; do not add new headings such as Documents or Deliverables.
     *   Follow `dev-swarm/docs/stage-readme-guidelines.md` before drafting.
     *   Refer to `references/deliverables.md` for content guidance and deliverable selection.
 3.  **Review README with User:**

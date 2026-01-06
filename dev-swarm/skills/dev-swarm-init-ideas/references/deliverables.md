@@ -19,7 +19,7 @@ Only present files that are suitable for the project's type and level; omit the 
 - Owner: Business Owner
 - Attendances: Product Manager
 - Overview of this initialization stage
-- Links to all documentation files in this folder
+- Use the Stage files checklist in the README template to list docs; do not add a separate Documents section
 - If listing options or solutions, use checkbox lists with a default selected
 
 ### problem-statement.md
