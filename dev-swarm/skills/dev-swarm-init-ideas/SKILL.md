@@ -170,18 +170,18 @@ when that stage starts.
      - How to implement the script/tool
      - Requirements and specifications
      - Usage instructions
-   - Ask if user wants to proceed with implementation in src/
+   - Say: "I have created README.md file, please check and update or approve the content."
+   - If approved, re-read README.md (user may have updated it), then ask if user wants to proceed with implementation in src/
 
 2. **For L2+ projects:**
-   - Create 00-init-ideas/README.md first, then ask the user to approve before
-     creating any other files in 00-init-ideas/
+   - Create 00-init-ideas/README.md first without pre-approval
    - Use the README template in `references/README.md`
    - Do not add extra headings beyond the template; use the Stage files checklist to list docs and avoid a separate Documents section
    - Refer to `references/deliverables.md` to select deliverables by project type
    - Any options or solutions in the README must be presented as checkboxes with
      a default selection
-   - After approval, create all remaining documentation files in 00-init-ideas/:
-     - README.md (owner: Business Owner, attendances: Product Manager)
+   - Say: "I have created README.md file, please check and update or approve the content."
+   - After approval, re-read README.md (user may have updated it). README.md is already created (owner: Business Owner, attendances: Product Manager). Then create all remaining documentation files in 00-init-ideas/:
      - problem-statement.md (clear problem definition)
      - target-users.md (who has the problem, primary audience)
      - value-proposition.md (why this solution matters, core benefits)

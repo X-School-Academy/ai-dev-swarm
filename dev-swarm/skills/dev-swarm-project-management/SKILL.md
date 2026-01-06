@@ -118,10 +118,13 @@ Follow these steps in order:
     *   Populate only the template sections; do not add new headings such as Documents or Deliverables.
     *   Follow `dev-swarm/docs/stage-readme-guidelines.md` before drafting.
     *   Refer to `references/deliverables.md` for content guidance and deliverable selection.
-3.  **Review README with User:**
-    *   "Does this plan of Cumulative Milestones look like the right path to the MVP?"
-    *   Get approval before creating other files.
-4.  **Create `09-sprints/sprint-feature-proposal.md`:**
+3.  **Notify user after README is created:**
+    *   Say: "I have created README.md file, please check and update or approve the content."
+    *   Summarize the plan of cumulative milestones toward the MVP.
+4.  **Wait for user approval:**
+    *   If approved, re-read README.md (user may have updated it), then create other files.
+    *   If not approved, update README based on feedback, ask again, then re-read after approval.
+5.  **Create `09-sprints/sprint-feature-proposal.md`:**
     *   Follow `references/deliverables.md` for proposal content guidance.
 
 ### Step 2: Managing Backlogs (Features)

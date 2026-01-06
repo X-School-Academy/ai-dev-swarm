@@ -84,7 +84,7 @@ Follow these steps in order:
 
 ### Step 1: Create/Update README.md Based on init-ideas
 
-**CRITICAL: Create/update README.md first, get user approval, then create other docs.**
+**CRITICAL: Create/update README.md first without pre-approval. Then ask the user to review/update/approve it, re-read it after approval, and only then create other docs.**
 
 1. **Analyze information from 00-init-ideas/:**
    - **First, check what files exist** in 00-init-ideas/ (use Glob or Read to list files)
@@ -120,18 +120,18 @@ Follow these steps in order:
      - What will NOT be researched (technology, frameworks, etc.)
    - **Status:** In Progress (update to "Completed" after research is done)
 
-3. **Present README to user:**
-   - Show the research goal and what will be researched
-   - Show what documentation files will be created
+3. **Notify user after README is created:**
+   - Say: "I have created README.md file, please check and update or approve the content."
+   - Summarize the research goal and what will be researched
+   - Summarize what documentation files will be created
    - Explain how it aligns with init-ideas
-   - Ask: "Does this market research plan look good? Should I proceed with the research?"
 
 4. **Wait for user approval:**
-   - **If user says yes:** Proceed to Step 2
+   - **If user says yes:** Re-read README.md (user may have updated it), then proceed to Step 2
    - **If user says no:**
      - Ask what needs to be changed
      - Update README based on feedback
-     - Ask for approval again
+     - Ask for approval again, then re-read README.md before proceeding
 
 ### Step 2: Identify Research Focus - Core Project Value
 
@@ -169,7 +169,7 @@ Before conducting any research, identify the **core value/purpose** of the proje
    - Explain what will NOT be researched (technology, frameworks, etc.)
    - Ask: "Does this research focus match your expectations? Should I proceed?"
 
-5. **Wait for user approval before starting web searches**
+5. **Wait for user approval before starting web searches (after re-reading README.md)**
 
 ### Step 3: Conduct/Update Market Research Using Web Search
 

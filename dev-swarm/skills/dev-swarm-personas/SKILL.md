@@ -85,7 +85,7 @@ Follow these steps in order:
 
 ### Step 1: Refine Design Requirements in README and Get Approval
 
-**CRITICAL: Create/update README.md first based on previous stage results, get user approval, then create other docs.**
+**CRITICAL: Create/update README.md first without pre-approval. Then ask the user to review/update/approve it, re-read it after approval, and only then create other docs.**
 
 1. **Analyze information from previous stages:**
    - Read `00-init-ideas/` to understand problem, target users, value proposition
@@ -116,22 +116,22 @@ Follow these steps in order:
    - **Budget allocation for this stage** (from cost-budget.md)
    - **Status:** In Progress (update to "Completed" after implementation)
 
-3. **Present README to user:**
-   - Show the personas approach and what will be created
-   - Show what documentation files will be created
+3. **Notify user after README is created:**
+   - Say: "I have created README.md file, please check and update or approve the content."
+   - Summarize the personas approach and what will be created
+   - Summarize what documentation files will be created
    - Explain how it aligns with previous stages
-   - Ask: "Does this personas plan look good? Should I proceed with creating personas and user stories?"
 
 4. **Wait for user approval:**
-   - **If user says yes:** Proceed to Step 2
+   - **If user says yes:** Re-read README.md (user may have updated it), then proceed to Step 2
    - **If user says no:**
      - Ask what needs to be changed
      - Update README based on feedback
-     - Ask for approval again
+     - Ask for approval again, then re-read README.md before proceeding
 
 ### Step 2: Create/Update Personas Structure
 
-**Only after user approves the README:**
+**Only after user approves the README and you re-read it:**
 
 1. **Create files as specified in the approved README.md:**
 
@@ -140,7 +140,7 @@ Follow these steps in order:
    **Typical structure (example):**
    ```
    02-personas/
-   ├── README.md (already created and approved in Step 1)
+   ├── README.md (created in Step 1, then reviewed/approved)
    ├── persona-primary.md (if specified in README)
    ├── persona-secondary.md (if specified in README)
    └── user-stories.md (if specified in README)
@@ -150,7 +150,7 @@ Follow these steps in order:
 
 ### Step 3: Create/Update User Personas
 
-**IMPORTANT: Only create personas after README is approved in Step 1.**
+**IMPORTANT: Only create personas after README is approved in Step 1 and re-read.**
 
 - Use `references/deliverables.md` for persona file content guidance.
 

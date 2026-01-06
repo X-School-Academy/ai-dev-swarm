@@ -125,7 +125,7 @@ Follow these steps in order:
 
 ### Step 1: Refine Design Requirements in README and Get Approval
 
-**CRITICAL: Create/update README.md first based on previous stage results, get user approval, then create deployment plan files.**
+**CRITICAL: Create/update README.md first without pre-approval. Then ask the user to review/update/approve it, re-read it after approval, and only then create deployment plan files.**
 
 1. **Analyze information from previous stages:**
    - Read `07-tech-specs/` to understand technology stack and infrastructure needs
@@ -164,22 +164,22 @@ Follow these steps in order:
    - **Budget allocation for deployment** (from cost-budget.md)
    - **Status:** In Progress (update to "Completed" after deployment)
 
-3. **Present README to user:**
-   - Show the deployment approach and what will be configured
-   - Show what setup files will be created
+3. **Notify user after README is created:**
+   - Say: "I have created README.md file, please check and update or approve the content."
+   - Summarize the deployment approach and what will be configured
+   - Summarize what setup files will be created
    - Explain cost implications of chosen infrastructure
-   - Ask: "Does this deployment plan look good? Should I proceed with creating deployment configurations?"
 
 4. **Wait for user approval:**
-   - **If user says yes:** Proceed to Step 2
+   - **If user says yes:** Re-read README.md (user may have updated it), then proceed to Step 2
    - **If user says no:**
      - Ask what needs to be changed
      - Update README based on feedback
-     - Ask for approval again
+     - Ask for approval again, then re-read README.md before proceeding
 
 ### Step 2: Create Deployment Plan Files
 
-**Only after user approves the README:**
+**Only after user approves the README and you re-read it:**
 
 **IMPORTANT**: These files serve dual purposes:
 1. **Initially**: Deployment plans/instructions for user approval

@@ -94,7 +94,7 @@ Follow these steps in order:
 
 ### Step 1: Refine Design Requirements in README and Get Approval
 
-**CRITICAL: Create/update README.md first based on previous stage results, get user approval, then create setup plan files.**
+**CRITICAL: Create/update README.md first without pre-approval. Then ask the user to review/update/approve it, re-read it after approval, and only then create setup plan files.**
 
 1. **Analyze information from previous stages:**
    - Read `07-tech-specs/` to understand technology stack and tools
@@ -132,22 +132,22 @@ Follow these steps in order:
    - **Budget allocation for this stage** (from cost-budget.md)
    - **Status:** In Progress (update to "Completed" after implementation)
 
-3. **Present README to user:**
-   - Show the devops approach and what will be configured
-   - Show what setup files will be created
+3. **Notify user after README is created:**
+   - Say: "I have created README.md file, please check and update or approve the content."
+   - Summarize the devops approach and what will be configured
+   - Summarize what setup files will be created
    - Explain how it aligns with previous stages and tech stack
-   - Ask: "Does this devops setup plan look good? Should I proceed with creating setup configurations?"
 
 4. **Wait for user approval:**
-   - **If user says yes:** Proceed to Step 2
+   - **If user says yes:** Re-read README.md (user may have updated it), then proceed to Step 2
    - **If user says no:**
      - Ask what needs to be changed
      - Update README based on feedback
-     - Ask for approval again
+     - Ask for approval again, then re-read README.md before proceeding
 
 ### Step 2: Create Setup Plan Files
 
-**Only after user approves the README:**
+**Only after user approves the README and you re-read it:**
 
 **IMPORTANT:** The file structure below is a SAMPLE only. The actual files you create must follow what was approved in the README.md in Step 1.
 
@@ -160,7 +160,7 @@ Follow these steps in order:
    **Typical structure (example):**
    ```
    08-devops/
-   ├── README.md (already created and approved in Step 1)
+   ├── README.md (created in Step 1, then reviewed/approved)
    ├── github-setup.md (if specified in README)
    ├── mcp-setup.md (if specified in README)
    ├── ci-pipeline.md (if CI selected in README)
