@@ -88,6 +88,13 @@ Follow these steps in order:
    - `02-personas/`, `03-mvp/`, `04-prd/`, `05-ux/`, `06-architecture/`, `07-tech-specs/`, `08-devops/`.
    - Ensure you understand the "User Perspective" (what is a feature?) and "Technical Constraints".
 
+1.5 **Verify previous stage completion (08-devops):**
+   - If `08-devops/README.md` exists, read it and list required docs
+   - If README is missing or required docs are missing:
+     - Ask the user to start/continue stage 08, or skip it
+     - If skip: create `08-devops/SKIP.md` with a short reason
+     - If continue: STOP and return after stage 08 is complete
+
 2. **Check for `09-sprints/` folder:**
    - If NOT found: You are initializing the project's execution phase.
    - If found: You are managing an ongoing project.
@@ -108,6 +115,9 @@ Follow these steps in order:
 1.  **Analyze Context:** Read all stage folders.
 2.  **Create `09-sprints/README.md` (The Master Plan):**
     *   **Keep it simple:** Just several lines to indicate as the project level, and the master plan.
+    *   Use the template in `references/README.md`.
+    *   Refer to `references/deliverables.md` to select deliverables by project type.
+    *   Present any choices as checkbox lists with a default selection.
     *   **Owners:** Project Manager & Tech Manager.
     *   **Strategy:** Define how the product evolves through **Cumulative Demo-able Milestones** (Sprints).
     *   **Timeline:** Estimated number of sprints to reach MVP.
@@ -115,12 +125,13 @@ Follow these steps in order:
     *   **Diagrams (if required by project init):**
         *   Reference `dev-swarm/docs/mermaid-diagram-guide.md`
         *   Include `diagram/` deliverables when needed
-3.  **Create `09-sprints/sprint-feature-proposal.md`:**
+3.  **Review README with User:**
+    *   "Does this plan of Cumulative Milestones look like the right path to the MVP?"
+    *   Get approval before creating other files.
+4.  **Create `09-sprints/sprint-feature-proposal.md`:**
     *   Propose the sequence of Sprints.
     *   **Crucial:** Each Sprint must be a cumulative update to the demo-able product.
     *   List the high-level Features for each Sprint.
-4.  **Review with User:**
-    *   "Does this plan of Cumulative Milestones look like the right path to the MVP?"
 
 ### Step 2: Managing Backlogs (Features)
 

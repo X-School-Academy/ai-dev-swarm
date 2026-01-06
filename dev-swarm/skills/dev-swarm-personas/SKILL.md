@@ -53,6 +53,13 @@ Follow these steps in order:
      - Gap analysis
    - If NOT found: Continue with just init-ideas data (acceptable for L2 projects)
 
+2.5 **Verify previous stage completion (01-market-research):**
+   - If `01-market-research/README.md` exists, read it and list required docs
+   - If README is missing or required docs are missing:
+     - Ask the user to start/continue stage 01, or skip it
+     - If skip: create `01-market-research/SKIP.md` with a short reason
+     - If continue: STOP and return after stage 01 is complete
+
 3. **Check if this stage should be skipped:**
    - Check if `02-personas/SKIP.md` exists
    - **If SKIP.md exists:**
@@ -86,6 +93,9 @@ Follow these steps in order:
    - Consider cost-budget constraints for this stage
 
 2. **Create or update 02-personas/README.md with refined requirements:**
+   - Use the template in `references/README.md`
+   - Refer to `references/deliverables.md` to select deliverables by project type
+   - Present any choices as checkbox lists with a default selection
    - List deliverables explicitly in README (typical: persona-primary.md, persona-secondary.md, user-stories.md)
    - **Stage overview and objectives** (based on previous stage context)
    - **Owners:** Product Manager, UX Designer

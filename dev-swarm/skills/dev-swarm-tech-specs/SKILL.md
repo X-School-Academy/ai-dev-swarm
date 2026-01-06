@@ -52,6 +52,13 @@ First read and understand rules: `dev-swarm/docs/research-specs-rules.md` then:
      - If found: Read files.
      - If NOT found: Proceed without it.
 
+2.5 **Verify previous stage completion (06-architecture when required):**
+   - If `06-architecture/README.md` exists, read it and list required docs
+   - If README is missing or required docs are missing:
+     - Ask the user to start/continue stage 06, or skip it if allowed
+     - If skip: create `06-architecture/SKIP.md` with a short reason
+     - If continue: STOP and return after stage 06 is complete
+
 3. **Check if `05-ux/` folder exists (Mandatory for L3+):**
    - If NOT found and project is L3+: Warn user.
    - For L2: Skip if not relevant.
@@ -114,6 +121,9 @@ First read and understand rules: `dev-swarm/docs/research-specs-rules.md` then:
    - Consider cost-budget constraints for this stage
 
 2. **Create or update 07-tech-specs/README.md with refined requirements:**
+   - Use the template in `references/README.md`
+   - Refer to `references/deliverables.md` to select deliverables by project type
+   - Present any choices as checkbox lists with a default selection
    - **For L2 projects:** Create a simple README (just several lines) indicating the project level and that only `tech-stack.md` is required.
    - **For L3+ projects:** List deliverables explicitly in README (typical: tech-stack.md, security.md, theme-standards.md, coding-standards.md, source-code-structure.md, testing-standards.md, security-standards.md)
    - **Stage overview and objectives** (based on previous stage context)

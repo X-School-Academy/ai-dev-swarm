@@ -112,7 +112,7 @@ Based on the determined scale level, decide which stages are needed:
 **For L2 (Tool with Environment):**
 - 00-init-ideas/ (required)
 - 07-tech-specs/ (minimal)
-- 08-devops/ (basic setup with development_environment.md)
+- 08-devops/ (basic setup with development-environment.md)
 - 10-deployment/ (required for tools/agent skills)
 - SKIP: 01-market-research, 02-personas, 03-mvp, 04-prd, 05-ux, 06-architecture, 09-sprints
 
@@ -138,35 +138,18 @@ for small scopes. Record the decision in each stage README.
 
 ### Step 6: Create Stage Folder Structure
 
-Create folders from `00-init-ideas` through `10-deployment`. For each folder:
+Create folders from `00-init-ideas` through `10-deployment` without creating
+stage README or SKIP files for stages 01-10. Each stage README is created only
+when that stage starts.
 
 1. **00-init-ideas (ALWAYS REQUIRED):**
-   - Create README.md listing the docs needed for this stage (README is the design requirement file for the stage)
-   - Give the project a clear title
-   - List which docs will be created (based on project scale)
-   - Include Owner/Attendances based on `dev-swarm/docs/dev-swarm-roles.md`
-   - Define the docs list using `dev-swarm/docs/repository-structure.md` as the baseline
+   - Create the folder only here. The README.md is created in Step 8.
 
 2. **For stages 01-10:**
-   - **If the stage is NOT needed for this project scale:**
-     - Create `SKIP.md` with explanation:
-       ```markdown
-       # Stage Skipped
-
-       This stage is not required for this project because:
-       - [Reason based on project scale and purpose]
-       ```
-     - **For 09-sprints/SKIP.md in L2 projects**, add: "Implementation will proceed directly in the `src/` directory without the need for formal sprints or backlogs."
-
-   - **If the stage IS needed:**
-     - **For L2 projects**, create a very simple `README.md` (just several lines) indicating the project level and the specific files required for that stage (e.g., "This is an L2 project. We only need tech-stack.md in this stage.").
-     - **For L3+ projects**, create `README.md` listing the docs that will be created in this stage (README is the design requirement file for the stage)
-     - Use `dev-swarm/docs/repository-structure.md` as reference but adapt to project needs
-     - Include Owner/Attendances based on `dev-swarm/docs/dev-swarm-roles.md` (role-appropriate ownership)
-     - Include comments explaining why each doc is needed
-     - If diagrams are required for the stage, add a note to create them and
-       reference `dev-swarm/docs/mermaid-diagram-guide.md`
-     - **DO NOT create the actual documentation files yet** - only README
+   - Create empty folders only.
+   - Do not create README.md or SKIP.md in this step.
+   - Record which stages are expected to be skipped in
+     `00-init-ideas/README.md` for user to review or update.
 
 3. **Create basic folder structure if needed:**
    - Also create: `features/`, `src/`, `99-archive/`
@@ -197,7 +180,12 @@ Create folders from `00-init-ideas` through `10-deployment`. For each folder:
    - Ask if user wants to proceed with implementation in src/
 
 2. **For L2+ projects:**
-   - Create 00-init-ideas/README.md first, then ask the user to approve before creating any other files in 00-init-ideas/
+   - Create 00-init-ideas/README.md first, then ask the user to approve before
+     creating any other files in 00-init-ideas/
+   - Use the README template in `references/README.md`
+   - Refer to `references/deliverables.md` to select deliverables by project type
+   - Any options or solutions in the README must be presented as checkboxes with
+     a default selection
    - After approval, create all remaining documentation files in 00-init-ideas/:
      - README.md (owner: Business Owner, attendances: Product Manager)
      - problem-statement.md (clear problem definition)
@@ -205,6 +193,10 @@ Create folders from `00-init-ideas` through `10-deployment`. For each folder:
      - value-proposition.md (why this solution matters, core benefits)
      - owner-requirement.md (from ideas.md + constraints for later stages)
      - cost-budget.md (REQUIRED - LLM token budget estimation and cost approval)
+   - Create `SKIP.md` in each skipped stage folder based on the selections in
+     the "Skipped stages" section of `00-init-ideas/README.md`
+   - After creating skip files, remove the "## Skipped stages" section from
+     `00-init-ideas/README.md` and tell the user this section is no longer needed
 
 **File Content Guidelines:**
 
@@ -214,6 +206,7 @@ Create folders from `00-init-ideas` through `10-deployment`. For each folder:
 - Attendances: Product Manager
 - Overview of this initialization stage
 - Links to all documentation files in this folder
+- If listing options or solutions, use checkbox lists with a default selected
 
 **problem-statement.md:**
 - Clear description of the problem being solved

@@ -47,6 +47,13 @@ Follow these steps in order:
      - Product goals
      - Non-functional requirements (especially usability and accessibility)
 
+1.5 **Verify previous stage completion (04-prd):**
+   - Read `04-prd/README.md` and list required docs
+   - If README is missing or required docs are missing:
+     - Ask the user to start/continue stage 04, or skip it
+     - If skip: create `04-prd/SKIP.md` with a short reason
+     - If continue: STOP and return after stage 04 is complete
+
 2. **Check if `02-personas/` folder exists (mandatory):**
    - If NOT found: Inform user they need personas first, then STOP
    - If found: Read to understand:
@@ -97,6 +104,9 @@ Follow these steps in order:
    - Consider cost-budget constraints for this stage
 
 2. **Create or update 05-ux/README.md with refined requirements:**
+   - Use the template in `references/README.md`
+   - Refer to `references/deliverables.md` to select deliverables by project type
+   - Present any choices as checkbox lists with a default selection
    - List deliverables explicitly in README (typical: user-flows.md, interaction-specs.md, edge-cases.md, accessibility.md, mockups/)
    - **Stage overview and objectives** (based on previous stage context)
    - **Owners:** UX Designer (lead), UI Designer, Product Manager, Content Moderator

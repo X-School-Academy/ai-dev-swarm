@@ -1,25 +1,25 @@
 # Project Proposal: Free Subdomain Service
 
 ## Goal
-Create a simple web service where people can claim a free subdomain and manage it in one place.
+Build a web service that lets people claim and manage free subdomains in one place.
 
-## What Users Can Do
-- Sign up and log in quickly
-- Choose an available subdomain under approved parent domains
-- Update basic settings for their subdomain
+## User Capabilities
+- Quick signup and login
+- Claim available subdomains under approved parent domains
+- Manage subdomain settings from a personal dashboard
 
-## What the Admin Team Can Do
-- Offer and manage multiple parent domains
-- Keep registrations unique, organized, and easy to review
-- Ensure each user only controls their own subdomains
-- Set simple rules and limits to reduce abuse
+## Admin Capabilities
+- Manage multiple parent domains
+- Keep registrations organized and easy to review
+- Enforce per-user subdomain ownership
+- Set limits and rules to prevent abuse
 
-## Phased Delivery
-1. Basic signup, login, and a simple dashboard
+## Delivery Phases
+1. User authentication and dashboard
 2. Subdomain registration and management
-3. Polishing, clearer validation, and launch readiness
+3. Validation polish and launch preparation
 
-## Success Looks Like
-- Smooth signup and login experience
-- Users can claim a subdomain and manage it easily
-- Reliable rules that prevent conflicts and mistakes
+## Success Criteria
+- Smooth authentication experience
+- Intuitive subdomain claiming and management
+- Conflict-free registration with clear validation

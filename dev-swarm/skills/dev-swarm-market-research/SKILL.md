@@ -41,6 +41,11 @@ Follow these steps in order:
    - If NOT found: Inform user they need to init ideas first, then STOP
    - If found: Read all files to understand.
 
+1.5 **Verify previous stage completion (00-init-ideas is mandatory):**
+   - Read `00-init-ideas/README.md` and list required docs
+   - If README is missing or required docs are missing, ask the user to
+     continue the 00 stage first, then STOP
+
 2. Read and apply rules: `dev-swarm/docs/research-specs-rules.md`
 
 3. **Check if this stage should be skipped:**
@@ -93,6 +98,9 @@ Follow these steps in order:
    - **Don't assume file names** - read whatever exists in the folder
 
 2. **Create or update 01-market-research/README.md:**
+   - Use the template in `references/README.md`
+   - Refer to `references/deliverables.md` to select deliverables by project type
+   - Present any choices as checkbox lists with a default selection
    - List deliverables explicitly in README (typical: market-overview.md, competitor-analysis.md, gap-analysis.md, pricing-research.md, validation-findings.md)
    - **Stage overview and objectives** (based on init-ideas context)
    - **Owners:** Product Manager, Data Analyst, Marketing Manager

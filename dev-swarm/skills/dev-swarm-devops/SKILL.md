@@ -41,6 +41,13 @@ Follow these steps in order:
      - Development tools needed
      - Infrastructure requirements
 
+1.5 **Verify previous stage completion (07-tech-specs):**
+   - Read `07-tech-specs/README.md` and list required docs
+   - If README is missing or required docs are missing:
+     - Ask the user to start/continue stage 07, or skip it
+     - If skip: create `07-tech-specs/SKIP.md` with a short reason
+     - If continue: STOP and return after stage 07 is complete
+
 2. **Check if `00-init-ideas/` folder exists (recommended):**
    - If found: Read to understand all files
 
@@ -95,7 +102,10 @@ Follow these steps in order:
    - Assess current environment status
 
 2. **Create or update 08-devops/README.md with refined requirements:**
-   - **For L2 projects:** Create a simple README (just several lines) indicating the project level and that only `development_environment.md` (for local setup) is required.
+   - Use the template in `references/README.md`
+   - Refer to `references/deliverables.md` to select deliverables by project type
+   - Present any choices as checkbox lists with a default selection
+   - **For L2 projects:** Create a simple README (just several lines) indicating the project level and that only `development-environment.md` (for local setup) is required.
    - **For L3+ projects:** List deliverables explicitly in README (typical: github-setup.md, mcp-setup.md, vscode-devcontainer.md, ci-pipeline.md if CI selected)
    - **Stage overview and objectives** (based on previous stage context)
    - **Owners:** DevOps Engineer (lead), Infrastructure Architect
@@ -109,14 +119,14 @@ Follow these steps in order:
       - [x] Create a new GitHub repo (default when no remote exists)
       - [ ] GitHub Actions for Continuous Integration (CI)
      - MCP tools configuration (list which tools)
-     - Development Environment setup (development_environment.md) - **Required for L2 projects**
+     - Development Environment setup (development-environment.md) - **Required for L2 projects**
      - Development container setup (if needed)
      - CI pipeline configuration (if applicable)
    - **Methodology:**
      - How environment will be configured
      - What tools will be installed
    - **Deliverables planned:**
-     - List of files that will be created (github-setup.md, mcp-setup.md, development_environment.md, ci-pipeline.md if CI selected, etc.)
+     - List of files that will be created (github-setup.md, mcp-setup.md, development-environment.md, ci-pipeline.md if CI selected, etc.)
    - **Budget allocation for this stage** (from cost-budget.md)
    - **Status:** In Progress (update to "Completed" after implementation)
 
@@ -194,7 +204,7 @@ Write as a setup plan with:
 **ci-pipeline.md (Setup Plan - if CI selected in README):**
 Write the CI plan using `references/ci-pipeline.md`.
 
-**development_environment.md (Setup Plan - For L2 Projects):**
+**development-environment.md (Setup Plan - For L2 Projects):**
 Write as a setup plan with:
 - **Python Projects**:
   - Setup using `uv` package manager (default)

@@ -44,6 +44,13 @@ Follow these steps in order:
      - Development progress and readiness
      - Features completed
 
+1.5 **Verify previous stage completion (09-sprints if used):**
+   - If `09-sprints/README.md` exists, read it and list required docs
+   - If README is missing or required docs are missing:
+     - Ask the user to start/continue stage 09, or skip it
+     - If skip: create `09-sprints/SKIP.md` with a short reason
+     - If continue: STOP and return after stage 09 is complete
+
 2. **Check if `07-tech-specs/` folder exists (mandatory):**
    - If NOT found: Inform user they need to define tech specs first, then STOP
    - If found: Read all files to understand:
@@ -126,6 +133,9 @@ Follow these steps in order:
    - Assess application readiness from Step 0
 
 2. **Create or update 10-deployment/README.md with refined requirements:**
+   - Use the template in `references/README.md`
+   - Refer to `references/deliverables.md` to select deliverables by project type
+   - Present any choices as checkbox lists with a default selection
    - **For L2 projects:** Create a simple README (just several lines) indicating the project level and the target deployment directory (e.g., `dev-swarm/py_scripts` or `dev-swarm/skills`).
    - **For L3+ projects:** List deliverables explicitly in README (typical: infrastructure-plan.md, cd-pipeline.md, deployment-strategy.md, monitoring-logging.md, environment-config.md)
    - **Stage overview and objectives** (based on previous stage context)

@@ -48,6 +48,13 @@ Follow these steps in order:
      - Mockup structure (if UI-based app)
      - Screen navigation patterns
 
+1.5 **Verify previous stage completion (05-ux):**
+   - Read `05-ux/README.md` and list required docs
+   - If README is missing or required docs are missing:
+     - Ask the user to start/continue stage 05, or skip it
+     - If skip: create `05-ux/SKIP.md` with a short reason
+     - If continue: STOP and return after stage 05 is complete
+
 2. **Check if `04-prd/` folder exists (mandatory):**
    - If NOT found: Inform user they need PRD first, then STOP
    - If found: Read to understand:
@@ -97,6 +104,9 @@ Follow these steps in order:
    - Consider cost-budget constraints for this stage
 
 2. **Create or update 06-architecture/README.md with refined requirements:**
+   - Use the template in `references/README.md`
+   - Refer to `references/deliverables.md` to select deliverables by project type
+   - Present any choices as checkbox lists with a default selection
    - List deliverables explicitly in README (typical: system-overview.md, architecture-diagram.md, data-flow.md, deployment-boundaries.md)
    - **Stage overview and objectives** (based on previous stage context)
    - **Owners:** Tech Manager (lead), Backend Architect, Frontend Architect, AI Engineer, Content Moderator, DevOps Engineer
