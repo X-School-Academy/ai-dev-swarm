@@ -114,24 +114,14 @@ Follow these steps in order:
 
 1.  **Analyze Context:** Read all stage folders.
 2.  **Create `09-sprints/README.md` (The Master Plan):**
-    *   **Keep it simple:** Just several lines to indicate as the project level, and the master plan.
     *   Use the template in `references/README.md`.
-    *   Refer to `references/deliverables.md` to select deliverables by project type.
-    *   Present any choices as checkbox lists with a default selection.
-    *   **Owners:** Project Manager & Tech Manager.
-    *   **Strategy:** Define how the product evolves through **Cumulative Demo-able Milestones** (Sprints).
-    *   **Timeline:** Estimated number of sprints to reach MVP.
-    *   **Budget:** Allocation from `cost-budget.md`.
-    *   **Diagrams (if required by project init):**
-        *   Reference `dev-swarm/docs/mermaid-diagram-guide.md`
-        *   Include `diagram/` deliverables when needed
+    *   Follow `dev-swarm/docs/stage-readme-guidelines.md` before drafting.
+    *   Refer to `references/deliverables.md` for content guidance and deliverable selection.
 3.  **Review README with User:**
     *   "Does this plan of Cumulative Milestones look like the right path to the MVP?"
     *   Get approval before creating other files.
 4.  **Create `09-sprints/sprint-feature-proposal.md`:**
-    *   Propose the sequence of Sprints.
-    *   **Crucial:** Each Sprint must be a cumulative update to the demo-able product.
-    *   List the high-level Features for each Sprint.
+    *   Follow `references/deliverables.md` for proposal content guidance.
 
 ### Step 2: Managing Backlogs (Features)
 
@@ -177,26 +167,6 @@ Each role adds their findings to the backlog file.
 
 1.  **Assess Priority:** Based on User Value and Technical Dependencies.
 2.  **Update Plans:** Reflect changes in `09-sprints/README.md` and specific sprint READMEs.
-
-## Expected Project Structure
-
-```
-project-root/
-│
-└── 09-sprints/
-    ├── README.md                                    # Master Plan (List of Cumulative Milestones)
-    │
-    ├── auth/                              # Milestone 1: Minimum Product (Auth)
-    │   ├── README.md                                # Sprint Spec & Status
-    │   ├── FEATURE-user-auth-login.md              # Feature: Login
-    │   ├── FEATURE-user-auth-signup.md             # Feature: Sign Up
-    │   └── FEATURE-user-auth-reset.md              # Feature: Password Reset
-    │
-    └── onboarding/                        # Milestone 2: Product + Onboarding
-        ├── README.md
-        ├── FEATURE-onboarding-tutorial.md
-        └── CHANGE-user-auth-login.md               # Improvements to previous feature
-```
 
 ## Available Templates
 

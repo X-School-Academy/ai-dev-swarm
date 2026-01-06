@@ -134,6 +134,7 @@ Follow these steps in order:
 
 2. **Create or update 10-deployment/README.md with refined requirements:**
    - Use the template in `references/README.md`
+   - Follow `dev-swarm/docs/stage-readme-guidelines.md` before drafting
    - Refer to `references/deliverables.md` to select deliverables by project type
    - Present any choices as checkbox lists with a default selection
    - **For L2 projects:** Create a simple README (just several lines) indicating the project level and the target deployment directory (e.g., `dev-swarm/py_scripts` or `dev-swarm/skills`).
@@ -194,118 +195,11 @@ Follow these steps in order:
    ├── monitoring-logging.md
    └── environment-config.md
    ```
+   Just as sample, the actual file list should be samed as the `README.md` which user has selected.
 
 2. **Create deployment plan files with proposed configurations:**
 
-**10-deployment/README.md:**
-- Specify the owner: Deployment Engineer
-- Specify attendances: Cloud Infrastructure Architect, DevOps Engineer, Site Reliability Engineer (SRE)
-- Overview of deployment stage
-- Links to all deployment documentation files
-- Current deployment status (will be updated after execution)
-- Quick links to deployed environments
-
-**deployment.md (Deployment Plan - For L2 Projects):**
-Write as a deployment plan with:
-- **Target Location**: `dev-swarm/py_scripts`, `dev-swarm/js_scripts`, or `dev-swarm/skills`.
-- **Files to Deploy**: List of source files to copy/move.
-- **Dependencies**: Any dependencies that need to be packaged or installed in the target.
-- **Configuration**: Any config changes needed for the target environment.
-- **Step-by-Step Instructions**: How to perform the deployment.
-
-**deployment-info.md (Deployment Plan - For Independently Runnable Packages/MCP Servers):**
-Write as a deployment plan with:
-- **Project Type**: Independently runnable package or MCP server
-- **Publishing Strategy**: Publish to GitHub as a release with version number
-- **Installation Commands for End Users:**
-  - For Node.js projects:
-    - `pnpm dlx github:username/repo-name#v1.0.0 [command] [options]`
-    - `npx github:username/repo-name@latest [command] [options]`
-  - For Python projects:
-    - `uvx --from 'git+https://github.com/username/repo-name.git@v1.0.0' package-name [command] [options]`
-  - Use these as examples and tailor to the actual project
-- **User Documentation Update**:
-  - Update `src/README.md` with instructions on how to run the package without installation
-  - Include usage examples and command-line options
-  - Document all available commands and their purposes
-- **Publishing Steps**:
-  - Ask for explicit user approval before publishing or creating releases
-  - Push code to GitHub remote
-  - Use playwright-browser-* agent skills to open GitHub website
-  - Create a new release with version number (e.g., v1.0.0) through GitHub UI
-  - Verify installation works from GitHub release
-- **Version Management**: How to create and manage releases through GitHub
-- **Clear step-by-step instructions**
-
-After user approves this plan, the `10-deployment/README.md` should reference this file to keep it clean and organized.
-
-**infrastructure-plan.md (Deployment Plan):**
-Write as a deployment plan with:
-- Proposed cloud provider and services to use
-- Infrastructure architecture diagram (text description)
-- Resource specifications (compute, memory, storage)
-- Network configuration (VPC, subnets, security groups)
-- Database configuration and backup strategy
-- Storage and CDN setup
-- Domain name and DNS configuration
-- SSL/TLS certificate setup
-- Cost estimation
-- Infrastructure as code approach (Terraform, CloudFormation, etc.)
-- Clear step-by-step setup instructions
-- Security considerations (IAM roles, secrets management)
-
-**cd-pipeline.md (Deployment Plan):**
-Write as a deployment plan with:
-- CD platform to use (GitHub Actions, GitLab CI, etc.)
-- Pipeline workflow diagram (text description)
-- Build process steps
-- Testing stages (unit, integration, e2e)
-- Deployment stages (dev, staging, production)
-- Approval gates and manual intervention points
-- Environment variables and secrets management
-- Deployment triggers (push, PR, manual, scheduled)
-- Rollback procedures
-- Pipeline configuration files to create
-- Clear step-by-step setup instructions
-Use `references/cd-pipeline.md` for CD-specific requirements and triggers.
-
-**deployment-strategy.md (Deployment Plan):**
-Write as a deployment plan with:
-- Deployment approach (blue-green, canary, rolling, recreate)
-- Zero-downtime deployment plan
-- Database migration strategy
-- Feature flags configuration (if applicable)
-- Deployment checklist
-- Pre-deployment steps
-- Post-deployment verification steps
-- Rollback plan and criteria
-- Disaster recovery procedures
-- Maintenance window planning
-- Clear step-by-step deployment instructions
-
-**monitoring-logging.md (Deployment Plan):**
-Write as a deployment plan with:
-- Monitoring tools to use (CloudWatch, Datadog, New Relic, etc.)
-- Logging solution (CloudWatch Logs, ELK Stack, etc.)
-- Error tracking (Sentry, Rollbar, etc.)
-- Uptime monitoring (Pingdom, UptimeRobot, etc.)
-- Performance metrics to track
-- Alerting rules and thresholds
-- Alert notification channels
-- Dashboard configuration
-- Log retention policies
-- Clear step-by-step setup instructions
-
-**environment-config.md (Deployment Plan):**
-Write as a deployment plan with:
-- Environment variables for each environment
-- Secrets management strategy (AWS Secrets Manager, Vault, etc.)
-- Configuration differences between environments
-- API endpoints and service URLs
-- Database connection strings (template)
-- Third-party service credentials (template)
-- Feature flags per environment
-- Clear step-by-step configuration instructions
+Use `references/deliverables.md` for file-by-file content guidance.
 
 ### Step 3: Get User Confirmation
 
@@ -578,20 +472,3 @@ For each deployed environment:
 
 2. **Optionally push to remote**
 
-
-## Key Principles
-
-- **Dual-purpose documentation**: Deployment files serve as both initial plans and final documentation
-- **Get confirmation first**: Always get user approval before executing deployment tasks
-- **Security first**: Never expose credentials, always use secrets management
-- **Cost awareness**: Keep user informed of infrastructure costs
-- **Fix errors proactively**: When errors occur during deployment, fix them and retry automatically
-- **Update documentation**: After execution, update files to reflect actual deployment state
-- **Source of truth**: Final documentation becomes the authoritative reference for deployment management
-- **Zero-downtime**: Prioritize deployment strategies that minimize service interruption
-- **Monitoring first**: Ensure monitoring is in place before production deployment
-- **Rollback ready**: Always have a tested rollback plan before deploying to production
-- All configurations should be version-controlled
-- Infrastructure as code should be preferred over manual configuration
-- Deployment should be automated and repeatable
-- Documentation should be clear for both humans and AI agents

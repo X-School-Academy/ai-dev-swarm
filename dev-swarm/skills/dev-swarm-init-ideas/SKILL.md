@@ -18,7 +18,7 @@ This skill transforms non-technical or non-professional ideas into professional 
 
 - **Business Owner**: Ensure commercial success and financial viability. Define business goals, identify the problem statement, and articulate value propositions that balance user value with business profitability.
 - **Product Manager**: Create compelling products that meet user needs. Conduct research to identify target users, extract requirements, and ensure the product aligns with both user expectations and business goals.
-  - **Role Reference**: Consult `dev-swarm/docs/dev-swarm-roles.md` to assign the correct owner/attendances for each stage README (design requirement file). Do not write requirements outside the owning role.
+- **Role Reference**: Consult `dev-swarm/docs/dev-swarm-roles.md` to assign the correct owner/attendances for the 00-init-ideas README. Do not write requirements outside the owning role.
 
 ## Role Communication
 
@@ -122,15 +122,8 @@ Based on the determined scale level, decide which stages are needed:
 **For L5-L7 (Multi-Platform / Growth / Platform):**
 - ALL stages required (00 through 10)
 
-**Read repository-structure.md for reference:**
-- Read `dev-swarm/docs/repository-structure.md` for detailed folder structure
-- Note: The files listed in repository-structure.md are samples; adapt based on project needs
- - Read `dev-swarm/docs/dev-swarm-roles.md` to map stage owners/attendances for README requirements (role-appropriate ownership)
-
-Also decide which stages require Mermaid diagrams. Use
-`dev-swarm/docs/mermaid-diagram-guide.md` for structure and
-`dev-swarm/docs/software-dev-classification.md` to avoid over-engineering
-for small scopes. Record the decision in each stage README.
+Stage READMEs are created only when each stage starts. See
+`dev-swarm/docs/stage-readme-guidelines.md` for the shared README prep steps.
 
 ### Step 5: Project Root README.md
    - **IMPORTANT: DO NOT create or modify the root README.md file**
@@ -198,71 +191,9 @@ when that stage starts.
    - After creating skip files, remove the "## Skipped stages" section from
      `00-init-ideas/README.md` and tell the user this section is no longer needed
 
-**File Content Guidelines:**
+**File Content Guidance:**
 
-**00-init-ideas/README.md:**
-- Project title
-- Owner: Business Owner
-- Attendances: Product Manager
-- Overview of this initialization stage
-- Links to all documentation files in this folder
-- If listing options or solutions, use checkbox lists with a default selected
-
-**problem-statement.md:**
-- Clear description of the problem being solved
-- Current pain points
-- Why this problem matters
-- Constraints and limitations
-
-**target-users.md:**
-- Who are the target users (high-level)
-- Primary audience
-- User needs and expectations
-
-**value-proposition.md:**
-- What value does this project provide
-- How it solves the problem
-- Core benefits to users
-- Why this solution matters
-
-**owner-requirement.md:**
-- All requirements extracted from ideas.md
-- Owner constraints for later stages
-- Organized by priority or category
-- Clear and actionable items
-
-**cost-budget.md (REQUIRED for L2+ projects):**
-- **Token Budget Estimation Per Stage:**
-  - Estimate tokens needed for each stage based on project scale
-  - Consider: research depth, documentation thoroughness, code complexity, testing coverage
-  - Breakdown by stage for only the stages that are NOT skipped: 01-market-research, 02-personas, 03-mvp, 04-prd, 05-ux, 06-architecture, 07-tech-specs, 08-devops, 09-sprints, 10-deployment
-  - If a stage is skipped, its cost is $0 and should be omitted from the breakdown
-
-- **Estimated Cost in USD:**
-  - Calculate based on current LLM pricing (e.g., Claude Sonnet rates)
-  - Include buffer for iterations and refinements (typically 20-30%)
-  - Total estimated cost range (min-max)
-
-- **Budget Impact on Project Scope:**
-  - How budget affects research time (market research, competitor analysis)
-  - How budget affects code quality (testing thoroughness, code reviews)
-  - How budget affects documentation completeness
-  - Trade-offs if budget is limited
-
-- **Budget Allocation Strategy:**
-  - Which stages get more budget allocation based on project priorities
-  - Critical vs optional activities per stage
-
-- **Budget Guidelines by Scale:**
-  - **L2 (Tool)**: 50k-200k tokens (~$2-$10)
-  - **L3 (Single Service)**: 200k-500k tokens (~$10-$25)
-  - **L4 (MVP)**: 500k-1M tokens (~$25-$50)
-  - **L5 (Multi-Platform)**: 1M-2M tokens (~$50-$100)
-  - **L6-L7 (Growth/Platform)**: 2M+ tokens (~$100+)
-
-- **User Approval Required:**
-  - User must review and approve the budget before proceeding to later stages
-  - Budget acts as a constraint for all subsequent AI agent activities
+Refer to `references/deliverables.md` for file-by-file content guidance, including cost-budget expectations.
 
 ### Step 9: User Confirmation on 00-init-ideas Content
 
@@ -300,89 +231,3 @@ when that stage starts.
    - Use the dev-swarm-draft-commit-message skill to draft the commit message
    - Commit with the drafted message (should follow conventional commit format)
    - Example: "feat: initialize project with ideas documentation and stage structure"
-
-## Expected Output Structure
-
-The output structure varies based on project scale:
-
-### For L0-L1 (Very Small Projects):
-```
-project-root/
-├── README.md (root readme - not modified by this skill)
-├── 00-init-ideas/
-│   └── README.md (how to implement the script)
-├── src/
-│   ├── README.md (project documentation maintained by developers)
-│   └── script_name.sh (or appropriate file)
-└── features/, 99-archive/ (with .gitkeep)
-```
-
-### For L2 (Tool with Environment Setup):
-```
-project-root/
-├── README.md (root readme - not modified by this skill)
-├── 00-init-ideas/
-│   ├── README.md
-│   ├── problem-statement.md
-│   ├── target-users.md
-│   ├── value-proposition.md
-│   ├── owner-requirement.md
-│   └── cost-budget.md (REQUIRED)
-├── 01-market-research/SKIP.md
-├── 02-personas/README.md (or SKIP.md)
-├── 03-mvp/SKIP.md (or README.md)
-├── 04-prd/README.md
-├── 05-ux/SKIP.md
-├── 06-architecture/SKIP.md
-├── 07-tech-specs/README.md
-├── 08-devops/README.md
-├── 09-sprints/README.md
-├── 10-deployment/SKIP.md
-├── features/
-├── src/
-│   └── README.md (project documentation maintained by developers)
-└── 99-archive/
-```
-
-### For L3+ (Full-Scale Applications):
-```
-project-root/
-├── README.md (root readme - not modified by this skill)
-├── 00-init-ideas/ (full documentation including cost-budget.md)
-│   ├── README.md
-│   ├── problem-statement.md
-│   ├── target-users.md
-│   ├── value-proposition.md
-│   ├── owner-requirement.md
-│   └── cost-budget.md (REQUIRED)
-├── 01-market-research/README.md
-├── 02-personas/README.md
-├── 03-mvp/README.md
-├── 04-prd/README.md
-├── 05-ux/README.md
-├── 06-architecture/README.md
-├── 07-tech-specs/README.md
-├── 08-devops/README.md
-├── 09-sprints/README.md
-├── 10-deployment/README.md (or SKIP.md if not deploying yet)
-├── features/
-├── src/
-│   └── README.md (project documentation maintained by developers)
-└── 99-archive/
-```
-
-## Key Principles
-
-- **Scale-Appropriate Development**: Create only the documentation and structure necessary for the project scale
-- **Prevent Over-Engineering**: Explicitly skip stages that don't apply to the project purpose and scale
-- **Clear Classification**: Document project purpose and scale to guide all future decisions
-- **Budget-Conscious AI Development**: Since every AI action costs tokens, budget planning is CRITICAL
-  - L2+ projects MUST include cost-budget.md with token estimates and USD costs
-  - Budget directly constrains research depth, testing thoroughness, and documentation completeness
-  - User approval of budget is required before proceeding to later stages
-  - Budget acts as a constraint for all subsequent AI agent activities
-- **Transform Informal to Professional**: Convert non-technical ideas into structured business documentation
-- **Maintain Ownership**: Clear ownership and accountability for each stage
-- **Explicit Exclusions**: Document what the project will NOT include based on its scale
-- **Actionable Documentation**: Create clear, actionable documentation that guides development
-- **Human-in-the-Loop**: Confirm structure, content, and budget with user before proceeding

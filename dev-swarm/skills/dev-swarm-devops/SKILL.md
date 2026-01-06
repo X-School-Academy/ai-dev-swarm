@@ -103,6 +103,7 @@ Follow these steps in order:
 
 2. **Create or update 08-devops/README.md with refined requirements:**
    - Use the template in `references/README.md`
+   - Follow `dev-swarm/docs/stage-readme-guidelines.md` before drafting
    - Refer to `references/deliverables.md` to select deliverables by project type
    - Present any choices as checkbox lists with a default selection
    - **For L2 projects:** Create a simple README (just several lines) indicating the project level and that only `development-environment.md` (for local setup) is required.
@@ -169,64 +170,7 @@ Follow these steps in order:
 
 2. **Create setup plan files with proposed configurations:**
 
-**NOTE:** The content structure below provides GUIDELINES for typical devops setup files. Adapt based on the approved README and project needs.
-
-**github-setup.md or github-repo.md (if specified in README - Setup Plan):**
-Write as a setup plan with:
-- **Git repository approach selected by user:**
-  - If "No Git repo": Document decision and skip git setup
-  - If "Using dev-swarm's git repo": Use the current repo without changes
-  - If "Create a new GitHub repo" (default):
-    - Ask for user approval before opening the browser or creating the repo
-    - Use playwright-browser-* agent skills to help user create a new GitHub repo
-    - Add the remote repo to src/ as the project source
-    - Add src/ as a git submodule to the root project
-    - Record repository information in `08-devops/github-repo.md`
-  - If user provides a remote repo URL: Add it as a git submodule at src/ (no separate clone)
-- Proposed GitHub repository settings
-- Branch protection rules to be configured
-- PR template to be created
-- GitHub Actions workflows (if applicable)
-- Issue templates (if needed)
-- Repository permissions plan
-- Clear step-by-step setup instructions
-
-**mcp-setup.md (Setup Plan):**
-Write as a setup plan with:
-- List of MCP tools to be installed/configured
-- Installation steps for each MCP tool
-- Configuration details (file locations, settings)
-- Required environment variables and credentials
-- Permission requirements
-- Test commands to verify each tool
-- Clear step-by-step setup instructions
-
-**ci-pipeline.md (Setup Plan - if CI selected in README):**
-Write the CI plan using `references/ci-pipeline.md`.
-
-**development-environment.md (Setup Plan - For L2 Projects):**
-Write as a setup plan with:
-- **Python Projects**:
-  - Setup using `uv` package manager (default)
-  - Create virtual environment (`uv init`)
-  - Install dependencies (`uv add package`)
-  - Activation command
-- **Node.js Projects**:
-  - Setup using `pnpm` (default)
-  - `pnpm install`
-- Final environment setup information should be integrated into the `src/` directory.
-
-**vscode-devcontainer.md (Setup Plan):**
-Write as a setup plan with:
-- Dev Container configuration to be created
-- Dockerfile contents
-- docker-compose.yml contents (if needed)
-- VS Code extensions to install
-- Environment variables to set
-- Port forwarding configuration
-- Volume mounts specification
-- Post-create commands
-- Clear step-by-step setup instructions
+**NOTE:** Use `references/deliverables.md` for file-by-file content guidance. Adapt based on the approved README and project needs.
 
 ### Step 3: Get User Confirmation
 
@@ -396,19 +340,3 @@ For each completed setup:
    - Commit with message: "Setup DevOps environment and configurations"
 
 2. **Optionally push to remote** (if GitHub was set up)
-
-
-## Key Principles
-
-- **Dual-purpose documentation**: Setup files serve as both initial plans and final documentation
-- **Get confirmation first**: Always get user approval before executing setup tasks
-- **Fix errors proactively**: When errors occur during setup, fix them and retry automatically
-- **Update documentation**: After execution, update files to reflect actual environment state
-- **Source of truth**: Final documentation becomes the authoritative reference for environment reset/update
-- Identify the right level of complexity for the project
-- Setup should enable AI agent to work autonomously
-- All configurations should be version-controlled
-- Security and permissions should be properly configured
-- Development environment should be reproducible
-- MCP tools should be tested and verified
-- Documentation should be clear for both humans and AI agents

@@ -94,6 +94,7 @@ Follow these steps in order:
 
 2. **Create or update 02-personas/README.md with refined requirements:**
    - Use the template in `references/README.md`
+   - Follow `dev-swarm/docs/stage-readme-guidelines.md` before drafting
    - Refer to `references/deliverables.md` to select deliverables by project type
    - Present any choices as checkbox lists with a default selection
    - List deliverables explicitly in README (typical: persona-primary.md, persona-secondary.md, user-stories.md)
@@ -150,102 +151,11 @@ Follow these steps in order:
 
 **IMPORTANT: Only create personas after README is approved in Step 1.**
 
-**NOTE:** The content structure below provides GUIDELINES for typical persona content. Adapt based on the approved README and project needs.
-
-**persona-primary.md (if specified in README):**
-
-Create a detailed primary persona including:
-
-- **Basic Information:**
-  - Name (fictional but relatable)
-  - Age range
-  - Occupation/Role
-  - Location/Context
-  - Photo or avatar description (optional)
-
-- **Background:**
-  - Professional background
-  - Technical proficiency level
-  - Relevant experience
-
-- **Goals & Motivations:**
-  - Primary goals when using this product
-  - What success looks like for them
-  - Key motivations and drivers
-
-- **Pain Points & Frustrations:**
-  - Current challenges and problems
-  - Frustrations with existing solutions
-  - Unmet needs
-
-- **Behaviors & Preferences:**
-  - How they currently solve the problem
-  - Preferred tools and platforms
-  - Usage patterns and habits
-  - Communication preferences
-
-- **Needs from This Product:**
-  - Must-have features (P0)
-  - Important features (P1)
-  - Nice-to-have features (P2)
-
-- **Quote:**
-  - A fictional quote that captures their mindset
-
-**persona-secondary.md (optional):**
-
-If there's a distinct secondary user segment, create a second persona following the same structure. Only create this if:
-- There's a clearly different user segment
-- Their needs differ significantly from primary persona
-- They represent a meaningful portion of target users
-
-If secondary persona is not needed, you can skip creating this file.
+- Use `references/deliverables.md` for persona file content guidance.
 
 ### Step 4: Create/Update User Stories
 
-**NOTE:** The content structure below provides GUIDELINES for typical user stories. Adapt based on the approved README and project needs.
-
-**user-stories.md (if specified in README):**
-
-Create prioritized user stories using the format: "As a [role], I want [feature] so that [benefit]"
-
-Organize stories by priority:
-
-**P0 - Must Have (Core Features):**
-- Critical features that deliver the core value proposition
-- Without these, the product doesn't solve the problem
-- 5-10 user stories typically
-
-**P1 - Should Have (Important Features):**
-- Important features that enhance the experience
-- Significantly improve usability or value
-- 5-15 user stories typically
-
-**P2 - Nice to Have (Enhancement Features):**
-- Features that add polish or convenience
-- Not critical for initial launch
-- Can be deferred to later versions
-- 5-10 user stories typically
-
-**Format for each user story:**
-```
-### [Priority] - [Story Title]
-
-**User Story:**
-As a [persona name/role],
-I want [specific capability],
-So that [benefit/value achieved].
-
-**Acceptance Criteria:**
-- [ ] Criterion 1
-- [ ] Criterion 2
-- [ ] Criterion 3
-
-**Notes:**
-- Any additional context
-- Related stories or dependencies
-- Technical considerations (if any)
-```
+- Use `references/deliverables.md` for user story content guidance.
 
 ### Step 5: Ensure Traceability
 
@@ -279,46 +189,3 @@ Make sure user stories map back to:
    - Stage all changes in `02-personas/`
    - Commit with message: "Define user personas and prioritized user stories (Stage 2)"
 
-## Expected Project Structure
-
-```
-project-root/
-├── 00-init-ideas/
-│   └── [existing files]
-├── 01-market-research/ (optional)
-│   └── [existing files if present]
-└── 02-personas/
-    ├── README.md (with owners and summary)
-    ├── persona-primary.md
-    ├── persona-secondary.md (optional)
-    └── user-stories.md (P0/P1/P2 prioritized)
-```
-
-## Key Principles
-
-- Create realistic, relatable personas based on actual target users
-- Focus on goals, pain points, and behaviors, not just demographics
-- Write user stories from the user's perspective, not the business perspective
-- Prioritize ruthlessly - P0 should be minimal core features only
-- Use clear acceptance criteria that can be tested
-- Ensure every story delivers user value
-- Trace stories back to problem statement and value proposition
-- Keep stories small and specific enough to implement
-
-## User Story Best Practices
-
-1. **Focus on user value**: Every story should deliver tangible benefit
-2. **Keep stories independent**: Each story should be implementable separately
-3. **Make stories testable**: Acceptance criteria should be verifiable
-4. **Use persona names**: Reference specific personas in stories
-5. **Avoid technical details**: Focus on "what" and "why", not "how"
-6. **Prioritize based on value**: P0 = MVP, P1 = Important, P2 = Nice-to-have
-
-## Deliverables
-
-By the end of this stage, you should have:
-- 1-2 detailed user personas representing target users
-- 15-35 user stories organized by priority (P0/P1/P2)
-- Clear acceptance criteria for each story
-- Traceability from stories to problem statement and value proposition
-- Foundation for MVP scope definition
