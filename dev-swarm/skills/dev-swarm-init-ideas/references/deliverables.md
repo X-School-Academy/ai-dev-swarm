@@ -49,7 +49,7 @@ Only present files that are suitable for the project's type and level; omit the 
 - Organized by priority or category
 - Clear and actionable items
 
-### cost-budget.md (REQUIRED for L2+ projects)
+### cost-budget.md
 
 - **Token Budget Estimation Per Stage:**
   - Estimate tokens needed for each stage based on project scale

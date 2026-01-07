@@ -121,7 +121,6 @@ Follow these steps in order:
      - Success metrics approach
    - **Deliverables planned:**
      - List of files that will be created (mvp-scope.md, out-of-scope.md, success-metrics.md, etc.)
-   - **Budget allocation for this stage** (from cost-budget.md)
    - **Status:** In Progress (update to "Completed" after implementation)
 
 3. **Notify user after README is created:**

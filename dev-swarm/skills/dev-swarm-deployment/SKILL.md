@@ -162,7 +162,6 @@ Follow these steps in order:
      - How CD will be configured
    - **Deliverables planned:**
      - List of files that will be created (deployment.md for L2; infrastructure-plan.md, cd-pipeline.md, etc. for L3+)
-   - **Budget allocation for deployment** (from cost-budget.md)
    - **Status:** In Progress (update to "Completed" after deployment)
 
 3. **Notify user after README is created:**

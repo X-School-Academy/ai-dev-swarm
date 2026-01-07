@@ -126,7 +126,6 @@ Follow these steps in order:
      - Diagram approach (Mermaid for all diagrams)
    - **Deliverables planned:**
      - List of files that will be created (system-overview.md, architecture-diagram.md, etc.)
-   - **Budget allocation for this stage** (from cost-budget.md)
    - **Status:** In Progress (update to "Completed" after implementation)
 
 3. **Notify user after README is created:**

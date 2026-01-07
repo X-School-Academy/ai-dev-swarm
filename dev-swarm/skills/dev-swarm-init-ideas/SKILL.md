@@ -182,12 +182,7 @@ when that stage starts.
    - Any options or solutions in the README must be presented as checkboxes with
      a default selection
    - Say: "I have created README.md file, please check and update or approve the content."
-   - After approval, re-read README.md (user may have updated it). README.md is already created (owner: Business Owner, attendances: Product Manager). Then create all remaining documentation files in 00-init-ideas/:
-     - problem-solution.md (clear problem definition)
-     - target-users.md (who has the problem, primary audience)
-     - value-proposition.md (why this solution matters, core benefits)
-     - owner-requirement.md (from ideas.md + constraints for later stages)
-     - cost-budget.md (REQUIRED - LLM token budget estimation and cost approval)
+   - After approval, re-read README.md (user may have updated it). README.md is already created (owner: Business Owner, attendances: Product Manager). Then create all remaining documentation files in 00-init-ideas/
    - Create `SKIP.md` in each skipped stage folder based on the selections in
      the "Skipped stages" section of `00-init-ideas/README.md`
    - After creating skip files, remove the "## Skipped stages" section from
@@ -203,16 +198,10 @@ Refer to `references/deliverables.md` for file-by-file content guidance, includi
    - All generated documentation in `00-init-ideas/`
    - The classification and project structure
    - Content accuracy and completeness
-   - **For L2+ projects: CRITICAL - Review and approve the cost-budget.md:**
-     - Estimated token usage per stage
-     - Estimated cost in USD
-     - Budget constraints that will affect later stages
-     - User must explicitly approve the budget to proceed
 
 2. **Make any adjustments based on user feedback**
    - If user wants to reduce budget: Adjust stage scope, research depth, or testing coverage
    - If user wants to increase budget: Expand scope, add more thorough research/testing
-   - Update cost-budget.md accordingly
 
 3. **Ask if they want to proceed to the next stage:**
    - For L0-L1: "Would you like me to implement the script in src/?"

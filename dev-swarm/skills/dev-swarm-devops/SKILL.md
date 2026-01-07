@@ -130,7 +130,6 @@ Follow these steps in order:
      - What tools will be installed
    - **Deliverables planned:**
      - List of files that will be created (github-setup.md, mcp-setup.md, development-environment.md, ci-pipeline.md if CI selected, etc.)
-   - **Budget allocation for this stage** (from cost-budget.md)
    - **Status:** In Progress (update to "Completed" after implementation)
 
 3. **Notify user after README is created:**

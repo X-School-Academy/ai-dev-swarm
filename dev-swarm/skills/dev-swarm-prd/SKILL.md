@@ -130,7 +130,6 @@ Follow these steps in order:
      - How functional requirements will be structured
    - **Deliverables planned:**
      - List of files that will be created (prd.md, functional-requirements.md, etc.)
-   - **Budget allocation for this stage** (from cost-budget.md)
    - **Status:** In Progress (update to "Completed" after implementation)
 
 3. **Notify user after README is created:**

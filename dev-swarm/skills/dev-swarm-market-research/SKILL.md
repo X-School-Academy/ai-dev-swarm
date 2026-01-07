@@ -116,7 +116,6 @@ Follow these steps in order:
      - What specific aspects will be investigated
      - What documents will be created as research output
    - **Research scope and constraints:**
-     - Budget allocation for this stage (from cost-budget.md)
      - Time/depth trade-offs if applicable
      - What will NOT be researched (technology, frameworks, etc.)
    - **Status:** In Progress (update to "Completed" after research is done)

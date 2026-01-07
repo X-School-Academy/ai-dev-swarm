@@ -16,7 +16,6 @@ Only present files that are suitable for the project's type and level; omit the 
 - Owners: Project Manager and Tech Manager
 - Strategy: how the product evolves through cumulative demo-able milestones (sprints)
 - Timeline: estimated number of sprints to reach MVP
-- Budget: allocation from `cost-budget.md`
 - Diagrams (if required by project init):
   - Reference `dev-swarm/docs/mermaid-diagram-guide.md`
   - Include `diagram/` deliverables when needed
