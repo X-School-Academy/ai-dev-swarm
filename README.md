@@ -25,10 +25,11 @@ Fork and clone this project, then work with AI Code Agent below by default via A
 
 - `Claude Code`
 - `OpenAI Codex`
+- `Gemini CLI`: npm install -g @google/gemini-cli@preview (enable in settings)
 - `GitHub Copilot CLI`
 - `opencode`
 
-For `Gemini CLI` or other AI Agents that do not support Agent skills natively, you can use them as an MCP server by configuring:
+For other AI Agents that do not support Agent skills natively, you can use them as an MCP server by configuring:
 
 ```json
 {
@@ -43,8 +44,6 @@ For `Gemini CLI` or other AI Agents that do not support Agent skills natively, y
     }
   }
 }
-
-// refer to `.gemini/settings.json`
 ```
 
 📖 **New to AI Dev Swarm?** Check out the [Complete User Manual](USER-MANUAL.md) for a step-by-step guide designed for non-technical users.

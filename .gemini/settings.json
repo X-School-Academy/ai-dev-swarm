@@ -9,14 +9,6 @@
         "dev-swarm/py_scripts/dev-swarm-mcp.py",
         "--mcp-settings=dev-swarm/mcp_settings.json"
       ]
-    },
-    "skillz": {
-      "command": "uvx",
-      "args": [
-        "skillz@latest",
-        "dev-swarm/skills",
-        "--verbose"
-      ]
     }
   }
 }
