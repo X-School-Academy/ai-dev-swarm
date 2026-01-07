@@ -201,7 +201,7 @@ CLI tools, small services, Simple MCP Server, Simple Agent Skill
 
 *   **00-init-ideas/**
     *   `README.md`: Project level indication & file list.
-    *   `problem-statement.md`
+    *   `problem-solution.md`
     *   `owner-requirement.md`
 *   **07-tech-specs/**
     *   `README.md`

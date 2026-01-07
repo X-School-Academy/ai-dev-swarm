@@ -176,13 +176,14 @@ when that stage starts.
 2. **For L2+ projects:**
    - Create 00-init-ideas/README.md first without pre-approval
    - Use the README template in `references/README.md`
+   - Follow the checkbox rules: checked items apply after README approval; create file items only after approval; propose default checks; allow user changes
    - Do not add extra headings beyond the template; use the Stage files checklist to list docs and avoid a separate Documents section
    - Refer to `references/deliverables.md` to select deliverables by project type
    - Any options or solutions in the README must be presented as checkboxes with
      a default selection
    - Say: "I have created README.md file, please check and update or approve the content."
    - After approval, re-read README.md (user may have updated it). README.md is already created (owner: Business Owner, attendances: Product Manager). Then create all remaining documentation files in 00-init-ideas/:
-     - problem-statement.md (clear problem definition)
+     - problem-solution.md (clear problem definition)
      - target-users.md (who has the problem, primary audience)
      - value-proposition.md (why this solution matters, core benefits)
      - owner-requirement.md (from ideas.md + constraints for later stages)

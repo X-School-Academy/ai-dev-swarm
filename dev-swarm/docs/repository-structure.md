@@ -20,7 +20,7 @@ project-root/
 │
 ├─ 00-init-ideas/                    # Stage 0: define the problem
 │  ├─ README.md                      # Project and folder overview and guide
-│  ├─ problem-statement.md           # Clear problem definition and constraints
+│  ├─ problem-solution.md            # Clear problem definition and solution
 │  ├─ target-users.md                # Who has the problem (high-level), primary audience
 │  ├─ value-proposition.md           # Why this solution matters and the core benefits
 │  ├─ cost-budget.md                 # LLM Token budget per stage and estimated $ cost

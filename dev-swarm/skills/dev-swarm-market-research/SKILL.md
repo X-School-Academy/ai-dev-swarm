@@ -99,6 +99,7 @@ Follow these steps in order:
 
 2. **Create or update 01-market-research/README.md:**
    - Use the template in `references/README.md`
+   - Follow the checkbox rules: checked items apply after README approval; create file items only after approval; propose default checks; allow user changes
    - Populate only the template sections; do not add new headings such as Documents or Deliverables
    - Follow `dev-swarm/docs/stage-readme-guidelines.md` before drafting
    - Refer to `references/deliverables.md` to select deliverables by project type

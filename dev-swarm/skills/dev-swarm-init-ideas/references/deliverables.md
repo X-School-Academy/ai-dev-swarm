@@ -5,7 +5,7 @@ Only present files that are suitable for the project's type and level; omit the 
 ## Deliverable list
 
 - README.md: Stage overview, scope, and required files. Needed for all projects.
-- problem-statement.md: Clear problem definition and constraints. Needed for L2+.
+- problem-solution.md: Clear problem definition and constraints. Needed for L2+.
 - target-users.md: Primary users and needs. Needed for L2+.
 - value-proposition.md: Why the solution matters and key benefits. Needed for L2+.
 - owner-requirement.md: Owner constraints and requirements. Needed for L2+.
@@ -22,12 +22,12 @@ Only present files that are suitable for the project's type and level; omit the 
 - Use the Stage files checklist in the README template to list docs; do not add a separate Documents section
 - If listing options or solutions, use checkbox lists with a default selected
 
-### problem-statement.md
+### problem-solution.md
 
-- Clear description of the problem being solved
-- Current pain points
-- Why this problem matters
-- Constraints and limitations
+- Translate ideas.md into a business-level problem and solution statement
+- Focus on the problem domain and value (not tech stack or implementation)
+- Current pain points and why the problem matters
+- Business constraints and limitations (non-technical)
 
 ### target-users.md
 
@@ -44,7 +44,7 @@ Only present files that are suitable for the project's type and level; omit the 
 
 ### owner-requirement.md
 
-- All requirements extracted from ideas.md
+- Non-problem requirements extracted from ideas.md (e.g., preferred language, framework, tooling)
 - Owner constraints for later stages
 - Organized by priority or category
 - Clear and actionable items

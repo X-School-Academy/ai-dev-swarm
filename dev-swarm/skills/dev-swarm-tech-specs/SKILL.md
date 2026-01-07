@@ -122,6 +122,7 @@ First read and understand rules: `dev-swarm/docs/research-specs-rules.md` then:
 
 2. **Create or update 07-tech-specs/README.md with refined requirements:**
    - Use the template in `references/README.md`
+   - Follow the checkbox rules: checked items apply after README approval; create file items only after approval; propose default checks; allow user changes
    - Populate only the template sections; do not add new headings such as Documents or Deliverables
    - Follow `dev-swarm/docs/stage-readme-guidelines.md` before drafting
    - Refer to `references/deliverables.md` to select deliverables by project type
