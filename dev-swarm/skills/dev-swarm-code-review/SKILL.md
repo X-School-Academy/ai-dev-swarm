@@ -20,7 +20,8 @@ This skill performs comprehensive code review and quality audits. As a Senior Co
 
 This skill requires:
 - Completed code implementation
-- `07-tech-specs/` - Engineering standards, including source-code-structure.md and coding-standards.md
+- `04-prd/` - Product Requirements Document (business requirements and acceptance criteria)
+- `07-tech-specs/` - Engineering standards and constraints
 - `features/` folder with feature design and implementation docs
 - `09-sprints/` folder with backlog that was implemented
 - `src/` folder (organized as defined in source-code-structure.md)
@@ -94,25 +95,29 @@ Follow these steps in order:
    - Identify backlog type (FEATURE/CHANGE/BUG/IMPROVE)
 
 3. **Read coding standards:**
-   - Read `07-tech-specs/coding-standards.md`
    - Understand code style requirements and conventions
-   - Read `07-tech-specs/source-code-structure.md`
+   - Read `dev-swarm/docs/source-code-structure.md` for general guidelines
    - Understand expected code organization
 
-4. **Read feature documentation (using feature-name as index):**
+4. **Read PRD and tech specs:**
+   - Read `04-prd/` (all markdown files) - Product requirements and acceptance criteria for the feature
+   - Read `07-tech-specs/` (all markdown files) - Technical specifications and engineering standards
+   - Understand the business context and technical constraints
+
+5. **Read feature documentation (using feature-name as index):**
    - Read `features/features-index.md` to confirm feature exists
    - Read `features/[feature-name].md` - Feature definition (intended behavior)
    - Read `features/flows/[feature-name].md` - User flows (review against these)
    - Read `features/contracts/[feature-name].md` - API contracts (verify implementation)
    - Read `features/impl/[feature-name].md` - Implementation notes (what was built)
 
-5. **Locate source code:**
+6. **Locate source code:**
    - Use `features/impl/[feature-name].md` to find code locations
    - Navigate to `src/[feature-name]/` directory
    - List all files mentioned in implementation docs
    - Identify files to review
 
-6. **Prepare for deep dive:**
+7. **Prepare for deep dive:**
    - Note areas requiring special attention (security, performance)
    - Consider dependencies and integration points
    - Review development notes from backlog.md

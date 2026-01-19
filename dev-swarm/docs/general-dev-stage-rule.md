@@ -29,9 +29,10 @@ Every stage folder must contain at least one of the following:
 ### Documentation Scaling
 
 - **Not Required**: `SKIP.md` - stage not needed for this project
-- **Simple**: `README.md` only - all information in one file
-- **Medium**: `README.md` + 2-4 focused files
+- **Simple**: `README.md` only - all information in one file (simple projects only have 3 stages: 04-prd, 07-tech-specs, and 09-sprints)
 - **Complex**: `README.md` + multiple files and diagrams
+
+**04-prd, 07-tech-specs, and 09-sprints are non-skippable stages**
 
 ### Writing Guidelines
 

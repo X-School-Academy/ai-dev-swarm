@@ -21,7 +21,8 @@ This skill creates and executes comprehensive test suites to verify code quality
 This skill requires:
 - Code implementation completed
 - Code review completed (recommended)
-- `07-tech-specs/` - Engineering standards, including source-code-structure.md and testing-standards.md
+- `04-prd/` - Product Requirements Document (business requirements and acceptance criteria)
+- `07-tech-specs/` - Engineering standards and constraints
 - `features/` folder with feature design and implementation docs
 - `09-sprints/` folder with backlog and test plan
 - `src/` folder (organized as defined in source-code-structure.md)
@@ -97,29 +98,33 @@ Follow these steps in order:
    - Identify success criteria
 
 3. **Read testing standards:**
-   - Read `07-tech-specs/testing-standards.md`
    - Understand test coverage requirements
    - Note test frameworks and conventions
 
-4. **Read feature documentation (using feature-name as index):**
+4. **Read PRD and tech specs:**
+   - Read `04-prd/` (all markdown files) - Product requirements and acceptance criteria for the feature
+   - Read `07-tech-specs/` (all markdown files) - Technical specifications and engineering standards
+   - Understand the business context and technical constraints
+
+5. **Read feature documentation (using feature-name as index):**
    - Read `features/features-index.md` to confirm feature exists
    - Read `features/[feature-name].md` - Feature definition (expected behavior)
    - Read `features/flows/[feature-name].md` - User flows (test these flows)
    - Read `features/contracts/[feature-name].md` - API contracts (test these contracts)
    - Read `features/impl/[feature-name].md` - Implementation notes (what was built)
 
-5. **Locate code and tests:**
+6. **Locate code and tests:**
    - Use `features/impl/[feature-name].md` to find code locations
    - Navigate to `src/` directory
    - Check existing test files in `src/` (locations from features/impl/[feature-name].md)
    - Identify files to test
 
-6. **Read sprint test plan:**
+7. **Read sprint test plan:**
    - Check `09-sprints/sprint/README.md` for sprint-level test plan
    - Understand end-user test scenarios
    - Note manual vs automated test requirements
 
-7. **Determine test scope:**
+8. **Determine test scope:**
    - What test types are needed?
    - Manual or automated or both?
    - Environment requirements?
