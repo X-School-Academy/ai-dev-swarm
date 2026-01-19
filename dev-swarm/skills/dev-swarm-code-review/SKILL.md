@@ -31,7 +31,7 @@ This skill requires:
 **CRITICAL:** This skill follows a strict feature-driven approach where `feature-name` is the index for the entire project:
 
 **For Each Backlog:**
-1. Read backlog.md from `09-sprints/[sprint]/[BACKLOG_TYPE]-[feature-name]-<sub-feature>.md`
+1. Read backlog.md from `09-sprints/SPRINT-XX-descriptive-name/[BACKLOG_TYPE]-XX-[feature-name]-<sub-feature>.md`
 2. Extract the `feature-name` from the backlog file name
 3. Read `features/features-index.md` to find the feature file
 4. Read feature documentation in this order:
@@ -47,26 +47,12 @@ This approach ensures AI reviewers can review large projects without reading all
 
 ## Your Roles in This Skill
 
-- **Project Manager**: Review implementation against backlog requirements and acceptance criteria. Verify sprint goals are being met. Identify any scope creep or missing requirements. Ensure deliverables are on track. Flag blockers or issues affecting delivery.
-- **Tech Manager (Architect)**: Review code against architectural principles and design patterns. Verify implementation follows system architecture. Identify architectural violations or anti-patterns. Ensure code maintains separation of concerns and modularity. Review component interactions and dependencies. Flag technical debt and architectural issues.
-- **Security Engineer**: Identify security vulnerabilities (OWASP Top 10). Review authentication and authorization implementations. Check for injection vulnerabilities (SQL, XSS, command injection). Verify secure data handling and encryption. Review input validation and sanitization. Identify secrets or credentials in code. Ensure security best practices are followed.
-- **Product Manager**: Review implementation against user stories and product requirements. Verify features deliver intended user value. Ensure implementation aligns with product vision. Review user-facing functionality for completeness. Flag any product requirement mismatches.
-- **Backend Developer (Engineer)**: Review server-side code quality and logic. Verify API implementation matches contracts. Check database query optimization. Review error handling and logging. Ensure coding standards are followed. Identify performance bottlenecks. Verify proper testing coverage.
-- **Frontend Developer**: Review client-side code quality and structure. Verify UI implementation matches design specs. Check component reusability and state management. Review accessibility compliance. Ensure responsive design principles. Identify performance issues (bundle size, rendering). Verify frontend testing coverage.
-- **Database Administrator**: Review database schema design and changes. Check query optimization and indexing strategies. Verify data integrity constraints. Review migration scripts for safety. Ensure proper relationship modeling. Identify performance issues in database access patterns.
-- **AI Engineer**: Review AI/ML model implementation and integration. Verify prompt engineering strategies are effective. Check vector database and embeddings implementation. Review model monitoring and evaluation logic. Ensure AI cost optimization and fallback handling. Review content generation and moderation system quality.
-- **Legal Advisor**: Review legal content for accuracy and compliance. Verify Terms of Service, Privacy Policy, and Cookie Policy completeness. Ensure compliance with regulations (GDPR, CCPA, etc.). Review disclaimers and liability statements. Verify age restriction and data handling implementations are legally sound.
-- **Customer Support**: Review FAQ pages, help documentation, and support content for clarity. Verify contact forms and troubleshooting guides are user-friendly. Review self-service support flows for effectiveness. Ensure knowledge base structure is intuitive. Review onboarding guides for completeness.
-- **Content Moderator**: Review content moderation workflow implementation. Verify moderation queue and dashboard functionality. Review community guidelines and content policy enforcement. Check user communication flows for moderation actions. Review appeals and dispute resolution process implementation.
-- **UI Designer**: Review visual layout and design implementation. Verify UI matches design specifications and mockups. Check branding and styling consistency. Review accessibility and mobile responsiveness. Verify navigation intuitiveness. Ensure design system compliance.
+See `dev-swarm/docs/general-dev-stage-rule.md` for role selection guidance.
 
 ## Role Communication
 
-As an expert in your assigned roles, you must announce your actions before performing them using the following format:
+See `dev-swarm/docs/general-dev-stage-rule.md` for the required role announcement format.
 
-As a {Role} [and {Role}, ...], I will {action description}
-
-This communication pattern ensures transparency and allows for human-in-the-loop oversight at key decision points.
 ## Review Workflow Overview
 
 The code review process:
@@ -93,10 +79,10 @@ Follow these steps in order:
 
    ```
    09-sprints/
-   └── sprint-name/
-       └── [BACKLOG_TYPE]-[feature-name]-<sub-feature>.md
+   └── SPRINT-XX-descriptive-name/
+       └── [BACKLOG_TYPE]-XX-[feature-name]-<sub-feature>.md
    ```
-   - Locate the sprint README at `09-sprints/[sprint-name]/README.md` for required progress log updates
+   - Locate the sprint README at `09-sprints/SPRINT-XX-descriptive-name/README.md` for required progress log updates
 
 2. **Read the backlog file:**
    - Understand original task requirements

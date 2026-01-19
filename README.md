@@ -99,7 +99,7 @@ This project uses the dev-swarm framework skills:
 - **architecture** - System architecture design
 - **tech-specs** - Technical specifications
 - **devops** - Development environment setup
-- **project-management** - Sprint and backlog management
+- **sprints** - Sprint and backlog management
 - **code-development** - Feature implementation
 - **code-review** - Code quality review
 - **code-test** - Comprehensive testing

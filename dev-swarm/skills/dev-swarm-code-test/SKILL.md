@@ -32,7 +32,7 @@ This skill requires:
 **CRITICAL:** This skill follows a strict feature-driven approach where `feature-name` is the index for the entire project:
 
 **For Each Backlog:**
-1. Read backlog.md from `09-sprints/[sprint]/[BACKLOG_TYPE]-[feature-name]-<sub-feature>.md`
+1. Read backlog.md from `09-sprints/SPRINT-XX-descriptive-name/[BACKLOG_TYPE]-XX-[feature-name]-<sub-feature>.md`
 2. Extract the `feature-name` from the backlog file name
 3. Read `features/features-index.md` to find the feature file
 4. Read feature documentation in this order:
@@ -48,23 +48,12 @@ This approach ensures AI testers can test large projects without reading all cod
 
 ## Your Roles in This Skill
 
-- **QA Engineer (Quality Assurance Specialist)**: Lead test planning and execution. Design comprehensive test plans covering all scenarios. Write automated tests (unit, integration, E2E, API). Execute manual tests for complex user flows. Test across different environments and devices. Identify edge cases and boundary conditions. Analyze logs and debugging test failures. Create clear bug reports with reproduction steps. Suggest quality improvements and preventive measures.
-- **Security Engineer**: Perform security testing and vulnerability scanning. Test authentication and authorization flows. Verify input validation and sanitization. Test for common vulnerabilities (OWASP Top 10). Review security configurations and access controls. Test encryption and data protection. Conduct penetration testing if applicable.
-- **Tech Manager (Architect)**: Verify implementation aligns with architectural principles. Test system integration and component interactions. Validate technical dependencies work as expected. Test scalability and performance against architectural requirements. Identify technical risks and architectural issues during testing.
-- **Product Manager**: Verify implementation meets acceptance criteria and user stories. Test user flows match expected behavior. Validate features deliver intended user value. Review test coverage against functional requirements. Ensure quality meets product standards before release.
-- **UX Designer**: Conduct usability testing and review user experience. Verify UI matches design specifications and mockups. Test responsive design across devices. Validate accessibility compliance (WCAG). Test user flows for intuitiveness. Identify UX issues or improvements.
-- **AI Engineer**: Test AI/ML model performance and accuracy. Validate prompt engineering and LLM integration. Test vector database and embeddings functionality. Verify model monitoring and evaluation pipelines. Test AI fallback strategies and error handling. Validate content generation quality and moderation effectiveness.
-- **Legal Advisor**: Verify legal content accuracy and compliance. Review Terms of Service, Privacy Policy, and Cookie Policy for completeness. Ensure compliance with regulations (GDPR, CCPA, etc.). Validate disclaimers and liability statements. Test age restriction enforcement and data handling flows.
-- **Customer Support**: Test FAQ pages, help documentation, and support flows. Verify contact forms and troubleshooting guides work correctly. Test self-service support functionality. Validate knowledge base navigation and search. Ensure onboarding guides are clear and effective.
-- **Content Moderator**: Test content moderation workflows and reporting mechanisms. Verify moderation queue and review dashboard functionality. Test community guidelines enforcement. Validate user communication flows for moderation actions. Test appeals and dispute resolution processes.
+See `dev-swarm/docs/general-dev-stage-rule.md` for role selection guidance.
 
 ## Role Communication
 
-As an expert in your assigned roles, you must announce your actions before performing them using the following format:
+See `dev-swarm/docs/general-dev-stage-rule.md` for the required role announcement format.
 
-As a {Role} [and {Role}, ...], I will {action description}
-
-This communication pattern ensures transparency and allows for human-in-the-loop oversight at key decision points.
 ## Test Types Overview
 
 This skill handles multiple test types:
@@ -93,10 +82,10 @@ Follow these steps in order:
 
    ```
    09-sprints/
-   └── sprint-name/
-       └── [BACKLOG_TYPE]-[feature-name]-<sub-feature>.md
+   └── SPRINT-XX-descriptive-name/
+       └── [BACKLOG_TYPE]-XX-[feature-name]-<sub-feature>.md
    ```
-   - Locate the sprint README at `09-sprints/[sprint-name]/README.md` for required progress log updates
+   - Locate the sprint README at `09-sprints/SPRINT-XX-descriptive-name/README.md` for required progress log updates
 
 2. **Read the backlog file:**
    - Understand requirements and acceptance criteria

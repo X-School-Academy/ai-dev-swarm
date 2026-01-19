@@ -1,6 +1,6 @@
 Please update the agent skills below:
 
-1. dev-swarm/skills/dev-swarm-project-management
+1. dev-swarm/skills/dev-swarm-sprints
 2. dev-swarm/skills/dev-swarm-code-development
 3. dev-swarm/skills/dev-swarm-code-test
 4. dev-swarm/skills/dev-swarm-code-review
@@ -9,7 +9,7 @@ Please update the agent skills below:
 
 When creating sprints and backlogs, the project manager should follow the rules defined in `dev-swarm/docs/sprint-backlog-guidelines.md` (include this file in the skill.md file as a required reference, so we can update the rules at any time).
 
-Update dev-swarm/skills/dev-swarm-project-management/templates/* to make them clear and meet these requirements.
+Update dev-swarm/skills/dev-swarm-sprints/templates/* to make them clear and meet these requirements.
 
 The development steps for each backlog are:
 

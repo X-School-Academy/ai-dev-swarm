@@ -11,19 +11,16 @@ Use it as the standard for diagram structure and rendering.
 
 ## Where Diagrams Live
 
-Each stage folder may include a `diagram/` directory:
+Each stage folder may include one `diagram-name/` or more directories:
 
 ```
-diagram/
+diagram-name/
   README.md
   index.html
-  file1.md
-  file1.html
-  file2.md
-  file3.html
   images/
-    mermaid1.png
-    mermaid2.png
+    diagram1.png
+    diagram2.png
+    ...
 ```
 
 Notes:
@@ -33,7 +30,7 @@ Notes:
 
 ## Creation Rules
 
-- All Mermaid source lives in markdown files in `diagram/`.
+- All Mermaid source lives in markdown files in `diagram-name/`.
 - Use agent skill `dev-swarm-mermaid` to render:
   - `images/*.png` for the html file for review
   - `.html` for human-in-the-loop feedback

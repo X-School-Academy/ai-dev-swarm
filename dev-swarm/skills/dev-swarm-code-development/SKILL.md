@@ -28,7 +28,7 @@ This skill requires:
 **CRITICAL:** This skill follows a strict feature-driven approach where `feature-name` is the index for the entire project:
 
 **For Each Backlog:**
-1. Read `backlog` from `09-sprints/[sprint]/[BACKLOG_TYPE]-[feature-name]-<sub-feature>.md`
+1. Read `backlog` from `09-sprints/SPRINT-XX-descriptive-name/[BACKLOG_TYPE]-XX-[feature-name]-<sub-feature>.md`
 2. Extract the `feature-name` from the backlog file name
 3. Read `features/features-index.md` to find the feature file
 4. Read feature documentation in this order:
@@ -44,25 +44,12 @@ This approach ensures AI developers can work on large projects without reading a
 
 ## Your Roles in This Skill
 
-- **Project Manager**: Ensure implementation aligns with backlog requirements and sprint goals. Track development progress and identify blockers. Coordinate with other roles when needed. Update backlog status during implementation. Ensure deliverables meet acceptance criteria.
-- **Tech Manager (Architect)**: Ensure implementation follows architectural principles and system design. Guide technical decisions and review integration points. Ensure code maintains separation of concerns and modularity. Verify technical dependencies are handled properly. Flag architectural risks during implementation.
-- **Product Manager**: Ensure implementation delivers intended user value and meets business goals. Verify features align with product vision. Review implementation against user stories and acceptance criteria. Provide input on user-facing functionality.
-- **Backend Developer (Engineer)**: Implement server-side functionality, APIs, and business logic. Design and optimize database queries. Handle authentication, authorization, and security. Integrate with third-party services. Write backend tests and API documentation. Follow coding standards and best practices for maintainability.
-- **Frontend Developer**: Implement user interfaces and client-side functionality. Build reusable components and ensure responsive design. Integrate with backend APIs and manage application state. Ensure accessibility and optimize client-side performance. Write frontend tests and follow UI/UX specifications.
-- **Database Administrator**: Design database schemas and optimize queries. Implement data migrations and manage schema changes. Ensure data integrity and proper indexing. Review database performance and suggest optimizations. Document database structures and relationships.
-- **AI Engineer**: Implement AI/ML model architecture and integration. Design prompt engineering strategies and LLM integration. Build vector database and embeddings functionality. Create model monitoring and evaluation pipelines. Handle AI costs, latency, and fallback strategies. Implement content generation and moderation systems.
-- **Legal Advisor**: Implement Terms of Service, Privacy Policy, Cookie Policy, and compliance pages. Ensure legal language is clear and compliant with regulations (GDPR, CCPA, etc.). Draft disclaimers and liability statements. Implement age restrictions and data handling documentation. Ensure content is legally accurate and complete.
-- **Customer Support**: Implement FAQ pages, contact us forms, help documentation, and troubleshooting guides. Write clear, user-friendly support content. Design self-service support flows. Create knowledge base structure. Write onboarding guides and tutorials.
-- **Content Moderator**: Implement content moderation workflows and reporting interfaces. Create moderation queue and review dashboards. Write community guidelines and content policies. Design user communication flows for moderation actions. Create appeals and dispute resolution interfaces.
-- **UI Designer**: Implement visual layout for all pages and components. Ensure consistent branding and styling. Make legal documents readable and accessible. Create intuitive navigation for help content. Design clear call-to-action buttons. Ensure mobile responsiveness and design system consistency.
+See `dev-swarm/docs/general-dev-stage-rule.md` for role selection guidance.
 
 ## Role Communication
 
-As an expert in your assigned roles, you must announce your actions before performing them using the following format:
+See `dev-swarm/docs/general-dev-stage-rule.md` for the required role announcement format.
 
-As a {Role} [and {Role}, ...], I will {action description}
-
-This communication pattern ensures transparency and allows for human-in-the-loop oversight at key decision points.
 ## Instructions
 
 Follow these steps in order for coding development:
@@ -77,10 +64,10 @@ Follow these steps in order for coding development:
 
    ```
    09-sprints/
-   └── sprint-name/
-       └── [BACKLOG_TYPE]-[feature-name]-<sub-feature>.md
+   └── SPRINT-XX-descriptive-name/
+       └── [BACKLOG_TYPE]-XX-[feature-name]-<sub-feature>.md
    ```
-   - Locate the sprint README at `09-sprints/[sprint-name]/README.md` for required progress log updates
+   - Locate the sprint README at `09-sprints/SPRINT-XX-descriptive-name/README.md` for required progress log updates
 
 2. **Read the backlog file:**
    - Understand task description and requirements
@@ -298,8 +285,8 @@ project-root/
 │   └── coding-standards.md                 # Coding conventions
 │
 ├── 09-sprints/
-│   └── sprint-name/
-│       └── [BACKLOG_TYPE]-[feature-name]-<sub-feature>.md # Backlog entry point
+│   └── SPRINT-XX-descriptive-name/
+│       └── [BACKLOG_TYPE]-XX-[feature-name]-<sub-feature>.md # Backlog entry point
 │
 ├── features/                                # Features knowledge base
 │   ├── features-index.md                   # Index of all features

@@ -535,20 +535,20 @@ Think of them as specialized AI assistants. Each skill is like hiring an expert 
 
 | Skill Name | What They Do | When to Use |
 |------------|--------------|-------------|
-| `dev-swarm-init-ideas` | Business analyst who organizes your ideas | Starting a new project |
-| `dev-swarm-market-research` | Market researcher who analyzes competitors | Validating your market |
-| `dev-swarm-personas` | UX researcher who defines users | Understanding your audience |
-| `dev-swarm-mvp` | Product manager who scopes MVP | Deciding what to build first |
-| `dev-swarm-prd` | Product manager who writes requirements | Documenting all features |
-| `dev-swarm-ux` | UX designer who creates user flows | Designing the experience |
-| `dev-swarm-architecture` | Software architect who designs system | Planning technical structure |
-| `dev-swarm-tech-specs` | Technical lead who chooses technology | Selecting tools and standards |
-| `dev-swarm-devops` | DevOps engineer who sets up tools | Preparing development |
-| `dev-swarm-project-management` | Project manager who plans sprints | Organizing development work |
+| `dev-swarm-stage-init-ideas` | Business analyst who organizes your ideas | Starting a new project |
+| `dev-swarm-stage-market-research` | Market researcher who analyzes competitors | Validating your market |
+| `dev-swarm-stage-personas` | UX researcher who defines users | Understanding your audience |
+| `dev-swarm-stage-mvp` | Product manager who scopes MVP | Deciding what to build first |
+| `dev-swarm-stage-prd` | Product manager who writes requirements | Documenting all features |
+| `dev-swarm-stage-ux` | UX designer who creates user flows | Designing the experience |
+| `dev-swarm-stage-architecture` | Software architect who designs system | Planning technical structure |
+| `dev-swarm-stage-tech-specs` | Technical lead who chooses technology | Selecting tools and standards |
+| `dev-swarm-stage-devops` | DevOps engineer who sets up tools | Preparing development |
+| `dev-swarm-stage-sprints` | Project manager who plans sprints | Organizing development work |
 | `dev-swarm-code-development` | Software engineer who writes code | Building features |
 | `dev-swarm-code-review` | Code reviewer who checks quality | Ensuring code quality |
 | `dev-swarm-code-test` | QA tester who tests everything | Verifying it works |
-| `dev-swarm-deployment` | DevOps engineer who deploys | Launching to production |
+| `dev-swarm-stage-deployment` | DevOps engineer who deploys | Launching to production |
 
 ---
 

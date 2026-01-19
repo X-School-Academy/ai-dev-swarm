@@ -23,7 +23,6 @@ project-root/
 │  ├─ problem-solution.md            # Clear problem definition and solution
 │  ├─ target-users.md                # Who has the problem (high-level), primary audience
 │  ├─ value-proposition.md           # Why this solution matters and the core benefits
-│  ├─ cost-budget.md                 # LLM Token budget per stage and estimated $ cost
 │  └─ owner-requirement.md           # From ideas.md + owner constraints for later stages
 │
 ├─ 01-market-research/               # Stage 1: validate problem + understand landscape

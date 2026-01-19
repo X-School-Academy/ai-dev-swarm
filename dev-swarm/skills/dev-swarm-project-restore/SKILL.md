@@ -15,17 +15,11 @@ This skill restores an existing project to the workspace root from an archive, r
 
 ## Your Roles in This Skill
 
-- **Project Manager**: Coordinate the restore flow, confirm the target archive, and ensure the workspace is consistent after restore.
-- **DevOps Engineer**: Handle git operations, submodule re-attachment, and repository integrity.
-- **Technical Writer**: Document decisions and confirm restore outcomes for human approval.
+See `dev-swarm/docs/general-dev-stage-rule.md` for role selection guidance.
 
 ## Role Communication
 
-As an expert in your assigned roles, you must announce your actions before performing them using the following format:
-
-As a {Role} [and {Role}, ...], I will {action description}
-
-This communication pattern ensures transparency and allows for human-in-the-loop oversight at key decision points.
+See `dev-swarm/docs/general-dev-stage-rule.md` for the required role announcement format.
 
 ## Instructions
 
