@@ -42,7 +42,7 @@ Read all files to understand the project:
 
 **General Rules:** See `dev-swarm/docs/general-dev-stage-rule.md` → "Create Stage Proposal Rules" section.
 
-Create the file `06-architecture/README.md` with the following content:
+If this stage is skipped (has SKIP.md), execute the next non-skipped stage's agent skill. Otherwise, create the file `06-architecture/README.md` with the following content:
 
 #### 2.1 Stage Goal
 
