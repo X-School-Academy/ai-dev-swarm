@@ -1,0 +1,24 @@
+description = "Process all backlogs in a sprint with development, review, and test"
+prompt = """
+Process all backlogs in a sprint through the complete workflow: development, review, and test.
+
+Sprint folder location: @09-sprints/SPRINT-*{{args}}*/
+
+Workflow for each backlog in the sprint:
+1. Use agent skill `dev-swarm-code-development` to implement the backlog
+2. Use agent skill `dev-swarm-code-review` to review the implementation
+3. Use agent skill `dev-swarm-code-test` to test the implementation
+
+Sprint name: {{args}}
+
+Instructions:
+1. Locate the sprint folder matching the argument (e.g., `SPRINT-01-user-auth` for argument `01` or `user-auth`)
+2. Read the sprint's `README.md` to understand the sprint goal and backlog order
+3. List all backlog files in the sprint folder (files matching `FEATURE-*.md`, `CHANGE-*.md`, `BUG-*.md`, `IMPROVE-*.md`)
+4. Process each backlog in sequence (respect dependencies noted in README.md)
+5. For each backlog, execute the complete dev → review → test workflow
+6. Update the sprint README.md status after each backlog is completed
+7. Mark the sprint as completed when all backlogs are done
+
+Please locate the sprint folder and execute the complete workflow for all backlogs.
+"""

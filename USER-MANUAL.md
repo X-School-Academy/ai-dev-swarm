@@ -629,7 +629,7 @@ Slash commands are shortcuts to trigger specific actions. Think of them as quick
 
 ### Available Commands
 
-**All 7 slash commands:**
+**All 8 slash commands:**
 
 | Command | Claude Code / Copilot / opencode | OpenAI Codex | Description |
 |---------|----------------------------------|--------------|-------------|
@@ -640,6 +640,7 @@ Slash commands are shortcuts to trigger specific actions. Think of them as quick
 | review | `/review` | `/prompts:review` | Review code quality |
 | test | `/test` | `/prompts:test` | Test a feature |
 | backlog | `/backlog` | `/prompts:backlog` | Complete workflow: dev → review → test |
+| sprint | `/sprint` | `/prompts:sprint` | Process all backlogs in a sprint |
 
 ---
 
@@ -755,6 +756,32 @@ ln -s /Users/yourname/projects/ai-dev-swarm/.claude/commands ~/.codex/prompts
 **When to use:** When you want complete end-to-end processing of a feature
 
 **This is the most common command during development!**
+
+---
+
+#### `/sprint [sprint-name]`
+**Purpose:** Process all backlogs in a sprint through the complete workflow
+
+**Examples:**
+```
+# Claude Code / Copilot / opencode:
+/sprint 01            → Process all backlogs in sprint 01
+/sprint user-auth     → Process all backlogs in user-auth sprint
+
+# OpenAI Codex:
+/prompts:sprint 01
+/prompts:sprint user-auth
+```
+
+**When to use:** When you want to process an entire sprint's worth of features at once
+
+**What it does:**
+1. Locates the sprint folder (e.g., `SPRINT-01-user-auth`)
+2. Reads the sprint README.md for backlog order and dependencies
+3. For each backlog in the sprint, runs: dev → review → test
+4. Updates sprint status as backlogs complete
+
+**This is ideal for processing multiple related features in sequence!**
 
 ---
 
