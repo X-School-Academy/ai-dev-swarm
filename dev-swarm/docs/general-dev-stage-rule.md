@@ -8,7 +8,7 @@ Check if `00-init-ideas/` has either `SKIP.md` or `README.md`. If neither exists
 
 1. **Read `ideas.md`** (DO NOT update this file)
 2. **Identify all excluded/disabled stages** from the Development Stages section
-3. **Create `SKIP.md`** in each excluded stage folder (if not already exists), with reason: "Stage excluded as per ideas.md configuration"
+3. **Create `SKIP.md`** in each excluded stage folder (if it doesn't already exist), with reason: "Stage excluded as per ideas.md configuration"
 
 **Exception**: Stages 04-prd, 07-tech-specs, and 09-sprints are non-skippable and must always execute regardless of ideas.md settings. Stage 00-init-ideas is skippable.
 
@@ -42,6 +42,7 @@ Every stage folder must contain at least one of the following:
 
 ### Writing Guidelines
 
+- Avoid using Markdown tables in any files
 - Keep docs small and simple
 - Avoid over-documentation
 - Write for experts, not beginners
