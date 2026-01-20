@@ -33,20 +33,38 @@ Read the ideas file to understand the user's initial concept:
 
 - `ideas.md`
 
-### Step 2: Create Stage Proposal
+### Step 2: Initialize Project Stage Structure
+
+**Process stage exclusions from ideas.md:**
+
+1. Check if `ideas.md` has a "Development Stages" section:
+   - If yes: Identify all unchecked stages (marked with `[ ]`)
+   - If no: Skip this step - assume all stages are enabled by default
+
+2. For each excluded/skipped stage (except non-skippable stages: 00, 04, 07, 09):
+   - Create the stage folder if it doesn't exist
+   - Create `SKIP.md` in that folder (if it doesn't already exist)
+   - Content: "Stage excluded as per ideas.md configuration"
+
+**Note:** Non-skippable stages (00-init-ideas, 04-prd, 07-tech-specs, 09-sprints) cannot have SKIP.md files.
+
+**Stage list reference:**
+- 00-init-ideas, 01-market-research, 02-personas, 03-mvp, 04-prd, 05-ux, 06-architecture, 07-tech-specs, 08-devops, 09-sprints, 10-deployment
+
+### Step 3: Create Stage Proposal
 
 **General Rules:** See `dev-swarm/docs/general-dev-stage-rule.md` → "Create Stage Proposal Rules" section.
 
-If this stage is skipped (has SKIP.md), execute the next non-skipped stage's agent skill. Otherwise, create the file `00-init-ideas/README.md` with the following content:
+Create the file `00-init-ideas/README.md` with the following content:
 
-#### 2.1 Stage Goal
+#### 3.1 Stage Goal
 
 Brief the goal in 2-3 paragraphs:
 - What this stage aims to achieve (transforming raw ideas into actionable business requirements)
 - Why clarifying the problem and solution is critical before proceeding
 - What deliverables will be produced
 
-#### 2.2 File Selection
+#### 3.2 File Selection
 
 Select files from these options based on project needs:
 
@@ -72,15 +90,15 @@ For each selected file, provide:
 - Why it's essential for this project
 - Key information it should include
 
-#### 2.3 Request User Approval
+#### 3.3 Request User Approval
 
 Ask user: "Please check the Stage Proposal in `00-init-ideas/README.md`. Update it directly or tell me how to update it."
 
-### Step 3: Execute Stage Plan
+### Step 4: Execute Stage Plan
 
 Once user approves `00-init-ideas/README.md`:
 
-#### 3.1 Create All Planned Files
+#### 4.1 Create All Planned Files
 
 Create each file listed in the approved README:
 
@@ -93,27 +111,27 @@ Create each file listed in the approved README:
 - Ensure problem statement is specific and measurable
 - Define target users with enough detail for persona creation in Stage 02
 
-#### 3.2 Request User Approval for Files
+#### 4.2 Request User Approval for Files
 
 After creating all files:
 - Provide a summary of what was created
 - Highlight key insights and clarifications made
 - Ask: "Please review the init-ideas documents. You can update or delete files, or let me know how to modify them."
 
-### Step 4: Finalize Stage
+### Step 5: Finalize Stage
 
 Once user approves all files:
 
-#### 4.1 Documentation Finalization
+#### 5.1 Documentation Finalization
 - Sync `00-init-ideas/README.md` to remove any deleted files
 - Ensure all files are complete and well-formatted
 - Check that all diagrams render correctly
 
-#### 4.2 Prepare for Next Stage
+#### 5.2 Prepare for Next Stage
 - Summarize key findings for reference in later stages
 - Identify areas that need market research validation (Stage 01)
 
-#### 4.3 Announce Completion
+#### 5.3 Announce Completion
 
 Inform user:
 - "Stage 00 (Init Ideas) is complete"

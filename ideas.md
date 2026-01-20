@@ -26,7 +26,7 @@ Select ONE option:
 Uncheck the stages you want to exclude:
 
 ### Discovery & Planning
-- [ ] **00-init-ideas** - Transform raw ideas into structured business requirements
+- **00-init-ideas** - Transform raw ideas into structured business requirements
 - [ ] **01-market-research** - Competitive analysis and market validation
 - [ ] **02-personas** - User personas, stories, and journey maps
 
@@ -48,7 +48,7 @@ Uncheck the stages you want to exclude:
 ### Release
 - [ ] **10-deployment** - Production deployment, monitoring, launch
 
-**04-prd, 07-tech-specs, and 09-sprints are non-skippable stages**
+**00-init-ideas, 04-prd, 07-tech-specs, and 09-sprints are non-skippable stages**
 ---
 
 ## Problem Statement
