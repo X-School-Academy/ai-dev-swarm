@@ -36,4 +36,6 @@ Notes:
 AI means to use AI agent's headless mode
 code means to use Python or Next.js frontend code 
 
-frontend use next.js at dev-swarm/js_scripts/webui, and backend use python at dev-swarm/py_scripts/webui (using dev-swarm/.env for config)
+frontend use next.js at dev-swarm/js_scripts/webui (root: dev-swarm/js_scripts using pnpm), and backend use python at dev-swarm/py_scripts/webui (root: dev-swarm/py_scripts using uv); 
+
+both using dev-swarm/.env for config
