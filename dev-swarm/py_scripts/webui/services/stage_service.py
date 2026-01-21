@@ -225,3 +225,33 @@ class StageService:
             if backlog:
                 backlogs.append(backlog)
         return backlogs
+
+    def update_backlog_status(
+        self,
+        sprint_name: str,
+        backlog_id: str,
+        status: str,
+    ) -> tuple[bool, str]:
+        """Update a backlog status line in its markdown file."""
+        sprint_path = self.project_root / "09-sprints" / sprint_name
+        backlog_path = sprint_path / f"{backlog_id}.md"
+        if not backlog_path.exists():
+            return False, f"Backlog {backlog_id} not found"
+
+        content = backlog_path.read_text()
+        lines = content.splitlines()
+        updated = False
+        new_lines = []
+
+        for line in lines:
+            if line.strip().lower().startswith("status:"):
+                new_lines.append(f"Status: {status}")
+                updated = True
+            else:
+                new_lines.append(line)
+
+        if not updated:
+            new_lines.append(f"Status: {status}")
+
+        backlog_path.write_text("\n".join(new_lines) + "\n")
+        return True, "Status updated"

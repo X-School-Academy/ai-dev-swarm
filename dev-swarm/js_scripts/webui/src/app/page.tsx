@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { api, StageInfo } from '@/lib/api';
 import { StageCard } from '@/components/StageCard';
 import { Rocket, FileText, AlertCircle } from 'lucide-react';
@@ -12,23 +12,26 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    async function loadData() {
-      try {
-        const [stagesData, ideasData] = await Promise.all([
-          api.stages.list(),
-          api.ideas.getCurrent(),
-        ]);
-        setStages(stagesData);
-        setHasIdeas(ideasData.exists);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to load data');
-      } finally {
-        setLoading(false);
-      }
+  const loadData = useCallback(async () => {
+    try {
+      setLoading(true);
+      const [stagesData, ideasData] = await Promise.all([
+        api.stages.list(),
+        api.ideas.getCurrent(),
+      ]);
+      setStages(stagesData);
+      setHasIdeas(ideasData.exists);
+      setError(null);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to load data');
+    } finally {
+      setLoading(false);
     }
-    loadData();
   }, []);
+
+  useEffect(() => {
+    loadData();
+  }, [loadData]);
 
   if (loading) {
     return (
@@ -41,9 +44,15 @@ export default function Home() {
   if (error) {
     return (
       <div className="flex items-center justify-center h-full">
-        <div className="text-red-500 flex items-center gap-2">
+        <div className="text-red-500 flex items-center gap-3">
           <AlertCircle size={20} />
           {error}
+          <button
+            onClick={loadData}
+            className="text-sm px-2 py-1 border border-red-300 rounded hover:bg-red-50 transition"
+          >
+            Retry
+          </button>
         </div>
       </div>
     );

@@ -51,6 +51,9 @@ class AgentService:
     ) -> AsyncGenerator[AgentOutput, None]:
         """Execute an AI agent and stream output."""
         working_dir = Path(execution.working_dir) if execution.working_dir else self.project_root
+        loop = asyncio.get_running_loop()
+        start_time = loop.time()
+        timeout = execution.timeout
 
         try:
             cmd = self._get_agent_command(execution.agent, execution.prompt)
@@ -69,50 +72,49 @@ class AgentService:
 
             self._active_processes[execution_id] = process
 
-            # Read stdout and stderr concurrently
-            async def read_stream(stream, stream_type: str):
+            queue: asyncio.Queue[Optional[AgentOutput]] = asyncio.Queue()
+            stream_done = 0
+
+            async def read_stream(stream: asyncio.StreamReader, stream_type: str):
+                nonlocal stream_done
                 while True:
                     line = await stream.readline()
                     if not line:
                         break
-                    yield AgentOutput(
-                        type=stream_type,
-                        content=line.decode().rstrip(),
+                    await queue.put(
+                        AgentOutput(
+                            type=stream_type,
+                            content=line.decode().rstrip(),
+                        )
                     )
+                stream_done += 1
+                await queue.put(None)
 
-            # Create tasks for both streams
-            stdout_task = asyncio.create_task(self._collect_stream(process.stdout, "stdout"))
-            stderr_task = asyncio.create_task(self._collect_stream(process.stderr, "stderr"))
+            stdout_task = asyncio.create_task(read_stream(process.stdout, "stdout"))
+            stderr_task = asyncio.create_task(read_stream(process.stderr, "stderr"))
 
-            # Process output as it comes
-            done = set()
-            pending = {stdout_task, stderr_task}
-
-            while pending:
-                newly_done, pending = await asyncio.wait(
-                    pending,
-                    timeout=0.1,
-                    return_when=asyncio.FIRST_COMPLETED,
-                )
-                for task in newly_done:
-                    outputs = task.result()
-                    for output in outputs:
-                        yield output
-                    done.add(task)
-
-                # Check if process is still running
-                if process.returncode is not None:
+            while True:
+                if timeout and loop.time() - start_time > timeout:
+                    process.terminate()
+                    yield AgentOutput(
+                        type="error",
+                        content=f"Agent execution timed out after {timeout} seconds",
+                    )
                     break
 
-            # Wait for process to complete
-            try:
-                await asyncio.wait_for(process.wait(), timeout=execution.timeout)
-            except asyncio.TimeoutError:
-                process.terminate()
-                yield AgentOutput(
-                    type="error",
-                    content=f"Agent execution timed out after {execution.timeout} seconds",
-                )
+                if process.returncode is not None and stream_done >= 2 and queue.empty():
+                    break
+
+                try:
+                    item = await asyncio.wait_for(queue.get(), timeout=0.1)
+                except asyncio.TimeoutError:
+                    continue
+
+                if item is None:
+                    continue
+                yield item
+
+            await asyncio.gather(stdout_task, stderr_task, return_exceptions=True)
 
             # Final status
             if process.returncode == 0:
@@ -132,25 +134,6 @@ class AgentService:
             yield AgentOutput(type="error", content=str(e))
         finally:
             self._active_processes.pop(execution_id, None)
-
-    async def _collect_stream(
-        self,
-        stream: asyncio.StreamReader,
-        stream_type: str,
-    ) -> list[AgentOutput]:
-        """Collect all output from a stream."""
-        outputs = []
-        while True:
-            line = await stream.readline()
-            if not line:
-                break
-            outputs.append(
-                AgentOutput(
-                    type=stream_type,
-                    content=line.decode().rstrip(),
-                )
-            )
-        return outputs
 
     def interrupt_execution(self, execution_id: str) -> bool:
         """Interrupt a running agent execution."""

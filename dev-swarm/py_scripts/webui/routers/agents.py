@@ -1,7 +1,8 @@
 """AI Agent execution API endpoints."""
 
 import uuid
-from fastapi import APIRouter, HTTPException, Depends
+from datetime import datetime
+from fastapi import APIRouter, HTTPException, Depends, Query
 from sse_starlette.sse import EventSourceResponse
 import json
 
@@ -22,15 +23,20 @@ def get_agent_service(settings: Settings = Depends(get_settings)) -> AgentServic
     return _agent_service
 
 
-@router.post("/execute")
-async def execute_agent(
+def _build_event_stream(
     execution: AgentExecution,
-    service: AgentService = Depends(get_agent_service),
-):
-    """Execute an AI agent and stream output via SSE."""
+    service: AgentService,
+) -> EventSourceResponse:
     execution_id = str(uuid.uuid4())
 
     async def event_generator():
+        yield {
+            "event": "meta",
+            "data": json.dumps({
+                "execution_id": execution_id,
+                "timestamp": datetime.now().isoformat(),
+            }),
+        }
         async for output in service.execute_agent(execution, execution_id):
             yield {
                 "event": output.type,
@@ -41,6 +47,33 @@ async def execute_agent(
             }
 
     return EventSourceResponse(event_generator())
+
+
+@router.get("/execute")
+async def execute_agent_get(
+    agent: str = Query(...),
+    prompt: str = Query(...),
+    working_dir: str | None = Query(None),
+    timeout: int = Query(300),
+    service: AgentService = Depends(get_agent_service),
+):
+    """Execute an AI agent and stream output via SSE (GET for EventSource)."""
+    execution = AgentExecution(
+        agent=agent,
+        prompt=prompt,
+        working_dir=working_dir,
+        timeout=timeout,
+    )
+    return _build_event_stream(execution, service)
+
+
+@router.post("/execute")
+async def execute_agent_post(
+    execution: AgentExecution,
+    service: AgentService = Depends(get_agent_service),
+):
+    """Execute an AI agent and stream output via SSE."""
+    return _build_event_stream(execution, service)
 
 
 @router.post("/execute/{execution_id}/interrupt")

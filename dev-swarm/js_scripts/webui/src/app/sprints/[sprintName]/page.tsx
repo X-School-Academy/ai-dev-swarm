@@ -2,15 +2,8 @@
 
 import { useEffect, useState, useCallback } from 'react';
 import { useParams } from 'next/navigation';
-import {
-  api,
-  SprintInfo,
-  BacklogItem,
-  AgentOutput,
-  executeAgent,
-} from '@/lib/api';
+import { api, SprintInfo, BacklogItem } from '@/lib/api';
 import { BacklogCard } from '@/components/BacklogCard';
-import { TerminalOutput } from '@/components/TerminalOutput';
 import { MarkdownEditor } from '@/components/MarkdownEditor';
 import { AlertCircle, ArrowLeft, FolderKanban } from 'lucide-react';
 import Link from 'next/link';
@@ -23,8 +16,7 @@ export default function SprintDetailPage() {
   const [sprint, setSprint] = useState<SprintInfo | null>(null);
   const [selectedBacklog, setSelectedBacklog] = useState<BacklogItem | null>(null);
   const [backlogContent, setBacklogContent] = useState('');
-  const [outputs, setOutputs] = useState<AgentOutput[]>([]);
-  const [isExecuting, setIsExecuting] = useState(false);
+  const [isUpdating, setIsUpdating] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [filter, setFilter] = useState<string | null>(null);
@@ -59,31 +51,15 @@ export default function SprintDetailPage() {
     action: 'dev' | 'review' | 'test'
   ) => {
     setSelectedBacklog(backlog);
-    setOutputs([]);
-    setIsExecuting(true);
+    setIsUpdating(true);
 
-    const skillMap = {
-      dev: 'dev-swarm-code-development',
-      review: 'dev-swarm-code-review',
-      test: 'dev-swarm-code-test',
-    };
-
-    const prompt = `/skill ${skillMap[action]} ${backlog.file_path}`;
-
-    executeAgent(
-      'claude',
-      prompt,
-      undefined,
-      (output) => setOutputs((prev) => [...prev, output]),
-      (err) => {
-        setError(err.message);
-        setIsExecuting(false);
-      },
-      () => {
-        setIsExecuting(false);
-        loadSprint();
-      }
-    );
+    api.sprints
+      .updateBacklogStatus(sprintName, backlog.id, action)
+      .then(() => loadSprint())
+      .catch((err) => {
+        setError(err instanceof Error ? err.message : 'Failed to update backlog status');
+      })
+      .finally(() => setIsUpdating(false));
   };
 
   const handleBacklogSave = async (content: string) => {
@@ -204,33 +180,20 @@ export default function SprintDetailPage() {
               <BacklogCard
                 backlog={backlog}
                 onAction={(action) => handleBacklogAction(backlog, action)}
-                isExecuting={isExecuting && selectedBacklog?.id === backlog.id}
+                isExecuting={isUpdating && selectedBacklog?.id === backlog.id}
               />
             </div>
           ))}
         </div>
 
-        {/* Editor / Terminal */}
+        {/* Editor */}
         <div className="flex-1 flex flex-col gap-4 overflow-hidden">
-          {/* Editor */}
           {selectedBacklog && (
             <div className="flex-1 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
               <MarkdownEditor
                 value={backlogContent}
                 onChange={setBacklogContent}
                 onSave={handleBacklogSave}
-              />
-            </div>
-          )}
-
-          {/* Terminal */}
-          {(isExecuting || outputs.length > 0) && (
-            <div className="h-64 flex-shrink-0">
-              <TerminalOutput
-                outputs={outputs}
-                isRunning={isExecuting}
-                onInterrupt={() => {}}
-                onTerminate={() => setIsExecuting(false)}
               />
             </div>
           )}

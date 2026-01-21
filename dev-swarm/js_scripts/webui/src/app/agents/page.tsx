@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { api, AgentOutput, executeAgent } from '@/lib/api';
 import { TerminalOutput } from '@/components/TerminalOutput';
-import { AlertCircle, Bot, Play, Send } from 'lucide-react';
+import { AlertCircle, Bot, Play } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface Agent {
@@ -18,6 +18,7 @@ export default function AgentsPage() {
   const [prompt, setPrompt] = useState('');
   const [outputs, setOutputs] = useState<AgentOutput[]>([]);
   const [isExecuting, setIsExecuting] = useState(false);
+  const [executionId, setExecutionId] = useState<string | null>(null);
   const [activeExecutions, setActiveExecutions] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -56,6 +57,7 @@ export default function AgentsPage() {
     setOutputs([]);
     setIsExecuting(true);
     setError(null);
+    setExecutionId(null);
 
     cleanupRef.current = executeAgent(
       selectedAgent,
@@ -69,11 +71,20 @@ export default function AgentsPage() {
       () => {
         setIsExecuting(false);
         setPrompt('');
-      }
+        setExecutionId(null);
+      },
+      (meta) => setExecutionId(meta.execution_id)
     );
   };
 
-  const handleInterrupt = () => {
+  const handleInterrupt = async () => {
+    if (executionId) {
+      try {
+        await api.agents.interrupt(executionId);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Failed to interrupt execution');
+      }
+    }
     if (cleanupRef.current) {
       cleanupRef.current();
       cleanupRef.current = null;
@@ -87,9 +98,17 @@ export default function AgentsPage() {
       },
     ]);
     setIsExecuting(false);
+    setExecutionId(null);
   };
 
-  const handleTerminate = () => {
+  const handleTerminate = async () => {
+    if (executionId) {
+      try {
+        await api.agents.terminate(executionId);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Failed to terminate execution');
+      }
+    }
     if (cleanupRef.current) {
       cleanupRef.current();
       cleanupRef.current = null;
@@ -103,6 +122,7 @@ export default function AgentsPage() {
       },
     ]);
     setIsExecuting(false);
+    setExecutionId(null);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -196,23 +216,8 @@ export default function AgentsPage() {
       </div>
 
       {/* Quick Actions */}
-      <div className="mb-4 flex items-center gap-2">
-        <span className="text-sm text-gray-500">Quick:</span>
-        {[
-          { label: '/stage 00', prompt: '/stage 00' },
-          { label: '/sprint', prompt: '/sprint' },
-          { label: '/backlog', prompt: '/backlog' },
-          { label: '/commit', prompt: '/commit' },
-        ].map((action) => (
-          <button
-            key={action.label}
-            onClick={() => setPrompt(action.prompt)}
-            disabled={isExecuting}
-            className="px-3 py-1 text-sm bg-gray-100 dark:bg-gray-800 rounded hover:bg-gray-200 dark:hover:bg-gray-700 transition"
-          >
-            {action.label}
-          </button>
-        ))}
+      <div className="mb-4 text-sm text-gray-500">
+        Use the Stages and Sprints sections for guided workflows.
       </div>
 
       {/* Output */}

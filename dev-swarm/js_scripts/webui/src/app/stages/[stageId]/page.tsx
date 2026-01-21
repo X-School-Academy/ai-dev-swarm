@@ -1,8 +1,14 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
 import { useParams } from 'next/navigation';
-import { api, StageInfo, FileInfo, AgentOutput, executeAgent } from '@/lib/api';
+import {
+  api,
+  StageInfo,
+  FileInfo,
+  AgentOutput,
+  executeStageAction,
+} from '@/lib/api';
 import { MarkdownEditor } from '@/components/MarkdownEditor';
 import { TerminalOutput } from '@/components/TerminalOutput';
 import {
@@ -15,6 +21,12 @@ import {
 } from 'lucide-react';
 import { cn, getStageStatusColor } from '@/lib/utils';
 
+interface Agent {
+  name: string;
+  description: string;
+  command: string;
+}
+
 export default function StageDetailPage() {
   const params = useParams();
   const stageId = params.stageId as string;
@@ -25,14 +37,22 @@ export default function StageDetailPage() {
   const [fileContent, setFileContent] = useState('');
   const [outputs, setOutputs] = useState<AgentOutput[]>([]);
   const [isExecuting, setIsExecuting] = useState(false);
+  const [agents, setAgents] = useState<Agent[]>([]);
+  const [selectedAgent, setSelectedAgent] = useState('claude');
+  const [executionId, setExecutionId] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
+  const cleanupRef = useRef<(() => void) | null>(null);
 
   const loadStage = useCallback(async () => {
     try {
-      const stageData = await api.stages.get(stageId);
+      const [stageData, agentsData] = await Promise.all([
+        api.stages.get(stageId),
+        api.agents.getAvailable(),
+      ]);
       setStage(stageData);
+      setAgents(agentsData.agents);
 
       if (stageData.folder_exists) {
         const folderName = `${stageId}-${stageData.name}`;
@@ -48,6 +68,11 @@ export default function StageDetailPage() {
 
   useEffect(() => {
     loadStage();
+    return () => {
+      if (cleanupRef.current) {
+        cleanupRef.current();
+      }
+    };
   }, [loadStage]);
 
   const handleFileSelect = async (filePath: string) => {
@@ -85,17 +110,17 @@ export default function StageDetailPage() {
     }
   };
 
-  const handleStartStage = () => {
+  const handleGenerateReadme = () => {
     if (!stage) return;
 
     setOutputs([]);
     setIsExecuting(true);
+    setExecutionId(null);
 
-    const prompt = `/stage ${stageId}`;
-    const cleanup = executeAgent(
-      'claude',
-      prompt,
-      undefined,
+    cleanupRef.current = executeStageAction(
+      stageId,
+      'readme',
+      selectedAgent,
       (output) => setOutputs((prev) => [...prev, output]),
       (err) => {
         setError(err.message);
@@ -104,11 +129,67 @@ export default function StageDetailPage() {
       () => {
         setIsExecuting(false);
         loadStage();
-      }
+        setExecutionId(null);
+      },
+      (meta) => setExecutionId(meta.execution_id)
     );
+  };
 
-    // Store cleanup function
-    return cleanup;
+  const handleGenerateStageFiles = () => {
+    if (!stage) return;
+
+    setOutputs([]);
+    setIsExecuting(true);
+    setExecutionId(null);
+
+    cleanupRef.current = executeStageAction(
+      stageId,
+      'files',
+      selectedAgent,
+      (output) => setOutputs((prev) => [...prev, output]),
+      (err) => {
+        setError(err.message);
+        setIsExecuting(false);
+      },
+      () => {
+        setIsExecuting(false);
+        loadStage();
+        setExecutionId(null);
+      },
+      (meta) => setExecutionId(meta.execution_id)
+    );
+  };
+
+  const handleInterrupt = async () => {
+    if (executionId) {
+      try {
+        await api.agents.interrupt(executionId);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Failed to interrupt execution');
+      }
+    }
+    if (cleanupRef.current) {
+      cleanupRef.current();
+      cleanupRef.current = null;
+    }
+    setIsExecuting(false);
+    setExecutionId(null);
+  };
+
+  const handleTerminate = async () => {
+    if (executionId) {
+      try {
+        await api.agents.terminate(executionId);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Failed to terminate execution');
+      }
+    }
+    if (cleanupRef.current) {
+      cleanupRef.current();
+      cleanupRef.current = null;
+    }
+    setIsExecuting(false);
+    setExecutionId(null);
   };
 
   if (loading) {
@@ -129,6 +210,11 @@ export default function StageDetailPage() {
       </div>
     );
   }
+
+  const hasReadme = files.some((file) => file.name === 'README.md');
+  const selectedFileInfo = files.find((file) => file.path === selectedFile);
+  const isHtmlFile = selectedFileInfo?.is_html;
+  const isMarkdownFile = selectedFileInfo?.is_markdown;
 
   return (
     <div className="flex flex-col h-full">
@@ -157,6 +243,18 @@ export default function StageDetailPage() {
         </div>
 
         <div className="flex items-center gap-2">
+          <select
+            value={selectedAgent}
+            onChange={(e) => setSelectedAgent(e.target.value)}
+            disabled={isExecuting}
+            className="px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-900 text-sm"
+          >
+            {agents.map((agent) => (
+              <option key={agent.name} value={agent.name}>
+                {agent.name} - {agent.description}
+              </option>
+            ))}
+          </select>
           {stage.status === 'pending' && stage.skippable && (
             <button
               onClick={handleSkipStage}
@@ -166,20 +264,35 @@ export default function StageDetailPage() {
               Skip Stage
             </button>
           )}
-          {(stage.status === 'pending' || stage.status === 'in_progress') && (
-            <button
-              onClick={handleStartStage}
-              disabled={isExecuting}
-              className={cn(
-                'flex items-center gap-2 px-4 py-2 rounded-lg transition',
-                isExecuting
-                  ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                  : 'bg-blue-600 text-white hover:bg-blue-700'
-              )}
-            >
-              <Play size={18} />
-              {isExecuting ? 'Running...' : 'Start Stage'}
-            </button>
+          {stage.status !== 'skipped' && (
+            <>
+              <button
+                onClick={handleGenerateReadme}
+                disabled={isExecuting}
+                className={cn(
+                  'flex items-center gap-2 px-4 py-2 rounded-lg transition',
+                  isExecuting
+                    ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                    : 'bg-blue-600 text-white hover:bg-blue-700'
+                )}
+              >
+                <Play size={18} />
+                {isExecuting ? 'Running...' : 'Generate README'}
+              </button>
+              <button
+                onClick={handleGenerateStageFiles}
+                disabled={isExecuting || !hasReadme}
+                className={cn(
+                  'flex items-center gap-2 px-4 py-2 rounded-lg transition',
+                  isExecuting
+                    ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                    : 'bg-emerald-600 text-white hover:bg-emerald-700'
+                )}
+              >
+                <Play size={18} />
+                {isExecuting ? 'Running...' : 'Generate Stage Files'}
+              </button>
+            </>
           )}
         </div>
       </div>
@@ -240,11 +353,34 @@ export default function StageDetailPage() {
           {/* Editor */}
           {selectedFile && (
             <div className="flex-1 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
-              <MarkdownEditor
-                value={fileContent}
-                onChange={setFileContent}
-                onSave={handleFileSave}
-              />
+              {isMarkdownFile && (
+                <MarkdownEditor
+                  value={fileContent}
+                  onChange={setFileContent}
+                  onSave={handleFileSave}
+                />
+              )}
+              {isHtmlFile && (
+                <div className="flex h-full">
+                  <div className="w-1/2 border-r border-gray-200 dark:border-gray-700 p-3 flex flex-col gap-2">
+                    <textarea
+                      value={fileContent}
+                      onChange={(e) => setFileContent(e.target.value)}
+                      className="flex-1 w-full p-2 border border-gray-200 dark:border-gray-700 rounded-lg font-mono text-sm bg-white dark:bg-gray-900"
+                    />
+                    <button
+                      onClick={() => handleFileSave(fileContent)}
+                      className="self-end px-3 py-1 bg-green-600 text-white rounded-lg text-sm hover:bg-green-700 transition"
+                    >
+                      Save
+                    </button>
+                  </div>
+                  <div
+                    className="w-1/2 overflow-auto p-4 bg-white"
+                    dangerouslySetInnerHTML={{ __html: fileContent }}
+                  />
+                </div>
+              )}
             </div>
           )}
 
@@ -254,13 +390,8 @@ export default function StageDetailPage() {
               <TerminalOutput
                 outputs={outputs}
                 isRunning={isExecuting}
-                onInterrupt={() => {
-                  // TODO: Implement interrupt
-                }}
-                onTerminate={() => {
-                  // TODO: Implement terminate
-                  setIsExecuting(false);
-                }}
+                onInterrupt={handleInterrupt}
+                onTerminate={handleTerminate}
               />
             </div>
           )}

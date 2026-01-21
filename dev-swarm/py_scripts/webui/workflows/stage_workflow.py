@@ -38,7 +38,7 @@ class StageWorkflow:
         self.agent_service = AgentService(project_root)
         self._workflows: dict[str, StateGraph] = {}
 
-    def create_workflow(self, stage_id: str) -> tuple[str, StateGraph]:
+    def create_workflow(self, stage_id: str) -> tuple[str, StateGraph, StageState]:
         """Create a new workflow for a stage."""
         config = STAGES.get(stage_id)
         if not config:

@@ -60,7 +60,7 @@ export function Sidebar() {
       </nav>
 
       <div className="p-4 border-t border-gray-800 text-xs text-gray-500">
-        <p>Backend: localhost:8000</p>
+        <p>Backend: localhost:8001</p>
       </div>
     </aside>
   );
