@@ -21,11 +21,11 @@ class AgentService:
         },
         "codex": {
             "command": "codex",
-            "args": ["--quiet", "--auto-edit"],
+            "args": ["--ask-for-approval", "never", "--sandbox", "workspace-write", "exec"],
         },
         "gemini": {
             "command": "gemini",
-            "args": ["--non-interactive"],
+            "args": ["--yolo", "--sandbox"],
         },
     }
 
