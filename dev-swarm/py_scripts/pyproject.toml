@@ -1,7 +1,7 @@
 [project]
 name = "py-scripts"
 version = "0.1.0"
-description = "Add your description here"
+description = "Python scripts for AI Dev Swarm including WebUI server"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
@@ -14,5 +14,13 @@ dependencies = [
     "pyqt6>=6.10.1",
     "python-dotenv>=1.0.0",
     "screeninfo>=0.8.1",
-    "uvicorn>=0.40.0",
+    "uvicorn[standard]>=0.40.0",
+    "langgraph>=0.2.0",
+    "gitpython>=3.1.0",
+    "aiofiles>=24.1.0",
+    "websockets>=14.0",
+    "sse-starlette>=2.2.0",
+    "pyyaml>=6.0.0",
+    "markdown>=3.7",
+    "pydantic-settings>=2.0.0",
 ]
