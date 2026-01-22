@@ -61,86 +61,135 @@ Brief the goal in 2-3 paragraphs:
 - How this will inform architecture and technical decisions
 - What go/no-go decisions will be made based on findings
 
+#### Research Execution Rules
+
+**Folder Structure Rules:**
+1. **Atomic:** Each research topic must be in a separate folder, independently
+2. **No Code Sharing:** Even if two research topics use the same framework/scaffolding, keep them in separate folders as different projects (e.g., two Next.js UI tests = two separate Next.js project setups)
+3. **Package Managers:** 
+   - Node.js: Use `pnpm` (install using dev-swarm skill if not available)
+   - Python: Use `uv` (install using dev-swarm skill if not available)
+4. **Third-party APIs:** Fetch latest docs from internet and save key information in the research folder
+5. **Code + Tests:** Each research must include working code with tests to prove tech assumptions
+
 #### 2.2 File Selection
 
-Select files from these options based on project needs:
+#### 2.2 Research Topic Selection Criteria
 
-**Feasibility Studies:**
-- `feasibility-assessment.md` - Overall technical feasibility analysis with go/no-go recommendations
-- `risk-matrix.md` - Technical risks identified and their mitigation strategies
+**CRITICAL: Avoid Over-Research/Over-Testing**
 
-**Proof of Concepts:**
-- `poc/` - Directory containing proof of concept code and documentation
-- `poc-results.md` - Summary of PoC outcomes with findings and recommendations
+Research should be **minimal and focused**. Only research topics that meet these criteria:
 
-**Technology Evaluation:**
-- `tech-evaluation.md` - Evaluation of candidate technologies, frameworks, or libraries
-- `api-evaluation.md` - Assessment of third-party APIs and services (capabilities, limits, costs)
+**✅ DO Research When:**
+1. **Unfamiliarity:** Technologies/approaches you are not familiar with
+2. **Rarity:** Technologies rarely used by other developers (limited community knowledge)
+3. **Poor Documentation:** Technologies with sparse community discussion/examples
+4. **Error-Prone:** Technologies known to be easy to misconfigure or implement incorrectly
+5. **Third-Party Uncertainty:** Unsure about third-party APIs/SDKs/packages capabilities or limitations
+6. **Business-Critical Path:** Core functionality that could make/break the project
+7. **Performance Constraints:** Features with specific performance requirements that need validation
 
-**Performance Research:**
-- `performance-benchmarks.md` - Benchmark results for performance-critical operations
-- `scalability-analysis.md` - Analysis of scalability constraints and solutions
+**❌ DON'T Research When:**
+- Standard, well-documented frameworks (React, Express, Django, etc.)
+- Common CRUD operations with established patterns
+- Technologies you've used successfully in similar projects
+- Well-supported mainstream libraries with extensive documentation
+- Simple integrations with major platforms (Stripe, Auth0, AWS basics)
 
-**Integration Testing:**
-- `integration-tests.md` - Results from testing key system integrations
-- `compatibility-notes.md` - Compatibility findings across platforms, browsers, or devices
+**Research Scope Limit:** Keep research to **2-5 topics maximum** per project. Focus only on the highest-risk unknowns.
 
-For each selected file, provide:
-- Short description
-- Why it's essential for this project
-- What technical question or risk it addresses
+**Proposed Research Topics:** (Research folders will be created after approval)
+
+For each proposed research topic, clearly specify:
+
+- `research-1-name/` 
+  - **What:** [Specific technology/API/integration to be tested]
+  - **Why:** [Why this needs research - which selection criteria it meets]
+  - **Validation Goal:** [What specific assumption or risk will be validated]
+
+- `research-2-name/` 
+  - **What:** [Specific technology/API/integration to be tested]
+  - **Why:** [Why this needs research - which selection criteria it meets] 
+  - **Validation Goal:** [What specific assumption or risk will be validated]
+
+- ...
+
+**Example:**
+- `research-webrtc-streaming/`
+  - **What:** WebRTC peer-to-peer video streaming with screen sharing
+  - **Why:** Unfamiliar technology with complex NAT traversal and browser compatibility issues
+  - **Validation Goal:** Prove that reliable P2P connections can be established between users
+
+**Research Results:** (Created after each research completion)
+- `research-1-name-results.md` - Summary of research result - API docs, code snippets used for the next stage  
+- `research-2-name-results.md` - Summary of research result - API docs, code snippets used for the next stage
+- ... 
+
 
 #### 2.3 Request User Approval
 
 Ask user: "Please check the Stage Proposal in `04-tech-research/README.md`. Update it directly or tell me how to update it."
 
-### Step 3: Execute Stage Plan
+### Step 3: Execute Research Topics Sequentially
 
 Once user approves `04-tech-research/README.md`:
 
-#### 3.1 Create All Planned Files
+#### 3.1 Execute Each Research Topic (One at a Time)
 
-Create each file listed in the approved README:
+For each research topic in the approved plan:
 
-- **For `.md` files:** Write comprehensive content based on actual research and testing
-- **For `poc/` directory:** Create working proof of concept code with documentation
+**Step A: Create Research Folder**
+- Create `research-x-name/` folder
+- Set up project scaffolding (separate project even if using same framework)
+- Install dependencies using appropriate package manager
 
-**Quality Guidelines:**
-- Focus on validating the most critical assumptions first
-- Document both successful and failed approaches
-- Include quantitative data where possible (benchmarks, metrics, limits)
-- Provide clear go/no-go recommendations with rationale
-- Keep PoC code minimal but functional - just enough to validate the assumption
-- Document any discovered constraints that will affect architecture decisions
+**Step B: Conduct Research** (Keep it minimal!)
+- Fetch latest documentation from internet for third-party services/APIs
+- Create **minimal "hello world" code snippets** to test and verify tech assumptions
+- Write **simple tests** to prove basic functionality works (not comprehensive testing)
+- Document findings, constraints, and learnings
 
-#### 3.2 Request User Approval for Files
+**Step C: Create Results File**
+- Write `research-x-name-results.md` with:
+  - Summary of research findings
+  - API documentation and key information
+  - Code snippets for use in next stage
+  - Test results and validation
+  - Go/no-go recommendations
 
-After creating all files:
-- Provide a summary of what was researched and created
-- Highlight critical findings and recommendations
-- List any blocking issues or concerns discovered
-- Present go/no-go recommendation with supporting evidence
-- Ask: "Please review the tech research findings. You can update or delete files, or let me know how to modify them."
+**Step D: Request Approval**
+- Ask user to review the research folder and results file
+- Allow user to request modifications or approve to proceed to next research
+
+#### 3.2 Continue Until All Research Complete
+
+Repeat Step 3.1 for each research topic until all are completed.
 
 ### Step 4: Finalize Stage
 
-Once user approves all files:
+Once all research topics are completed and user approves:
 
-#### 4.1 Documentation Finalization
-- Sync `04-tech-research/README.md` to remove any deleted files
-- Ensure all files are complete and well-formatted
-- Verify all PoC code runs and demonstrates its purpose
+#### 4.1 Update README with Results
+- Update `04-tech-research/README.md` to reflect all completed research
+- Add links to all research folders and results files
+- Include summary of key findings and decisions
 
-#### 4.2 Prepare for Next Stage
+#### 4.2 Documentation Finalization
+- Ensure all research folders have working code and tests
+- Verify all results files are complete and well-formatted
+- Confirm all third-party API documentation is saved
+
+#### 4.3 Prepare for Next Stage
 - Summarize validated technical decisions for architecture stage
 - Document any constraints discovered that affect PRD or UX
 - List technology choices confirmed by research
+- Compile all code snippets and examples for reference
 
-#### 4.3 Announce Completion
+#### 4.4 Announce Completion
 
 Inform user:
 - "Stage 04 (Tech Research) is complete"
-- Summary of deliverables created
+- Summary of research topics completed and deliverables created
 - Key findings and validated assumptions
 - Any blocking issues or pivots needed
 - "Ready to proceed to Stage 05 (PRD) when you are"
@@ -151,8 +200,10 @@ See `dev-swarm/docs/general-dev-stage-rule.md` for stage completion, commit, and
 
 ## Key Principles
 
-- Validate high-risk assumptions early
-- Fail fast - better to discover blockers now than after full development
-- Document findings thoroughly for future reference
-- Keep PoCs minimal but sufficient to prove the point
-- Make clear go/no-go recommendations based on evidence
+- **Avoid Over-Research:** Only research genuine unknowns and high-risk areas
+- **Time-Box Everything:** Max 2-4 hours per research topic
+- **Minimal Viable Proof:** Just enough code to validate the assumption
+- **Fail Fast:** Better to discover blockers now than after full development
+- **Focus on Risk:** Research should reduce project risk, not create busy work
+- **Document Decisions:** Clear go/no-go recommendations based on evidence
+- **Stop When Clear:** If research proves feasibility quickly, stop and move on
