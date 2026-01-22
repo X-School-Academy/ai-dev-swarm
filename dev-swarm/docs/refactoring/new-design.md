@@ -1,4 +1,4 @@
-In a full AI-driven software development lifecycle—from ideas to a commercially-ready product—we have designed stages from 00 to 10:
+In a full AI-driven software development lifecycle—from ideas to a commercially-ready product—we have designed stages from 00 to 11:
 
 ├─ ideas.md            # Initial raw ideas
 │
@@ -10,24 +10,26 @@ In a full AI-driven software development lifecycle—from ideas to a commerciall
 │
 ├─ 03-mvp/             # Define the Minimum Viable Product scope
 │
-├─ 04-prd/             # Create the Product Requirements Document
+├─ 04-tech-research/   # Validate technical feasibility (PoCs, spikes, API evaluations)
 │
-├─ 05-ux/              # Design user experience and visual systems
+├─ 05-prd/             # Create the Product Requirements Document
 │
-├─ 06-architecture/    # Design system architecture and tech stack
+├─ 06-ux/              # Design user experience and visual systems
 │
-├─ 07-tech-specs/      # Create detailed technical specifications
+├─ 07-architecture/    # Design system architecture and tech stack
 │
-├─ 08-devops/          # Set up infrastructure and CI/CD pipelines
+├─ 08-tech-specs/      # Create detailed technical specifications
 │
-├─ 09-sprints/         # Plan and execute development sprints
+├─ 09-devops/          # Set up infrastructure and CI/CD pipelines
 │
-├─ 10-deployment/      # Deploy to production and prepare for launch
+├─ 10-sprints/         # Plan and execute development sprints
+│
+├─ 11-deployment/      # Deploy to production and prepare for launch
 
 ### Core Concepts
 
 1. The process begins with initial user ideas.
-2. AI handles the work from stage 00 (init-ideas) through stage 10 (deployment).
+2. AI handles the work from stage 00 (init-ideas) through stage 11 (deployment).
 3. For each stage, the AI generates a proposal by creating a `README.md` file within the stage folder. Once the user approves this `README.md`, the AI executes the plan defined in it.
 4. Each stage must be reviewed and approved by the user before proceeding to the next stage.
 
@@ -37,19 +39,21 @@ In a full AI-driven software development lifecycle—from ideas to a commerciall
 1.  Conduct market research.
 2.  Create personas and user stories.
 3.  Define the MVP.
-4.  Define the PRD.
-5.  Design the UX.
-6.  Design the system architecture.
-7.  Write technical specifications.
-8.  Configure DevOps.
-9.  Manage sprints.
-10. Execute deployment.
+4.  Validate technical feasibility (PoCs, technology spikes, API evaluations).
+5.  Define the PRD.
+6.  Design the UX.
+7.  Design the system architecture.
+8.  Write technical specifications.
+9.  Configure DevOps.
+10. Manage sprints.
+11. Execute deployment.
 
 ### Key Deliverables
 
 *   Problem identification and solution definition.
 *   Competitive product research.
 *   User stories and personas.
+*   Technical feasibility validation and proof of concepts.
 *   Selection of programming languages and frameworks.
 *   UI style guides and workflow design for approval.
 *   GitHub repository creation.
@@ -68,11 +72,11 @@ In a full AI-driven software development lifecycle—from ideas to a commerciall
 
 Common document files will be produced in each stage for most project types—refer to `dev-swarm/docs/refactoring/new-structure.md`.
 
-System prompts for stages `00` to `10` are located in `dev-swarm/docs/refactoring/00.md` through `10.md`.
+System prompts for stages `00` to `11` are located in `dev-swarm/docs/refactoring/00.md` through `11.md`.
 
 ### Agent Skill Implementation
 
-We need to create an agent skill file (`SKILL.md`) for each stage in the folders `dev-swarm/skills/dev-swarm-stage-*` (stages 00 to 10). These folders have already been created. Guidelines for implementation:
+We need to create an agent skill file (`SKILL.md`) for each stage in the folders `dev-swarm/skills/dev-swarm-stage-*` (stages 00 to 11). These folders have already been created. Guidelines for implementation:
 
 1.  Follow the agent skill creation guidelines.
 2.  Copy system prompts from the corresponding file to each skill file, updating them as needed.

@@ -1,15 +1,15 @@
 ---
 name: dev-swarm-stage-tech-specs
-description: Create detailed technical specifications translating architecture designs into implementation-ready documents, including API specs, database migrations, and testing strategies. Use when starting stage 07 (tech-specs) or when user asks about technical specifications or OpenAPI docs.
+description: Create detailed technical specifications translating architecture designs into implementation-ready documents, including API specs, database migrations, and testing strategies. Use when starting stage 08 (tech-specs) or when user asks about technical specifications or OpenAPI docs.
 ---
 
-# Stage 07 - Tech Specs
+# Stage 08 - Tech Specs
 
 Create detailed technical specifications that translate architecture designs into implementation-ready documents, covering API contracts, database migrations, frontend/backend specs, testing strategies, and security requirements.
 
 ## When to Use This Skill
 
-- User asks to start stage 07 (tech-specs)
+- User asks to start stage 08 (tech-specs)
 - User wants to create technical specifications or OpenAPI docs
 - User asks about API specs, testing strategy, or service specifications
 
@@ -25,7 +25,7 @@ See `dev-swarm/docs/general-dev-stage-rule.md` for the required role announcemen
 
 Before starting, verify previous stages:
 
-1. Check if `00-init-ideas/` through `06-architecture/` folders have content (not just `.gitkeep`)
+1. Check if `00-init-ideas/` through `07-architecture/` folders have content (not just `.gitkeep`)
 2. If any previous stage is empty and has no `SKIP.md`:
    - Ask user: "Stage {XX} is not complete. Would you like to skip it or start from that stage first?"
 
@@ -36,20 +36,20 @@ Before starting, verify previous stages:
 Read all files to understand the project:
 
 - `ideas.md`
-- `00-init-ideas/*.md` through `06-architecture/*.md` - All markdown files
+- `00-init-ideas/*.md` through `07-architecture/*.md` - All markdown files
 
 ### Step 2: Create Stage Proposal
 
 **General Rules:** See `dev-swarm/docs/general-dev-stage-rule.md` → "Create Stage Proposal Rules" section.
 
-If this stage is skipped (has SKIP.md), execute the next non-skipped stage's agent skill. Otherwise, create the file `07-tech-specs/README.md` with the following content:
+If this stage is skipped (has SKIP.md), execute the next non-skipped stage's agent skill. Otherwise, create the file `08-tech-specs/README.md` with the following content:
 
 #### 2.1 Stage Goal
 
 Brief the goal in 2-3 paragraphs:
 - What this stage aims to achieve
 - Why detailed technical specifications are critical before development
-- How this bridges architecture design (stage 06) with implementation (stage 09 sprints)
+- How this bridges architecture design (stage 07) with implementation (stage 10 sprints)
 - What deliverables will be produced
 
 #### 2.2 File Selection
@@ -94,11 +94,11 @@ For each selected file, provide:
 
 #### 2.3 Request User Approval
 
-Ask user: "Please check the Stage Proposal in `07-tech-specs/README.md`. Update it directly or tell me how to update it."
+Ask user: "Please check the Stage Proposal in `08-tech-specs/README.md`. Update it directly or tell me how to update it."
 
 ### Step 3: Execute Stage Plan
 
-Once user approves `07-tech-specs/README.md`:
+Once user approves `08-tech-specs/README.md`:
 
 #### 3.1 Create All Planned Files
 
@@ -126,7 +126,7 @@ After creating all files:
 Once user approves all files:
 
 #### 4.1 Documentation Finalization
-- Sync `07-tech-specs/README.md` to remove any deleted files
+- Sync `08-tech-specs/README.md` to remove any deleted files
 - Ensure all files are complete and well-formatted
 - Validate API specifications follow OpenAPI standards
 
@@ -137,10 +137,10 @@ Once user approves all files:
 #### 4.3 Announce Completion
 
 Inform user:
-- "Stage 07 (Tech Specs) is complete"
+- "Stage 08 (Tech Specs) is complete"
 - Summary of deliverables created
 - Key technical decisions documented
-- "Ready to proceed to Stage 08 (DevOps) when you are"
+- "Ready to proceed to Stage 09 (DevOps) when you are"
 
 ## Stage Completion Rules
 
