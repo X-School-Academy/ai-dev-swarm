@@ -6,58 +6,32 @@ This stage transforms the raw ideas from `ideas.md` into structured, actionable 
 
 Clarifying the problem and solution at this stage is critical because the project involves replacing an existing terminal-based workflow with a web-based interface. We need to ensure the requirements capture both the functional needs (what the UI must do) and the underlying motivation (making dev-swarm accessible to non-technical users while improving workflow reliability).
 
-This stage will produce documents that serve as the foundation for persona creation (Stage 02), MVP definition (Stage 03), and the Product Requirements Document (Stage 05).
+This stage produces documents that serve as the foundation for persona creation (Stage 02), MVP definition (Stage 03), and the Product Requirements Document (Stage 05).
 
-## Proposed Files
-
-Based on the project scope (internal tool with well-defined problem/solution), I recommend these files:
+## Stage Files
 
 **Problem & Solution Definition**
 
-- `problem-statement.md`
-  - Clear articulation of the two core problems: CLI unfriendliness and inconsistent AI behavior
-  - Why this matters for dev-swarm adoption
-  - Essential for aligning all subsequent stages on the "why"
-
-- `solution-overview.md`
-  - High-level description of the web UI approach
-  - Core concept: code-driven logic replacing prompt-based workflow control
-  - Key features summary with rationale
-  - Essential for establishing the solution boundaries
+- `problem-statement.md` - Two core problems: CLI unfriendliness and inconsistent AI behavior
+- `solution-overview.md` - Web UI with code-driven workflows, AI headless mode, project sync
 
 **Requirements & Users**
 
-- `target-users.md`
-  - Definition of primary users (non-technical users who want to use dev-swarm)
-  - Secondary users (technical users who prefer visual workflow management)
-  - Essential for persona creation in Stage 02
-
-- `tech-requirements.md`
-  - Technical constraints extracted from ideas.md (Next.js, Python, ports, package managers)
-  - Integration requirements (headless AI agents, git operations)
-  - Essential for tech research and architecture decisions
+- `target-users.md` - Primary (non-technical) and secondary (technical) user definitions
+- `tech-requirements.md` - Tech stack, integration requirements, functional requirements
 
 **Success & Risk**
 
-- `success-metrics.md`
-  - How we measure if the WebUI achieves its goals
-  - User adoption criteria
-  - Workflow reliability improvements
-  - Essential for validating the product later
+- `success-metrics.md` - Accessibility, reliability, and usability metrics
+- `assumptions-risks.md` - 5 assumptions, 5 risks with mitigations
 
-- `assumptions-risks.md`
-  - Key assumptions (headless mode availability, AI agent consistency)
-  - Risks (complexity of real-time streaming, multi-agent support)
-  - Essential for proactive risk management
+## Key Insights
 
-**Not included:**
-- `brainstorm-mindmap/` - The ideas are already well-formed; additional brainstorming diagrams are unnecessary
-- `feature-opportunities.md` - Features are already defined in ideas.md
-- `quick-questions.md` - The problem/solution is clear; no major unknowns remain
+- **Core concept:** Use AI for content generation, but use code for workflow orchestration
+- **Primary users:** Non-technical stakeholders who want to use dev-swarm without CLI
+- **Primary risk:** AI agent execution complexity—mitigated by starting with Claude Code only
+- **Success metric:** Non-technical user completes full workflow without CLI help
 
-## Approval Request
+## Next Stage
 
-Please check this Stage Proposal. You can:
-1. Update `00-init-ideas/README.md` directly
-2. Tell me what changes you'd like
-3. Approve to proceed with creating the files
+Stage 02 (Personas) - Create detailed user personas based on target-users.md
