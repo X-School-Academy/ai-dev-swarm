@@ -4,41 +4,43 @@
 
 This stage defines the Minimum Viable Product scope for Dev Swarm WebUI—the smallest feature set that validates the core hypothesis: non-technical users can operate dev-swarm through a web interface without CLI knowledge.
 
-Defining MVP scope is critical because the full feature set (sprint automation, multi-agent support, HTML viewing) could take significant effort. By identifying the minimum features needed to solve the critical pain points (CLI barrier, no visual feedback, no execution control), we can ship faster and validate assumptions with real usage.
+The MVP eliminates Critical pain points (CLI barrier, technical intimidation) and addresses High pain points (no visual feedback, no execution control) for primary personas (Sarah, Marcus).
 
-This stage builds on the user stories and pain point severity from Stage 02. The MVP should eliminate Critical pain points entirely and address High pain points sufficiently for primary personas (Sarah, Marcus) to complete a basic workflow.
+## Stage Files
 
-## Proposed Files
+- `mvp-scope.md` - 8 in-scope features with acceptance criteria
+- `out-of-scope.md` - 10 deferred features with rationale
+- `success-criteria.md` - 14 measurable success criteria
 
-Based on the project scope and clear priority guidance from Stage 02:
+## MVP Features Summary
 
-**Core MVP Definition**
+**In Scope (8 features):**
+1. Stage Dashboard - visual overview of all stages
+2. Stage Skip Management - toggle skip via UI
+3. Document Viewer - rendered markdown and HTML
+4. Document Editor - edit with live preview
+5. Stage Execution - one-click start
+6. Real-Time Output - streaming AI output
+7. Stop Execution - interrupt at any time
+8. Project Sync - manual refresh
 
-- `mvp-scope.md`
-  - Explicit in-scope features with acceptance criteria
-  - Maps features to pain points and user stories
-  - Essential for clear development targets
+**Out of Scope (deferred):**
+- Multi-agent support (Codex, Gemini CLI)
+- Sprint automation (one-click backlog/sprint)
+- Auto-commit after steps
+- Error recovery guidance
+- Mobile support
 
-- `out-of-scope.md`
-  - Features explicitly deferred to post-MVP
-  - Rationale for deferral
-  - Essential for avoiding scope creep
+## Key Decisions
 
-**Success Criteria**
+- **Claude Code only** for MVP - validate headless execution before adding agents
+- **Manual sync** - user controls when UI updates
+- **Implicit approval** - no explicit approval workflow in MVP
 
-- `success-criteria.md`
-  - Measurable criteria for MVP success
-  - How we know the MVP solved the core problems
-  - Essential for validating the product
+## Success Threshold
 
-**Not included:**
-- `feature-prioritization.md` - Stage 02 already provides MoSCoW priority (P0/P1/P2)
-- `mvp-roadmap/` - Single MVP release; roadmap diagrams unnecessary
-- `release-plan.md` - Internal tool; formal release plan not needed
+MVP succeeds if a non-technical user can complete ideas → stage execution without using the terminal.
 
-## Approval Request
+## Next Stage
 
-Please check this Stage Proposal. You can:
-1. Update `03-mvp/README.md` directly
-2. Tell me what changes you'd like
-3. Approve to proceed with creating the files
+Stage 04 (Tech Research) - Research technical solutions for headless AI execution and real-time streaming
