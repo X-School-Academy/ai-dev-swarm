@@ -1,0 +1,1 @@
+Please review the files in 00-init-ideas/. Let me know if you'd like any changes, or say "commit" to proceed. 
