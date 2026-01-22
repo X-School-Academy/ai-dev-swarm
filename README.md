@@ -50,22 +50,23 @@ For other AI Agents that do not support Agent skills natively, you can use them 
 
 Start with your ideas in `ideas.md`, then progress through structured stages:
 
-**Planning & Strategy (Stages 0-4)**
+**Planning & Strategy (Stages 0-5)**
 - **Stage 0: Init Ideas** - Transform informal ideas into professional project documentation
 - **Stage 1: Market Research** - Validate the problem and analyze competitive landscape
 - **Stage 2: Personas** - Define user personas and prioritized user stories (P0/P1/P2)
 - **Stage 3: MVP** - Define minimum viable product scope and success metrics
-- **Stage 4: PRD** - Create comprehensive product requirements document
+- **Stage 4: Tech Research** - Validate technical feasibility with PoCs and technology spikes (optional)
+- **Stage 5: PRD** - Create comprehensive product requirements document
 
-### Design & Architecture (Stages 5-7)
-- **Stage 5: UX Design** - Design user flows, interactions, and mockups
-- **Stage 6: Architecture** - Define system components, data flow, and deployment boundaries
-- **Stage 7: Tech Specs** - Specify tech stack, security, coding standards, and theme guidelines
+### Design & Architecture (Stages 6-8)
+- **Stage 6: UX Design** - Design user flows, interactions, and mockups
+- **Stage 7: Architecture** - Define system components, data flow, and deployment boundaries
+- **Stage 8: Tech Specs** - Specify tech stack, security, coding standards, and theme guidelines
 
-### Development & Deployment (Stages 8-10)
-- **Stage 8: DevOps** - Setup development environment, GitHub, MCP tools, and Docker
-- **Stage 9: Sprints** - AI-accelerated feature development with backlogs and testing
-- **Stage 10: Deployment** - Deploy to staging/production with CI/CD pipelines
+### Development & Deployment (Stages 9-11)
+- **Stage 9: DevOps** - Setup development environment, GitHub, MCP tools, and Docker
+- **Stage 10: Sprints** - AI-accelerated feature development with backlogs and testing
+- **Stage 11: Deployment** - Deploy to staging/production with CI/CD pipelines
 
 ## Key Features (Planned)
 
@@ -94,6 +95,7 @@ This project uses the dev-swarm framework skills:
 - **market-research** - Market validation and competitive analysis
 - **personas** - User personas and story creation
 - **mvp** - MVP scope definition
+- **tech-research** - Technical feasibility validation (PoCs, spikes)
 - **prd** - Product requirements documentation
 - **ux** - User experience design
 - **architecture** - System architecture design
@@ -110,7 +112,7 @@ This project uses the dev-swarm framework skills:
 
 - **[User Manual](USER-MANUAL.md)** - Complete beginner-friendly guide covering all stages, workflows, and examples
 - **Repository Structure** - See `dev-swarm/docs/repository-structure.md` for folder organization
-- **Stage Documentation** - Organized in numbered folders (00-10) representing each development stage
+- **Stage Documentation** - Organized in numbered folders (00-11) representing each development stage
 - **Knowledge Base** - Feature documentation in `features/` for AI reference
 - **Archive** - Completed work in `99-archive/`
 

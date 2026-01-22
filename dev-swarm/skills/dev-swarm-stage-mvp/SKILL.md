@@ -125,7 +125,7 @@ Inform user:
 - "Stage 03 (MVP) is complete"
 - Summary of deliverables created
 - Core MVP features and scope boundaries
-- "Ready to proceed to Stage 04 (PRD) when you are"
+- "Ready to proceed to Stage 04 (Tech Research) when you are"
 
 ## Stage Completion Rules
 
