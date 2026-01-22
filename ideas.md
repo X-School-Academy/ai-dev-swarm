@@ -1,10 +1,6 @@
 # Ideas
 
-> **Instructions**: Copy this template to `ideas.md` and customize based on your project needs.
-> Check/uncheck stages based on project size and your preferences.
-
 ---
-
 
 ## Project Overview
 
@@ -22,8 +18,8 @@ Select ONE option:
 
 ## Source Code Location
 
-- `dev-swarm/js_scripts/webui/`
-- `dev-swarm/py_scripts/webui/`
+- `dev-swarm/js_scripts/webui/` (Frontend)
+- `dev-swarm/py_scripts/webui/` (Backend)
 
 ---
 
@@ -56,78 +52,85 @@ Uncheck the stages you want to exclude:
 - [ ] **11-deployment** - Production deployment, monitoring, launch
 
 **00-init-ideas, 05-prd, 08-tech-specs, and 10-sprints are non-skippable stages**
+
 ---
 
 ## Problem Statement
 
-<!-- Describe the problem you want to solve -->
+The current dev-swarm system relies on terminal console-based AI agents with agent skills and slash commands (`.claude/commands`). This creates two key challenges:
 
-This project is using a terminal console-based AI agent with agent skills and slash commands `.claude/commands`, which is not user-friendly for non-technical users.
-Some AI agents cannot follow the AI agent skills well.
+1. **Not user-friendly for non-technical users** - The command-line interface is intimidating and requires familiarity with terminal operations.
+2. **Inconsistent AI behavior** - Some AI agents struggle to follow the agent skills reliably, leading to unpredictable results.
 
 ---
 
 ## Your Solution
 
-<!-- Describe your solution ideas, features, and notes below -->
+Build a web UI that makes dev-swarm accessible to non-technical users while using code-driven logic instead of depending solely on AI agent skills for workflow control.
 
-1. Create a web UI for non-technical users to use
-2. Use code to control the logic and workflow instead of depending on AI agent skills
+### Core Concept
 
-workflow:
+Replace prompt-based workflow control with a visual web interface backed by deterministic code logic. Instead of relying on AI agents to create and check SKIP.md files for each stage, use HTML forms and code to manage stage states.
 
-start with `ideas.md` by `ideas-template.md`, then slash command `ideas-refine`
+### Key Features
 
-Instead of using prompts and AI agents to create and check the SKIP.md file for each step, we use HTML forms and code to create the SKIP.md file and check if the steps are skipped
+**Stage Management**
+- Users can create/remove SKIP.md files for any stage directly from the web UI
+- Visual indicators show which stages are active, skipped, or completed
 
-We can create and remove SKIP.md files for each step from the web UI at any time
+**Stage Workflows**
 
-For stages 00, 01, 02, 03, 05, 07, 08, we have two steps:
-step1: Create stage proposal by creating README.md file
-step2: Create stage files if proposal is approved by user
+Most stages (00, 01, 02, 03, 05, 07, 08) follow a two-step pattern:
+1. Create stage proposal (README.md)
+2. Create stage files once the user approves the proposal
 
-For stage 04, we have at least two steps if not skipped:
-step1: Create stage proposal by creating README.md file
-step1-n: Execute each research topic
+Special stage workflows:
+- **Stage 04 (Tech Research)**: Proposal + execute each research topic individually
+- **Stage 06 (UX)**: Proposal + create stage files + create UI mockups as needed
+- **Stages 09 & 10**: Proposal + create stage files + execute (local install, remote setup, etc.)
+- **Stage 99 (Archive)**: Single step to archive the project
+- **Restore**: Single step to restore an archived project
 
-For stage 06, we have at least three steps if not skipped:
-step1: Create stage proposal by creating README.md file
-step2: Create stage files if proposal is approved by user
-step3: Create UI mockup if needed
+**Sprint Management (Stage 10)**
 
-For stages 09 and 10, we have 3 steps if not skipped:
-step1: Create stage proposal by creating README.md file
-step2: Create stage files if proposal is approved by user
-step3: Execute the stage files (local install or remote setup, etc.)
+Design a web UI that controls the backlog and sprint workflow via code, not AI prompts:
+- Finish a single backlog with one click (runs dev, review, and test automatically)
+- Finish a single backlog with three clicks (run dev, review, test separately for more control)
+- Finish an entire sprint (run all backlogs in sequence)
+- Finish all sprints (run all sprint backlogs across all sprints)
 
-For the 10-sprints stage:
-Design a web UI to simulate backlog and sprint commands (dev, review, test should use code to control the workflow, not rely on AI)
+**AI Agent Integration**
 
-Use cases:
-- User can finish a backlog (including dev, review and test) by one click or by 3 clicks to do dev, review and test for the backlog
-- User can finish a sprint (run the sprint's backlogs automatically one by one including dev, review and test)
-- User can finish all the sprints (run all sprint backlogs automatically one by one including dev, review and test) 
+- Use AI agents in headless mode (controlled by Python code) for content/file creation
+- Support multiple AI code agents via config: Claude Code, Codex, Gemini CLI, and others
+- Extract AI prompts from agent skill files into a centralized config
+- Auto-commit after each step using headless mode with the git commit skill
+- Stream AI output in real-time with the ability to interrupt from the web UI
 
-For stage 99, we have only 1 step - archive the project
-For stage restore command, we have only 1 step - restore one archived project
+**Document Editing**
+- View and edit any markdown document directly from the web UI
 
-For each step, we use AI agent's headless mode to create the content/files or execute the plan with Python code
-In the Python code, we should have a config file for the AI prompts used for each step which needs to be extracted from the agent skill file
-After each step, we commit the code to git using AI agent's headless mode with the git commit message skill via Python code
-For any AI agent's headless mode execution, the UI should stream the output in real time and can interrupt the process at any time from the web UI
+**Project Sync**
+- Scan files and folder structure to reflect the latest project status
+- Sync happens automatically on page reload or manually via a refresh/sync button
+- Detects changes made outside the web UI (e.g., when users run AI agents directly from the terminal)
+- Updates stage states, SKIP.md presence, and file changes accordingly
 
-For web UI, only consider desktop computer layout
-For any markdown document, users can edit and view from the web UI
+**Layout**
+- Desktop-only layout (no mobile considerations)
+
 ---
 
 ## Additional Notes
 
-<!-- Any constraints, preferences, or technology choices (language, frameworks, packages) -->
+**Frontend**
+- Framework: Next.js
+- Location: `dev-swarm/js_scripts/webui/`
+- Package manager: pnpm (project root: `dev-swarm/js_scripts/`)
+- Port: 3001
 
-- `dev-swarm/js_scripts/webui/`
-  * Frontend using Next.js, frontend project root `dev-swarm/js_scripts/webui/`
-  * Using pnpm and `dev-swarm/js_scripts/` as the pnpm project's root 
-- `dev-swarm/py_scripts/webui/`
-  * Backend using Python, `dev-swarm/py_scripts/webui/` as backend server's project root
-  * Using uv as package manager, `dev-swarm/py_scripts/` as uv project's Python venv's root
-
+**Backend**
+- Language: Python
+- Location: `dev-swarm/py_scripts/webui/`
+- Package manager: uv (venv root: `dev-swarm/py_scripts/`)
+- Port: 8001
