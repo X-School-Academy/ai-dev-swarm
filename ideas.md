@@ -107,8 +107,10 @@ Design a web UI that controls the backlog and sprint workflow via code, not AI p
 - Auto-commit after each step using headless mode with the git commit skill
 - Stream AI output in real-time with the ability to interrupt from the web UI
 
-**Document Editing**
-- View and edit any markdown document directly from the web UI
+**Document Viewing and Editing**
+- View markdown documents in rich rendered mode (not plain code)
+- Edit markdown with live preview
+- View HTML documentation files directly in the UI
 
 **Project Sync**
 - Scan files and folder structure to reflect the latest project status
@@ -117,7 +119,8 @@ Design a web UI that controls the backlog and sprint workflow via code, not AI p
 - Updates stage states, SKIP.md presence, and file changes accordingly
 
 **Layout**
-- Desktop-only layout (no mobile considerations)
+- Desktop/laptop only (no mobile design needed)
+- Responsive design for different desktop/laptop screen sizes
 
 ---
 
