@@ -15,11 +15,13 @@
 
 Select ONE option:
 
-- [ ] Use dev-swarm root project (for demo purposes)
-- [x] Create new GitHub remote repo for `src/` (recommended for production projects)
-- [ ] Create local git repo for `src/` (for small experiments/prototypes)
+- [ ] Use dev-swarm root project
+- [x] Create new GitHub remote repo for root of source code (recommended for production projects)
+- [ ] Create local git repo for root of source code (for small experiments/prototypes)
 
-**Default source code location**: `src/` directory (will be created if it doesn't exist)
+## Source Code Location
+
+- `src/` directory
 
 ---
 
