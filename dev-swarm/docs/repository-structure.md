@@ -9,7 +9,7 @@ project-root/
 │
 │  NOTE:
 │  - This is the max doc list for each stage (large-scale projects).
-│  - The files structure under each stage from 00 to 10 are just samples.
+│  - The files structure under each stage from 00 to 11 are just samples.
 │  - Each project is different, it needs to have different design document files, different file names.
 │  - Do not copy these structure directly without analysis the project actually need to avoid any over development.
 │  - For a small project create tons of documents files is bad practice.
@@ -45,14 +45,20 @@ project-root/
 │  ├─ out-of-scope.md                # Explicit exclusions (prevents PRD bloat)
 │  └─ success-metrics.md             # Usage/retention/conversion/learning metrics
 │
-├─ 04-prd/                           # Stage 4: product behavior locked here (still not tech stack)
+├─ 04-tech-research/                 # Stage 4: validate technical feasibility (PoCs, Spikes)
+│  ├─ README.md                      # Folder overview and guide
+│  ├─ research-plan.md               # What needs to be researched/validated
+│  ├─ research-1-topic-results.md    # Findings for topic 1
+│  └─ research-1-topic/              # Code and assets for research topic 1
+│
+├─ 05-prd/                           # Stage 5: product behavior locked here (still not tech stack)
 │  ├─ README.md                      # Folder overview and guide
 │  ├─ prd.md                         # Product overview/goals/users/journeys + MVP alignment
 │  ├─ functional-requirements.md     # What the product must do (behaviors)
 │  ├─ non-functional-requirements.md # Performance/security/compliance requirements
 │  └─ out-of-scope.md                # PRD-level exclusions
 │
-├─ 05-ux/                            # Stage 5: how it feels to use (flows, states, errors)
+├─ 06-ux/                            # Stage 6: how it feels to use (flows, states, errors)
 │  ├─ README.md                      # Folder overview and guide
 │  ├─ user-flows.md                  # UX flow diagrams (can include Mermaid)
 │  ├─ interaction-specs.md           # States, transitions, interaction rules
@@ -60,14 +66,14 @@ project-root/
 │  ├─ accessibility.md               # Accessibility requirements/checklist
 │  └─ mockup/                        # Static HTML/CSS/JS mockups or a single HTML file (optional)
 │
-├─ 06-architecture/                  # Stage 6: system shape (structure, not frameworks)
+├─ 07-architecture/                  # Stage 7: system shape (structure, not frameworks)
 │  ├─ README.md                      # Folder overview and guide
 │  ├─ system-overview.md             # Major components + responsibilities
 │  ├─ architecture-diagram.md        # Diagram (Mermaid or image link) showing system components
 │  ├─ data-flow.md                   # Request/data flow across frontend/backend/db/external services
 │  └─ deployment-boundaries.md       # Local vs cloud boundaries, trust zones, scaling assumptions
 │
-├─ 07-tech-specs/                    # Stage 7: engineering decisions & standards (policy level)
+├─ 08-tech-specs/                    # Stage 8: engineering decisions & standards (policy level)
 │  ├─ README.md                      # Folder overview and guide
 │  ├─ tech-solution-research.md      # Research for frameworks/providers/models/tools
 │  ├─ tech-stack.md                  # Languages/frameworks/db/cloud provider choices
@@ -77,14 +83,14 @@ project-root/
 │  ├─ testing-standards.md           # Required tests, naming, running, minimum gates
 │  └─ security-standards.md          # Secure coding rules, scanning, logging redaction rules
 │
-├─ 08-devops/                        # Stage 8: development environment foundation (tooling + dev stack)
+├─ 09-devops/                        # Stage 9: development environment foundation (tooling + dev stack)
 │  ├─ README.md                      # Folder overview and guide
 │  ├─ ci-pipeline.md                 # Continuous Integration
 │  ├─ github-setup.md                # GitHub repo settings, branch protection, PR templates
 │  ├─ mcp-setup.md                   # MCP tool setup: Playwright/GitHub/AWS + permissions model
 │  └─ vscode-devcontainer.md         # VS Code Dev Container + Docker configuration
 │
-├─ 09-sprints/                       # Stage 9: AI-accelerated development execution with backlog types
+├─ 10-sprints/                       # Stage 10: AI-accelerated development execution with backlog types
 │  ├─ README.md                      # Folder overview and guide
 │  ├─ sprint-feature-proposal.md     # Proposed sprint feature list for user approval before creating sprints/backlogs
 │  │
@@ -98,7 +104,7 @@ project-root/
 │  └─ profile-basics/
 │     └─ ...
 │
-├─ 10-deployment/                    # Stage 10: cloud infra + deploy process + release verification
+├─ 11-deployment/                    # Stage 11: cloud infra + deploy process + release verification
 │  ├─ README.md                      # Folder overview and guide
 │  ├─ cd-pipeline.md                 # Continuous Delivery or Deployment
 │  │
@@ -157,4 +163,3 @@ project-root/
 │  │  └─ README.md                   # Frontend structure and getting started
 │  └─ backend/                       # API/services code
 │     └─ README.md                   # Backend structure and getting started
-│
