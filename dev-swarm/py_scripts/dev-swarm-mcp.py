@@ -801,6 +801,69 @@ def build_bridge(
     return Bridge(manager=manager), lock_changed
 
 
+class BridgeSync:
+    def __init__(
+        self,
+        *,
+        mcp_settings_data: dict[str, Any],
+        force_refresh: bool,
+        output_dir: Path | None,
+        log_level: str,
+        description_overrides: Mapping[str, str] | None = None,
+    ) -> None:
+        self._mcp_settings_data = mcp_settings_data
+        self._force_refresh = force_refresh
+        self._output_dir = output_dir
+        self._log_level = log_level
+        self._description_overrides = description_overrides
+        self._ready = threading.Event()
+        self._bridge: Bridge | None = None
+        self._lock_changed = False
+        self._error: Exception | None = None
+        self._message = "Syncing MCP tools in background. First tool call will wait until ready."
+
+    def start(self) -> None:
+        thread = threading.Thread(target=self._run, daemon=True)
+        thread.start()
+
+    def _run(self) -> None:
+        try:
+            bridge, lock_changed = build_bridge(
+                mcp_settings_data=self._mcp_settings_data,
+                force_refresh=self._force_refresh,
+                output_dir=self._output_dir,
+                log_level=self._log_level,
+                description_overrides=self._description_overrides,
+            )
+            self._bridge = bridge
+            self._lock_changed = lock_changed
+            if lock_changed:
+                self._message = (
+                    "Please tell user to exit this AI coding agent and relaunch to load the latest agent skills."
+                )
+            else:
+                self._message = "Please tell user I am ready to accept tasks."
+        except Exception as exc:
+            self._error = exc
+            self._message = f"Failed to sync MCP tools: {exc}"
+        finally:
+            self._ready.set()
+
+    def wait_ready(self) -> Bridge:
+        self._ready.wait()
+        if self._error:
+            raise self._error
+        if self._bridge is None:
+            raise MCPError("MCP bridge unavailable after sync")
+        return self._bridge
+
+    def get_message(self) -> str:
+        return self._message
+
+    def is_ready(self) -> bool:
+        return self._ready.is_set()
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Dev Swarm MCP Server (stdio)")
     parser.add_argument(
@@ -818,6 +881,7 @@ def parse_args() -> argparse.Namespace:
         help="Force regeneration of all skill files even if they exist",
     )
     return parser.parse_args()
+
 
 def expand_env_placeholders(value: Any, env: dict[str, str], missing: set[str]) -> Any:
     if isinstance(value, dict):
@@ -894,31 +958,29 @@ def main() -> None:
 
     settings_data = prepare_mcp_settings(settings_path, os.environ)
     overrides = load_mcp_descriptions(base_dir)
-    bridge, lock_changed = build_bridge(
+    sync = BridgeSync(
         mcp_settings_data=settings_data,
         force_refresh=args.force_refresh,
         output_dir=None,
         log_level="INFO",
         description_overrides=overrides,
     )
-
-    if lock_changed:
-        message = (
-            "Please tell user to exit this AI coding agent and relaunch to load the latest agent skills."
-        )
-    else:
-        message = "Please tell user I am ready to accept tasks."
+    sync.start()
 
     mcp = FastMCP("dev-swarm-mcp")
 
     @mcp.tool()
     def get_message_for_user() -> str:
         """Call this tool when the AI code agent starts."""
-        return message
+        return sync.get_message()
 
     @mcp.tool()
     def request(json_str: str) -> str:
         """Forward a JSON request payload from a agent skill."""
+        try:
+            bridge = sync.wait_ready()
+        except Exception as exc:
+            return json.dumps({"status": "error", "detail": str(exc)}, ensure_ascii=True)
         return bridge.handle_request_json(json_str)
 
     mcp.run()
