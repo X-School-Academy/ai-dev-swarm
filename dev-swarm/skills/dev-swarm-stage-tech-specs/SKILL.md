@@ -64,6 +64,7 @@ Select files from these options based on project needs:
 **API Specifications:**
 - `api-specifications.md` - Detailed API specifications with request/response formats
 - `openapi.yaml` - OpenAPI/Swagger specification for REST APIs
+- `api-mockup-adapter.md` - Design for configurable mock adapters for cost/latency-sensitive third-party services (e.g., LLMs, headless agents). Defines identical interfaces for mock/prod providers, switchable via configuration (e.g., .env) to enable fast, low-cost dev/test cycles before switching to live providers.
 
 **Database Specifications:**
 - `database-migrations.md` - Database migration strategy
