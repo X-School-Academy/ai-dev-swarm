@@ -400,38 +400,48 @@ Document test results:
    - **Failed**: Critical issues must be fixed before release
    - **Blocked**: Cannot test due to environment or dependency issues
 
-### Step 9: Update Backlog with Test Results
+### Step 9: Finalize and Commit
 
-**CRITICAL:** Update the backlog.md file to track testing progress:
+**CRITICAL:** Follow this process to safely commit changes and update tracking:
 
-1. **Update backlog status:**
-   - Change status from "In Testing" to "Done" (if all tests pass)
-   - Or change to "In Development" (if bugs found requiring fixes)
-   - Add a "Testing Notes" section if not present
+1. **Update Tracking Files:**
+   - Update `backlog.md`:
+     - Change status from "In Testing" to "Done" (if passed) or "In Development"
+     - Add "Testing Notes" section:
+       - **Test Summary:** Passed/Failed counts
+       - **Issues Found:** Bug backlogs created
+       - **Decision:** Passed/Failed
+   - Update feature documentation with test results
+   - Update `09-sprints/.../README.md`:
+     - Update status in table
+     - Add progress log entry
 
-2. **Document testing findings:**
-   - **Test Summary:** Total tests executed, passed, failed
-   - **Test Types Executed:** Unit, integration, API, UI, manual
-   - **Test Coverage:** Percentage of code/features tested
-   - **Issues Found:** Count of CHANGE/BUG/IMPROVE backlogs created
-   - **Test Decision:** Passed, Passed with minor issues, Failed, or Blocked
-   - **Test Evidence:** Screenshots, logs, performance metrics
-   - **Related Backlogs:** Link to created CHANGE/BUG/IMPROVE backlogs
+2. **Request Human Review:**
+   - Present the test results and plan to commit
+   - Ask user: "Please review the results. If approved, I will commit and close the backlog."
+   - **Wait for approval.**
 
-3. **Update feature documentation:**
-   - Add test notes to `features/impl/[feature-name].md`
-   - Document known issues or limitations discovered
-   - Note test coverage achieved
-   - Update with any testing insights
+3. **Commit the Tests/Fixes (Content):**
+   - Run `git add .` to stage all changes
+   - **Unstage** the backlog file and sprint README (`git reset HEAD <path-to-backlog> <path-to-sprint-readme>`)
+   - Check if there are staged changes:
+     - **If yes:**
+       - Draft conventional commit message (e.g., "test: add tests for [feature-name]")
+       - Commit: `git commit -m "test: ..."`
+       - Get Commit ID: `git rev-parse --short HEAD`
+     - **If no** (only current backlog updated):
+       - Skip to next step
 
-4. **Notify user:**
-   - Summarize test results
-   - Report pass/fail status
-   - List critical issues found
-   - Recommend next steps (fix bugs, deploy, etc.)
+4. **Update Backlog with Commit ID:**
+   - If a commit was made, append "**Test Commit:** `[commit-id]`" to the "Testing Notes" in `backlog.md`
 
-5. **Update sprint README (README.md) (CRITICAL):**
-   - Update backlog status in the sprint backlog table
-   - Append a log entry in the sprint progress log for the Testing step
+5. **Commit the Backlog (Metadata):**
+   - Stage `backlog.md` and sprint `README.md`
+   - Commit: `git commit -m "docs([feature-name]): update backlog status to Done"`
 
-**These backlog.md and sprint README updates create the audit trail showing testing was completed and results.**
+6. **Notify user:**
+   - Confirm completion
+   - If Done: "Backlog closed successfully"
+   - If Failed: "Backlog returned to development"
+
+**This two-step commit process ensures history is preserved before the backlog is updated with the commit reference.**

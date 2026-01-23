@@ -315,42 +315,51 @@ For each issue found, create a backlog:
    - **Changes required**: Critical issues must be fixed
    - **Rejected**: Major redesign needed
 
-### Step 6: Update Backlog with Code Review Results
+### Step 6: Finalize and Commit
 
-**CRITICAL:** Update the backlog.md file to track code review progress:
+**CRITICAL:** Follow this process to safely commit changes and update tracking:
 
-1. **Update backlog status:**
-   - Change status from "In Code Review" to "In Testing" (if approved)
-   - Or change to "In Development" (if changes required)
-   - Add a "Code Review Notes" section if not present
+1. **Update Tracking Files:**
+   - Update `backlog.md`:
+     - Change status from "In Code Review" to "In Testing" (if approved) or "In Development"
+     - Add "Code Review Notes" section:
+       - **Review Summary:** Overall assessment
+       - **Issues Found:** Count of issues
+       - **Decision:** Approved/Rejected
+       - **Links:** To created backlogs (CHANGE/BUG)
+   - Update feature documentation if needed
+   - Update `09-sprints/.../README.md`:
+     - Update status in table
+     - Add progress log entry
 
-2. **Document code review findings:**
-   - **Review Summary:** Overall assessment of code quality
-   - **Review Decision:** Approved, Approved with comments, Changes required, or Rejected
-   - **Issues Found:** Count of CHANGE/BUG/IMPROVE backlogs created
-   - **Security Assessment:** Security vulnerabilities found (if any)
-   - **Code Quality Score:** Rating based on quality dimensions
-   - **Positive Highlights:** What was done well
-   - **Areas for Improvement:** General suggestions for developer
-   - **Related Backlogs:** Link to created CHANGE/BUG/IMPROVE backlogs
+2. **Request Human Review:**
+   - Present the review findings and plan to commit
+   - Ask user: "Please review the findings. If approved, I will commit and update the backlog."
+   - **Wait for approval.**
 
-3. **Update feature documentation:**
-   - Update `features/impl/[feature-name].md` with review findings
-   - Note any important discoveries or patterns
-   - Document known limitations identified
-   - Add review insights for future reference
+3. **Commit the Code/Fixes (Content):**
+   - Run `git add .` to stage all changes
+   - **Unstage** the backlog file and sprint README (`git reset HEAD <path-to-backlog> <path-to-sprint-readme>`)
+   - Check if there are staged changes (e.g., new bug backlogs or minor fixes):
+     - **If yes:**
+       - Draft conventional commit message (e.g., "docs: code review findings for [feature-name]")
+       - Commit: `git commit -m "docs: ..."`
+       - Get Commit ID: `git rev-parse --short HEAD`
+     - **If no** (only current backlog updated):
+       - Skip to next step
 
-4. **Notify user:**
-   - Summarize code review results
-   - Report approval/rejection status
-   - List critical issues found
-   - Recommend next steps (fix issues, proceed to testing, etc.)
+4. **Update Backlog with Commit ID:**
+   - If a commit was made, append "**Review Commit:** `[commit-id]`" to the "Code Review Notes" in `backlog.md`
 
-5. **Update sprint README (README.md) (CRITICAL):**
-   - Update backlog status in the sprint backlog table
-   - Append a log entry in the sprint progress log for the Code Review step
+5. **Commit the Backlog (Metadata):**
+   - Stage `backlog.md` and sprint `README.md`
+   - Commit: `git commit -m "docs([feature-name]): update backlog status to In Testing"`
 
-**These backlog.md and sprint README updates create the audit trail showing code review was completed and results.**
+6. **Notify user:**
+   - Confirm completion
+   - Suggest next step: "Ready for testing" or "Back to development"
+
+**This two-step commit process ensures history is preserved before the backlog is updated with the commit reference.**
 
 ## Expected Workflow
 

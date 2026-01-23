@@ -248,38 +248,50 @@ Before marking complete:
    - List any test results
    - Flag anything needing QA attention
 
-### Step 5: Update Backlog with Development Notes
+### Step 5: Finalize and Commit
 
-**CRITICAL:** Update the backlog.md file to track development progress:
+**CRITICAL:** Follow this process to safely commit changes and update tracking:
 
-1. **Update backlog status:**
-   - Change status from "Not Started" to "In Code Review"
-   - Add a "Development Notes" section if not present
+1. **Update Tracking Files:**
+   - Update `backlog.md`:
+     - Change status from "Not Started" to "In Code Review"
+     - Add "Development Notes" section:
+       - **Files Created/Modified:** List changes
+       - **Implementation Approach:** Summary of work
+       - **Key Decisions:** Technical choices
+       - **Links:** To feature docs and impl docs
+   - Update `09-sprints/.../README.md`:
+     - Update status in table
+     - Add progress log entry
 
-2. **Document development findings:**
-   - **Files Created/Modified:** List all files changed with brief descriptions
-   - **Implementation Approach:** Summarize how requirements were implemented
-   - **Key Decisions:** Note any important technical decisions made
-   - **Integration Points:** Document how code integrates with other features
-   - **Known Issues:** Flag any potential issues for code review
-   - **Test Notes:** Any preliminary testing done during development
+2. **Request Human Review:**
+   - Present the work and the plan to commit
+   - Ask user: "Please review the changes. If approved, I will commit the code and update the backlog."
+   - **Wait for approval.**
 
-3. **Reference documentation created:**
-   - Link to `features/[feature-name].md`
-   - Link to `features/impl/[feature-name].md`
-   - Link to source code files in `{SRC}/` (locations documented in features/impl/[feature-name].md)
+3. **Commit the Code (Content):**
+   - Run `git add .` to stage all changes
+   - **Unstage** the backlog file and sprint README (`git reset HEAD <path-to-backlog> <path-to-sprint-readme>`) to keep metadata separate
+   - Check if there are staged changes:
+     - **If yes:**
+       - Draft conventional commit message (e.g., "feat: implement [feature-name]")
+       - Commit: `git commit -m "feat: ..."`
+       - Get Commit ID: `git rev-parse --short HEAD`
+     - **If no** (only docs/metadata changed):
+       - Skip to next step
 
-4. **Notify user:**
-   - Summarize what was implemented
-   - Reference documentation created
-   - Note any important decisions or tradeoffs
+4. **Update Backlog with Commit ID:**
+   - If a code commit was made, append "**Implementation Commit:** `[commit-id]`" to the "Development Notes" in `backlog.md`
+
+5. **Commit the Backlog (Metadata):**
+   - Stage `backlog.md` and sprint `README.md`
+   - Commit: `git commit -m "docs([feature-name]): update backlog status to In Code Review"`
+
+6. **Notify user:**
+   - Confirm completion
    - Suggest next step: "Ready for code review"
 
-5. **Update sprint README (README.md) (CRITICAL):**
-   - Update backlog status in the sprint backlog table
-   - Append a log entry in the sprint progress log for the Development step
-
-**These backlog.md and sprint README updates create the audit trail for code review and testing phases.**
+**This two-step commit process ensures code history is preserved before the backlog is updated with the commit reference.**
 
 ## Expected File Structure
 
