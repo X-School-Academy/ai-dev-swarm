@@ -71,7 +71,7 @@ Select files from these options based on project needs:
 - `accessibility.md` - Accessibility requirements following WCAG guidelines
 
 **UI Mockups (for GUI projects):**
-- `design-ui-mockup/` - Pure HTML/CSS/JS mockups for all pages/screens (created after design system approval)
+- `design-ui-mockup/` - Pure HTML/CSS/JS mockups for all pages/screens (created after design system approval). Required for any web, mobile, or desktop app with a graphic user interface when HTML mockups can express workflow.
 
 For each selected file, provide:
 - Short description
@@ -109,9 +109,11 @@ After creating all files:
 
 ### Step 4: Create UI Mockups (For GUI Projects)
 
-**Trigger Condition:** Only execute this step if:
+**Trigger Condition:** Execute this step if:
 - The project has a GUI component (web app, mobile app, desktop app)
 - `design-ui-preview.html` was created and approved by user
+  
+UI mockups are required for GUI projects where HTML pages can represent the workflow, including this project.
 
 #### 4.1 Create Mockup Folder
 
