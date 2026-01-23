@@ -25,6 +25,11 @@ These deliverables bridge the PRD and UX outputs to Stage 10 (Sprints) by defini
 - Why essential: Enables tooling, validation, and consistent frontend integration.
 - Key information: Paths, schemas, errors, and streaming endpoint definitions.
 
+### api-mockup-adapter.md
+- Description: Design for configurable mock adapters for third-party services (LLMs, headless agents).
+- Why essential: Reduces development cost and latency by allowing local simulation of expensive/slow external calls.
+- Key information: Mock/Prod interface parity, configuration keys (e.g., .env), and sample mock responses for key workflows.
+
 ### backend-specs.md
 - Description: Backend implementation specs for file ops, process control, and streaming.
 - Why essential: Backend is responsible for deterministic stage workflow control.
