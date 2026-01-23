@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dev Swarm WebUI - Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <div class="topbar">
+        <div class="brand">
+          <div>
+            <h1>Dev Swarm WebUI</h1>
+            <p>Project: WebUI MVP / last sync 2 min ago</p>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="button secondary" data-nav="index.html">Home</button>
+          <button class="button">Sync Project</button>
+        </div>
+      </div>
+
+      <div class="shell">
+        <aside class="panel">
+          <h2>Stages</h2>
+          <div class="stage-list">
+            <div class="stage-item"><span>00 Init Ideas</span><span class="badge complete">Done</span></div>
+            <div class="stage-item"><span>01 Market Research</span><span class="badge skipped">Skipped</span></div>
+            <div class="stage-item"><span>02 Personas</span><span class="badge complete">Done</span></div>
+            <div class="stage-item"><span>03 MVP</span><span class="badge complete">Done</span></div>
+            <div class="stage-item"><span>04 Tech Research</span><span class="badge complete">Done</span></div>
+            <div class="stage-item"><span>05 PRD</span><span class="badge complete">Done</span></div>
+            <div class="stage-item"><span>06 UX</span><span class="badge progress">In Progress</span></div>
+            <div class="stage-item"><span>07 Architecture</span><span class="badge progress">Queued</span></div>
+          </div>
+        </aside>
+
+        <main class="panel">
+          <div class="content-header">
+            <div>
+              <h2>Stage 06 - UX</h2>
+              <p class="muted">Design system and flow review</p>
+            </div>
+            <div class="actions">
+              <button class="button">Run Stage</button>
+              <button class="button secondary" data-nav="stage.html">Open Stage</button>
+            </div>
+          </div>
+
+          <div class="card-grid">
+            <div class="card">
+              <h3>Stage Snapshot</h3>
+              <p class="muted">6 files generated · 4 flows ready</p>
+            </div>
+            <div class="card">
+              <h3>Latest Output</h3>
+              <p class="muted">"UX files created. Awaiting approval."</p>
+            </div>
+            <div class="card">
+              <h3>Next Action</h3>
+              <p class="muted">Review design system and approve.</p>
+            </div>
+            <div class="card">
+              <h3>Execution Controls</h3>
+              <div class="toolbar">
+                <button class="button">Approve</button>
+                <button class="button ghost">Request Changes</button>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <aside class="panel console-panel">
+          <h2>Execution Output</h2>
+          <div class="console">
+            <div class="muted">[runner] Starting stage 06...</div>
+            <div>[stdout] Generating design system</div>
+            <div>[stdout] Writing UX files</div>
+            <div class="error">[stderr] None</div>
+            <div class="muted">[runner] Complete</div>
+          </div>
+        </aside>
+      </div>
+
+      <div class="navlinks">
+        <a href="#" data-nav="stage.html">Go to Stage Detail</a>
+        <a href="#" data-nav="execution.html">Go to Execution Console</a>
+      </div>
+    </div>
+    <script src="navigation.js"></script>
+  </body>
+</html>

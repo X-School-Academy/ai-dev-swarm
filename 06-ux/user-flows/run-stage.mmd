@@ -1,0 +1,10 @@
+flowchart TD
+    A[Dashboard] --> B[Select Stage]
+    B --> C[Run Stage]
+    C --> D[Execution Output Streams]
+    D --> E{User Stops?}
+    E -->|No| F[Execution Completes]
+    E -->|Yes| G[Stop Execution]
+    G --> H[Status Updated]
+    F --> H[Status Updated]
+    H --> I[Review Outputs]

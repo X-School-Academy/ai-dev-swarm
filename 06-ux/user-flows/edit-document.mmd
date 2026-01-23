@@ -1,0 +1,9 @@
+flowchart TD
+    A[Stage Detail] --> B[Select Document]
+    B --> C[View Document]
+    C --> D[Switch to Edit]
+    D --> E[Edit Content]
+    E --> F[Save]
+    F --> G{Save Success?}
+    G -->|Yes| H[Preview Updated]
+    G -->|No| I[Show Error]
