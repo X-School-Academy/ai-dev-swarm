@@ -29,6 +29,10 @@ Before starting, verify previous stages:
 2. If any previous stage is empty and has no `SKIP.md`:
    - Ask user: "Stage {XX} is not complete. Would you like to skip it or start from that stage first?"
 
+## AI-Driven Development Sprint and Backlog Guidelines
+
+See `dev-swarm/docs/sprint-backlog-guidelines.md`
+
 ## Instructions
 
 ### Step 1: Context Review

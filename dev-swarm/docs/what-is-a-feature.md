@@ -63,14 +63,6 @@ A feature must be treated as standard software development work, adhering to the
 - CLI command (power user): a command like `swarm init` that creates a new project structure
 - Dark mode toggle: a setting that changes the visual theme
 
-### Not feature examples
-- Database optimization: adding an index to speed up queries (implementation detail)
-- Code refactoring: improving maintainability without changing user-visible behavior
-- CI/CD pipeline: adding GitHub Actions to run tests on push
-- Third-party library integration: adding a logging library (unless it also adds a user-facing log viewer)
-- Security hardening: JWT token rotation logic (internal mechanism)
-- Bug fixes: repairing an existing feature (maintenance, not a new feature)
-
 ## Who defines whether something is a feature?
 
 Whether something is a feature depends on the target user.
