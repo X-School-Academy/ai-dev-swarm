@@ -45,6 +45,14 @@ What counts as “one feature” depends on implementation effort and available 
 - Library-driven (bundled features): if a high-level library makes multiple capabilities nearly trivial to enable, they may be treated as one feature (example: using `fastmcp` where enabling `stdio`, `http`, and `sse` is largely a parameter change).
 - Custom implementation (granular features): if the same capabilities must be built from scratch, each may be defined as its own feature due to meaningful design, implementation, and test effort (example: “Implement SSE Transport”).
 
+## Reviewability and Testability
+
+A feature must be treated as standard software development work, adhering to the following strict requirements:
+
+- **Testable**: Every feature must include appropriate tests (unit, integration, or E2E) to verify its functionality automatically.
+- **Code Reviewable**: The implementation must be structured and scoped so that a human can review the code in several minutes without significant effort.
+- **Avoid "Big Bang" Changes**: Do not write large chunks of code at once. Work should be broken down to ensure it is manageable, minimizing the risk of introducing complex bugs that are hard to spot.
+
 ## Examples
 
 ### Feature examples

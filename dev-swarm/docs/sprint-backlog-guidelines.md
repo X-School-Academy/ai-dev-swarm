@@ -35,10 +35,12 @@ Each backlog item is a feature.
 - A backlog item is not a technical task (example: “Create an API endpoint”).
 - A backlog item is a user-facing capability (example: “Allow users to log in with Google”).
 - Use the “What is a Feature?” definition (./what-is-a-feature.md).
+- **Testable**: Must be verifiable via automated tests (unit, integration, or E2E) and from the user’s perspective.
+- **Reviewable**: The implementation must be easy for a human to review in several minutes. It must be treated as normal code development.
+- **Atomic**: Avoid large chunks of code. Keep changes small to ensure high-quality human review.
 
 ### Scope and completeness
 - Self-contained: includes all necessary changes (DB, backend, frontend, tests) to make the feature work.
-- Testable: verifiable from the user’s perspective (visible and operable).
 
 ### Backlog types
 Each backlog item should be one of the following:
