@@ -31,7 +31,7 @@ Before starting, verify previous stages:
 
 ## AI-Driven Development Sprint and Backlog Guidelines
 
-See `dev-swarm/docs/sprint-backlog-guidelines.md`
+See `dev-swarm/docs/sprint-backlog-guidelines.md` & `dev-swarm/docs/what-is-a-feature.md`
 
 ## Instructions
 

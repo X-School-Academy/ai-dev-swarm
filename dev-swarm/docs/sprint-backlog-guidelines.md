@@ -14,7 +14,7 @@ Each backlog item is a feature.
 
 ### Definition
 - A backlog item is a user-facing capability (example: “Allow users to log in with Google”).
-- Use the “What is a Feature?” definition (./what-is-a-feature.md).
+- Use the “What is a Feature?” definition (`./what-is-a-feature.md`).
 - **Testable**: Must be verifiable via automated tests (unit, integration, or E2E) and from the user’s perspective.
 - **Reviewable**: The implementation must be easy for a human to review in several minutes. It must be treated as normal code development.
 - **Atomic**: Avoid large chunks of code. Keep changes small to ensure high-quality human review.
