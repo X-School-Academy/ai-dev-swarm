@@ -5,7 +5,7 @@ Before committing, show the user:
 1. What has been archived (list the folders/files moved)
 2. The archive location (e.g., `99-archive/my-project/`)
 3. The new empty structure that has been created
-4. If `src/` was a submodule, note that it has been removed from submodule configuration
+4. If `{SRC}/` was a submodule, note that it has been removed from submodule configuration
 
 Ask the user:
 - "The project has been archived. Do you want to commit these changes to git?"

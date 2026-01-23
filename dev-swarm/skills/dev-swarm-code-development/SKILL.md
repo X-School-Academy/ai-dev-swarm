@@ -37,7 +37,7 @@ This skill requires:
    - `features/flows/[feature-name].md` - User flows and process flows (if exists)
    - `features/contracts/[feature-name].md` - API/data contracts (if exists)
    - `features/impl/[feature-name].md` - Implementation notes (if exists)
-5. Locate source code at `src/` using `features/impl/[feature-name].md`
+5. Locate source code at `{SRC}/` using `features/impl/[feature-name].md`
 6. Implement the code following `07-tech-specs/`
 7. Update `backlog` with development notes
 
@@ -97,15 +97,15 @@ Follow these steps in order for coding development:
 
 6. **Locate existing source code:**
    - Use `features/impl/[feature-name].md` to find code locations
-   - Navigate to `src/` directory
+   - Navigate to `{SRC}/` directory
    - Review existing code structure and patterns
    - Identify files to modify (CHANGE/BUG/IMPROVE) or create (FEATURE)
 
 7. **Understand codebase patterns:**
-   - Review existing code in `src/` using locations from `features/impl/[feature-name].md`
+   - Review existing code in `{SRC}/` using locations from `features/impl/[feature-name].md`
    - Note architectural patterns and integration points
 
-**DO NOT** read the entire codebase. Use `features/impl/[feature-name].md` to find only relevant files in `src/`.
+**DO NOT** read the entire codebase. Use `features/impl/[feature-name].md` to find only relevant files in `{SRC}/`.
 
 ### Step 1: Design the Implementation
 
@@ -130,9 +130,9 @@ Before writing code, create the feature design document:
 
 Once user approves the design:
 
-1. **Organize code in src/:**
+1. **Organize code in {SRC}/:**
    - Follow `dev-swarm/docs/source-code-structure.md` for file organization guidelines
-   - Place code in appropriate locations within `src/`
+   - Place code in appropriate locations within `{SRC}/`
    - Use file naming conventions defined in source-code-structure.md
 
 2. **Write the code:**
@@ -219,15 +219,15 @@ After code is complete, create implementation documentation:
 
 3. Update `features/features-index.md` if needed
 
-4. **Update or create `src/README.md` (Project Documentation):**
-   - **IMPORTANT**: Developers should maintain project documentation in `src/README.md`, NOT in the root README.md
+4. **Update or create `{SRC}/README.md` (Project Documentation):**
+   - **IMPORTANT**: Developers should maintain project documentation in `{SRC}/README.md`, NOT in the root README.md
    - Add or update feature documentation:
      - Feature overview and purpose
      - Installation and setup instructions
      - Usage examples and API documentation
      - Configuration options
      - Troubleshooting tips
-   - Keep `src/README.md` as the primary technical reference for developers
+   - Keep `{SRC}/README.md` as the primary technical reference for developers
    - Include links to `features/` documentation for detailed specs
 
 ### Step 4: Verify Against Test Plan
@@ -267,7 +267,7 @@ Before marking complete:
 3. **Reference documentation created:**
    - Link to `features/[feature-name].md`
    - Link to `features/impl/[feature-name].md`
-   - Link to source code files in `src/` (locations documented in features/impl/[feature-name].md)
+   - Link to source code files in `{SRC}/` (locations documented in features/impl/[feature-name].md)
 
 4. **Notify user:**
    - Summarize what was implemented
@@ -299,7 +299,7 @@ project-root/
 │   └── impl/
 │       └── [feature-name].md               # Implementation notes (code locations)
 │
-└── src/                                     # Source code
+└── {SRC}/                                     # Source code
     ├── README.md                            # Project documentation (maintained by developers)
     └── [organized per dev-swarm/docs/source-code-structure.md guidelines]
 ```

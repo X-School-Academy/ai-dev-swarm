@@ -24,7 +24,7 @@ This skill requires:
 - `07-tech-specs/` - Engineering standards and constraints
 - `features/` folder with feature design and implementation docs
 - `09-sprints/` folder with backlog that was implemented
-- `src/` folder (organized as defined in source-code-structure.md)
+- `{SRC}/` folder (organized as defined in source-code-structure.md)
 - Access to source code files
 
 ## Feature-Driven Code Review Workflow
@@ -40,7 +40,7 @@ This skill requires:
    - `features/flows/[feature-name].md` - User flows and process flows (if exists)
    - `features/contracts/[feature-name].md` - API/data contracts (if exists)
    - `features/impl/[feature-name].md` - Implementation notes (if exists)
-5. Locate source code in `src/` using `features/impl/[feature-name].md`
+5. Locate source code in `{SRC}/` using `features/impl/[feature-name].md`
 6. Review code against design specs and coding standards
 7. Update `backlog.md` with review findings
 
@@ -113,7 +113,7 @@ Follow these steps in order:
 
 6. **Locate source code:**
    - Use `features/impl/[feature-name].md` to find code locations
-   - Navigate to `src/[feature-name]/` directory
+   - Navigate to `{SRC}/[feature-name]/` directory
    - List all files mentioned in implementation docs
    - Identify files to review
 
@@ -484,7 +484,7 @@ If Changes Required → Back to Development
 1. Read backlog: "User can upload profile picture"
 2. Read features/profile-upload.md: Understand design
 3. Read features/impl/profile-upload.md: Find changed files
-4. Review src/api/upload.ts: Check implementation
+4. Review {SRC}/api/upload.ts: Check implementation
 5. Find issue: No file size validation (security risk)
 6. Create bug backlog: "Add file size validation to upload"
 7. Find improvement: Could use image compression
@@ -496,7 +496,7 @@ If Changes Required → Back to Development
 ```
 1. Read backlog: "Fix login error for special characters"
 2. Read features/user-authentication.md: Understand auth system
-3. Review src/auth/validator.ts: Check fix
+3. Review {SRC}/auth/validator.ts: Check fix
 4. Verify: Fix properly escapes special characters
 5. Check: No new vulnerabilities introduced
 6. Test: Can verify with test plan
@@ -507,7 +507,7 @@ If Changes Required → Back to Development
 ```
 1. Read backlog: "Optimize dashboard API response time"
 2. Read features/dashboard-api.md: Understand optimization approach
-3. Review src/api/dashboard.ts: Check caching implementation
+3. Review {SRC}/api/dashboard.ts: Check caching implementation
 4. Find issue: Cache invalidation logic missing
 5. Create change backlog: "Add cache invalidation to dashboard"
 6. Find opportunity: Could optimize database query further

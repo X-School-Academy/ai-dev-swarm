@@ -5,7 +5,7 @@ project-root/
 ├─ dev-swarm/                       # AI builder framework and skills
 │  └─ docs/
 │     ├─ repository-structure.md     # This file
-│     └─ source-code-structure.md    # Guide for defining src/ structure in tech specs
+│     └─ source-code-structure.md    # Guide for defining {SRC}/ structure in tech specs
 │
 │  NOTE:
 │  - This is the max doc list for each stage (large-scale projects).
@@ -15,8 +15,8 @@ project-root/
 │  - For a small project create tons of documents files is bad practice.
 │  - Smaller scale projects (per dev-swarm/docs/software-dev-classification.md) can skip stages/files.
 │  - Example for very small projects (L0-L1):
-│    00-init-ideas/README.md         # How to implement `src/script_name.sh` or refined requirements
-│    src/script_name.sh              # The script itself
+│    00-init-ideas/README.md         # How to implement `{SRC}/script_name.sh` or refined requirements
+│    {SRC}/script_name.sh              # The script itself
 │
 ├─ 00-init-ideas/                    # Stage 0: define the problem
 │  ├─ README.md                      # Project and folder overview and guide
@@ -73,7 +73,7 @@ project-root/
 │  ├─ tech-stack.md                  # Languages/frameworks/db/cloud provider choices
 │  ├─ theme-standards.md             # UI theme rules (fonts/sizes/colors) if doing UI
 │  ├─ coding-standards.md            # Code style rules, repo conventions, naming, formatting
-│  ├─ source-code-structure.md       # Define the source code structure under folder `src/`
+│  ├─ source-code-structure.md       # Define the source code structure under folder `{SRC}/`
 │  ├─ testing-standards.md           # Required tests, naming, running, minimum gates
 │  └─ security-standards.md          # Secure coding rules, scanning, logging redaction rules
 │
@@ -151,7 +151,7 @@ project-root/
 │  │
 │  └─ auth-login.md                  # Feature definition (WHAT/WHY/SCOPE) for the auth-login feature
 │
-├─ src/                              # The codebase (AI modifies this)
+├─ {SRC}/                              # The codebase (AI modifies this)
 │  ├─ README.md                      # Codebase overview and structure guide
 │  ├─ frontend/                      # UI code
 │  │  └─ README.md                   # Frontend structure and getting started

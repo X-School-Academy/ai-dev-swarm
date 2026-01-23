@@ -25,7 +25,7 @@ This skill requires:
 - `07-tech-specs/` - Engineering standards and constraints
 - `features/` folder with feature design and implementation docs
 - `09-sprints/` folder with backlog and test plan
-- `src/` folder (organized as defined in source-code-structure.md)
+- `{SRC}/` folder (organized as defined in source-code-structure.md)
 - Access to source code and running environment
 
 ## Feature-Driven Testing Workflow
@@ -41,7 +41,7 @@ This skill requires:
    - `features/flows/[feature-name].md` - User flows and process flows (if exists)
    - `features/contracts/[feature-name].md` - API/data contracts (if exists)
    - `features/impl/[feature-name].md` - Implementation notes (if exists)
-5. Locate code and test files in `src/` using `features/impl/[feature-name].md`
+5. Locate code and test files in `{SRC}/` using `features/impl/[feature-name].md`
 6. Write/execute tests following `07-tech-specs/testing-standards.md`
 7. Update `backlog.md` with test results and findings
 
@@ -115,8 +115,8 @@ Follow these steps in order:
 
 6. **Locate code and tests:**
    - Use `features/impl/[feature-name].md` to find code locations
-   - Navigate to `src/` directory
-   - Check existing test files in `src/` (locations from features/impl/[feature-name].md)
+   - Navigate to `{SRC}/` directory
+   - Check existing test files in `{SRC}/` (locations from features/impl/[feature-name].md)
    - Identify files to test
 
 7. **Read sprint test plan:**
@@ -180,7 +180,7 @@ Create automated test suites based on test type:
 
 #### Unit Tests
 
-Test individual functions/components:
+Test individual functions/components in isolation:
 
 **Best Practices:**
 - Test one thing per test case
