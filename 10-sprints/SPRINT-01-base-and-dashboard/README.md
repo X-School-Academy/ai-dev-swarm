@@ -1,7 +1,7 @@
 # SPRINT-01-base-and-dashboard
 
 ## Sprint Status
-pending
+in_progress
 
 ## Sprint Goal
 Establish the project foundation and deliver a functional dashboard that reflects accurate stage status and skip behavior.
@@ -10,11 +10,11 @@ Establish the project foundation and deliver a functional dashboard that reflect
 None
 
 ## Backlogs
-- FEATURE-01 project-scaffolding (pending, M)
-- FEATURE-01b mockup-adapter-foundation (pending, M)
-- FEATURE-02 backend-stage-api (pending, M)
-- FEATURE-03 frontend-dashboard-ui (pending, M)
-- FEATURE-04 skip-management (pending, S)
+- FEATURE-01 project-scaffolding (completed, M)
+- FEATURE-01b mockup-adapter-foundation (completed, M)
+- FEATURE-02 backend-stage-api (completed, M)
+- FEATURE-03 frontend-dashboard-ui (completed, M)
+- FEATURE-04 skip-management (completed, S)
 
 ## Sprint Test Plan
 - Verify frontend and backend scaffolding and ports.
