@@ -1,7 +1,7 @@
 # SPRINT-01-base-and-dashboard
 
 ## Sprint Status
-in_progress
+completed
 
 ## Sprint Goal
 Establish the project foundation and deliver a functional dashboard that reflects accurate stage status and skip behavior.
