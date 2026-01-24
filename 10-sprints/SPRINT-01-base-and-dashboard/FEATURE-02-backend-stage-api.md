@@ -1,28 +1,30 @@
 # FEATURE-02-backend-stage-api
 
 ## Keywords
-`stage-api`, `status-derivation`, `skip-logic`
+`stage-list-endpoint`, `stage-status-derivation`, `stage-files-summary`
 
 ## User Story
 As a frontend, I want to fetch stage data so I can display the dashboard.
 
 ## Related Documentation
-- `08-tech-specs/backend-specs.md`
-- `05-prd/functional-requirements.md`
+- 08-tech-specs/backend-specs.md
+- 08-tech-specs/api-specifications.md
+- 05-prd/functional-requirements.md
 
 ## Acceptance Criteria
-- [ ] GET `/api/stages` returns all stages (00-11, 99).
-- [ ] Each stage includes `id`, `name`, `status`, `isSkippable`.
-- [ ] Status is derived: `skipped` (SKIP.md), `completed` (README.md), `not-started` (otherwise).
-- [ ] `isSkippable` is false for 00, 05, 08, 10.
+- [ ] GET /api/stages returns stages 00-11 and 99.
+- [ ] Each stage includes stageId, name, status, isSkippable, hasSkipFile, and files.
+- [ ] Status derives from SKIP.md, README.md, and active run state.
+- [ ] Non-skippable stages are 00, 05, 08, and 10.
 
 ## Technical Implementation Notes
-- Use `os.path.exists` to check for `SKIP.md` and `README.md` in each stage directory.
-- Hardcode the non-skippable stage IDs.
+- Use a fixed stage list to avoid missing folders.
+- Derive file lists per stage from known markdown and HTML files.
+- Ensure status values align with the tech specs.
 
 ## Developer Test Plan
-- Manually create/delete `SKIP.md` in a folder and call the API to verify status change.
-- Verify response structure matches frontend expectations.
+- Create and remove SKIP.md and README.md in a stage folder and confirm status changes.
+- Validate file lists for a stage with multiple documents.
 
 ## Dependencies
 - FEATURE-01-project-scaffolding
@@ -31,6 +33,7 @@ As a frontend, I want to fetch stage data so I can display the dashboard.
 M
 
 ## Status Checklist
-- [ ] API endpoint implemented
-- [ ] Status derivation logic complete
-- [ ] Skip restrictions applied
+- [ ] Endpoint implemented
+- [ ] Status derivation complete
+- [ ] Skippable rules applied
+- [ ] File list included

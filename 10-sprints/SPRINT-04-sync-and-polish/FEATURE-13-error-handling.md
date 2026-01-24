@@ -1,27 +1,27 @@
 # FEATURE-13-error-handling
 
 ## Keywords
-`error-boundary`, `toast-notifications`, `api-error-handling`
+`error-boundary-ui`, `toast-messaging`, `api-error-mapping`
 
 ## User Story
 As a user, I want to know when something goes wrong.
 
 ## Related Documentation
-- `08-tech-specs/error-handling.md`
+- 08-tech-specs/error-handling.md
 
 ## Acceptance Criteria
-- [ ] Global React Error Boundary to catch UI crashes.
-- [ ] Toast notifications for backend errors (e.g., file write failed).
-- [ ] 404 page for invalid stage/file paths.
-- [ ] User-friendly error messages (no raw stack traces).
+- [ ] Global error boundary prevents UI crashes.
+- [ ] Toast notifications surface backend errors.
+- [ ] Error pages exist for invalid routes.
+- [ ] Messages are user-friendly and do not expose stack traces.
 
 ## Technical Implementation Notes
-- Use a library like `react-hot-toast` or `sonner`.
-- Map backend error codes to localized strings.
+- Map backend error codes to user-facing messages.
+- Keep error UI consistent with the design system.
 
 ## Developer Test Plan
-- Trigger a backend error (e.g., stop the server) and verify a toast appears.
-- Navigate to a non-existent URL and verify the 404 page.
+- Trigger backend errors and verify toast messages.
+- Navigate to invalid routes and verify error pages.
 
 ## Dependencies
 - FEATURE-03-frontend-dashboard-ui
@@ -32,5 +32,5 @@ S
 ## Status Checklist
 - [ ] Error boundary implemented
 - [ ] Toast system integrated
-- [ ] API error interceptors complete
-- [ ] Error pages styled
+- [ ] Error pages implemented
+- [ ] Message mapping verified

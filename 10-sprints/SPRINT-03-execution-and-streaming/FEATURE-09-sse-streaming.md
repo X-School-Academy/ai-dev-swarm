@@ -1,26 +1,27 @@
 # FEATURE-09-sse-streaming
 
 ## Keywords
-`sse-endpoint`, `real-time-output`, `event-stream`
+`sse-run-stream`, `event-categorization`, `stream-cleanup`
 
 ## User Story
-As a user, I want to see progress in real-time.
+As a user, I want to see progress in real time.
 
 ## Related Documentation
-- `08-tech-specs/api-specifications.md`
+- 08-tech-specs/api-specifications.md
+- 08-tech-specs/observability-spec.md
 
 ## Acceptance Criteria
-- [ ] GET `/api/stages/{id}/run/stream` returns SSE stream.
-- [ ] Events: `system` (start/stop), `stdout` (agent output), `stderr` (errors), `done`.
-- [ ] Stream closes cleanly when process ends.
+- [ ] GET /api/runs/{runId}/stream provides SSE output for the run.
+- [ ] Events include system, output, error, and status categories.
+- [ ] Stream closes cleanly when the run ends.
 
 ## Technical Implementation Notes
-- Use FastAPI's `EventSourceResponse`.
-- Use a queue or broadcaster to pipe process output to the SSE handler.
+- Broadcast output lines to connected SSE clients.
+- Ensure event ordering is preserved.
 
 ## Developer Test Plan
-- Connect to the endpoint via `curl` and trigger a run; verify events arrive.
-- Verify multiple tabs can (or cannot) connect to the same stream.
+- Connect to the stream, start a run, and verify event sequence.
+- Validate stream closure on completion.
 
 ## Dependencies
 - FEATURE-08-headless-runner

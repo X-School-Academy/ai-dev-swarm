@@ -1,28 +1,27 @@
 # FEATURE-10-console-ui
 
 ## Keywords
-`console-panel`, `auto-scroll`, `output-formatting`
+`console-panel-ui`, `sse-client-hook`, `auto-scroll-behavior`
 
 ## User Story
 As a user, I want a console view to monitor execution.
 
 ## Related Documentation
-- `06-ux/design-system-guide.md`
+- 06-ux/design-system-guide.md
+- 08-tech-specs/observability-spec.md
 
 ## Acceptance Criteria
-- [ ] Scrollable console panel on the right.
-- [ ] Monospace font (JetBrains Mono).
-- [ ] Auto-scroll to bottom as new content arrives.
-- [ ] Visual distinction between stdout and system messages.
+- [ ] Console panel displays system and agent output distinctly.
+- [ ] Auto-scroll keeps the latest output in view when pinned.
+- [ ] Output history persists for the current run.
 
 ## Technical Implementation Notes
-- Use `useEffect` to manage SSE connection.
-- Use `ref` to handle auto-scrolling logic.
-- Handle line breaks correctly.
+- Keep console rendering efficient for long output.
+- Respect user scroll position when not pinned to bottom.
 
 ## Developer Test Plan
-- Run a command that produces a lot of output and verify auto-scroll works.
-- Verify manual scroll up stops auto-scroll (standard console behavior).
+- Stream multiple events and verify formatting and scroll behavior.
+- Confirm output remains visible after run completion.
 
 ## Dependencies
 - FEATURE-03-frontend-dashboard-ui
@@ -33,6 +32,5 @@ M
 
 ## Status Checklist
 - [ ] Console component implemented
-- [ ] SSE connection integrated
-- [ ] Auto-scroll logic complete
-- [ ] Visual styling applied
+- [ ] SSE client integration complete
+- [ ] Auto-scroll behavior verified

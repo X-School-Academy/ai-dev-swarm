@@ -1,31 +1,30 @@
 # FEATURE-01-project-scaffolding
 
 ## Keywords
-`project-scaffold`, `nextjs-setup`, `fastapi-setup`
+`scaffold-nextjs`, `scaffold-fastapi`, `dev-env-bootstrap`
 
 ## User Story
 As a developer, I want the project structure set up so I can start building features.
 
 ## Related Documentation
-- `README.md`
-- `08-tech-specs/tech-specs-overview.md`
+- 00-init-ideas/tech-requirements.md
+- 08-tech-specs/tech-specs-overview.md
 
 ## Acceptance Criteria
-- [ ] Next.js (TypeScript) project created in `dev-swarm/js_scripts/webui/`.
-- [ ] FastAPI project created in `dev-swarm/py_scripts/webui/`.
-- [ ] Frontend running on port 3001.
-- [ ] Backend running on port 8001.
-- [ ] Proxy or CORS configured for frontend-backend communication.
-- [ ] `pnpm` used for JS and `uv` used for Python.
+- [ ] Next.js app created in dev-swarm/js_scripts/webui.
+- [ ] FastAPI app created in dev-swarm/py_scripts/webui.
+- [ ] Frontend runs on port 3001 and backend runs on port 8001.
+- [ ] Frontend-backend communication is allowed (proxy or CORS).
+- [ ] pnpm is used for JS and uv is used for Python.
 
 ## Technical Implementation Notes
-- Use `npx create-next-app@latest` for frontend.
-- Use `uv init` and `pip install fastapi uvicorn` for backend.
-- Ensure project root `.gitignore` covers new build artifacts.
+- Use a TypeScript Next.js scaffold with pnpm.
+- Use a FastAPI scaffold with uv and uvicorn.
+- Ensure repo .gitignore covers build artifacts and virtual environments.
 
 ## Developer Test Plan
-- Run `pnpm dev` in `js_scripts/webui/` and check `localhost:3001`.
-- Run `uvicorn main:app` in `py_scripts/webui/` and check `localhost:8001/docs`.
+- Start the frontend and backend dev servers and verify basic health pages load.
+- Confirm the frontend can reach the backend without CORS errors.
 
 ## Dependencies
 None

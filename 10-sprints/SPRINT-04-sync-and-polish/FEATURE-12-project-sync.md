@@ -1,30 +1,29 @@
 # FEATURE-12-project-sync
 
 ## Keywords
-`project-sync`, `state-reconciliation`, `manual-sync`
+`project-sync-endpoint`, `sync-on-load`, `state-reconcile`
 
 ## User Story
 As a user, I want the UI to update if I change files outside the app.
 
 ## Related Documentation
-- `05-prd/functional-requirements.md`
+- 05-prd/functional-requirements.md
+- 08-tech-specs/backend-specs.md
 
 ## Acceptance Criteria
-- [ ] "Sync" button in global header.
-- [ ] Auto-sync on page load.
-- [ ] Backend re-scans stages and files on sync request.
-- [ ] Frontend updates all state (stages, skip status, file list) from sync response.
+- [ ] POST /api/sync re-scans the project and returns updated stage data.
+- [ ] UI triggers sync on page load and via a manual button.
+- [ ] Stage list and document list update from sync response.
 
 ## Technical Implementation Notes
-- Reuse the status derivation logic from FEATURE-02.
-- Ensure sync is efficient (only scan project root).
+- Reuse stage status derivation logic from stage list API.
+- Keep sync response lightweight and deterministic.
 
 ## Developer Test Plan
-- Manually create a `SKIP.md` in terminal, then click Sync in UI; verify status changes.
-- Delete a file and verify it disappears from the file list after sync.
+- Create or delete SKIP.md and documents outside the UI, then sync and verify updates.
+- Confirm sync is blocked while a run is active.
 
 ## Dependencies
-- FEATURE-01-project-scaffolding
 - FEATURE-02-backend-stage-api
 
 ## Complexity Estimate
@@ -32,6 +31,6 @@ M
 
 ## Status Checklist
 - [ ] Sync endpoint implemented
-- [ ] Global sync action in UI
-- [ ] Auto-sync integrated
+- [ ] UI sync action implemented
+- [ ] Auto-sync on load implemented
 - [ ] State update verified

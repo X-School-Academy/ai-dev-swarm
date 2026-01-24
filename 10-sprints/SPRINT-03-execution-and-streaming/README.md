@@ -1,28 +1,31 @@
 # SPRINT-03-execution-and-streaming
 
-## Sprint Status: pending
+## Sprint Status
+pending
+
 ## Sprint Goal
-Implement the core AI agent execution workflow with real-time feedback.
+Implement the core execution workflow with real-time output streaming and safe stop controls.
 
 ## Dependencies
 SPRINT-01, SPRINT-02
 
 ## Backlogs
-| ID | Title | Status | Complexity |
-| :--- | :--- | :--- | :--- |
-| FEATURE-08 | headless-runner | pending | L |
-| FEATURE-09 | sse-streaming | pending | M |
-| FEATURE-10 | console-ui | pending | M |
-| FEATURE-11 | stop-execution | pending | S |
+- FEATURE-08 headless-runner (pending, L)
+- FEATURE-09 sse-streaming (pending, M)
+- FEATURE-10 console-ui (pending, M)
+- FEATURE-11 stop-execution (pending, S)
 
 ## Sprint Test Plan
-- Verify agent process lifecycle management.
-- Verify real-time output delivery via SSE.
-- Verify console auto-scroll and formatting.
-- Verify process termination (Start/Stop cycle).
+- Verify run lifecycle and single-run enforcement.
+- Verify SSE output streaming with correct event categories.
+- Verify stop behavior and UI status updates.
+
+## Demo Script
+- Start a stage run and show live output in the console panel.
+- Stop the run and confirm status changes.
+- Restart the run to confirm recovery.
 
 ## Success Criteria
-- User can trigger a stage run from the UI.
-- Output from the AI agent appears in the console panel within 500ms.
-- Run button is disabled during execution.
-- User can stop a running agent cleanly.
+- Users can start a stage run and see output within 500ms.
+- Users can stop a running agent cleanly.
+- UI blocks conflicting actions while a run is active.

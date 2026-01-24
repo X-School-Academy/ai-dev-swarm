@@ -1,32 +1,29 @@
 # FEATURE-03-frontend-dashboard-ui
 
 ## Keywords
-`dashboard-ui`, `stage-sidebar`, `status-badges`
+`dashboard-layout`, `stage-list-ui`, `stage-detail-panel`
 
 ## User Story
 As a user, I want to see an overview of all stages so I know the project status.
 
 ## Related Documentation
-- `06-ux/wireframe_descriptions.md`
-- `06-ux/design-system-guide.md`
+- 06-ux/wireframe_descriptions.md
+- 06-ux/design-system-guide.md
 
 ## Acceptance Criteria
-- [ ] Sidebar component listing all stages with icons/badges.
-- [ ] Main panel showing selected stage details.
-- [ ] Status badges use colors from design system (Cyan, Neon Green, Amber, etc.).
-- [ ] Dashboard is responsive for desktop widths.
+- [ ] Sidebar lists all stages with status badges.
+- [ ] Selecting a stage updates the detail panel.
+- [ ] Layout matches the UX wireframes at desktop widths.
 
 ## Technical Implementation Notes
-- Use Tailwind CSS for styling as per Next.js defaults.
-- Use `lucide-react` for icons.
-- Implement a `StageCard` or `StageListItem` component.
+- Keep layout to three main panels per UX.
+- Use design system colors for status indicators.
 
 ## Developer Test Plan
-- Verify layout matches wireframe at 1440px and 1920px.
-- Verify status colors match the design system.
+- Verify layout at 1440px and 1920px.
+- Confirm stage selection updates the detail panel state.
 
 ## Dependencies
-- FEATURE-01-project-scaffolding
 - FEATURE-02-backend-stage-api
 
 ## Complexity Estimate
@@ -36,4 +33,4 @@ M
 - [ ] Layout shell complete
 - [ ] Stage list implemented
 - [ ] Status badges styled
-- [ ] Responsive check passed
+- [ ] Detail panel functional

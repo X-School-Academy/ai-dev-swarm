@@ -1,26 +1,27 @@
 # FEATURE-04-skip-management
 
 ## Keywords
-`skip-toggle`, `file-ops-api`
+`skip-toggle-endpoint`, `skip-toggle-ui`, `skip-guardrails`
 
 ## User Story
 As a user, I want to skip optional stages so I can focus on relevant work.
 
 ## Related Documentation
-- `05-prd/functional-requirements.md`
+- 05-prd/functional-requirements.md
+- 08-tech-specs/api-specifications.md
 
 ## Acceptance Criteria
-- [ ] POST `/api/stages/{id}/skip` creates/removes `SKIP.md`.
-- [ ] Toggle switch in UI is disabled for non-skippable stages.
-- [ ] UI refreshes or optimistic updates on toggle.
+- [ ] POST /api/stages/{stageId}/skip toggles SKIP.md creation or removal.
+- [ ] Non-skippable stages return a clear error and UI disables the toggle.
+- [ ] UI updates the stage status immediately after the action.
 
 ## Technical Implementation Notes
-- Backend should handle file creation/deletion safely.
-- Use a simple boolean toggle in the request body.
+- Validate stageId before file operations.
+- Use safe file operations and handle existing SKIP.md gracefully.
 
 ## Developer Test Plan
-- Toggle skip in UI and verify `SKIP.md` appears/disappears in the file system.
-- Verify error returned if trying to skip a non-skippable stage.
+- Toggle skip for a skippable stage and confirm file changes.
+- Attempt to skip a non-skippable stage and confirm error handling.
 
 ## Dependencies
 - FEATURE-03-frontend-dashboard-ui
@@ -30,5 +31,5 @@ S
 
 ## Status Checklist
 - [ ] Backend toggle endpoint complete
-- [ ] Frontend toggle component complete
-- [ ] Error handling for non-skippable stages
+- [ ] Frontend toggle UI complete
+- [ ] Error handling verified

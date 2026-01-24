@@ -1,27 +1,26 @@
 # FEATURE-07-document-editor
 
 ## Keywords
-`markdown-editor`, `live-preview`, `save-action`
+`markdown-editor`, `live-preview-pane`, `save-feedback`
 
 ## User Story
 As a user, I want to edit documents to update requirements or plans.
 
 ## Related Documentation
-- `05-prd/functional-requirements.md`
+- 05-prd/functional-requirements.md
 
 ## Acceptance Criteria
-- [ ] Split-pane editor (left: text, right: preview).
-- [ ] "Save" button with loading/success state.
-- [ ] Live preview updates as user types.
-- [ ] Unsaved changes warning (optional).
+- [ ] Markdown editor supports live preview.
+- [ ] Save action writes to disk with success or failure feedback.
+- [ ] Undo and redo are available within the edit session.
 
 ## Technical Implementation Notes
-- Use a robust text area or a library like `monaco-editor` if needed (start simple).
-- Sync the scroll between editor and preview.
+- Keep editor simple and responsive for large documents.
+- Preserve cursor position on save to avoid disruption.
 
 ## Developer Test Plan
-- Make an edit, click save, and verify file on disk changes.
-- Verify preview updates immediately.
+- Edit a markdown file, save, refresh, and confirm changes persist.
+- Use undo and redo to confirm edit history behavior.
 
 ## Dependencies
 - FEATURE-06-document-viewer
@@ -31,6 +30,6 @@ M
 
 ## Status Checklist
 - [ ] Editor UI implemented
-- [ ] Live preview sync complete
-- [ ] Save integration complete
-- [ ] Feedback UI implemented
+- [ ] Live preview integrated
+- [ ] Save feedback implemented
+- [ ] Undo and redo verified

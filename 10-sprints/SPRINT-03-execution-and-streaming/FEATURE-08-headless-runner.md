@@ -1,28 +1,28 @@
 # FEATURE-08-headless-runner
 
 ## Keywords
-`process-manager`, `agent-runner`, `headless-mode`
+`headless-runner`, `process-lifecycle-guard`, `run-state-tracking`
 
 ## User Story
 As a system, I need to run AI agents as background processes.
 
 ## Related Documentation
-- `08-tech-specs/backend-specs.md`
+- 08-tech-specs/backend-specs.md
+- 08-tech-specs/api-specifications.md
 
 ## Acceptance Criteria
-- [ ] Backend can launch a shell command (e.g., `claude --headless`).
-- [ ] Process stdout/stderr captured in real-time.
-- [ ] Only one run allowed at a time.
-- [ ] Exit code captured on completion.
+- [ ] POST /api/stages/{stageId}/run starts a run and returns a runId.
+- [ ] GET /api/runs/{runId} returns run status and timestamps.
+- [ ] Only one run can be active at a time.
+- [ ] Stdout and stderr are captured for streaming.
 
 ## Technical Implementation Notes
-- Use `asyncio.create_subprocess_exec` for non-blocking execution.
-- Maintain a global state for the active process.
-- Use the `LiveAIAdapter` from Sprint 01.
+- Use async process execution with safe cancellation.
+- Track run state in memory with a single active run lock.
 
 ## Developer Test Plan
-- Trigger a mock run and verify process start/stop.
-- Trigger a real command (e.g., `ls -R`) and verify output capture.
+- Start a mock run and verify status transitions.
+- Confirm run cleanup on completion or failure.
 
 ## Dependencies
 - FEATURE-01b-mockup-adapter-foundation
@@ -31,7 +31,7 @@ As a system, I need to run AI agents as background processes.
 L
 
 ## Status Checklist
-- [ ] Process spawning implemented
-- [ ] Output capture logic complete
-- [ ] Concurrency lock implemented
-- [ ] Cleanup on exit verified
+- [ ] Run start endpoint implemented
+- [ ] Run status endpoint implemented
+- [ ] Single-run guard enforced
+- [ ] Output capture verified

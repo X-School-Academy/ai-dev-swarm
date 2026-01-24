@@ -1,28 +1,32 @@
 # SPRINT-01-base-and-dashboard
 
-## Sprint Status: pending
+## Sprint Status
+pending
+
 ## Sprint Goal
-Establish the project foundation and deliver a functional dashboard that accurately reflects the project's stage status.
+Establish the project foundation and deliver a functional dashboard that reflects accurate stage status and skip behavior.
 
 ## Dependencies
 None
 
 ## Backlogs
-| ID | Title | Status | Complexity |
-| :--- | :--- | :--- | :--- |
-| FEATURE-01 | project-scaffolding | pending | M |
-| FEATURE-01b | mockup-adapter-foundation | pending | M |
-| FEATURE-02 | backend-stage-api | pending | M |
-| FEATURE-03 | frontend-dashboard-ui | pending | M |
-| FEATURE-04 | skip-management | pending | S |
+- FEATURE-01 project-scaffolding (pending, M)
+- FEATURE-01b mockup-adapter-foundation (pending, M)
+- FEATURE-02 backend-stage-api (pending, M)
+- FEATURE-03 frontend-dashboard-ui (pending, M)
+- FEATURE-04 skip-management (pending, S)
 
 ## Sprint Test Plan
-- Verify frontend and backend setup.
-- Verify stage listing and status derivation.
-- Verify skip/unskip functionality for skippable stages.
-- Verify mockup adapter switching via env.
+- Verify frontend and backend scaffolding and ports.
+- Verify stage list API returns correct status and skippable flags.
+- Verify skip toggle creates and removes SKIP.md safely.
+
+## Demo Script
+- Launch frontend and backend locally and open the dashboard.
+- Show the stage list and open a stage detail view.
+- Toggle a skippable stage and confirm UI status updates.
 
 ## Success Criteria
 - App launches with frontend on 3001 and backend on 8001.
-- Dashboard shows all 13 stages with correct status badges.
-- Users can toggle SKIP.md for stages 01, 02, 03, 04, 06, 07, 09, 11, and 99.
+- Dashboard shows all stages with correct status badges.
+- Users can toggle SKIP.md for skippable stages only.

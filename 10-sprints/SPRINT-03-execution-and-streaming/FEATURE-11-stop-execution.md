@@ -1,26 +1,27 @@
 # FEATURE-11-stop-execution
 
 ## Keywords
-`stop-run`, `process-kill`, `graceful-termination`
+`run-stop-control`, `process-terminate`, `stop-status-sync`
 
 ## User Story
 As a user, I want to stop a run if it goes wrong.
 
 ## Related Documentation
-- `05-prd/functional-requirements.md`
+- 05-prd/functional-requirements.md
+- 08-tech-specs/backend-specs.md
 
 ## Acceptance Criteria
-- [ ] "Stop" button in UI triggers DELETE/POST to terminate.
-- [ ] Backend sends `SIGINT` then `SIGKILL` if needed.
-- [ ] UI reflects "Stopped" status immediately.
+- [ ] POST /api/stages/{stageId}/stop terminates the active run.
+- [ ] Backend attempts graceful termination before forcing kill.
+- [ ] UI reflects stopped status immediately and allows restart.
 
 ## Technical Implementation Notes
-- Implement a `terminate_process` method in the runner.
-- Ensure all child processes are killed.
+- Terminate process tree and confirm exit status.
+- Clear active run state after stop.
 
 ## Developer Test Plan
-- Start a long-running process (e.g., `sleep 100`) and click stop.
-- Verify the process is no longer in the system (e.g., `ps aux | grep sleep`).
+- Start a long-running run and stop it from the UI.
+- Confirm the run status updates to stopped and resources are released.
 
 ## Dependencies
 - FEATURE-08-headless-runner
@@ -31,5 +32,5 @@ S
 
 ## Status Checklist
 - [ ] Stop endpoint implemented
-- [ ] Process termination logic complete
-- [ ] UI button integration verified
+- [ ] Termination logic complete
+- [ ] UI status update verified

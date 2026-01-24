@@ -1,37 +1,36 @@
 # FEATURE-06-document-viewer
 
 ## Keywords
-`markdown-renderer`, `html-viewer`, `file-list`
+`document-list-ui`, `markdown-renderer`, `html-viewer`
 
 ## User Story
 As a user, I want to read documentation formatted nicely.
 
 ## Related Documentation
-- `06-ux/wireframe_descriptions.md`
+- 05-prd/functional-requirements.md
+- 06-ux/wireframe_descriptions.md
 
 ## Acceptance Criteria
-- [ ] Component to list all files in a stage folder.
-- [ ] Markdown files rendered using a library (e.g., `react-markdown`).
-- [ ] HTML files rendered in an `iframe` or `dangerouslySetInnerHTML`.
-- [ ] Tabbed or toggled view for "View" vs "Edit" (Sprint 03).
+- [ ] Stage document list is visible within the stage detail view.
+- [ ] Markdown documents render in a formatted view.
+- [ ] HTML documents render in a safe embedded view.
 
 ## Technical Implementation Notes
-- Use `react-markdown` with `remark-gfm` for tables.
-- Style the markdown output to match the design system.
+- Keep rendering consistent with design system typography.
+- Use a markdown renderer that preserves headings and lists.
 
 ## Developer Test Plan
-- Open `ideas.md` and verify it looks correct.
-- Open `06-ux/design-ui-preview.html` and verify it renders.
+- Open ideas.md and confirm formatting is readable.
+- Open an HTML document and confirm it renders safely.
 
 ## Dependencies
-- FEATURE-03-frontend-dashboard-ui
 - FEATURE-05-backend-files-api
 
 ## Complexity Estimate
 M
 
 ## Status Checklist
-- [ ] File list component complete
+- [ ] Document list component complete
 - [ ] Markdown renderer implemented
 - [ ] HTML viewer implemented
 - [ ] Styling applied

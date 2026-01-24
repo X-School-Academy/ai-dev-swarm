@@ -1,29 +1,28 @@
 # FEATURE-01b-mockup-adapter-foundation
 
 ## Keywords
-`mockup-adapter`, `provider-factory`, `mock-ai-agent`
+`agent-adapter-abc`, `mock-provider-stream`, `provider-env-switch`
 
 ## User Story
 As a developer, I want to use mock services during development to save time and costs.
 
 ## Related Documentation
-- `08-tech-specs/api-mockup-adapter.md`
+- 08-tech-specs/api-mockup-adapter.md
 
 ## Acceptance Criteria
-- [ ] Abstract base classes (ABC) defined for AI Agent execution.
-- [ ] `MockAIAdapter` implemented with sample streaming output.
-- [ ] `LiveAIAdapter` skeleton implemented (actual logic in Sprint 03).
-- [ ] `AGENT_CLI_PROVIDER` env variable controls provider selection.
-- [ ] Provider factory returns correct instance based on env.
+- [ ] Abstract base class defined for agent execution adapters.
+- [ ] Mock adapter yields deterministic streaming output.
+- [ ] Live adapter stub exists for future integration.
+- [ ] AGENT_CLI_PROVIDER selects mock or live adapter at runtime.
 
 ## Technical Implementation Notes
-- Use Python's `abc` module for interfaces.
-- Use `asyncio.sleep` to simulate latency in mocks.
-- Load environment variables using `python-dotenv`.
+- Use Python abc for interface definitions.
+- Keep mock output predictable for UI testing.
+- Load provider selection from environment configuration.
 
 ## Developer Test Plan
-- Set `AGENT_CLI_PROVIDER=mock` and verify `MockAIAdapter` is used.
-- Set `AGENT_CLI_PROVIDER=live` and verify `LiveAIAdapter` is used.
+- Set AGENT_CLI_PROVIDER to mock and confirm mock output stream.
+- Set AGENT_CLI_PROVIDER to live and confirm the live stub is selected.
 
 ## Dependencies
 - FEATURE-01-project-scaffolding
@@ -32,7 +31,7 @@ As a developer, I want to use mock services during development to save time and 
 M
 
 ## Status Checklist
-- [ ] Base classes defined
-- [ ] Mock implementation complete
-- [ ] Factory implemented
+- [ ] Base class defined
+- [ ] Mock adapter implemented
+- [ ] Provider factory implemented
 - [ ] Env switching verified

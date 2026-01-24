@@ -1,28 +1,27 @@
 # IMPROVE-14-ui-polish
 
 ## Keywords
-`ui-polish`, `design-system-audit`, `responsive-refinement`
+`design-system-audit`, `type-scale-apply`, `interaction-polish`
 
 ## User Story
 As a user, I want a professional-looking interface.
 
 ## Related Documentation
-- `06-ux/design-system-guide.md`
+- 06-ux/design-system-guide.md
 
 ## Acceptance Criteria
-- [ ] Colors strictly follow the palette in the guide.
-- [ ] Typography correctly uses Space Grotesk and IBM Plex Sans.
-- [ ] Consistent spacing scale applied throughout.
-- [ ] Hover states and transitions added for all interactive elements.
+- [ ] Colors match the design system palette.
+- [ ] Typography uses the specified fonts and scale.
+- [ ] Spacing scale is consistent across layouts.
+- [ ] Interactive states and transitions feel responsive.
 
 ## Technical Implementation Notes
-- Audit all Tailwind classes against the design system.
-- Add Google Fonts integration for required typefaces.
-- Fine-tune animations for a "high-tech" feel.
+- Audit Tailwind classes against design tokens.
+- Apply font loading consistently across pages.
 
 ## Developer Test Plan
-- Use a browser inspector to verify hex codes match the design system.
-- Verify responsive layout at various breakpoints.
+- Verify fonts and color tokens via browser inspection.
+- Review hover and focus states across key screens.
 
 ## Dependencies
 - FEATURE-03-frontend-dashboard-ui
@@ -33,5 +32,5 @@ S
 ## Status Checklist
 - [ ] Visual audit complete
 - [ ] Theme configuration updated
-- [ ] Transitions/Animations added
-- [ ] Final responsive check passed
+- [ ] Interaction states verified
+- [ ] Responsive check passed
