@@ -30,7 +30,11 @@ As a user, I want to see an overview of all stages so I know the project status.
 M
 
 ## Status Checklist
-- [ ] Layout shell complete
-- [ ] Stage list implemented
-- [ ] Status badges styled
-- [ ] Detail panel functional
+- [x] Layout shell complete
+- [x] Stage list implemented
+- [x] Status badges styled
+- [x] Detail panel functional
+
+## Development Notes
+- Replaced the Next.js starter page with a dashboard shell in dev-swarm/js_scripts/webui/src/app/page.tsx.
+- Added stage list, status badges, detail panel, and loading/error states.
