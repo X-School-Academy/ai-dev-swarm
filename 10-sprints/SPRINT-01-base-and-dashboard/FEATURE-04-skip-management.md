@@ -37,3 +37,4 @@ S
 ## Development Notes
 - Added POST /api/stages/{stageId}/skip with validation and SKIP.md updates.
 - Added skip/unskip button in the dashboard UI that refreshes stage data.
+- Commit: 5590526
