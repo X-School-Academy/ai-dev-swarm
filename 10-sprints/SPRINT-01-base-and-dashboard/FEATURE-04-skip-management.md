@@ -30,6 +30,10 @@ As a user, I want to skip optional stages so I can focus on relevant work.
 S
 
 ## Status Checklist
-- [ ] Backend toggle endpoint complete
-- [ ] Frontend toggle UI complete
+- [x] Backend toggle endpoint complete
+- [x] Frontend toggle UI complete
 - [ ] Error handling verified
+
+## Development Notes
+- Added POST /api/stages/{stageId}/skip with validation and SKIP.md updates.
+- Added skip/unskip button in the dashboard UI that refreshes stage data.

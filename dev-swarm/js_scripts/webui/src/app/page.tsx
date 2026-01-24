@@ -24,6 +24,7 @@ export default function Home() {
   const [selectedStageId, setSelectedStageId] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [updating, setUpdating] = useState<boolean>(false);
 
   const selectedStage = useMemo(
     () => stages.find((stage) => stage.stageId === selectedStageId),
@@ -53,6 +54,34 @@ export default function Home() {
   useEffect(() => {
     void fetchStages();
   }, [fetchStages]);
+
+  const handleToggleSkip = async () => {
+    if (!selectedStage || !selectedStage.isSkippable) {
+      return;
+    }
+    setUpdating(true);
+    setError(null);
+    try {
+      const response = await fetch(
+        `http://localhost:8001/api/stages/${selectedStage.stageId}/skip`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ skip: !selectedStage.hasSkipFile }),
+        },
+      );
+      if (!response.ok) {
+        throw new Error("Failed to update skip status");
+      }
+      await fetchStages();
+    } catch (err) {
+      const message =
+        err instanceof Error ? err.message : "Unable to update stage";
+      setError(message);
+    } finally {
+      setUpdating(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900">
@@ -108,6 +137,18 @@ export default function Home() {
                   : "Pick a stage from the sidebar to see details."}
               </p>
             </div>
+            <button
+              type="button"
+              onClick={handleToggleSkip}
+              disabled={!selectedStage?.isSkippable || updating}
+              className={`rounded-lg px-4 py-2 text-sm font-semibold transition ${
+                selectedStage?.isSkippable
+                  ? "bg-slate-900 text-white hover:bg-slate-800"
+                  : "cursor-not-allowed bg-slate-200 text-slate-400"
+              }`}
+            >
+              {selectedStage?.hasSkipFile ? "Unskip Stage" : "Skip Stage"}
+            </button>
           </div>
 
           {error ? (

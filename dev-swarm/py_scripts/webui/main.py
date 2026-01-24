@@ -1,6 +1,8 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
 
+from skip_service import toggle_skip
 from stage_service import list_stages
 
 app = FastAPI()
@@ -22,3 +24,19 @@ def health_check() -> dict:
 @app.get("/api/stages")
 def get_stages() -> list[dict]:
     return list_stages(run_active=False)
+
+
+class SkipRequest(BaseModel):
+    skip: bool | None = None
+
+
+@app.post("/api/stages/{stage_id}/skip")
+def set_stage_skip(stage_id: str, payload: SkipRequest) -> dict:
+    try:
+        return toggle_skip(stage_id, payload.skip)
+    except KeyError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
