@@ -31,7 +31,11 @@ As a developer, I want to use mock services during development to save time and 
 M
 
 ## Status Checklist
-- [ ] Base class defined
-- [ ] Mock adapter implemented
-- [ ] Provider factory implemented
+- [x] Base class defined
+- [x] Mock adapter implemented
+- [x] Provider factory implemented
 - [ ] Env switching verified
+
+## Development Notes
+- Added adapter interface, mock adapter, live stub, and factory in dev-swarm/py_scripts/webui/ai_adapters.py.
+- Mock output supports optional MOCK_DELAY_MS and MOCK_ERROR via environment variables.
