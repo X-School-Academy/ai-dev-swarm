@@ -42,3 +42,4 @@ M
 - FastAPI app scaffolded under dev-swarm/py_scripts/webui with uv and uvicorn.
 - Backend includes CORS for http://localhost:3001 and a simple /api/health endpoint.
 - Frontend dev/start scripts updated to use port 3001.
+- Commit: 55bcb3d
