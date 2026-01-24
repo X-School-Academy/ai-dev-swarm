@@ -17,6 +17,7 @@ Handle a dialog
 The schema below describes the `arguments` object in the request payload.
 ```json
 {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "properties": {
     "accept": {
@@ -24,15 +25,14 @@ The schema below describes the `arguments` object in the request payload.
       "description": "Whether to accept the dialog."
     },
     "promptText": {
-      "type": "string",
-      "description": "The text of the prompt in case of a prompt dialog."
+      "description": "The text of the prompt in case of a prompt dialog.",
+      "type": "string"
     }
   },
   "required": [
     "accept"
   ],
-  "additionalProperties": false,
-  "$schema": "http://json-schema.org/draft-07/schema#"
+  "additionalProperties": false
 }
 ```
 

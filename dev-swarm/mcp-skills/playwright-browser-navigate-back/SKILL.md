@@ -11,16 +11,16 @@ Use the MCP tool `dev-swarm.request` to send the payload as a JSON string:
 ```
 
 ## Tool Description
-Go back to the previous page
+Go back to the previous page in the history
 
 ## Arguments Schema
 The schema below describes the `arguments` object in the request payload.
 ```json
 {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "properties": {},
-  "additionalProperties": false,
-  "$schema": "http://json-schema.org/draft-07/schema#"
+  "additionalProperties": false
 }
 ```
 

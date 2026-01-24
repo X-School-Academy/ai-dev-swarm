@@ -17,6 +17,7 @@ Navigate to a URL
 The schema below describes the `arguments` object in the request payload.
 ```json
 {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "properties": {
     "url": {
@@ -27,8 +28,7 @@ The schema below describes the `arguments` object in the request payload.
   "required": [
     "url"
   ],
-  "additionalProperties": false,
-  "$schema": "http://json-schema.org/draft-07/schema#"
+  "additionalProperties": false
 }
 ```
 

@@ -17,30 +17,32 @@ Perform click on a web page
 The schema below describes the `arguments` object in the request payload.
 ```json
 {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "properties": {
     "element": {
-      "type": "string",
-      "description": "Human-readable element description used to obtain permission to interact with the element"
+      "description": "Human-readable element description used to obtain permission to interact with the element",
+      "type": "string"
     },
     "ref": {
       "type": "string",
       "description": "Exact target element reference from the page snapshot"
     },
     "doubleClick": {
-      "type": "boolean",
-      "description": "Whether to perform a double click instead of a single click"
+      "description": "Whether to perform a double click instead of a single click",
+      "type": "boolean"
     },
     "button": {
+      "description": "Button to click, defaults to left",
       "type": "string",
       "enum": [
         "left",
         "right",
         "middle"
-      ],
-      "description": "Button to click, defaults to left"
+      ]
     },
     "modifiers": {
+      "description": "Modifier keys to press",
       "type": "array",
       "items": {
         "type": "string",
@@ -51,16 +53,13 @@ The schema below describes the `arguments` object in the request payload.
           "Meta",
           "Shift"
         ]
-      },
-      "description": "Modifier keys to press"
+      }
     }
   },
   "required": [
-    "element",
     "ref"
   ],
-  "additionalProperties": false,
-  "$schema": "http://json-schema.org/draft-07/schema#"
+  "additionalProperties": false
 }
 ```
 
