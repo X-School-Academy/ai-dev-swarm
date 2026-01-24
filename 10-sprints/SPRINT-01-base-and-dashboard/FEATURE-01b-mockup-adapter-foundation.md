@@ -39,3 +39,4 @@ M
 ## Development Notes
 - Added adapter interface, mock adapter, live stub, and factory in dev-swarm/py_scripts/webui/ai_adapters.py.
 - Mock output supports optional MOCK_DELAY_MS and MOCK_ERROR via environment variables.
+- Commit: b81c4b2
