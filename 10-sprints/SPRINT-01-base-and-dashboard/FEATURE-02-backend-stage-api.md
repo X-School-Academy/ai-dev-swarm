@@ -33,7 +33,11 @@ As a frontend, I want to fetch stage data so I can display the dashboard.
 M
 
 ## Status Checklist
-- [ ] Endpoint implemented
-- [ ] Status derivation complete
-- [ ] Skippable rules applied
-- [ ] File list included
+- [x] Endpoint implemented
+- [x] Status derivation complete
+- [x] Skippable rules applied
+- [x] File list included
+
+## Development Notes
+- Added stage definitions and status/file derivation in dev-swarm/py_scripts/webui/stage_service.py.
+- Implemented GET /api/stages in dev-swarm/py_scripts/webui/main.py.

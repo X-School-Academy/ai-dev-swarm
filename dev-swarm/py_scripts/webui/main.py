@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from stage_service import list_stages
+
 app = FastAPI()
 
 app.add_middleware(
@@ -15,3 +17,8 @@ app.add_middleware(
 @app.get("/api/health")
 def health_check() -> dict:
     return {"status": "ok"}
+
+
+@app.get("/api/stages")
+def get_stages() -> list[dict]:
+    return list_stages(run_active=False)
