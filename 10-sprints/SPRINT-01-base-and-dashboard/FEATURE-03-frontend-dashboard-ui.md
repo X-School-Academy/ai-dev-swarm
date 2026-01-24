@@ -38,3 +38,4 @@ M
 ## Development Notes
 - Replaced the Next.js starter page with a dashboard shell in dev-swarm/js_scripts/webui/src/app/page.tsx.
 - Added stage list, status badges, detail panel, and loading/error states.
+- Commit: ae0ddce
