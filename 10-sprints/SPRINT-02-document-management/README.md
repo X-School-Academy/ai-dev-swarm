@@ -19,6 +19,9 @@ SPRINT-01
 - 2026-01-25: Implemented document viewer UI (markdown + HTML rendering).
 - 2026-01-25: Code review approved for document viewer; ready for testing.
 - 2026-01-25: Document viewer tests passed (markdown + HTML).
+- 2026-01-25: Implemented document editor UI (live preview, save feedback).
+- 2026-01-25: Code review approved for document editor; ready for testing.
+- 2026-01-25: Document editor tests passed (save, undo/redo, persistence).
 
 ## Sprint Test Plan
 - Verify safe file listing, reading, and writing within the project root.

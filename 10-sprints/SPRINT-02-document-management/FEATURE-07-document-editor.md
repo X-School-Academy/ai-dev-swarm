@@ -1,5 +1,8 @@
 # FEATURE-07-document-editor
 
+## Status
+Done
+
 ## Keywords
 `markdown-editor`, `live-preview-pane`, `save-feedback`
 
@@ -29,7 +32,23 @@ As a user, I want to edit documents to update requirements or plans.
 M
 
 ## Status Checklist
-- [ ] Editor UI implemented
-- [ ] Live preview integrated
-- [ ] Save feedback implemented
-- [ ] Undo and redo verified
+- [x] Editor UI implemented
+- [x] Live preview integrated
+- [x] Save feedback implemented
+- [x] Undo and redo verified
+
+## Development Notes
+- Files modified: dev-swarm/js_scripts/webui/src/app/page.tsx, dev-swarm/js_scripts/webui/README.md
+- Files added: features/document-editor.md, features/impl/document-editor.md
+- Approach: markdown-only editor with undo/redo history and save feedback via /api/documents.
+- Implementation Commit: a960666
+
+## Code Review Notes
+- Review summary: Implementation matches design and acceptance criteria.
+- Issues found: 0
+- Decision: Approved for testing.
+
+## Testing Notes
+- Test summary: 2 manual checks passed (save feedback + undo/redo) and edit persistence confirmed.
+- Issues found: 0
+- Decision: Passed.
