@@ -1,7 +1,7 @@
 "use client";
 
 import ReactMarkdown from "react-markdown";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 type Stage = {
   stageId: string;
@@ -20,6 +20,15 @@ type DocumentPayload = {
 };
 
 type SaveStatus = "idle" | "saving" | "success" | "error";
+
+type ConsoleEventCategory = "system" | "output" | "error" | "status";
+
+type ConsoleEvent = {
+  id: string;
+  timestamp: string;
+  category: ConsoleEventCategory;
+  message: string;
+};
 
 const STATUS_STYLES: Record<Stage["status"], string> = {
   "not-started":
@@ -47,6 +56,10 @@ export default function Home() {
   const [historyIndex, setHistoryIndex] = useState<number>(-1);
   const [saveStatus, setSaveStatus] = useState<SaveStatus>("idle");
   const [saveMessage, setSaveMessage] = useState<string | null>(null);
+  const [consoleEvents, setConsoleEvents] = useState<ConsoleEvent[]>([]);
+  const [isPinned, setIsPinned] = useState<boolean>(true);
+  const [runId, setRunId] = useState<string | null>(null);
+  const consoleScrollRef = useRef<HTMLDivElement | null>(null);
 
   const selectedStage = useMemo(
     () => stages.find((stage) => stage.stageId === selectedStageId),
@@ -82,6 +95,8 @@ export default function Home() {
     setHistoryIndex(-1);
     setSaveStatus("idle");
     setSaveMessage(null);
+    setConsoleEvents([]);
+    setRunId(null);
   }, [selectedStageId]);
 
   const fetchDocument = useCallback(async (path: string) => {
@@ -129,6 +144,100 @@ export default function Home() {
     }
     void fetchDocument(selectedDocumentPath);
   }, [fetchDocument, selectedDocumentPath]);
+
+  useEffect(() => {
+    if (!isPinned || !consoleScrollRef.current) {
+      return;
+    }
+    consoleScrollRef.current.scrollTop =
+      consoleScrollRef.current.scrollHeight;
+  }, [consoleEvents, isPinned]);
+
+  const handleConsoleScroll = () => {
+    const container = consoleScrollRef.current;
+    if (!container) {
+      return;
+    }
+    const nearBottom =
+      container.scrollHeight - container.scrollTop - container.clientHeight < 24;
+    setIsPinned(nearBottom);
+  };
+
+  const startRun = async () => {
+    if (!selectedStage) {
+      return;
+    }
+    setError(null);
+    try {
+      const response = await fetch(
+        `http://localhost:8001/api/stages/${selectedStage.stageId}/run`,
+        { method: "POST" },
+      );
+      if (!response.ok) {
+        const body = (await response.json()) as { detail?: string };
+        throw new Error(body.detail || "Failed to start run");
+      }
+      const data = (await response.json()) as { runId: string };
+      setConsoleEvents([]);
+      setRunId(data.runId);
+      setIsPinned(true);
+    } catch (err) {
+      const message =
+        err instanceof Error ? err.message : "Unable to start run";
+      setError(message);
+    }
+  };
+
+  useEffect(() => {
+    if (!runId) {
+      return;
+    }
+    const source = new EventSource(
+      `http://localhost:8001/api/runs/${runId}/stream`,
+    );
+    const appendEvent = (event: MessageEvent, category: ConsoleEventCategory) => {
+      if (!event.data) {
+        return;
+      }
+      try {
+        const payload = JSON.parse(event.data) as {
+          timestamp: string;
+          category: ConsoleEventCategory;
+          message: string;
+        };
+        setConsoleEvents((current) => [
+          ...current,
+          {
+            id: `${payload.timestamp}-${current.length}`,
+            timestamp: payload.timestamp,
+            category,
+            message: payload.message,
+          },
+        ]);
+      } catch {
+        return;
+      }
+    };
+
+    const register = (category: ConsoleEventCategory) => {
+      source.addEventListener(category, (event) =>
+        appendEvent(event as MessageEvent, category),
+      );
+    };
+
+    register("system");
+    register("output");
+    register("error");
+    register("status");
+
+    source.onerror = () => {
+      source.close();
+    };
+
+    return () => {
+      source.close();
+    };
+  }, [runId]);
 
   const handleEditorChange = (value: string) => {
     setEditorContent(value);
@@ -255,6 +364,14 @@ export default function Home() {
             className="rounded-lg border border-[color:var(--color-border)] px-4 py-2 text-sm text-[color:var(--color-text-secondary)] opacity-60"
           >
             Settings
+          </button>
+          <button
+            type="button"
+            onClick={startRun}
+            disabled={!selectedStage}
+            className="rounded-lg bg-[color:var(--color-accent)] px-4 py-2 text-sm font-semibold text-white transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60"
+          >
+            Run Stage
           </button>
         </div>
       </header>
@@ -519,14 +636,61 @@ export default function Home() {
               Execution Output
             </h3>
             <p className="text-xs text-[color:var(--color-text-secondary)]">
-              Live stream placeholder
+              {runId ? `Run ${runId.slice(0, 8)}` : "Idle"}
             </p>
           </div>
-          <div className="flex flex-1 flex-col rounded-xl border border-[color:var(--color-border)] bg-[color:var(--color-background)] p-4 font-mono text-xs text-[color:var(--color-text-secondary)]">
-            <span className="text-[color:var(--color-accent-cyan)]">
-              system: idle
-            </span>
-            <span>Waiting for execution output...</span>
+          <div className="mb-3 flex items-center justify-between text-xs text-[color:var(--color-text-secondary)]">
+            <span>{consoleEvents.length} events</span>
+            <button
+              type="button"
+              onClick={() => setIsPinned((current) => !current)}
+              className="rounded-full border border-[color:var(--color-border)] px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-[color:var(--color-text-secondary)] transition hover:border-[color:var(--color-accent)]"
+            >
+              {isPinned ? "Pinned" : "Unpinned"}
+            </button>
+          </div>
+          <div
+            ref={consoleScrollRef}
+            onScroll={handleConsoleScroll}
+            className="flex flex-1 flex-col gap-2 overflow-y-auto rounded-xl border border-[color:var(--color-border)] bg-[color:var(--color-background)] p-4 font-mono text-xs"
+          >
+            {consoleEvents.length === 0 ? (
+              <>
+                <span className="text-[color:var(--color-accent-cyan)]">
+                  system: idle
+                </span>
+                <span className="text-[color:var(--color-text-secondary)]">
+                  Waiting for execution output...
+                </span>
+              </>
+            ) : (
+              consoleEvents.map((event) => (
+                <div
+                  key={event.id}
+                  className="rounded-md border border-[color:var(--color-border)] bg-[color:var(--color-surface-alt)] px-3 py-2"
+                >
+                  <div className="mb-1 flex items-center justify-between text-[10px] uppercase tracking-[0.2em] text-[color:var(--color-text-secondary)]">
+                    <span>{event.category}</span>
+                    <span>
+                      {new Date(event.timestamp).toLocaleTimeString()}
+                    </span>
+                  </div>
+                  <div
+                    className={`text-xs ${
+                      event.category === "error"
+                        ? "text-[color:var(--color-error)]"
+                        : event.category === "system"
+                          ? "text-[color:var(--color-accent-cyan)]"
+                          : event.category === "status"
+                            ? "text-[color:var(--color-warning)]"
+                            : "text-[color:var(--color-text-primary)]"
+                    }`}
+                  >
+                    {event.message}
+                  </div>
+                </div>
+              ))
+            )}
           </div>
         </aside>
       </div>

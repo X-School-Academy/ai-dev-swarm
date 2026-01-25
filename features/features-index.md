@@ -9,4 +9,5 @@
 - document-editor: Edit markdown documents with live preview and save feedback.
 - headless-runner: Run a single headless AI execution with status tracking.
 - sse-streaming: Stream run output over SSE with event categories.
+- console-ui: Display real-time run output with auto-scroll and styling.
 - skip-management: Skip and unskip stages from the UI.
