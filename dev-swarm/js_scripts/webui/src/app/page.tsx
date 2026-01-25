@@ -12,11 +12,12 @@ type Stage = {
 };
 
 const STATUS_STYLES: Record<Stage["status"], string> = {
-  "not-started": "bg-slate-200 text-slate-700",
-  "in-progress": "bg-blue-200 text-blue-900",
-  completed: "bg-emerald-200 text-emerald-900",
-  skipped: "bg-amber-200 text-amber-900",
-  error: "bg-rose-200 text-rose-900",
+  "not-started":
+    "bg-[color:var(--color-surface-alt)] text-[color:var(--color-text-secondary)]",
+  "in-progress": "bg-[color:var(--color-accent-cyan)] text-slate-900",
+  completed: "bg-[color:var(--color-success)] text-slate-900",
+  skipped: "bg-[color:var(--color-warning)] text-slate-900",
+  error: "bg-[color:var(--color-error)] text-white",
 };
 
 export default function Home() {
@@ -71,7 +72,8 @@ export default function Home() {
         },
       );
       if (!response.ok) {
-        throw new Error("Failed to update skip status");
+        const body = (await response.json()) as { detail?: string };
+        throw new Error(body.detail || "Failed to update skip status");
       }
       await fetchStages();
     } catch (err) {
@@ -84,15 +86,49 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900">
-      <div className="flex min-h-screen">
-        <aside className="w-72 border-r border-slate-200 bg-white px-4 py-6">
+    <div className="min-h-screen bg-[color:var(--color-background)] text-[color:var(--color-text-primary)]">
+      <header className="flex items-center justify-between border-b border-[color:var(--color-border)] bg-[color:var(--color-surface)] px-6 py-4">
+        <div>
+          <p className="text-xs uppercase tracking-[0.2em] text-[color:var(--color-text-secondary)]">
+            Dev Swarm WebUI
+          </p>
+          <h1 className="text-xl font-semibold font-[var(--font-display)]">
+            Stage Control Deck
+          </h1>
+        </div>
+        <div className="flex items-center gap-3">
+          <button
+            type="button"
+            onClick={fetchStages}
+            disabled={loading || updating}
+            className="rounded-lg border border-[color:var(--color-border)] px-4 py-2 text-sm font-semibold text-[color:var(--color-text-primary)] transition hover:border-[color:var(--color-accent)] disabled:cursor-not-allowed disabled:opacity-60"
+          >
+            Sync
+          </button>
+          <button
+            type="button"
+            disabled
+            className="rounded-lg border border-[color:var(--color-border)] px-4 py-2 text-sm text-[color:var(--color-text-secondary)] opacity-60"
+          >
+            Settings
+          </button>
+        </div>
+      </header>
+
+      <div className="flex min-h-[calc(100vh-80px)]">
+        <aside className="w-72 border-r border-[color:var(--color-border)] bg-[color:var(--color-surface)] px-4 py-6">
           <div className="mb-6">
-            <h1 className="text-lg font-semibold">Dev Swarm WebUI</h1>
-            <p className="text-sm text-slate-500">Stage Dashboard</p>
+            <h2 className="text-sm font-semibold text-[color:var(--color-text-secondary)]">
+              Stages
+            </h2>
+            <p className="text-xs text-[color:var(--color-text-secondary)]">
+              Overview + status
+            </p>
           </div>
           {loading ? (
-            <p className="text-sm text-slate-500">Loading stages...</p>
+            <p className="text-sm text-[color:var(--color-text-secondary)]">
+              Loading stages...
+            </p>
           ) : (
             <ul className="space-y-2">
               {stages.map((stage) => (
@@ -102,15 +138,15 @@ export default function Home() {
                     onClick={() => setSelectedStageId(stage.stageId)}
                     className={`flex w-full items-center justify-between rounded-lg px-3 py-2 text-left text-sm transition ${
                       stage.stageId === selectedStageId
-                        ? "bg-slate-900 text-white"
-                        : "hover:bg-slate-100"
+                        ? "bg-[color:var(--color-accent)] text-white"
+                        : "text-[color:var(--color-text-secondary)] hover:bg-[color:var(--color-surface-alt)]"
                     }`}
                   >
                     <span>
                       {stage.stageId} {stage.name}
                     </span>
                     <span
-                      className={`rounded-full px-2 py-0.5 text-xs font-medium ${
+                      className={`rounded-full px-2 py-0.5 text-xs font-medium uppercase tracking-wide ${
                         STATUS_STYLES[stage.status]
                       }`}
                     >
@@ -124,58 +160,85 @@ export default function Home() {
         </aside>
 
         <main className="flex flex-1 flex-col gap-6 px-8 py-6">
-          <div className="flex items-start justify-between gap-6">
-            <div>
-              <h2 className="text-2xl font-semibold">
-                {selectedStage
-                  ? `${selectedStage.stageId} ${selectedStage.name}`
-                  : "Select a stage"}
-              </h2>
-              <p className="text-sm text-slate-500">
-                {selectedStage
-                  ? `Status: ${selectedStage.status}`
-                  : "Pick a stage from the sidebar to see details."}
-              </p>
+          <div className="rounded-xl border border-[color:var(--color-border)] bg-[color:var(--color-surface)] p-6">
+            <div className="flex items-start justify-between gap-6">
+              <div>
+                <h2 className="text-2xl font-semibold font-[var(--font-display)]">
+                  {selectedStage
+                    ? `${selectedStage.stageId} ${selectedStage.name}`
+                    : "Select a stage"}
+                </h2>
+                <p className="text-sm text-[color:var(--color-text-secondary)]">
+                  {selectedStage
+                    ? `Status: ${selectedStage.status}`
+                    : "Pick a stage from the sidebar to see details."}
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={handleToggleSkip}
+                disabled={!selectedStage?.isSkippable || updating}
+                className={`rounded-lg px-4 py-2 text-sm font-semibold transition ${
+                  selectedStage?.isSkippable
+                    ? "bg-[color:var(--color-accent)] text-white hover:brightness-110"
+                    : "cursor-not-allowed bg-[color:var(--color-surface-alt)] text-[color:var(--color-text-secondary)]"
+                }`}
+              >
+                {selectedStage?.hasSkipFile ? "Unskip Stage" : "Skip Stage"}
+              </button>
             </div>
-            <button
-              type="button"
-              onClick={handleToggleSkip}
-              disabled={!selectedStage?.isSkippable || updating}
-              className={`rounded-lg px-4 py-2 text-sm font-semibold transition ${
-                selectedStage?.isSkippable
-                  ? "bg-slate-900 text-white hover:bg-slate-800"
-                  : "cursor-not-allowed bg-slate-200 text-slate-400"
-              }`}
-            >
-              {selectedStage?.hasSkipFile ? "Unskip Stage" : "Skip Stage"}
-            </button>
           </div>
 
           {error ? (
-            <div className="rounded-lg border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
+            <div className="rounded-lg border border-[color:rgba(255,90,60,0.4)] bg-[color:rgba(255,90,60,0.1)] px-4 py-3 text-sm text-[color:var(--color-error)]">
               {error}
             </div>
           ) : null}
 
-          <section className="rounded-xl border border-slate-200 bg-white p-6">
-            <h3 className="mb-4 text-sm font-semibold uppercase text-slate-500">
-              Stage Documents
-            </h3>
+          <section className="rounded-xl border border-[color:var(--color-border)] bg-[color:var(--color-surface)] p-6">
+            <div className="mb-4 flex items-center justify-between">
+              <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-[color:var(--color-text-secondary)]">
+                Stage Documents
+              </h3>
+              <span className="text-xs text-[color:var(--color-text-secondary)]">
+                {selectedStage?.files?.length || 0} files
+              </span>
+            </div>
             {selectedStage?.files?.length ? (
-              <ul className="space-y-2 text-sm text-slate-700">
+              <ul className="space-y-2 text-sm text-[color:var(--color-text-primary)]">
                 {selectedStage.files.map((file) => (
-                  <li key={file} className="rounded-md bg-slate-50 px-3 py-2">
+                  <li
+                    key={file}
+                    className="rounded-md border border-[color:var(--color-border)] bg-[color:var(--color-surface-alt)] px-3 py-2"
+                  >
                     {file}
                   </li>
                 ))}
               </ul>
             ) : (
-              <p className="text-sm text-slate-500">
+              <p className="text-sm text-[color:var(--color-text-secondary)]">
                 No documents found for this stage.
               </p>
             )}
           </section>
         </main>
+
+        <aside className="hidden w-80 flex-col border-l border-[color:var(--color-border)] bg-[color:var(--color-surface)] px-5 py-6 min-[1440px]:flex">
+          <div className="mb-4">
+            <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-[color:var(--color-text-secondary)]">
+              Execution Output
+            </h3>
+            <p className="text-xs text-[color:var(--color-text-secondary)]">
+              Live stream placeholder
+            </p>
+          </div>
+          <div className="flex flex-1 flex-col rounded-xl border border-[color:var(--color-border)] bg-[color:var(--color-background)] p-4 font-mono text-xs text-[color:var(--color-text-secondary)]">
+            <span className="text-[color:var(--color-accent-cyan)]">
+              system: idle
+            </span>
+            <span>Waiting for execution output...</span>
+          </div>
+        </aside>
       </div>
     </div>
   );
