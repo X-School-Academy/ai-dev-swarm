@@ -1,5 +1,6 @@
 "use client";
 
+import ReactMarkdown from "react-markdown";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 type Stage = {
@@ -9,6 +10,13 @@ type Stage = {
   isSkippable: boolean;
   hasSkipFile: boolean;
   files: string[];
+};
+
+type DocumentPayload = {
+  path: string;
+  content: string;
+  contentType: "text/markdown" | "text/html";
+  lastModified: string;
 };
 
 const STATUS_STYLES: Record<Stage["status"], string> = {
@@ -26,6 +34,12 @@ export default function Home() {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [updating, setUpdating] = useState<boolean>(false);
+  const [selectedDocumentPath, setSelectedDocumentPath] =
+    useState<string>("");
+  const [documentPayload, setDocumentPayload] =
+    useState<DocumentPayload | null>(null);
+  const [documentLoading, setDocumentLoading] = useState<boolean>(false);
+  const [documentError, setDocumentError] = useState<string | null>(null);
 
   const selectedStage = useMemo(
     () => stages.find((stage) => stage.stageId === selectedStageId),
@@ -51,6 +65,42 @@ export default function Home() {
       setLoading(false);
     }
   }, []);
+
+  useEffect(() => {
+    setSelectedDocumentPath("");
+    setDocumentPayload(null);
+    setDocumentError(null);
+  }, [selectedStageId]);
+
+  const fetchDocument = useCallback(async (path: string) => {
+    setDocumentLoading(true);
+    setDocumentError(null);
+    try {
+      const response = await fetch(
+        `http://localhost:8001/api/documents?path=${encodeURIComponent(path)}`,
+      );
+      if (!response.ok) {
+        const body = (await response.json()) as { detail?: string };
+        throw new Error(body.detail || "Failed to load document");
+      }
+      const data = (await response.json()) as DocumentPayload;
+      setDocumentPayload(data);
+    } catch (err) {
+      const message =
+        err instanceof Error ? err.message : "Unable to load document";
+      setDocumentError(message);
+      setDocumentPayload(null);
+    } finally {
+      setDocumentLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!selectedDocumentPath) {
+      return;
+    }
+    void fetchDocument(selectedDocumentPath);
+  }, [fetchDocument, selectedDocumentPath]);
 
   useEffect(() => {
     void fetchStages();
@@ -209,9 +259,24 @@ export default function Home() {
                 {selectedStage.files.map((file) => (
                   <li
                     key={file}
-                    className="rounded-md border border-[color:var(--color-border)] bg-[color:var(--color-surface-alt)] px-3 py-2"
+                    className="rounded-md border border-[color:var(--color-border)] bg-[color:var(--color-surface-alt)]"
                   >
-                    {file}
+                    <button
+                      type="button"
+                      onClick={() => setSelectedDocumentPath(file)}
+                      className={`flex w-full items-center justify-between px-3 py-2 text-left transition ${
+                        selectedDocumentPath === file
+                          ? "bg-[color:var(--color-accent)] text-white"
+                          : "text-[color:var(--color-text-primary)] hover:bg-[color:var(--color-surface)]"
+                      }`}
+                    >
+                      <span>{file}</span>
+                      {selectedDocumentPath === file ? (
+                        <span className="text-xs uppercase tracking-[0.2em] text-[color:var(--color-focus)]">
+                          Open
+                        </span>
+                      ) : null}
+                    </button>
                   </li>
                 ))}
               </ul>
@@ -220,6 +285,50 @@ export default function Home() {
                 No documents found for this stage.
               </p>
             )}
+          </section>
+
+          <section className="rounded-xl border border-[color:var(--color-border)] bg-[color:var(--color-surface)] p-6">
+            <div className="mb-4 flex items-center justify-between">
+              <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-[color:var(--color-text-secondary)]">
+                Document Viewer
+              </h3>
+              <span className="text-xs text-[color:var(--color-text-secondary)]">
+                {documentPayload?.lastModified
+                  ? `Updated ${new Date(documentPayload.lastModified).toLocaleString()}`
+                  : "Select a document"}
+              </span>
+            </div>
+            {documentError ? (
+              <div className="rounded-lg border border-[color:rgba(255,90,60,0.4)] bg-[color:rgba(255,90,60,0.1)] px-4 py-3 text-sm text-[color:var(--color-error)]">
+                {documentError}
+              </div>
+            ) : null}
+            {documentLoading ? (
+              <p className="text-sm text-[color:var(--color-text-secondary)]">
+                Loading document...
+              </p>
+            ) : null}
+            {!documentLoading && !documentPayload ? (
+              <div className="rounded-lg border border-dashed border-[color:var(--color-border)] px-4 py-6 text-sm text-[color:var(--color-text-secondary)]">
+                Choose a stage document to view its contents.
+              </div>
+            ) : null}
+            {!documentLoading && documentPayload ? (
+              <div className="rounded-lg border border-[color:var(--color-border)] bg-[color:var(--color-surface-alt)] p-4">
+                {documentPayload.contentType === "text/markdown" ? (
+                  <div className="doc-markdown">
+                    <ReactMarkdown>{documentPayload.content}</ReactMarkdown>
+                  </div>
+                ) : (
+                  <iframe
+                    title={`HTML preview for ${documentPayload.path}`}
+                    sandbox=""
+                    className="h-[520px] w-full rounded-md border border-[color:var(--color-border)] bg-white"
+                    srcDoc={`<!doctype html><html><head><meta charset="utf-8" /><style>body{font-family:Helvetica,Arial,sans-serif;padding:16px;line-height:1.6;color:#111827}h1,h2,h3{margin:1.2rem 0 0.6rem}p,li{color:#1f2937}</style></head><body>${documentPayload.content}</body></html>`}
+                  />
+                )}
+              </div>
+            ) : null}
           </section>
         </main>
 

@@ -1,5 +1,10 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Dev Swarm WebUI Notes
+
+- Document viewer renders markdown and HTML files from the backend document API.
+- HTML documents are displayed in a sandboxed iframe for safety.
+
 ## Getting Started
 
 First, run the development server:

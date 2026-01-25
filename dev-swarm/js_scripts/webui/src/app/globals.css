@@ -38,3 +38,50 @@ body {
   color: var(--color-text-primary);
   font-family: var(--font-ibm-plex), system-ui, sans-serif;
 }
+
+.doc-markdown {
+  color: var(--color-text-primary);
+  line-height: 1.6;
+}
+
+.doc-markdown h1,
+.doc-markdown h2,
+.doc-markdown h3,
+.doc-markdown h4 {
+  font-family: var(--font-display);
+  color: var(--color-text-primary);
+  margin: 1.4rem 0 0.6rem;
+}
+
+.doc-markdown h1 {
+  font-size: 1.75rem;
+}
+
+.doc-markdown h2 {
+  font-size: 1.4rem;
+}
+
+.doc-markdown h3 {
+  font-size: 1.15rem;
+}
+
+.doc-markdown p {
+  margin: 0.6rem 0;
+  color: var(--color-text-secondary);
+}
+
+.doc-markdown ul,
+.doc-markdown ol {
+  margin: 0.6rem 0 0.6rem 1.2rem;
+  color: var(--color-text-secondary);
+}
+
+.doc-markdown li {
+  margin: 0.35rem 0;
+}
+
+.doc-markdown code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  color: var(--color-accent-cyan);
+}
