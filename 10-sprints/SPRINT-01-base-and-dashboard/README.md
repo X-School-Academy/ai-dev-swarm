@@ -34,3 +34,4 @@ None
 ## Progress Log
 - 2026-01-25: Verified dashboard layout and skip toggles via Playwright on http://localhost:3001.
 - 2026-01-25: Verified /api/health and /api/stages responses, plus mock adapter env switching.
+- 2026-01-25: Sprint 01 closed after updates and verification.
