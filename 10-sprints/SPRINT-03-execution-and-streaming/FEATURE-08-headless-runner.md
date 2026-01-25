@@ -1,5 +1,8 @@
 # FEATURE-08-headless-runner
 
+## Status
+Done
+
 ## Keywords
 `headless-runner`, `process-lifecycle-guard`, `run-state-tracking`
 
@@ -31,7 +34,23 @@ As a system, I need to run AI agents as background processes.
 L
 
 ## Status Checklist
-- [ ] Run start endpoint implemented
-- [ ] Run status endpoint implemented
-- [ ] Single-run guard enforced
-- [ ] Output capture verified
+- [x] Run start endpoint implemented
+- [x] Run status endpoint implemented
+- [x] Single-run guard enforced
+- [x] Output capture verified
+
+## Development Notes
+- Files modified: dev-swarm/py_scripts/webui/main.py
+- Files added: dev-swarm/py_scripts/webui/run_service.py, features/headless-runner.md, features/impl/headless-runner.md
+- Approach: in-memory run tracking with a background worker and stdout/stderr capture.
+- Implementation Commit: 57fb78a
+
+## Code Review Notes
+- Review summary: Implementation matches the backlog requirements and API specs for run start/status.
+- Issues found: 0
+- Decision: Approved for testing.
+
+## Testing Notes
+- Test summary: mock run transitions from running to succeeded with timestamps.
+- Issues found: 0
+- Decision: Passed.

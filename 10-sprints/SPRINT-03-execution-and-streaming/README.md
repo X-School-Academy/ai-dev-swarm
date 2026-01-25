@@ -1,7 +1,7 @@
 # SPRINT-03-execution-and-streaming
 
 ## Sprint Status
-pending
+in-progress
 
 ## Sprint Goal
 Implement the core execution workflow with real-time output streaming and safe stop controls.
@@ -24,6 +24,10 @@ SPRINT-01, SPRINT-02
 - Start a stage run and show live output in the console panel.
 - Stop the run and confirm status changes.
 - Restart the run to confirm recovery.
+
+## Progress Log
+- 2026-01-25: Implemented headless runner endpoints and run tracking.
+- 2026-01-25: Headless runner tests passed (run start + status transitions).
 
 ## Success Criteria
 - Users can start a stage run and see output within 500ms.
