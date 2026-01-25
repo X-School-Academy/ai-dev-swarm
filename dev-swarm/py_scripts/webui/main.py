@@ -9,7 +9,14 @@ from pydantic import BaseModel
 
 from env_loader import load_env
 from document_service import list_stage_documents, read_document, write_document
-from run_service import get_event_snapshot, get_run, has_active_run, is_run_finished, start_run
+from run_service import (
+    get_event_snapshot,
+    get_run,
+    has_active_run,
+    is_run_finished,
+    start_run,
+    stop_active_run,
+)
 from skip_service import toggle_skip
 from stage_service import list_stages
 
@@ -131,3 +138,12 @@ async def stream_run(run_id: str) -> StreamingResponse:
             await asyncio.sleep(0.2)
 
     return StreamingResponse(_event_stream(), media_type="text/event-stream")
+
+
+@app.post("/api/stages/{stage_id}/stop")
+def stop_stage_run(stage_id: str) -> dict:
+    try:
+        record = stop_active_run(stage_id)
+        return record.to_dict()
+    except RuntimeError as exc:
+        raise HTTPException(status_code=409, detail=str(exc)) from exc

@@ -14,15 +14,18 @@ class MockAIAdapter(AIAgentAdapter):
     def __init__(self) -> None:
         self._delay_ms = _parse_int_env("MOCK_DELAY_MS", 0)
         self._error = _parse_bool_env("MOCK_ERROR", False)
+        self._cycles = _parse_int_env("MOCK_CYCLES", 1)
 
     async def execute_command(self, command: str, context: Dict[str, str]) -> AsyncIterator[str]:
         if self._error:
             raise RuntimeError("Mock adapter forced error")
 
-        for line in _mock_output_lines(command):
-            if self._delay_ms > 0:
-                await asyncio.sleep(self._delay_ms / 1000)
-            yield line
+        cycles = max(1, self._cycles)
+        for _ in range(cycles):
+            for line in _mock_output_lines(command):
+                if self._delay_ms > 0:
+                    await asyncio.sleep(self._delay_ms / 1000)
+                yield line
 
 
 class LiveAIAdapter(AIAgentAdapter):

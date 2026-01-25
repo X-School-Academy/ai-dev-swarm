@@ -4,7 +4,7 @@ import asyncio
 import uuid
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
-from threading import Lock, Thread
+from threading import Event, Lock, Thread
 from typing import Any, Dict, Optional
 
 from ai_adapters import get_ai_adapter
@@ -21,6 +21,7 @@ class RunRecord:
     stdout: list[str] = field(default_factory=list)
     stderr: list[str] = field(default_factory=list)
     events: list[Dict[str, Any]] = field(default_factory=list)
+    stop_event: Event = field(default_factory=Event)
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -76,6 +77,22 @@ def has_active_run() -> bool:
         return _runs[_active_run_id].status in {"queued", "running"}
 
 
+def stop_active_run(stage_id: str) -> RunRecord:
+    with _lock:
+        if _active_run_id is None:
+            raise RuntimeError("No active run")
+        record = _runs[_active_run_id]
+        if record.stage_id != stage_id:
+            raise RuntimeError("Active run does not match stage")
+        if record.status not in {"queued", "running"}:
+            raise RuntimeError("Run is not active")
+        record.status = "stopping"
+        _append_event(record, "system", "Stop requested")
+        _append_event(record, "status", record.status)
+        record.stop_event.set()
+    return record
+
+
 def _run_worker(run_id: str) -> None:
     with _lock:
         record = _runs[run_id]
@@ -89,6 +106,8 @@ def _run_worker(run_id: str) -> None:
             command=f"run_stage_{record.stage_id}",
             context={"stageId": record.stage_id},
         ):
+            if record.stop_event.is_set():
+                break
             with _lock:
                 record.stdout.append(line)
                 _append_event(record, "output", line.rstrip("\n"))
@@ -96,8 +115,12 @@ def _run_worker(run_id: str) -> None:
     try:
         asyncio.run(_consume_output())
         with _lock:
-            record.status = "succeeded"
-            record.exit_code = 0
+            if record.stop_event.is_set():
+                record.status = "stopped"
+                record.exit_code = 130
+            else:
+                record.status = "succeeded"
+                record.exit_code = 0
             _append_event(record, "status", record.status)
     except Exception as exc:  # noqa: BLE001 - surface run errors in stderr
         with _lock:

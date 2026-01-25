@@ -10,4 +10,5 @@
 - headless-runner: Run a single headless AI execution with status tracking.
 - sse-streaming: Stream run output over SSE with event categories.
 - console-ui: Display real-time run output with auto-scroll and styling.
+- stop-execution: Stop an active run with graceful termination.
 - skip-management: Skip and unskip stages from the UI.
