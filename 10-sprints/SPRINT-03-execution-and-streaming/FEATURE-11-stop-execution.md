@@ -1,5 +1,8 @@
 # FEATURE-11-stop-execution
 
+## Status
+Done
+
 ## Keywords
 `run-stop-control`, `process-terminate`, `stop-status-sync`
 
@@ -31,6 +34,22 @@ As a user, I want to stop a run if it goes wrong.
 S
 
 ## Status Checklist
-- [ ] Stop endpoint implemented
-- [ ] Termination logic complete
-- [ ] UI status update verified
+- [x] Stop endpoint implemented
+- [x] Termination logic complete
+- [x] UI status update verified
+
+## Development Notes
+- Files modified: dev-swarm/py_scripts/webui/main.py, dev-swarm/py_scripts/webui/run_service.py, dev-swarm/py_scripts/webui/ai_adapters.py
+- Files added: features/stop-execution.md, features/impl/stop-execution.md
+- Approach: stop event triggers graceful exit; mock cycles enable long-running tests.
+- Implementation Commit: ea09e06
+
+## Code Review Notes
+- Review summary: Stop endpoint and run cancellation logic align with backend specs.
+- Issues found: 0
+- Decision: Approved for testing.
+
+## Testing Notes
+- Test summary: run stopped via API; status transitioned to stopping then stopped with exit code 130.
+- Issues found: 0
+- Decision: Passed.
