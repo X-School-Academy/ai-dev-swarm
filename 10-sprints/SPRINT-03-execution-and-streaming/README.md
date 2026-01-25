@@ -30,6 +30,8 @@ SPRINT-01, SPRINT-02
 - 2026-01-25: Headless runner tests passed (run start + status transitions).
 - 2026-01-25: Implemented SSE run streaming with event categories.
 - 2026-01-25: SSE streaming tests passed (categories + stream closure).
+- 2026-01-25: Implemented console UI with SSE output panel.
+- 2026-01-25: Console UI tests passed (output render + pinned state).
 
 ## Success Criteria
 - Users can start a stage run and see output within 500ms.

@@ -1,5 +1,8 @@
 # FEATURE-10-console-ui
 
+## Status
+Done
+
 ## Keywords
 `console-panel-ui`, `sse-client-hook`, `auto-scroll-behavior`
 
@@ -31,6 +34,22 @@ As a user, I want a console view to monitor execution.
 M
 
 ## Status Checklist
-- [ ] Console component implemented
-- [ ] SSE client integration complete
-- [ ] Auto-scroll behavior verified
+- [x] Console component implemented
+- [x] SSE client integration complete
+- [x] Auto-scroll behavior verified
+
+## Development Notes
+- Files modified: dev-swarm/js_scripts/webui/src/app/page.tsx
+- Files added: features/console-ui.md, features/impl/console-ui.md
+- Approach: EventSource stream with in-memory output log and pinned scroll toggle.
+- Implementation Commit: 8c7a62c
+
+## Code Review Notes
+- Review summary: Console panel renders categorized output and tracks pinned scroll state.
+- Issues found: 0
+- Decision: Approved for testing.
+
+## Testing Notes
+- Test summary: run output renders with system/status/output categories; output persists after completion; pinned state confirmed (no overflow in mock output).
+- Issues found: 0
+- Decision: Passed.
