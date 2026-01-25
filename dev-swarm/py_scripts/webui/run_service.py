@@ -20,6 +20,7 @@ class RunRecord:
     exit_code: Optional[int] = None
     stdout: list[str] = field(default_factory=list)
     stderr: list[str] = field(default_factory=list)
+    events: list[Dict[str, Any]] = field(default_factory=list)
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -52,6 +53,8 @@ def start_run(stage_id: str) -> RunRecord:
             status="queued",
             started_at=_iso_now(),
         )
+        _append_event(record, "system", "Run queued")
+        _append_event(record, "status", record.status)
         _runs[run_id] = record
         _set_active_run(run_id)
 
@@ -77,6 +80,8 @@ def _run_worker(run_id: str) -> None:
     with _lock:
         record = _runs[run_id]
         record.status = "running"
+        _append_event(record, "system", "Run started")
+        _append_event(record, "status", record.status)
 
     async def _consume_output() -> None:
         adapter = get_ai_adapter()
@@ -86,20 +91,25 @@ def _run_worker(run_id: str) -> None:
         ):
             with _lock:
                 record.stdout.append(line)
+                _append_event(record, "output", line.rstrip("\n"))
 
     try:
         asyncio.run(_consume_output())
         with _lock:
             record.status = "succeeded"
             record.exit_code = 0
+            _append_event(record, "status", record.status)
     except Exception as exc:  # noqa: BLE001 - surface run errors in stderr
         with _lock:
             record.status = "failed"
             record.exit_code = 1
             record.stderr.append(str(exc))
+            _append_event(record, "error", str(exc))
+            _append_event(record, "status", record.status)
     finally:
         with _lock:
             record.ended_at = _iso_now()
+            _append_event(record, "system", "Run finished")
             if _active_run_id == run_id:
                 _set_active_run(None)
 
@@ -107,6 +117,30 @@ def _run_worker(run_id: str) -> None:
 def _set_active_run(run_id: Optional[str]) -> None:
     global _active_run_id
     _active_run_id = run_id
+
+
+def get_event_snapshot(run_id: str) -> list[Dict[str, Any]]:
+    with _lock:
+        if run_id not in _runs:
+            raise KeyError("Run not found")
+        return list(_runs[run_id].events)
+
+
+def is_run_finished(run_id: str) -> bool:
+    with _lock:
+        if run_id not in _runs:
+            raise KeyError("Run not found")
+        return _runs[run_id].ended_at is not None
+
+
+def _append_event(record: RunRecord, category: str, message: str) -> None:
+    record.events.append(
+        {
+            "timestamp": _iso_now(),
+            "category": category,
+            "message": message,
+        }
+    )
 
 
 def _iso_now() -> str:

@@ -1,10 +1,15 @@
+import asyncio
+import json
+from typing import AsyncIterator
+
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 
 from env_loader import load_env
 from document_service import list_stage_documents, read_document, write_document
-from run_service import get_run, has_active_run, start_run
+from run_service import get_event_snapshot, get_run, has_active_run, is_run_finished, start_run
 from skip_service import toggle_skip
 from stage_service import list_stages
 
@@ -103,3 +108,26 @@ def get_run_status(run_id: str) -> dict:
         return get_run(run_id).to_dict()
     except KeyError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
+
+
+@app.get("/api/runs/{run_id}/stream")
+async def stream_run(run_id: str) -> StreamingResponse:
+    try:
+        get_run(run_id)
+    except KeyError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+
+    async def _event_stream() -> AsyncIterator[str]:
+        last_index = 0
+        while True:
+            events = get_event_snapshot(run_id)
+            if last_index < len(events):
+                for event in events[last_index:]:
+                    payload = json.dumps(event)
+                    yield f"event: {event['category']}\ndata: {payload}\n\n"
+                last_index = len(events)
+            if is_run_finished(run_id) and last_index >= len(events):
+                break
+            await asyncio.sleep(0.2)
+
+    return StreamingResponse(_event_stream(), media_type="text/event-stream")
