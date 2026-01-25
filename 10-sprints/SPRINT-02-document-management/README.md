@@ -1,7 +1,7 @@
 # SPRINT-02-document-management
 
 ## Sprint Status
-pending
+in-progress
 
 ## Sprint Goal
 Enable users to list, view, and edit project documentation directly within the UI.
@@ -16,6 +16,9 @@ SPRINT-01
 
 ## Progress Log
 - 2026-01-25: Completed backend files API with review and tests.
+- 2026-01-25: Implemented document viewer UI (markdown + HTML rendering).
+- 2026-01-25: Code review approved for document viewer; ready for testing.
+- 2026-01-25: Document viewer tests passed (markdown + HTML).
 
 ## Sprint Test Plan
 - Verify safe file listing, reading, and writing within the project root.

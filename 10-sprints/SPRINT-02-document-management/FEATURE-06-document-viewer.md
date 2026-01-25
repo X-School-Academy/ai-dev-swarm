@@ -1,5 +1,8 @@
 # FEATURE-06-document-viewer
 
+## Status
+Done
+
 ## Keywords
 `document-list-ui`, `markdown-renderer`, `html-viewer`
 
@@ -11,9 +14,9 @@ As a user, I want to read documentation formatted nicely.
 - 06-ux/wireframe_descriptions.md
 
 ## Acceptance Criteria
-- [ ] Stage document list is visible within the stage detail view.
-- [ ] Markdown documents render in a formatted view.
-- [ ] HTML documents render in a safe embedded view.
+- [x] Stage document list is visible within the stage detail view.
+- [x] Markdown documents render in a formatted view.
+- [x] HTML documents render in a safe embedded view.
 
 ## Technical Implementation Notes
 - Keep rendering consistent with design system typography.
@@ -30,7 +33,24 @@ As a user, I want to read documentation formatted nicely.
 M
 
 ## Status Checklist
-- [ ] Document list component complete
-- [ ] Markdown renderer implemented
-- [ ] HTML viewer implemented
-- [ ] Styling applied
+- [x] Document list component complete
+- [x] Markdown renderer implemented
+- [x] HTML viewer implemented
+- [x] Styling applied
+
+## Development Notes
+- Files modified: dev-swarm/js_scripts/webui/src/app/page.tsx, dev-swarm/js_scripts/webui/src/app/globals.css
+- Files added: features/document-viewer.md, features/impl/document-viewer.md
+- Dependency: react-markdown added in dev-swarm/js_scripts/webui/package.json
+- Approach: clickable document list fetches content; markdown rendered via ReactMarkdown; HTML rendered in sandboxed iframe with srcDoc styling.
+- Implementation Commit: 3b6b0db
+
+## Code Review Notes
+- Review summary: Implementation aligns with feature design and acceptance criteria.
+- Issues found: 0
+- Decision: Approved for testing.
+
+## Testing Notes
+- Test summary: 2 manual checks passed (markdown + HTML rendering).
+- Issues found: 0
+- Decision: Passed.
