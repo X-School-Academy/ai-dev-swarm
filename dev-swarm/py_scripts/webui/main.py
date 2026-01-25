@@ -4,7 +4,7 @@ from pydantic import BaseModel
 
 from env_loader import load_env
 from document_service import list_stage_documents, read_document, write_document
-from run_state import is_run_active
+from run_service import get_run, has_active_run, start_run
 from skip_service import toggle_skip
 from stage_service import list_stages
 
@@ -28,7 +28,7 @@ def health_check() -> dict:
 
 @app.get("/api/stages")
 def get_stages() -> list[dict]:
-    return list_stages(run_active=False)
+    return list_stages(run_active=has_active_run())
 
 
 class SkipRequest(BaseModel):
@@ -76,7 +76,7 @@ def get_document(path: str) -> dict:
 
 @app.put("/api/documents")
 def put_document(payload: DocumentWriteRequest) -> dict:
-    if is_run_active():
+    if has_active_run():
         raise HTTPException(status_code=409, detail="Writes blocked during active run")
     try:
         return write_document(payload.path, payload.content).to_dict()
@@ -86,3 +86,20 @@ def put_document(payload: DocumentWriteRequest) -> dict:
         raise HTTPException(status_code=403, detail=str(exc)) from exc
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@app.post("/api/stages/{stage_id}/run")
+def start_stage_run(stage_id: str) -> dict:
+    try:
+        record = start_run(stage_id)
+        return record.to_dict()
+    except RuntimeError as exc:
+        raise HTTPException(status_code=409, detail=str(exc)) from exc
+
+
+@app.get("/api/runs/{run_id}")
+def get_run_status(run_id: str) -> dict:
+    try:
+        return get_run(run_id).to_dict()
+    except KeyError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
