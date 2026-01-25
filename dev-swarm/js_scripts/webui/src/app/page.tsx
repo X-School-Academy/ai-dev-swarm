@@ -19,6 +19,8 @@ type DocumentPayload = {
   lastModified: string;
 };
 
+type SaveStatus = "idle" | "saving" | "success" | "error";
+
 const STATUS_STYLES: Record<Stage["status"], string> = {
   "not-started":
     "bg-[color:var(--color-surface-alt)] text-[color:var(--color-text-secondary)]",
@@ -40,6 +42,11 @@ export default function Home() {
     useState<DocumentPayload | null>(null);
   const [documentLoading, setDocumentLoading] = useState<boolean>(false);
   const [documentError, setDocumentError] = useState<string | null>(null);
+  const [editorContent, setEditorContent] = useState<string>("");
+  const [history, setHistory] = useState<string[]>([]);
+  const [historyIndex, setHistoryIndex] = useState<number>(-1);
+  const [saveStatus, setSaveStatus] = useState<SaveStatus>("idle");
+  const [saveMessage, setSaveMessage] = useState<string | null>(null);
 
   const selectedStage = useMemo(
     () => stages.find((stage) => stage.stageId === selectedStageId),
@@ -70,6 +77,11 @@ export default function Home() {
     setSelectedDocumentPath("");
     setDocumentPayload(null);
     setDocumentError(null);
+    setEditorContent("");
+    setHistory([]);
+    setHistoryIndex(-1);
+    setSaveStatus("idle");
+    setSaveMessage(null);
   }, [selectedStageId]);
 
   const fetchDocument = useCallback(async (path: string) => {
@@ -85,11 +97,27 @@ export default function Home() {
       }
       const data = (await response.json()) as DocumentPayload;
       setDocumentPayload(data);
+      if (data.contentType === "text/markdown") {
+        setEditorContent(data.content);
+        setHistory([data.content]);
+        setHistoryIndex(0);
+      } else {
+        setEditorContent("");
+        setHistory([]);
+        setHistoryIndex(-1);
+      }
+      setSaveStatus("idle");
+      setSaveMessage(null);
     } catch (err) {
       const message =
         err instanceof Error ? err.message : "Unable to load document";
       setDocumentError(message);
       setDocumentPayload(null);
+      setEditorContent("");
+      setHistory([]);
+      setHistoryIndex(-1);
+      setSaveStatus("idle");
+      setSaveMessage(null);
     } finally {
       setDocumentLoading(false);
     }
@@ -101,6 +129,72 @@ export default function Home() {
     }
     void fetchDocument(selectedDocumentPath);
   }, [fetchDocument, selectedDocumentPath]);
+
+  const handleEditorChange = (value: string) => {
+    setEditorContent(value);
+    setSaveStatus("idle");
+    setSaveMessage(null);
+    setHistory((current) => {
+      const base = current.slice(0, historyIndex + 1);
+      if (base[base.length - 1] === value) {
+        return base;
+      }
+      const next = [...base, value];
+      setHistoryIndex(next.length - 1);
+      return next;
+    });
+  };
+
+  const handleUndo = () => {
+    setSaveStatus("idle");
+    setSaveMessage(null);
+    setHistoryIndex((current) => {
+      const nextIndex = Math.max(0, current - 1);
+      setEditorContent(history[nextIndex] ?? "");
+      return nextIndex;
+    });
+  };
+
+  const handleRedo = () => {
+    setSaveStatus("idle");
+    setSaveMessage(null);
+    setHistoryIndex((current) => {
+      const nextIndex = Math.min(history.length - 1, current + 1);
+      setEditorContent(history[nextIndex] ?? "");
+      return nextIndex;
+    });
+  };
+
+  const handleSave = async () => {
+    if (!documentPayload || documentPayload.contentType !== "text/markdown") {
+      return;
+    }
+    setSaveStatus("saving");
+    setSaveMessage(null);
+    try {
+      const response = await fetch("http://localhost:8001/api/documents", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          path: documentPayload.path,
+          content: editorContent,
+        }),
+      });
+      if (!response.ok) {
+        const body = (await response.json()) as { detail?: string };
+        throw new Error(body.detail || "Failed to save document");
+      }
+      const data = (await response.json()) as DocumentPayload;
+      setDocumentPayload(data);
+      setSaveStatus("success");
+      setSaveMessage("Saved changes.");
+    } catch (err) {
+      const message =
+        err instanceof Error ? err.message : "Unable to save document";
+      setSaveStatus("error");
+      setSaveMessage(message);
+    }
+  };
 
   useEffect(() => {
     void fetchStages();
@@ -329,6 +423,93 @@ export default function Home() {
                 )}
               </div>
             ) : null}
+          </section>
+
+          <section className="rounded-xl border border-[color:var(--color-border)] bg-[color:var(--color-surface)] p-6">
+            <div className="mb-4 flex items-center justify-between">
+              <div>
+                <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-[color:var(--color-text-secondary)]">
+                  Document Editor
+                </h3>
+                <p className="text-xs text-[color:var(--color-text-secondary)]">
+                  Edit markdown with live preview.
+                </p>
+              </div>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={handleUndo}
+                  disabled={historyIndex <= 0}
+                  className="rounded-lg border border-[color:var(--color-border)] px-3 py-2 text-xs font-semibold text-[color:var(--color-text-primary)] transition hover:border-[color:var(--color-accent)] disabled:cursor-not-allowed disabled:opacity-60"
+                >
+                  Undo
+                </button>
+                <button
+                  type="button"
+                  onClick={handleRedo}
+                  disabled={historyIndex >= history.length - 1}
+                  className="rounded-lg border border-[color:var(--color-border)] px-3 py-2 text-xs font-semibold text-[color:var(--color-text-primary)] transition hover:border-[color:var(--color-accent)] disabled:cursor-not-allowed disabled:opacity-60"
+                >
+                  Redo
+                </button>
+                <button
+                  type="button"
+                  onClick={handleSave}
+                  disabled={
+                    !documentPayload ||
+                    documentPayload.contentType !== "text/markdown" ||
+                    saveStatus === "saving"
+                  }
+                  className="rounded-lg bg-[color:var(--color-accent)] px-4 py-2 text-xs font-semibold text-white transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60"
+                >
+                  {saveStatus === "saving" ? "Saving..." : "Save"}
+                </button>
+              </div>
+            </div>
+            {saveMessage ? (
+              <div
+                className={`mb-3 rounded-lg border px-4 py-2 text-xs ${
+                  saveStatus === "error"
+                    ? "border-[color:rgba(255,90,60,0.4)] bg-[color:rgba(255,90,60,0.1)] text-[color:var(--color-error)]"
+                    : "border-[color:rgba(56,217,150,0.4)] bg-[color:rgba(56,217,150,0.1)] text-[color:var(--color-success)]"
+                }`}
+              >
+                {saveMessage}
+              </div>
+            ) : null}
+            {!documentPayload ||
+            documentPayload.contentType !== "text/markdown" ? (
+              <div className="rounded-lg border border-dashed border-[color:var(--color-border)] px-4 py-6 text-sm text-[color:var(--color-text-secondary)]">
+                Select a markdown document to edit.
+              </div>
+            ) : (
+              <div className="grid gap-4 min-[1200px]:grid-cols-2">
+                <div className="flex flex-col">
+                  <label
+                    htmlFor="markdown-editor"
+                    className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--color-text-secondary)]"
+                  >
+                    Editor
+                  </label>
+                  <textarea
+                    id="markdown-editor"
+                    value={editorContent}
+                    onChange={(event) => handleEditorChange(event.target.value)}
+                    className="min-h-[320px] w-full resize-y rounded-lg border border-[color:var(--color-border)] bg-[color:var(--color-surface-alt)] px-3 py-2 text-sm text-[color:var(--color-text-primary)] outline-none focus:border-[color:var(--color-focus)]"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <p className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--color-text-secondary)]">
+                    Live Preview
+                  </p>
+                  <div className="min-h-[320px] rounded-lg border border-[color:var(--color-border)] bg-[color:var(--color-surface-alt)] p-4">
+                    <div className="doc-markdown">
+                      <ReactMarkdown>{editorContent}</ReactMarkdown>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </section>
         </main>
 

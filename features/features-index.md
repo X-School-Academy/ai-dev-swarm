@@ -6,4 +6,5 @@
 - backend-files-api: Document list/read/write API with safe path handling.
 - frontend-dashboard-ui: Stage dashboard shell with list and detail panel.
 - document-viewer: Render markdown and HTML stage documents in the UI.
+- document-editor: Edit markdown documents with live preview and save feedback.
 - skip-management: Skip and unskip stages from the UI.
