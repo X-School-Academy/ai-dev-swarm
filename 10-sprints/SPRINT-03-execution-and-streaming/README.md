@@ -28,6 +28,8 @@ SPRINT-01, SPRINT-02
 ## Progress Log
 - 2026-01-25: Implemented headless runner endpoints and run tracking.
 - 2026-01-25: Headless runner tests passed (run start + status transitions).
+- 2026-01-25: Implemented SSE run streaming with event categories.
+- 2026-01-25: SSE streaming tests passed (categories + stream closure).
 
 ## Success Criteria
 - Users can start a stage run and see output within 500ms.

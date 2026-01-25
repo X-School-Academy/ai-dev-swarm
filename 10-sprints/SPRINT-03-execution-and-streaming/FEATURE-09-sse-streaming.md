@@ -1,5 +1,8 @@
 # FEATURE-09-sse-streaming
 
+## Status
+Done
+
 ## Keywords
 `sse-run-stream`, `event-categorization`, `stream-cleanup`
 
@@ -30,6 +33,22 @@ As a user, I want to see progress in real time.
 M
 
 ## Status Checklist
-- [ ] SSE endpoint implemented
-- [ ] Event categorization complete
-- [ ] Stream cleanup verified
+- [x] SSE endpoint implemented
+- [x] Event categorization complete
+- [x] Stream cleanup verified
+
+## Development Notes
+- Files modified: dev-swarm/py_scripts/webui/main.py, dev-swarm/py_scripts/webui/run_service.py
+- Files added: features/sse-streaming.md, features/impl/sse-streaming.md
+- Approach: in-memory event log streamed via SSE with polling for new events.
+- Implementation Commit: 68b19eb
+
+## Code Review Notes
+- Review summary: SSE stream uses ordered in-memory events and closes on run completion.
+- Issues found: 0
+- Decision: Approved for testing.
+
+## Testing Notes
+- Test summary: stream emits system/status/output categories and closes after run completion.
+- Issues found: 0
+- Decision: Passed.
