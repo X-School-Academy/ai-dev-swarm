@@ -9,6 +9,8 @@ Users need a visual overview of stage progress and quick access to stage details
 ## Scope
 - Sidebar lists all stages with status badges.
 - Main panel shows selected stage metadata and document list.
+- Header includes project title and global actions.
+- Output panel placeholder appears on wide screens.
 - Error and loading states are visible.
 
 ## Non-Goals

@@ -39,3 +39,16 @@ M
 - Replaced the Next.js starter page with a dashboard shell in dev-swarm/js_scripts/webui/src/app/page.tsx.
 - Added stage list, status badges, detail panel, and loading/error states.
 - Commit: ae0ddce
+- Updated dashboard layout to match UX wireframes with a header and output panel placeholder.
+- Applied design system palette and typography updates for the control-deck feel.
+
+## Code Review Notes
+- Review Summary: Layout and styling now align with the UX wireframe and design system.
+- Issues Found: 0
+- Decision: Approved
+
+## Testing Notes
+- Test Summary: Playwright UI checks for header, stage list, and detail panel.
+- Results: Passed on http://localhost:3001 with stages loaded and selection updates.
+- Notes: Loading http://127.0.0.1:3001 failed due to CORS on http://localhost:8001.
+- Decision: Passed with environment note.

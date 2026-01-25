@@ -30,3 +30,7 @@ None
 - App launches with frontend on 3001 and backend on 8001.
 - Dashboard shows all stages with correct status badges.
 - Users can toggle SKIP.md for skippable stages only.
+
+## Progress Log
+- 2026-01-25: Verified dashboard layout and skip toggles via Playwright on http://localhost:3001.
+- 2026-01-25: Verified /api/health and /api/stages responses, plus mock adapter env switching.

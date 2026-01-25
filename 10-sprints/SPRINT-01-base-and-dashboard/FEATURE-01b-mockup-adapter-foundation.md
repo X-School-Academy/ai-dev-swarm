@@ -34,9 +34,19 @@ M
 - [x] Base class defined
 - [x] Mock adapter implemented
 - [x] Provider factory implemented
-- [ ] Env switching verified
+- [x] Env switching verified
 
 ## Development Notes
 - Added adapter interface, mock adapter, live stub, and factory in dev-swarm/py_scripts/webui/ai_adapters.py.
 - Mock output supports optional MOCK_DELAY_MS and MOCK_ERROR via environment variables.
 - Commit: b81c4b2
+
+## Code Review Notes
+- Review Summary: Adapter interface and factory align with tech specs.
+- Issues Found: 0
+- Decision: Approved
+
+## Testing Notes
+- Test Summary: Verified mock output and live adapter selection via env switch.
+- Results: Passed. Mock stream emitted deterministic lines; live adapter selected when AGENT_CLI_PROVIDER=live.
+- Decision: Passed

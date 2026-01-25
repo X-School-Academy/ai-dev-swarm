@@ -38,3 +38,14 @@ S
 - Added POST /api/stages/{stageId}/skip with validation and SKIP.md updates.
 - Added skip/unskip button in the dashboard UI that refreshes stage data.
 - Commit: 5590526
+- Frontend now surfaces backend error detail for failed skip actions.
+
+## Code Review Notes
+- Review Summary: Frontend error handling aligns with backend error messaging.
+- Issues Found: 0
+- Decision: Approved
+
+## Testing Notes
+- Test Summary: Playwright skip toggle for a skippable stage and disabled state for non-skippable stage.
+- Results: Passed. Stage 01 toggled skip on/off; Stage 00 skip button remained disabled.
+- Decision: Passed

@@ -8,7 +8,7 @@
 ## Implementation Details
 - Backend rejects non-skippable stages and missing stage directories.
 - Skip toggle creates or removes SKIP.md and returns updated stage data.
-- Frontend calls the toggle endpoint and refreshes stage state.
+- Frontend calls the toggle endpoint, surfaces backend error detail, and refreshes stage state.
 
 ## Code Structure
 - Skip logic lives alongside stage list logic in stage_service.py.

@@ -42,3 +42,13 @@ M
 - Added stage definitions and status/file derivation in dev-swarm/py_scripts/webui/stage_service.py.
 - Implemented GET /api/stages in dev-swarm/py_scripts/webui/main.py.
 - Commit: cbfde5b
+
+## Code Review Notes
+- Review Summary: Stage derivation and payload fields align with backend specs.
+- Issues Found: 0
+- Decision: Approved
+
+## Testing Notes
+- Test Summary: Verified /api/stages returns all stage IDs and required fields.
+- Results: Passed. 13 stages returned with stageId, name, status, isSkippable, hasSkipFile, and files.
+- Decision: Passed

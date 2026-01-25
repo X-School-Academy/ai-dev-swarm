@@ -34,12 +34,22 @@ M
 
 ## Status Checklist
 - [x] Scaffolding complete
-- [ ] Ports verified
+- [x] Ports verified
 - [x] Dependencies installed
 
 ## Development Notes
 - Next.js app scaffolded under dev-swarm/js_scripts/webui with pnpm and Tailwind.
 - FastAPI app scaffolded under dev-swarm/py_scripts/webui with uv and uvicorn.
-- Backend includes CORS for http://localhost:3001 and a simple /api/health endpoint.
+- Backend includes CORS for http://localhost:3001, http://127.0.0.1:3001 and a simple /api/health endpoint.
 - Frontend dev/start scripts updated to use port 3001.
 - Commit: 55bcb3d
+
+## Code Review Notes
+- Review Summary: Scaffolding matches tech specs and package manager requirements.
+- Issues Found: 0
+- Decision: Approved
+
+## Testing Notes
+- Test Summary: Verified backend health and frontend availability.
+- Results: Passed. /api/health returns ok and frontend responds on port 3001.
+- Decision: Passed
