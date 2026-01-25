@@ -33,7 +33,24 @@ As a frontend, I want to read and write files so I can support the editor.
 M
 
 ## Status Checklist
-- [ ] Path validation helper implemented
-- [ ] Document list endpoint complete
-- [ ] Read and write endpoints complete
+- [x] Path validation helper implemented
+- [x] Document list endpoint complete
+- [x] Read and write endpoints complete
 - [ ] Run-state write guard verified
+
+## Development Notes
+- Added document_service.py for list/read/write helpers with root scoping.
+- Added run_state.py with RUN_ACTIVE guard for writes.
+- Added document endpoints in main.py for list/read/write operations.
+- Document payloads return contentType and lastModified per API spec.
+- Backend now loads environment variables from dev-swarm/.env.
+
+## Code Review Notes
+- Review Summary: Implementation aligns with backend specs and response fields.
+- Issues Found: 0
+- Decision: Approved
+
+## Testing Notes
+- Test Summary: Verified list/read/write endpoints and traversal rejection.
+- Results: Passed. Read/write persisted, traversal returned 400, and RUN_ACTIVE blocked writes with 409.
+- Decision: Passed
