@@ -17,16 +17,23 @@ Returns all network requests since loading the page
 The schema below describes the `arguments` object in the request payload.
 ```json
 {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "properties": {
     "includeStatic": {
-      "type": "boolean",
       "default": false,
-      "description": "Whether to include successful static resources like images, fonts, scripts, etc. Defaults to false."
+      "description": "Whether to include successful static resources like images, fonts, scripts, etc. Defaults to false.",
+      "type": "boolean"
+    },
+    "filename": {
+      "description": "Filename to save the network requests to. If not provided, requests are returned as text.",
+      "type": "string"
     }
   },
-  "additionalProperties": false,
-  "$schema": "http://json-schema.org/draft-07/schema#"
+  "required": [
+    "includeStatic"
+  ],
+  "additionalProperties": false
 }
 ```
 

@@ -35,7 +35,7 @@ Here are the steps for each role:
 2. Find the related `feature-name`
 3. Read `features/features-index.md` from `features/` and find the feature file
 4. Read other files related to this feature under contracts/flows/impl with the same `feature-name` file name
-5. Check code in `src/` by referencing `features/impl/feature-name.md`
+5. Check code in `{SRC}/` by referencing `features/impl/feature-name.md`
 6. Write the code or review the code
 7. Update the `backlog.md` file
 8. Update the sprint README with a Development log entry
@@ -45,7 +45,7 @@ Here are the steps for each role:
 2. Find the related `feature-name`
 3. Read `features/features-index.md` from `features/` and find the feature file
 4. Read other files related to this feature under contracts/flows/impl with the same `feature-name` file name
-5. Check code in `src/` by referencing `features/impl/feature-name.md`
+5. Check code in `{SRC}/` by referencing `features/impl/feature-name.md`
 6. Review the code (do not write code)
 7. Update the `backlog.md` file
 8. Update the sprint README with a Code Review log entry
@@ -55,7 +55,7 @@ Here are the steps for each role:
 2. Find the related `feature-name`
 3. Read `features/features-index.md` from `features/` and find the feature file
 4. Read other files related to this feature under contracts/flows/impl with the same `feature-name` file name
-5. Check code in `src/` by referencing `features/impl/feature-name.md`
+5. Check code in `{SRC}/` by referencing `features/impl/feature-name.md`
 6. Execute the test plan (write tests if required by the backlog; otherwise run manual tests)
 7. Update the `backlog.md` file with a test result summary
 8. Update the sprint README with a Testing log entry
@@ -66,10 +66,8 @@ The knowledge base `features/` is managed by developers and used by testers and 
 
 The knowledge base `features/` serves as the AI developer's memory. The Project Manager creates features/backlogs from a user level or non-technical level and doesn't need to care about how the whole structure of the project's code is organized in the codebase.
 
-Add a new file `source-code-structure.md` to define the source code structure under the `src/` folder in the file `dev-swarm/docs/repository-structure.md`.
+Add a new file `source-code-structure.md` to define the source code structure under the `{SRC}/` folder in the file `dev-swarm/docs/repository-structure.md`.
 
 Update `dev-swarm/skills/dev-swarm-tech-specs` to include this file.
 
-AI developers should follow `source-code-structure.md` to create and manage code in the `src/` folder.
-
-
+AI developers should follow `source-code-structure.md` to create and manage code in the `{SRC}/` folder.

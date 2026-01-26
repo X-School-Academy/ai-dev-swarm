@@ -64,13 +64,10 @@ Brief the goal in 2-3 paragraphs:
 #### Research Execution Rules
 
 **Folder Structure Rules:**
-1. **Atomic:** Each research topic must be in a separate folder, independently
+1. **Atomic:** Each research topic must be in a separate folder/project, independently
 2. **No Code Sharing:** Even if two research topics use the same framework/scaffolding, keep them in separate folders as different projects (e.g., two Next.js UI tests = two separate Next.js project setups)
-3. **Package Managers:** 
-   - Node.js: Use `pnpm` (install using dev-swarm skill if not available)
-   - Python: Use `uv` (install using dev-swarm skill if not available)
-4. **Third-party APIs:** Fetch latest docs from internet and save key information in the research folder
-5. **Code + Tests:** Each research must include working code with tests to prove tech assumptions
+3. **Third-party APIs:** Fetch latest docs from internet and save key information in the research folder
+4. **Code + Tests:** Each research must include working code with tests to prove tech assumptions
 
 #### 2.2 File Selection
 
@@ -138,18 +135,24 @@ Once user approves `04-tech-research/README.md`:
 
 For each research topic in the approved plan:
 
-**Step A: Create Research Folder**
-- Create `research-x-name/` folder
-- Set up project scaffolding (separate project even if using same framework)
-- Install dependencies using appropriate package manager
+**Step A: Create Research README**
+- Create research project folder `research-x-name/`
+- Create project `research-x-name/README.md`
+- In the `README.md`, outline the project:
+  - **Research Goal:** What specific assumption or risk is being validated.
+  - **Research Details:** Implementation plan and approach.
+  - **Tools & Frameworks:** Recommend appropriate project manage tool and test framework based on the research type (e.g., `pnpm` for Node.js, `uv` for Python, `cmake` for C++, `pytest` for Python testing, `jest` for JS testing, `playwright` for web UI testing, etc.).
 
-**Step B: Conduct Research** (Keep it minimal!)
-- Fetch latest documentation from internet for third-party services/APIs
-- Create **minimal "hello world" code snippets** to test and verify tech assumptions
-- Write **simple tests** to prove basic functionality works (not comprehensive testing)
-- Document findings, constraints, and learnings
+**Step B: Request Plan Approval**
+- Ask user: "I have created the research plan in `research-x-name/README.md`. Please review and update it if needed. Let me know when you approve it to start implementation."
 
-**Step C: Create Results File**
+**Step C: Implement & Test**
+- Once approved, set up project scaffolding and install dependencies.
+- Implement the minimal code snippets to test assumptions.
+- Execute automated tests to verify the proof of concept.
+- Document findings and results.
+
+**Step D: Create Results File**
 - Write `research-x-name-results.md` with:
   - Summary of research findings
   - API documentation and key information
@@ -157,9 +160,9 @@ For each research topic in the approved plan:
   - Test results and validation
   - Go/no-go recommendations
 
-**Step D: Request Approval**
-- Ask user to review the research folder and results file
-- Allow user to request modifications or approve to proceed to next research
+**Step E: Request Final Approval**
+- Ask user to review the implementation and results.
+- Allow user to request modifications or approve to proceed to next research.
 
 #### 3.2 Continue Until All Research Complete
 

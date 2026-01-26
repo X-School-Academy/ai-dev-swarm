@@ -11,12 +11,12 @@
    mkdir -p 99-archive/{archive-folder-name}
    ```
 
-## Handle src/ Submodule (if applicable)
+## Handle {SRC}/ Submodule (if applicable)
 
-Check if `src/` is a git submodule using `git submodule status`.
+Check if `{SRC}/` is a git submodule using `git submodule status`.
 
-- If `src/` is a submodule, follow `references/submodule-detach.md`.
-- If `src/` is not a submodule, continue.
+- If `{SRC}/` is a submodule, follow `references/submodule-detach.md`.
+- If `{SRC}/` is not a submodule, continue.
 
 ## Move Project Artifacts to Archive
 
@@ -24,21 +24,21 @@ Use `git mv` to move the following items into the archive folder:
 
 1. All stage folders: `00-*` through `10-*`
 2. `features/`
-3. `src/`
+3. `{SRC}/`
 4. `ideas.md` (if it exists and the user wants to archive it)
 
 Important:
 - Leave `99-archive/` in place
 - Do not touch unrelated files (e.g., `.*`, `dev-swarm/`, `README.md`)
 - Use `git mv` for tracked folders
-- If `src/` was a submodule and is now untracked, use `mv` and then `git add`
+- If `{SRC}/` was a submodule and is now untracked, use `mv` and then `git add`
 
 ## Recreate Empty Project Structure
 
 Create fresh empty folders and add `.gitkeep` files:
 
 ```bash
-for dir in 00-init-ideas 01-market-research 02-personas 03-mvp 04-prd 05-ux 06-architecture 07-tech-specs 08-devops 09-sprints 10-deployment features src; do
+for dir in 00-init-ideas 01-market-research 02-personas 03-mvp 04-prd 05-ux 06-architecture 07-tech-specs 08-devops 10-sprints 11-deployment features {SRC}; do
   mkdir -p "$dir"
   touch "$dir/.gitkeep"
 done
@@ -51,8 +51,8 @@ done
 
 ## Record Submodule Metadata (Recommended)
 
-If `src/` was a submodule, record its URL and commit SHA in:
+If `{SRC}/` was a submodule, record its URL and commit SHA in:
 
-`99-archive/{archive-folder-name}/src-submodule.txt`
+`99-archive/{archive-folder-name}/{SRC}-submodule.txt`
 
 This helps restore the submodule later even if git history is rewritten.

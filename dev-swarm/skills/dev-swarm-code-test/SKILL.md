@@ -24,8 +24,8 @@ This skill requires:
 - `04-prd/` - Product Requirements Document (business requirements and acceptance criteria)
 - `07-tech-specs/` - Engineering standards and constraints
 - `features/` folder with feature design and implementation docs
-- `09-sprints/` folder with backlog and test plan
-- `src/` folder (organized as defined in source-code-structure.md)
+- `10-sprints/` folder with backlog and test plan
+- `{SRC}/` folder (organized as defined in source-code-structure.md)
 - Access to source code and running environment
 
 ## Feature-Driven Testing Workflow
@@ -33,7 +33,7 @@ This skill requires:
 **CRITICAL:** This skill follows a strict feature-driven approach where `feature-name` is the index for the entire project:
 
 **For Each Backlog:**
-1. Read backlog.md from `09-sprints/SPRINT-XX-descriptive-name/[BACKLOG_TYPE]-XX-[feature-name]-<sub-feature>.md`
+1. Read backlog.md from `10-sprints/SPRINT-XX-descriptive-name/[BACKLOG_TYPE]-XX-[feature-name]-<sub-feature>.md`
 2. Extract the `feature-name` from the backlog file name
 3. Read `features/features-index.md` to find the feature file
 4. Read feature documentation in this order:
@@ -41,7 +41,7 @@ This skill requires:
    - `features/flows/[feature-name].md` - User flows and process flows (if exists)
    - `features/contracts/[feature-name].md` - API/data contracts (if exists)
    - `features/impl/[feature-name].md` - Implementation notes (if exists)
-5. Locate code and test files in `src/` using `features/impl/[feature-name].md`
+5. Locate code and test files in `{SRC}/` using `features/impl/[feature-name].md`
 6. Write/execute tests following `07-tech-specs/testing-standards.md`
 7. Update `backlog.md` with test results and findings
 
@@ -82,11 +82,11 @@ Follow these steps in order:
    - Or test latest reviewed backlog from sprint
 
    ```
-   09-sprints/
+   10-sprints/
    └── SPRINT-XX-descriptive-name/
        └── [BACKLOG_TYPE]-XX-[feature-name]-<sub-feature>.md
    ```
-   - Locate the sprint README at `09-sprints/SPRINT-XX-descriptive-name/README.md` for required progress log updates
+   - Locate the sprint README at `10-sprints/SPRINT-XX-descriptive-name/README.md` for required progress log updates
 
 2. **Read the backlog file:**
    - Understand requirements and acceptance criteria
@@ -115,12 +115,12 @@ Follow these steps in order:
 
 6. **Locate code and tests:**
    - Use `features/impl/[feature-name].md` to find code locations
-   - Navigate to `src/` directory
-   - Check existing test files in `src/` (locations from features/impl/[feature-name].md)
+   - Navigate to `{SRC}/` directory
+   - Check existing test files in `{SRC}/` (locations from features/impl/[feature-name].md)
    - Identify files to test
 
 7. **Read sprint test plan:**
-   - Check `09-sprints/sprint/README.md` for sprint-level test plan
+   - Check `10-sprints/SPRINT-XX-descriptive-name/README.md` for sprint-level test plan
    - Understand end-user test scenarios
    - Note manual vs automated test requirements
 
@@ -130,6 +130,24 @@ Follow these steps in order:
    - Environment requirements?
 
 **DO NOT** read the entire codebase. Use `feature-name` to find only relevant files.
+
+### Checklist and Status Rules (Backlog + Sprint)
+
+Apply these rules whenever you test a backlog or sprint:
+- For any checklist, acceptance criteria, or test plan, use task list items and mark results as:
+  - `[x]` = pass
+  - `[-]` = no test needed
+- After testing a backlog, update its status to `Done`.
+- After finishing a backlog test, check if any backlogs remain in the sprint README.
+  - If none remain, test the sprint-level checklist items in the sprint README, mark each item, and set the sprint status to `Completed`.
+
+### Test Method Priority
+
+Use this priority order when choosing test methods:
+1. `curl` commands (highest priority)
+2. `playwright-browser-*` skills for web UI (must use browser for any web UI item)
+3. Write test code
+4. Write unit tests
 
 ### Step 1: Design Test Strategy
 
@@ -180,7 +198,7 @@ Create automated test suites based on test type:
 
 #### Unit Tests
 
-Test individual functions/components:
+Test individual functions/components in isolation:
 
 **Best Practices:**
 - Test one thing per test case
@@ -320,7 +338,7 @@ For each issue found, create a backlog:
    - **Medium**: Minor feature broken, workaround exists
    - **Low**: Cosmetic issues, minor improvements
 
-2. **Create backlog file in `09-sprints/`:**
+2. **Create backlog file in `10-sprints/`:**
 
    **Test Bug Backlog Template:**
    ```markdown
@@ -400,38 +418,51 @@ Document test results:
    - **Failed**: Critical issues must be fixed before release
    - **Blocked**: Cannot test due to environment or dependency issues
 
-### Step 9: Update Backlog with Test Results
+### Step 9: Finalize and Commit
 
-**CRITICAL:** Update the backlog.md file to track testing progress:
+**CRITICAL:** Follow this process to safely commit changes and update tracking:
 
-1. **Update backlog status:**
-   - Change status from "In Testing" to "Done" (if all tests pass)
-   - Or change to "In Development" (if bugs found requiring fixes)
-   - Add a "Testing Notes" section if not present
+1. **Update Tracking Files:**
+   - Update `backlog.md`:
+     - Change status to `Done` after testing completes
+     - Mark all checklist items (acceptance criteria/test plan) as `[x]` pass or `[-]` no test needed
+     - Add "Testing Notes" section:
+       - **Test Summary:** Passed/Failed counts
+       - **Issues Found:** Bug backlogs created
+       - **Decision:** Passed/Failed
+   - Update feature documentation with test results
+   - Update `10-sprints/.../README.md`:
+     - Update status in table
+     - Add progress log entry
+     - If all backlogs are Done, mark sprint-level checklist items as `[x]` pass or `[-]` no test needed
+     - If sprint-level checks are complete, set sprint status to `Completed`
 
-2. **Document testing findings:**
-   - **Test Summary:** Total tests executed, passed, failed
-   - **Test Types Executed:** Unit, integration, API, UI, manual
-   - **Test Coverage:** Percentage of code/features tested
-   - **Issues Found:** Count of CHANGE/BUG/IMPROVE backlogs created
-   - **Test Decision:** Passed, Passed with minor issues, Failed, or Blocked
-   - **Test Evidence:** Screenshots, logs, performance metrics
-   - **Related Backlogs:** Link to created CHANGE/BUG/IMPROVE backlogs
+2. **Request Human Review:**
+   - Present the test results and plan to commit
+   - Ask user: "Please review the results. If approved, I will commit and close the backlog."
+   - **Wait for approval.**
 
-3. **Update feature documentation:**
-   - Add test notes to `features/impl/[feature-name].md`
-   - Document known issues or limitations discovered
-   - Note test coverage achieved
-   - Update with any testing insights
+3. **Commit the Tests/Fixes (Content):**
+   - Run `git add .` to stage all changes
+   - **Unstage** the backlog file and sprint README (`git reset HEAD <path-to-backlog> <path-to-sprint-readme>`)
+   - Check if there are staged changes:
+     - **If yes:**
+       - Draft conventional commit message (e.g., "test: add tests for [feature-name]")
+       - Commit: `git commit -m "test: ..."`
+       - Get Commit ID: `git rev-parse --short HEAD`
+     - **If no** (only current backlog updated):
+       - Skip to next step
 
-4. **Notify user:**
-   - Summarize test results
-   - Report pass/fail status
-   - List critical issues found
-   - Recommend next steps (fix bugs, deploy, etc.)
+4. **Update Backlog with Commit ID:**
+   - If a commit was made, append "**Test Commit:** `[commit-id]`" to the "Testing Notes" in `backlog.md`
 
-5. **Update sprint README (README.md) (CRITICAL):**
-   - Update backlog status in the sprint backlog table
-   - Append a log entry in the sprint progress log for the Testing step
+5. **Commit the Backlog (Metadata):**
+   - Stage `backlog.md` and sprint `README.md`
+   - Commit: `git commit -m "docs([feature-name]): update backlog status to Done"`
 
-**These backlog.md and sprint README updates create the audit trail showing testing was completed and results.**
+6. **Notify user:**
+   - Confirm completion
+   - If Done: "Backlog closed successfully"
+   - If Failed: "Backlog returned to development"
+
+**This two-step commit process ensures history is preserved before the backlog is updated with the commit reference.**

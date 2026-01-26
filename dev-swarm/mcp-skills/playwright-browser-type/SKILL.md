@@ -17,11 +17,12 @@ Type text into editable element
 The schema below describes the `arguments` object in the request payload.
 ```json
 {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "properties": {
     "element": {
-      "type": "string",
-      "description": "Human-readable element description used to obtain permission to interact with the element"
+      "description": "Human-readable element description used to obtain permission to interact with the element",
+      "type": "string"
     },
     "ref": {
       "type": "string",
@@ -32,21 +33,19 @@ The schema below describes the `arguments` object in the request payload.
       "description": "Text to type into the element"
     },
     "submit": {
-      "type": "boolean",
-      "description": "Whether to submit entered text (press Enter after)"
+      "description": "Whether to submit entered text (press Enter after)",
+      "type": "boolean"
     },
     "slowly": {
-      "type": "boolean",
-      "description": "Whether to type one character at a time. Useful for triggering key handlers in the page. By default entire text is filled in at once."
+      "description": "Whether to type one character at a time. Useful for triggering key handlers in the page. By default entire text is filled in at once.",
+      "type": "boolean"
     }
   },
   "required": [
-    "element",
     "ref",
     "text"
   ],
-  "additionalProperties": false,
-  "$schema": "http://json-schema.org/draft-07/schema#"
+  "additionalProperties": false
 }
 ```
 

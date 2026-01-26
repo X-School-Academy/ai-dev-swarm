@@ -24,3 +24,8 @@ dependencies = [
     "markdown>=3.7",
     "pydantic-settings>=2.0.0",
 ]
+
+[tool.uv.workspace]
+members = [
+    "webui",
+]

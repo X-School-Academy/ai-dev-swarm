@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+:root {
+  --color-background: #0b1220;
+  --color-surface: #111b2f;
+  --color-surface-alt: #18243c;
+  --color-border: #223152;
+  --color-text-primary: #e8f0ff;
+  --color-text-secondary: #a6b4cc;
+  --color-accent: #2f6bff;
+  --color-accent-cyan: #20c6ff;
+  --color-success: #38d996;
+  --color-warning: #ffb020;
+  --color-error: #ff5a3c;
+  --color-focus: #6be8ff;
+}
+
+@theme inline {
+  --color-background: var(--color-background);
+  --color-foreground: var(--color-text-primary);
+  --color-surface: var(--color-surface);
+  --color-surface-alt: var(--color-surface-alt);
+  --color-border: var(--color-border);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-accent: var(--color-accent);
+  --color-accent-cyan: var(--color-accent-cyan);
+  --color-success: var(--color-success);
+  --color-warning: var(--color-warning);
+  --color-error: var(--color-error);
+  --color-focus: var(--color-focus);
+  --font-sans: var(--font-ibm-plex);
+  --font-display: var(--font-space-grotesk);
+  --font-mono: var(--font-jetbrains-mono);
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-text-primary);
+  font-family: var(--font-ibm-plex), system-ui, sans-serif;
+}
+
+.doc-markdown {
+  color: var(--color-text-primary);
+  line-height: 1.6;
+}
+
+.doc-markdown h1,
+.doc-markdown h2,
+.doc-markdown h3,
+.doc-markdown h4 {
+  font-family: var(--font-display);
+  color: var(--color-text-primary);
+  margin: 1.4rem 0 0.6rem;
+}
+
+.doc-markdown h1 {
+  font-size: 1.75rem;
+}
+
+.doc-markdown h2 {
+  font-size: 1.4rem;
+}
+
+.doc-markdown h3 {
+  font-size: 1.15rem;
+}
+
+.doc-markdown p {
+  margin: 0.6rem 0;
+  color: var(--color-text-secondary);
+}
+
+.doc-markdown ul,
+.doc-markdown ol {
+  margin: 0.6rem 0 0.6rem 1.2rem;
+  color: var(--color-text-secondary);
+}
+
+.doc-markdown li {
+  margin: 0.35rem 0;
+}
+
+.doc-markdown code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  color: var(--color-accent-cyan);
+}

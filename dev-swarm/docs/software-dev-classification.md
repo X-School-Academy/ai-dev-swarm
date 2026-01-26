@@ -209,10 +209,10 @@ CLI tools, small services, Simple MCP Server, Simple Agent Skill
 *   **08-devops/**
     *   `README.md`
     *   `development_environment.md`: Dev env setup. Python (default `venv` via `uv`) or Node.js (default `pnpm`).
-*   **10-deployment/** (Mandatory for Tools/Agent Skills)
+*   **11-deployment/** (Mandatory for Tools/Agent Skills)
     *   `README.md`: Indicate target (e.g., `dev-swarm/py_scripts`, `dev-swarm/skills`).
     *   `deployment.md`
-*   **09-sprints/**: Skip.
+*   **10-sprints/**: Skip.
 
 **NOT Included:**
 

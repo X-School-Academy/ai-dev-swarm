@@ -39,6 +39,7 @@ Read all files to understand the project:
 - `ideas.md`
 - `00-init-ideas/*.md` through `10-sprints/*.md` - All markdown files
 - **Critical:** Review `09-devops/execution-plan.md` to identify any Part 2 items (deferred to Stage 11) that need to be executed before deployment
+- **Source Code Location:** Use `{SRC}/` as the default source code root if not specified in project documentation
 
 ### Step 2: Create Stage Proposal
 
@@ -133,6 +134,8 @@ Create each file listed in the approved README:
 - Reference sprint deliverables from `10-sprints/`
 - Ensure monitoring covers all critical system components
 - Document estimated costs for production infrastructure
+- **Source Code Management:** Package source code from `{SRC}/` directory (default) or as specified in project setup
+- **Git Management:** Create/update `.gitignore` file to exclude unnecessary files (logs, build artifacts, secrets, node_modules, etc.) from commits
 
 #### 3.2 Request User Approval for Files
 
@@ -168,6 +171,7 @@ Create `11-deployment/execution-plan.md` with deployment tasks organized into th
 Items deferred from `09-devops/execution-plan.md` Part 2
 
 **Part 2: Deployment Execution**
+- Source code preparation (from `{SRC}/` directory by default, ensure `.gitignore` excludes unnecessary files)
 - Code merge, database migration, application deployment, CDN configuration, DNS cutover
 
 **Part 3: Post-Deployment Verification**

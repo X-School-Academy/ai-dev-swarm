@@ -45,6 +45,14 @@ What counts as “one feature” depends on implementation effort and available 
 - Library-driven (bundled features): if a high-level library makes multiple capabilities nearly trivial to enable, they may be treated as one feature (example: using `fastmcp` where enabling `stdio`, `http`, and `sse` is largely a parameter change).
 - Custom implementation (granular features): if the same capabilities must be built from scratch, each may be defined as its own feature due to meaningful design, implementation, and test effort (example: “Implement SSE Transport”).
 
+## Reviewability and Testability
+
+A feature must be treated as standard software development work, adhering to the following strict requirements:
+
+- **Testable**: Every feature must include appropriate tests (unit, integration, or E2E) to verify its functionality automatically.
+- **Code Reviewable**: The implementation must be structured and scoped so that a human can review the code in several minutes without significant effort.
+- **Avoid "Big Bang" Changes**: Do not write large chunks of code at once. Work should be broken down to ensure it is manageable, minimizing the risk of introducing complex bugs that are hard to spot.
+
 ## Examples
 
 ### Feature examples
@@ -54,14 +62,6 @@ What counts as “one feature” depends on implementation effort and available 
 - REST API endpoint (system user): a documented endpoint like `/api/v1/orders` returning JSON
 - CLI command (power user): a command like `swarm init` that creates a new project structure
 - Dark mode toggle: a setting that changes the visual theme
-
-### Not feature examples
-- Database optimization: adding an index to speed up queries (implementation detail)
-- Code refactoring: improving maintainability without changing user-visible behavior
-- CI/CD pipeline: adding GitHub Actions to run tests on push
-- Third-party library integration: adding a logging library (unless it also adds a user-facing log viewer)
-- Security hardening: JWT token rotation logic (internal mechanism)
-- Bug fixes: repairing an existing feature (maintenance, not a new feature)
 
 ## Who defines whether something is a feature?
 

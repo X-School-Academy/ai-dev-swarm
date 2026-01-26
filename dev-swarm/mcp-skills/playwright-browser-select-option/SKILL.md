@@ -17,11 +17,12 @@ Select an option in a dropdown
 The schema below describes the `arguments` object in the request payload.
 ```json
 {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "properties": {
     "element": {
-      "type": "string",
-      "description": "Human-readable element description used to obtain permission to interact with the element"
+      "description": "Human-readable element description used to obtain permission to interact with the element",
+      "type": "string"
     },
     "ref": {
       "type": "string",
@@ -36,12 +37,10 @@ The schema below describes the `arguments` object in the request payload.
     }
   },
   "required": [
-    "element",
     "ref",
     "values"
   ],
-  "additionalProperties": false,
-  "$schema": "http://json-schema.org/draft-07/schema#"
+  "additionalProperties": false
 }
 ```
 
