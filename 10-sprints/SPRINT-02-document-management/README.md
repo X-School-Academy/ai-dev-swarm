@@ -1,7 +1,7 @@
 # SPRINT-02-document-management
 
 ## Sprint Status
-in-progress
+Completed
 
 ## Sprint Goal
 Enable users to list, view, and edit project documentation directly within the UI.
@@ -11,8 +11,8 @@ SPRINT-01
 
 ## Backlogs
 - FEATURE-05 backend-files-api (completed, M)
-- FEATURE-06 document-viewer (pending, M)
-- FEATURE-07 document-editor (pending, M)
+- FEATURE-06 document-viewer (completed, M)
+- FEATURE-07 document-editor (completed, M)
 
 ## Progress Log
 - 2026-01-25: Completed backend files API with review and tests.
@@ -24,9 +24,9 @@ SPRINT-01
 - 2026-01-25: Document editor tests passed (save, undo/redo, persistence).
 
 ## Sprint Test Plan
-- Verify safe file listing, reading, and writing within the project root.
-- Verify markdown and HTML rendering in the viewer.
-- Verify editor save behavior and feedback.
+- [x] Verify safe file listing, reading, and writing within the project root.
+- [x] Verify markdown and HTML rendering in the viewer.
+- [x] Verify editor save behavior and feedback.
 
 ## Demo Script
 - Open a stage and list its documents.
@@ -34,5 +34,5 @@ SPRINT-01
 - Edit a markdown file, save, and reload to confirm persistence.
 
 ## Success Criteria
-- Users can view rendered markdown and HTML documents for any stage.
-- Users can edit and save markdown documents with live preview.
+- [x] Users can view rendered markdown and HTML documents for any stage.
+- [x] Users can edit and save markdown documents with live preview.

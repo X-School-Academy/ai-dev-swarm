@@ -35,6 +35,8 @@ See `dev-swarm/docs/sprint-backlog-guidelines.md` & `dev-swarm/docs/what-is-a-fe
 
 ## Instructions
 
+**Checklist formatting rule:** Any checklist, acceptance criteria, or test plan must use Markdown task lists (e.g., `- [ ] item`) so QA can mark verification status.
+
 ### Step 1: Context Review
 
 Read all files to understand the project:
@@ -88,14 +90,14 @@ For each sprint, document:
 - Features/backlogs included
 - Dependencies on previous sprints
 - Demo criteria
-- QA test plan
+- QA test plan (checkbox list)
 
 **Backlog Details:**
 For each backlog item, document:
 - Backlog ID and unique keywords
 - User story format
-- Acceptance criteria
-- Developer test plan
+- Acceptance criteria (checkbox list)
+- Developer test plan (checkbox list)
 - Related files from previous stages
 - Estimated complexity (S/M/L)
 
@@ -128,9 +130,9 @@ Each sprint's README.md should contain:
 - Sprint goal
 - Dependencies
 - Backlogs with status and complexity
-- Sprint test plan
+- Sprint test plan (checkbox list)
 - Demo script
-- Success criteria
+- Success criteria (checkbox list)
 
 #### 4.3 Backlog File Structure
 
@@ -138,12 +140,12 @@ Each backlog file should contain:
 - Keywords (unique across project)
 - User story
 - Related documentation references
-- Acceptance criteria
+- Acceptance criteria (checkbox list)
 - Technical implementation notes
-- Developer test plan
+- Developer test plan (checkbox list)
 - Dependencies
 - Complexity estimate
-- Status checklist
+- Status checklist (checkbox list)
 
 ### Step 5: Finalize Sprint Documentation
 

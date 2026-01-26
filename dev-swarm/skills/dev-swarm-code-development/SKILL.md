@@ -20,7 +20,7 @@ This skill implements backlogs through a structured feature-driven approach. As 
 This skill requires:
 - `04-prd/` - Product Requirements Document (business requirements and acceptance criteria)
 - `07-tech-specs/` - Engineering standards and constraints
-- `09-sprints/` folder with active sprint and backlogs
+- `10-sprints/` folder with active sprint and backlogs
 - `features/` folder with features-index.md (existing features knowledge base)
 - Understanding of the backlog type: FEATURE, CHANGE, BUG, or IMPROVE
 
@@ -29,7 +29,7 @@ This skill requires:
 **CRITICAL:** This skill follows a strict feature-driven approach where `feature-name` is the index for the entire project:
 
 **For Each Backlog:**
-1. Read `backlog` from `09-sprints/SPRINT-XX-descriptive-name/[BACKLOG_TYPE]-XX-[feature-name]-<sub-feature>.md`
+1. Read `backlog` from `10-sprints/SPRINT-XX-descriptive-name/[BACKLOG_TYPE]-XX-[feature-name]-<sub-feature>.md`
 2. Extract the `feature-name` from the backlog file name
 3. Read `features/features-index.md` to find the feature file
 4. Read feature documentation in this order:
@@ -61,14 +61,14 @@ Follow these steps in order for coding development:
 
 1. **Identify the backlog:**
    - User specifies which backlog to work on
-   - Or you select next backlog from `09-sprints/` in order
+   - Or you select next backlog from `10-sprints/` in order
 
    ```
-   09-sprints/
+   10-sprints/
    └── SPRINT-XX-descriptive-name/
        └── [BACKLOG_TYPE]-XX-[feature-name]-<sub-feature>.md
    ```
-   - Locate the sprint README at `09-sprints/SPRINT-XX-descriptive-name/README.md` for required progress log updates
+   - Locate the sprint README at `10-sprints/SPRINT-XX-descriptive-name/README.md` for required progress log updates
 
 2. **Read the backlog file:**
    - Understand task description and requirements
@@ -260,7 +260,7 @@ Before marking complete:
        - **Implementation Approach:** Summary of work
        - **Key Decisions:** Technical choices
        - **Links:** To feature docs and impl docs
-   - Update `09-sprints/.../README.md`:
+   - Update `10-sprints/.../README.md`:
      - Update status in table
      - Add progress log entry
 
@@ -297,7 +297,7 @@ Before marking complete:
 
 ```
 project-root/
-├── 09-sprints/
+├── 10-sprints/
 │   └── SPRINT-XX-descriptive-name/
 │       └── [BACKLOG_TYPE]-XX-[feature-name]-<sub-feature>.md # Backlog entry point
 │

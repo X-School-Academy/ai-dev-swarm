@@ -29,15 +29,15 @@ Rebuild the stage folders based on the codebase reality:
 - `06-architecture/`: Diagram or describe system structure from repo layout.
 - `07-tech-specs/`: Capture languages, frameworks, infra hints.
 - `08-devops/`: Note CI/CD or deployment scripts.
-- `09-sprints/`: Create sprints/backlogs based on current features and gaps.
-- `10-deployment/`: Document current deployment expectations from config files.
+- `10-sprints/`: Create sprints/backlogs based on current features and gaps.
+- `11-deployment/`: Document current deployment expectations from config files.
 
 Use brief, factual notes; avoid speculation unless clearly marked.
 
 ## Step 3: Rebuild Sprints and Backlogs
 
 1. Extract features from the codebase (routes, UI screens, services).
-2. Group them into epics and backlogs in `09-sprints/`.
+2. Group them into epics and backlogs in `10-sprints/`.
 3. Flag missing or partial implementations as backlog items.
 
 ## Step 4: Populate the Features Folder

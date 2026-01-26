@@ -14,18 +14,18 @@ As a system, I need to run AI agents as background processes.
 - 08-tech-specs/api-specifications.md
 
 ## Acceptance Criteria
-- [ ] POST /api/stages/{stageId}/run starts a run and returns a runId.
-- [ ] GET /api/runs/{runId} returns run status and timestamps.
-- [ ] Only one run can be active at a time.
-- [ ] Stdout and stderr are captured for streaming.
+- [x] POST /api/stages/{stageId}/run starts a run and returns a runId.
+- [x] GET /api/runs/{runId} returns run status and timestamps.
+- [x] Only one run can be active at a time.
+- [x] Stdout and stderr are captured for streaming.
 
 ## Technical Implementation Notes
 - Use async process execution with safe cancellation.
 - Track run state in memory with a single active run lock.
 
 ## Developer Test Plan
-- Start a mock run and verify status transitions.
-- Confirm run cleanup on completion or failure.
+- [x] Start a mock run and verify status transitions.
+- [x] Confirm run cleanup on completion or failure.
 
 ## Dependencies
 - FEATURE-01b-mockup-adapter-foundation

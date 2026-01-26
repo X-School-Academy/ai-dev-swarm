@@ -29,7 +29,7 @@ from `ideas.md` or when the user explicitly asks to archive.
    - Leave `99-archive/` in place and do not touch unrelated files.
 
 4. Recreate empty stage folders for a fresh project:
-   - Create new `00-init-ideas/` through `10-deployment/`, `features/`, and `{SRC}/`.
+   - Create new `00-init-ideas/` through `11-deployment/`, `features/`, and `{SRC}/`.
    - Add a `.gitkeep` file in each new folder so git tracks them.
 
 5. If the user wants to start a new project from `ideas.md`:

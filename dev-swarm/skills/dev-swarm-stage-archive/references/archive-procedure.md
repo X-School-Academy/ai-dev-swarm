@@ -38,7 +38,7 @@ Important:
 Create fresh empty folders and add `.gitkeep` files:
 
 ```bash
-for dir in 00-init-ideas 01-market-research 02-personas 03-mvp 04-prd 05-ux 06-architecture 07-tech-specs 08-devops 09-sprints 10-deployment features {SRC}; do
+for dir in 00-init-ideas 01-market-research 02-personas 03-mvp 04-prd 05-ux 06-architecture 07-tech-specs 08-devops 10-sprints 11-deployment features {SRC}; do
   mkdir -p "$dir"
   touch "$dir/.gitkeep"
 done

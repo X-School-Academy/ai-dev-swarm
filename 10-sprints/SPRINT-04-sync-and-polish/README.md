@@ -1,7 +1,7 @@
 # SPRINT-04-sync-and-polish
 
 ## Sprint Status
-completed
+Completed
 
 ## Sprint Goal
 Ensure state consistency, error handling, and UI polish for a stable MVP.
@@ -10,14 +10,14 @@ Ensure state consistency, error handling, and UI polish for a stable MVP.
 SPRINT-01, SPRINT-02, SPRINT-03
 
 ## Backlogs
-- FEATURE-12 project-sync (done, M)
-- FEATURE-13 error-handling (done, S)
-- IMPROVE-14 ui-polish (done, S)
+- FEATURE-12 project-sync (completed, M)
+- FEATURE-13 error-handling (completed, S)
+- IMPROVE-14 ui-polish (completed, S)
 
 ## Sprint Test Plan
-- Verify sync logic with manual file changes.
-- Verify error surfaces and recovery behavior.
-- Verify design system adherence across core screens.
+- [x] Verify sync logic with manual file changes.
+- [x] Verify error surfaces and recovery behavior.
+- [x] Verify design system adherence across core screens.
 
 ## Demo Script
 - Change a file externally, sync, and show updated UI state.
@@ -36,6 +36,6 @@ SPRINT-01, SPRINT-02, SPRINT-03
 - 2026-01-26: UI polish testing passed (focus rings + typography check).
 
 ## Success Criteria
-- UI state remains consistent with the file system after sync.
-- Errors are surfaced clearly without breaking the UI.
-- Visual design matches the design system guidelines.
+- [x] UI state remains consistent with the file system after sync.
+- [x] Errors are surfaced clearly without breaking the UI.
+- [x] Visual design matches the design system guidelines.

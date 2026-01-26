@@ -10,10 +10,10 @@ As a developer, I want to use mock services during development to save time and 
 - 08-tech-specs/api-mockup-adapter.md
 
 ## Acceptance Criteria
-- [ ] Abstract base class defined for agent execution adapters.
-- [ ] Mock adapter yields deterministic streaming output.
-- [ ] Live adapter stub exists for future integration.
-- [ ] AGENT_CLI_PROVIDER selects mock or live adapter at runtime.
+- [x] Abstract base class defined for agent execution adapters.
+- [x] Mock adapter yields deterministic streaming output.
+- [x] Live adapter stub exists for future integration.
+- [x] AGENT_CLI_PROVIDER selects mock or live adapter at runtime.
 
 ## Technical Implementation Notes
 - Use Python abc for interface definitions.
@@ -21,8 +21,8 @@ As a developer, I want to use mock services during development to save time and 
 - Load provider selection from environment configuration.
 
 ## Developer Test Plan
-- Set AGENT_CLI_PROVIDER to mock and confirm mock output stream.
-- Set AGENT_CLI_PROVIDER to live and confirm the live stub is selected.
+- [x] Set AGENT_CLI_PROVIDER to mock and confirm mock output stream.
+- [x] Set AGENT_CLI_PROVIDER to live and confirm the live stub is selected.
 
 ## Dependencies
 - FEATURE-01-project-scaffolding

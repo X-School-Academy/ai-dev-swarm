@@ -23,8 +23,8 @@ As a user, I want to read documentation formatted nicely.
 - Use a markdown renderer that preserves headings and lists.
 
 ## Developer Test Plan
-- Open ideas.md and confirm formatting is readable.
-- Open an HTML document and confirm it renders safely.
+- [x] Open ideas.md and confirm formatting is readable.
+- [x] Open an HTML document and confirm it renders safely.
 
 ## Dependencies
 - FEATURE-05-backend-files-api

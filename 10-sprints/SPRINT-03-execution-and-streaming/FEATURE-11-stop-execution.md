@@ -14,17 +14,17 @@ As a user, I want to stop a run if it goes wrong.
 - 08-tech-specs/backend-specs.md
 
 ## Acceptance Criteria
-- [ ] POST /api/stages/{stageId}/stop terminates the active run.
-- [ ] Backend attempts graceful termination before forcing kill.
-- [ ] UI reflects stopped status immediately and allows restart.
+- [x] POST /api/stages/{stageId}/stop terminates the active run.
+- [x] Backend attempts graceful termination before forcing kill.
+- [x] UI reflects stopped status immediately and allows restart.
 
 ## Technical Implementation Notes
 - Terminate process tree and confirm exit status.
 - Clear active run state after stop.
 
 ## Developer Test Plan
-- Start a long-running run and stop it from the UI.
-- Confirm the run status updates to stopped and resources are released.
+- [x] Start a long-running run and stop it from the UI.
+- [x] Confirm the run status updates to stopped and resources are released.
 
 ## Dependencies
 - FEATURE-08-headless-runner

@@ -11,10 +11,10 @@ As a frontend, I want to read and write files so I can support the editor.
 - 08-tech-specs/api-specifications.md
 
 ## Acceptance Criteria
-- [ ] GET /api/stages/{stageId}/documents lists all documents in the stage.
-- [ ] GET /api/documents reads a file by path.
-- [ ] PUT /api/documents writes content to a file by path.
-- [ ] Path validation blocks traversal and access outside the project root.
+- [x] GET /api/stages/{stageId}/documents lists all documents in the stage.
+- [x] GET /api/documents reads a file by path.
+- [x] PUT /api/documents writes content to a file by path.
+- [x] Path validation blocks traversal and access outside the project root.
 
 ## Technical Implementation Notes
 - Use pathlib for path normalization and root checks.
@@ -22,9 +22,9 @@ As a frontend, I want to read and write files so I can support the editor.
 - Block writes while a run is active.
 
 ## Developer Test Plan
-- Attempt to read a path outside the root and verify rejection.
-- Write a markdown file within a stage and verify changes persist.
-- Attempt a write during an active run and verify it is blocked.
+- [x] Attempt to read a path outside the root and verify rejection.
+- [x] Write a markdown file within a stage and verify changes persist.
+- [x] Attempt a write during an active run and verify it is blocked.
 
 ## Dependencies
 - FEATURE-01-project-scaffolding
@@ -36,7 +36,7 @@ M
 - [x] Path validation helper implemented
 - [x] Document list endpoint complete
 - [x] Read and write endpoints complete
-- [ ] Run-state write guard verified
+- [x] Run-state write guard verified
 
 ## Development Notes
 - Added document_service.py for list/read/write helpers with root scoping.

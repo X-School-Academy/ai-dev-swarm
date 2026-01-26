@@ -24,7 +24,7 @@ This skill requires:
 - `04-prd/` - Product Requirements Document (business requirements and acceptance criteria)
 - `07-tech-specs/` - Engineering standards and constraints
 - `features/` folder with feature design and implementation docs
-- `09-sprints/` folder with backlog and test plan
+- `10-sprints/` folder with backlog and test plan
 - `{SRC}/` folder (organized as defined in source-code-structure.md)
 - Access to source code and running environment
 
@@ -33,7 +33,7 @@ This skill requires:
 **CRITICAL:** This skill follows a strict feature-driven approach where `feature-name` is the index for the entire project:
 
 **For Each Backlog:**
-1. Read backlog.md from `09-sprints/SPRINT-XX-descriptive-name/[BACKLOG_TYPE]-XX-[feature-name]-<sub-feature>.md`
+1. Read backlog.md from `10-sprints/SPRINT-XX-descriptive-name/[BACKLOG_TYPE]-XX-[feature-name]-<sub-feature>.md`
 2. Extract the `feature-name` from the backlog file name
 3. Read `features/features-index.md` to find the feature file
 4. Read feature documentation in this order:
@@ -82,11 +82,11 @@ Follow these steps in order:
    - Or test latest reviewed backlog from sprint
 
    ```
-   09-sprints/
+   10-sprints/
    └── SPRINT-XX-descriptive-name/
        └── [BACKLOG_TYPE]-XX-[feature-name]-<sub-feature>.md
    ```
-   - Locate the sprint README at `09-sprints/SPRINT-XX-descriptive-name/README.md` for required progress log updates
+   - Locate the sprint README at `10-sprints/SPRINT-XX-descriptive-name/README.md` for required progress log updates
 
 2. **Read the backlog file:**
    - Understand requirements and acceptance criteria
@@ -120,7 +120,7 @@ Follow these steps in order:
    - Identify files to test
 
 7. **Read sprint test plan:**
-   - Check `09-sprints/sprint/README.md` for sprint-level test plan
+   - Check `10-sprints/SPRINT-XX-descriptive-name/README.md` for sprint-level test plan
    - Understand end-user test scenarios
    - Note manual vs automated test requirements
 
@@ -130,6 +130,24 @@ Follow these steps in order:
    - Environment requirements?
 
 **DO NOT** read the entire codebase. Use `feature-name` to find only relevant files.
+
+### Checklist and Status Rules (Backlog + Sprint)
+
+Apply these rules whenever you test a backlog or sprint:
+- For any checklist, acceptance criteria, or test plan, use task list items and mark results as:
+  - `[x]` = pass
+  - `[-]` = no test needed
+- After testing a backlog, update its status to `Done`.
+- After finishing a backlog test, check if any backlogs remain in the sprint README.
+  - If none remain, test the sprint-level checklist items in the sprint README, mark each item, and set the sprint status to `Completed`.
+
+### Test Method Priority
+
+Use this priority order when choosing test methods:
+1. `curl` commands (highest priority)
+2. `playwright-browser-*` skills for web UI (must use browser for any web UI item)
+3. Write test code
+4. Write unit tests
 
 ### Step 1: Design Test Strategy
 
@@ -320,7 +338,7 @@ For each issue found, create a backlog:
    - **Medium**: Minor feature broken, workaround exists
    - **Low**: Cosmetic issues, minor improvements
 
-2. **Create backlog file in `09-sprints/`:**
+2. **Create backlog file in `10-sprints/`:**
 
    **Test Bug Backlog Template:**
    ```markdown
@@ -406,15 +424,18 @@ Document test results:
 
 1. **Update Tracking Files:**
    - Update `backlog.md`:
-     - Change status from "In Testing" to "Done" (if passed) or "In Development"
+     - Change status to `Done` after testing completes
+     - Mark all checklist items (acceptance criteria/test plan) as `[x]` pass or `[-]` no test needed
      - Add "Testing Notes" section:
        - **Test Summary:** Passed/Failed counts
        - **Issues Found:** Bug backlogs created
        - **Decision:** Passed/Failed
    - Update feature documentation with test results
-   - Update `09-sprints/.../README.md`:
+   - Update `10-sprints/.../README.md`:
      - Update status in table
      - Add progress log entry
+     - If all backlogs are Done, mark sprint-level checklist items as `[x]` pass or `[-]` no test needed
+     - If sprint-level checks are complete, set sprint status to `Completed`
 
 2. **Request Human Review:**
    - Present the test results and plan to commit

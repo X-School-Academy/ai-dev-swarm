@@ -48,7 +48,7 @@ Record the source in your notes before proceeding.
 If the codebase has little or no documentation, follow `references/reverse-engineering.md` to reconstruct:
 - `ideas.md`
 - stage folders `00-*` through `10-*`
-- sprints and backlogs in `09-sprints/`
+- sprints and backlogs in `10-sprints/`
 - feature specs under `features/`
 
 ## Expected Output

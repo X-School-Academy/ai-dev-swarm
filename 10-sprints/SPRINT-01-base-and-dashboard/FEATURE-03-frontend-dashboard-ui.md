@@ -11,17 +11,17 @@ As a user, I want to see an overview of all stages so I know the project status.
 - 06-ux/design-system-guide.md
 
 ## Acceptance Criteria
-- [ ] Sidebar lists all stages with status badges.
-- [ ] Selecting a stage updates the detail panel.
-- [ ] Layout matches the UX wireframes at desktop widths.
+- [x] Sidebar lists all stages with status badges.
+- [x] Selecting a stage updates the detail panel.
+- [x] Layout matches the UX wireframes at desktop widths.
 
 ## Technical Implementation Notes
 - Keep layout to three main panels per UX.
 - Use design system colors for status indicators.
 
 ## Developer Test Plan
-- Verify layout at 1440px and 1920px.
-- Confirm stage selection updates the detail panel state.
+- [x] Verify layout at 1440px and 1920px.
+- [x] Confirm stage selection updates the detail panel state.
 
 ## Dependencies
 - FEATURE-02-backend-stage-api

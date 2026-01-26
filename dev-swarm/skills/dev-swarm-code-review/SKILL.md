@@ -23,7 +23,7 @@ This skill requires:
 - `04-prd/` - Product Requirements Document (business requirements and acceptance criteria)
 - `07-tech-specs/` - Engineering standards and constraints
 - `features/` folder with feature design and implementation docs
-- `09-sprints/` folder with backlog that was implemented
+- `10-sprints/` folder with backlog that was implemented
 - `{SRC}/` folder (organized as defined in source-code-structure.md)
 - Access to source code files
 
@@ -32,7 +32,7 @@ This skill requires:
 **CRITICAL:** This skill follows a strict feature-driven approach where `feature-name` is the index for the entire project:
 
 **For Each Backlog:**
-1. Read backlog.md from `09-sprints/SPRINT-XX-descriptive-name/[BACKLOG_TYPE]-XX-[feature-name]-<sub-feature>.md`
+1. Read backlog.md from `10-sprints/SPRINT-XX-descriptive-name/[BACKLOG_TYPE]-XX-[feature-name]-<sub-feature>.md`
 2. Extract the `feature-name` from the backlog file name
 3. Read `features/features-index.md` to find the feature file
 4. Read feature documentation in this order:
@@ -70,6 +70,8 @@ The code review process:
 
 Follow these steps in order:
 
+**Checklist formatting rule:** Any checklist, acceptance criteria, or test plan must use Markdown task lists (e.g., `- [ ] item`) so QA can mark verification status.
+
 ### Step 0: Verify Prerequisites and Gather Context (Feature-Driven Approach)
 
 **IMPORTANT:** Follow this exact order to efficiently locate all relevant context:
@@ -79,11 +81,11 @@ Follow these steps in order:
    - Or review latest completed backlog from sprint
 
    ```
-   09-sprints/
+   10-sprints/
    └── SPRINT-XX-descriptive-name/
        └── [BACKLOG_TYPE]-XX-[feature-name]-<sub-feature>.md
    ```
-   - Locate the sprint README at `09-sprints/SPRINT-XX-descriptive-name/README.md` for required progress log updates
+   - Locate the sprint README at `10-sprints/SPRINT-XX-descriptive-name/README.md` for required progress log updates
 
 2. **Read the backlog file:**
    - Understand original task requirements
@@ -248,7 +250,7 @@ For each issue found, create a backlog:
    - Medium: Performance issues, code quality
    - Low: Minor improvements, refactoring
 
-2. **Create backlog file in `09-sprints/`:**
+2. **Create backlog file in `10-sprints/`:**
 
    **Backlog Template:**
    ```markdown
@@ -328,7 +330,7 @@ For each issue found, create a backlog:
        - **Decision:** Approved/Rejected
        - **Links:** To created backlogs (CHANGE/BUG)
    - Update feature documentation if needed
-   - Update `09-sprints/.../README.md`:
+   - Update `10-sprints/.../README.md`:
      - Update status in table
      - Add progress log entry
 

@@ -11,17 +11,17 @@ As a user, I want to skip optional stages so I can focus on relevant work.
 - 08-tech-specs/api-specifications.md
 
 ## Acceptance Criteria
-- [ ] POST /api/stages/{stageId}/skip toggles SKIP.md creation or removal.
-- [ ] Non-skippable stages return a clear error and UI disables the toggle.
-- [ ] UI updates the stage status immediately after the action.
+- [x] POST /api/stages/{stageId}/skip toggles SKIP.md creation or removal.
+- [x] Non-skippable stages return a clear error and UI disables the toggle.
+- [x] UI updates the stage status immediately after the action.
 
 ## Technical Implementation Notes
 - Validate stageId before file operations.
 - Use safe file operations and handle existing SKIP.md gracefully.
 
 ## Developer Test Plan
-- Toggle skip for a skippable stage and confirm file changes.
-- Attempt to skip a non-skippable stage and confirm error handling.
+- [x] Toggle skip for a skippable stage and confirm file changes.
+- [x] Attempt to skip a non-skippable stage and confirm error handling.
 
 ## Dependencies
 - FEATURE-03-frontend-dashboard-ui
@@ -32,7 +32,7 @@ S
 ## Status Checklist
 - [x] Backend toggle endpoint complete
 - [x] Frontend toggle UI complete
-- [ ] Error handling verified
+- [x] Error handling verified
 
 ## Development Notes
 - Added POST /api/stages/{stageId}/skip with validation and SKIP.md updates.

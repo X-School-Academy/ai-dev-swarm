@@ -13,18 +13,18 @@ As a user, I want to know when something goes wrong.
 - 08-tech-specs/error-handling.md
 
 ## Acceptance Criteria
-- [ ] Global error boundary prevents UI crashes.
-- [ ] Toast notifications surface backend errors.
-- [ ] Error pages exist for invalid routes.
-- [ ] Messages are user-friendly and do not expose stack traces.
+- [x] Global error boundary prevents UI crashes.
+- [x] Toast notifications surface backend errors.
+- [x] Error pages exist for invalid routes.
+- [x] Messages are user-friendly and do not expose stack traces.
 
 ## Technical Implementation Notes
 - Map backend error codes to user-facing messages.
 - Keep error UI consistent with the design system.
 
 ## Developer Test Plan
-- Trigger backend errors and verify toast messages.
-- Navigate to invalid routes and verify error pages.
+- [x] Trigger backend errors and verify toast messages.
+- [x] Navigate to invalid routes and verify error pages.
 
 ## Dependencies
 - FEATURE-03-frontend-dashboard-ui

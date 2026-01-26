@@ -14,17 +14,17 @@ As a user, I want a console view to monitor execution.
 - 08-tech-specs/observability-spec.md
 
 ## Acceptance Criteria
-- [ ] Console panel displays system and agent output distinctly.
-- [ ] Auto-scroll keeps the latest output in view when pinned.
-- [ ] Output history persists for the current run.
+- [x] Console panel displays system and agent output distinctly.
+- [x] Auto-scroll keeps the latest output in view when pinned.
+- [x] Output history persists for the current run.
 
 ## Technical Implementation Notes
 - Keep console rendering efficient for long output.
 - Respect user scroll position when not pinned to bottom.
 
 ## Developer Test Plan
-- Stream multiple events and verify formatting and scroll behavior.
-- Confirm output remains visible after run completion.
+- [x] Stream multiple events and verify formatting and scroll behavior.
+- [x] Confirm output remains visible after run completion.
 
 ## Dependencies
 - FEATURE-03-frontend-dashboard-ui

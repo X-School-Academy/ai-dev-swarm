@@ -13,18 +13,18 @@ As a user, I want a professional-looking interface.
 - 06-ux/design-system-guide.md
 
 ## Acceptance Criteria
-- [ ] Colors match the design system palette.
-- [ ] Typography uses the specified fonts and scale.
-- [ ] Spacing scale is consistent across layouts.
-- [ ] Interactive states and transitions feel responsive.
+- [x] Colors match the design system palette.
+- [x] Typography uses the specified fonts and scale.
+- [x] Spacing scale is consistent across layouts.
+- [x] Interactive states and transitions feel responsive.
 
 ## Technical Implementation Notes
 - Audit Tailwind classes against design tokens.
 - Apply font loading consistently across pages.
 
 ## Developer Test Plan
-- Verify fonts and color tokens via browser inspection.
-- Review hover and focus states across key screens.
+- [x] Verify fonts and color tokens via browser inspection.
+- [x] Review hover and focus states across key screens.
 
 ## Dependencies
 - FEATURE-03-frontend-dashboard-ui
