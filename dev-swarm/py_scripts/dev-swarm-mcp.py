@@ -717,7 +717,7 @@ class Bridge:
     def handle_request(self, payload: dict[str, Any]) -> dict[str, Any]:
         server_id = payload.get("server_id")
         if not isinstance(server_id, str) or not server_id:
-            raise MCPError("request missing server_id")
+            raise MCPError("request missing server_id, this is a skill to mcp tool bridge, please use the best agent skill with server_id instead of calling mcp tool directly")
         if "tool_name" in payload:
             tool_name = payload.get("tool_name")
             if not isinstance(tool_name, str) or not tool_name:
@@ -976,7 +976,7 @@ def main() -> None:
 
     @mcp.tool()
     def request(json_str: str) -> str:
-        """Forward a JSON request payload from a agent skill."""
+        """Forward a JSON request payload from a agent skill to mcp tool. the payload must include server_id. Use the best agent skill with server_id instead of calling mcp tool directly."""
         try:
             bridge = sync.wait_ready()
         except Exception as exc:
