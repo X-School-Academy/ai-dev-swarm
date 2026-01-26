@@ -30,6 +30,16 @@ type ConsoleEvent = {
   message: string;
 };
 
+type Toast = {
+  message: string;
+  variant: "error" | "success";
+};
+
+type SyncResponse = {
+  stages: Stage[];
+  syncedAt: string;
+};
+
 const STATUS_STYLES: Record<Stage["status"], string> = {
   "not-started":
     "bg-[color:var(--color-surface-alt)] text-[color:var(--color-text-secondary)]",
@@ -59,6 +69,7 @@ export default function Home() {
   const [consoleEvents, setConsoleEvents] = useState<ConsoleEvent[]>([]);
   const [isPinned, setIsPinned] = useState<boolean>(true);
   const [runId, setRunId] = useState<string | null>(null);
+  const [toast, setToast] = useState<Toast | null>(null);
   const consoleScrollRef = useRef<HTMLDivElement | null>(null);
 
   const selectedStage = useMemo(
@@ -66,25 +77,83 @@ export default function Home() {
     [selectedStageId, stages],
   );
 
+  useEffect(() => {
+    if (!toast) {
+      return;
+    }
+    const timeout = window.setTimeout(() => {
+      setToast(null);
+    }, 4000);
+    return () => window.clearTimeout(timeout);
+  }, [toast]);
+
+  const mapApiError = useCallback((status: number, detail?: string) => {
+    if (status === 409 && detail?.toLowerCase().includes("run")) {
+      return "Action blocked while a run is active.";
+    }
+    switch (status) {
+      case 400:
+        return "Invalid request. Please check your input.";
+      case 403:
+        return "You do not have permission to access this item.";
+      case 404:
+        return "The requested item was not found.";
+      case 409:
+        return "Another action is already in progress.";
+      case 500:
+        return "Unexpected server error. Please try again.";
+      default:
+        return "Something went wrong. Please try again.";
+    }
+  }, []);
+
+  const parseErrorMessage = useCallback(
+    async (response: Response, fallback: string) => {
+      try {
+        const body = (await response.json()) as { detail?: string };
+        return mapApiError(response.status, body.detail) || fallback;
+      } catch {
+        return fallback;
+      }
+    },
+    [mapApiError],
+  );
+
+  const showToast = useCallback((message: string, variant: Toast["variant"] = "error") => {
+    setToast({ message, variant });
+  }, []);
+
   const fetchStages = useCallback(async () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch("http://localhost:8001/api/stages");
+      const response = await fetch("http://localhost:8001/api/sync", {
+        method: "POST",
+      });
       if (!response.ok) {
-        throw new Error("Failed to load stages");
+        const message = await parseErrorMessage(
+          response,
+          "Failed to sync project",
+        );
+        throw new Error(message);
       }
-      const data = (await response.json()) as Stage[];
-      setStages(data);
-      setSelectedStageId((current) => current || data[0]?.stageId || "");
+      const data = (await response.json()) as SyncResponse;
+      setStages(data.stages);
+      setSelectedStageId((current) => {
+        if (current && data.stages.some((stage) => stage.stageId === current)) {
+          return current;
+        }
+        return data.stages[0]?.stageId || "";
+      });
     } catch (err) {
       const message =
         err instanceof Error ? err.message : "Unable to fetch stages";
       setError(message);
+      showToast(message);
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [parseErrorMessage, showToast]);
 
   useEffect(() => {
     setSelectedDocumentPath("");
@@ -107,8 +176,11 @@ export default function Home() {
         `http://localhost:8001/api/documents?path=${encodeURIComponent(path)}`,
       );
       if (!response.ok) {
-        const body = (await response.json()) as { detail?: string };
-        throw new Error(body.detail || "Failed to load document");
+        const message = await parseErrorMessage(
+          response,
+          "Failed to load document",
+        );
+        throw new Error(message);
       }
       const data = (await response.json()) as DocumentPayload;
       setDocumentPayload(data);
@@ -127,6 +199,7 @@ export default function Home() {
       const message =
         err instanceof Error ? err.message : "Unable to load document";
       setDocumentError(message);
+      showToast(message);
       setDocumentPayload(null);
       setEditorContent("");
       setHistory([]);
@@ -174,8 +247,11 @@ export default function Home() {
         { method: "POST" },
       );
       if (!response.ok) {
-        const body = (await response.json()) as { detail?: string };
-        throw new Error(body.detail || "Failed to start run");
+        const message = await parseErrorMessage(
+          response,
+          "Failed to start run",
+        );
+        throw new Error(message);
       }
       const data = (await response.json()) as { runId: string };
       setConsoleEvents([]);
@@ -185,6 +261,7 @@ export default function Home() {
       const message =
         err instanceof Error ? err.message : "Unable to start run";
       setError(message);
+      showToast(message);
     }
   };
 
@@ -290,8 +367,11 @@ export default function Home() {
         }),
       });
       if (!response.ok) {
-        const body = (await response.json()) as { detail?: string };
-        throw new Error(body.detail || "Failed to save document");
+        const message = await parseErrorMessage(
+          response,
+          "Failed to save document",
+        );
+        throw new Error(message);
       }
       const data = (await response.json()) as DocumentPayload;
       setDocumentPayload(data);
@@ -302,6 +382,7 @@ export default function Home() {
         err instanceof Error ? err.message : "Unable to save document";
       setSaveStatus("error");
       setSaveMessage(message);
+      showToast(message);
     }
   };
 
@@ -325,14 +406,18 @@ export default function Home() {
         },
       );
       if (!response.ok) {
-        const body = (await response.json()) as { detail?: string };
-        throw new Error(body.detail || "Failed to update skip status");
+        const message = await parseErrorMessage(
+          response,
+          "Failed to update skip status",
+        );
+        throw new Error(message);
       }
       await fetchStages();
     } catch (err) {
       const message =
         err instanceof Error ? err.message : "Unable to update stage";
       setError(message);
+      showToast(message);
     } finally {
       setUpdating(false);
     }
@@ -354,7 +439,7 @@ export default function Home() {
             type="button"
             onClick={fetchStages}
             disabled={loading || updating}
-            className="rounded-lg border border-[color:var(--color-border)] px-4 py-2 text-sm font-semibold text-[color:var(--color-text-primary)] transition hover:border-[color:var(--color-accent)] disabled:cursor-not-allowed disabled:opacity-60"
+            className="rounded-lg border border-[color:var(--color-border)] px-4 py-2 text-sm font-semibold text-[color:var(--color-text-primary)] transition hover:border-[color:var(--color-accent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-focus)] focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--color-background)] disabled:cursor-not-allowed disabled:opacity-60"
           >
             Sync
           </button>
@@ -369,12 +454,25 @@ export default function Home() {
             type="button"
             onClick={startRun}
             disabled={!selectedStage}
-            className="rounded-lg bg-[color:var(--color-accent)] px-4 py-2 text-sm font-semibold text-white transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60"
+            className="rounded-lg bg-[color:var(--color-accent)] px-4 py-2 text-sm font-semibold text-white transition hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-focus)] focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--color-background)] disabled:cursor-not-allowed disabled:opacity-60"
           >
             Run Stage
           </button>
         </div>
       </header>
+      {toast ? (
+        <div className="fixed right-6 top-6 z-50 rounded-lg border border-[color:var(--color-border)] bg-[color:var(--color-surface)] px-4 py-3 text-sm shadow-lg">
+          <p
+            className={`font-semibold ${
+              toast.variant === "error"
+                ? "text-[color:var(--color-error)]"
+                : "text-[color:var(--color-success)]"
+            }`}
+          >
+            {toast.message}
+          </p>
+        </div>
+      ) : null}
 
       <div className="flex min-h-[calc(100vh-80px)]">
         <aside className="w-72 border-r border-[color:var(--color-border)] bg-[color:var(--color-surface)] px-4 py-6">
@@ -397,7 +495,7 @@ export default function Home() {
                   <button
                     type="button"
                     onClick={() => setSelectedStageId(stage.stageId)}
-                    className={`flex w-full items-center justify-between rounded-lg px-3 py-2 text-left text-sm transition ${
+                    className={`flex w-full items-center justify-between rounded-lg px-3 py-2 text-left text-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-focus)] focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--color-background)] ${
                       stage.stageId === selectedStageId
                         ? "bg-[color:var(--color-accent)] text-white"
                         : "text-[color:var(--color-text-secondary)] hover:bg-[color:var(--color-surface-alt)]"
@@ -439,7 +537,7 @@ export default function Home() {
                 type="button"
                 onClick={handleToggleSkip}
                 disabled={!selectedStage?.isSkippable || updating}
-                className={`rounded-lg px-4 py-2 text-sm font-semibold transition ${
+                className={`rounded-lg px-4 py-2 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-focus)] focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--color-background)] ${
                   selectedStage?.isSkippable
                     ? "bg-[color:var(--color-accent)] text-white hover:brightness-110"
                     : "cursor-not-allowed bg-[color:var(--color-surface-alt)] text-[color:var(--color-text-secondary)]"
@@ -475,7 +573,7 @@ export default function Home() {
                     <button
                       type="button"
                       onClick={() => setSelectedDocumentPath(file)}
-                      className={`flex w-full items-center justify-between px-3 py-2 text-left transition ${
+                      className={`flex w-full items-center justify-between px-3 py-2 text-left transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-focus)] focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--color-background)] ${
                         selectedDocumentPath === file
                           ? "bg-[color:var(--color-accent)] text-white"
                           : "text-[color:var(--color-text-primary)] hover:bg-[color:var(--color-surface)]"
@@ -557,7 +655,7 @@ export default function Home() {
                   type="button"
                   onClick={handleUndo}
                   disabled={historyIndex <= 0}
-                  className="rounded-lg border border-[color:var(--color-border)] px-3 py-2 text-xs font-semibold text-[color:var(--color-text-primary)] transition hover:border-[color:var(--color-accent)] disabled:cursor-not-allowed disabled:opacity-60"
+                  className="rounded-lg border border-[color:var(--color-border)] px-3 py-2 text-xs font-semibold text-[color:var(--color-text-primary)] transition hover:border-[color:var(--color-accent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-focus)] focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--color-background)] disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   Undo
                 </button>
@@ -565,7 +663,7 @@ export default function Home() {
                   type="button"
                   onClick={handleRedo}
                   disabled={historyIndex >= history.length - 1}
-                  className="rounded-lg border border-[color:var(--color-border)] px-3 py-2 text-xs font-semibold text-[color:var(--color-text-primary)] transition hover:border-[color:var(--color-accent)] disabled:cursor-not-allowed disabled:opacity-60"
+                  className="rounded-lg border border-[color:var(--color-border)] px-3 py-2 text-xs font-semibold text-[color:var(--color-text-primary)] transition hover:border-[color:var(--color-accent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-focus)] focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--color-background)] disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   Redo
                 </button>
@@ -577,7 +675,7 @@ export default function Home() {
                     documentPayload.contentType !== "text/markdown" ||
                     saveStatus === "saving"
                   }
-                  className="rounded-lg bg-[color:var(--color-accent)] px-4 py-2 text-xs font-semibold text-white transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60"
+                  className="rounded-lg bg-[color:var(--color-accent)] px-4 py-2 text-xs font-semibold text-white transition hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-focus)] focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--color-background)] disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   {saveStatus === "saving" ? "Saving..." : "Save"}
                 </button>
@@ -644,7 +742,7 @@ export default function Home() {
             <button
               type="button"
               onClick={() => setIsPinned((current) => !current)}
-              className="rounded-full border border-[color:var(--color-border)] px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-[color:var(--color-text-secondary)] transition hover:border-[color:var(--color-accent)]"
+              className="rounded-full border border-[color:var(--color-border)] px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-[color:var(--color-text-secondary)] transition hover:border-[color:var(--color-accent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-focus)] focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--color-background)]"
             >
               {isPinned ? "Pinned" : "Unpinned"}
             </button>

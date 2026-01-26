@@ -1,5 +1,6 @@
 import asyncio
 import json
+from datetime import datetime, timezone
 from typing import AsyncIterator
 
 from fastapi import FastAPI, HTTPException
@@ -41,6 +42,16 @@ def health_check() -> dict:
 @app.get("/api/stages")
 def get_stages() -> list[dict]:
     return list_stages(run_active=has_active_run())
+
+
+@app.post("/api/sync")
+def sync_project() -> dict:
+    if has_active_run():
+        raise HTTPException(status_code=409, detail="Sync blocked during active run")
+    return {
+        "stages": list_stages(run_active=False),
+        "syncedAt": datetime.now(timezone.utc).isoformat(),
+    }
 
 
 class SkipRequest(BaseModel):

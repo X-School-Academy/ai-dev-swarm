@@ -5,6 +5,8 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 - Document viewer renders markdown and HTML files from the backend document API.
 - HTML documents are displayed in a sandboxed iframe for safety.
 - Markdown editor provides live preview, undo/redo, and save feedback.
+- Project sync runs on page load and via the Sync button.
+- Global error boundary and 404 pages use the design system styling.
 
 ## Getting Started
 
