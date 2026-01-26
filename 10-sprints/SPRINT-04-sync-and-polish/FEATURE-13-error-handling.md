@@ -1,5 +1,8 @@
 # FEATURE-13-error-handling
 
+## Status
+Done
+
 ## Keywords
 `error-boundary-ui`, `toast-messaging`, `api-error-mapping`
 
@@ -30,7 +33,22 @@ As a user, I want to know when something goes wrong.
 S
 
 ## Status Checklist
-- [ ] Error boundary implemented
-- [ ] Toast system integrated
-- [ ] Error pages implemented
-- [ ] Message mapping verified
+- [x] Error boundary implemented
+- [x] Toast system integrated
+- [x] Error pages implemented
+- [x] Message mapping verified
+
+## Development Notes
+- Files modified: dev-swarm/js_scripts/webui/src/app/page.tsx, dev-swarm/js_scripts/webui/README.md, features/features-index.md
+- Files added: dev-swarm/js_scripts/webui/src/app/error.tsx, dev-swarm/js_scripts/webui/src/app/not-found.tsx, features/error-handling.md, features/impl/error-handling.md
+- Approach: map API status codes to user-friendly messaging, surface errors via toast, and add global error/404 pages aligned to design system.
+
+## Code Review Notes
+- Review summary: Error boundary, 404 page, and toast messaging align with specs and keep messages user-friendly.
+- Issues found: 0
+- Decision: Approved for testing.
+
+## Testing Notes
+- Test summary: Playwright confirmed toast message when sync blocked during active run and 404 page renders for invalid routes.
+- Issues found: 0
+- Decision: Passed.
