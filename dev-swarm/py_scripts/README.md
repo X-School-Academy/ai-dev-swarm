@@ -57,10 +57,7 @@ Example MCP config snippet:
 ### Development
 
 ```bash
-# From py_scripts root
-uv run uvicorn webui.main:app --reload --port 8001
-
-# Or from webui folder
+# Run from webui folder (required for relative imports)
 cd webui && uv run uvicorn main:app --reload --port 8001
 ```
 
