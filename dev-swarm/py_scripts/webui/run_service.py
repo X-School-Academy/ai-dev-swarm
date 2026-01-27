@@ -7,7 +7,7 @@ from datetime import datetime, timezone
 from threading import Event, Lock, Thread
 from typing import Any, Dict, Optional
 
-from ai_adapters import get_ai_adapter
+from .ai_adapters import get_ai_adapter
 
 
 @dataclass

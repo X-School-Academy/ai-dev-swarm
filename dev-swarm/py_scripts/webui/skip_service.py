@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from stage_service import (
+from .stage_service import (
     NON_SKIPPABLE,
     PROJECT_ROOT,
     derive_status,

@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from stage_service import PROJECT_ROOT, STAGES, find_stage
+from .stage_service import PROJECT_ROOT, STAGES, find_stage
 
 ALLOWED_EXTENSIONS = {".md", ".html"}
 
