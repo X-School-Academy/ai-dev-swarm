@@ -1,5 +1,6 @@
 packages:
-  - .
+  - webui
+  - "scripts/*"
 ignoredBuiltDependencies:
   - sharp
   - unrs-resolver
