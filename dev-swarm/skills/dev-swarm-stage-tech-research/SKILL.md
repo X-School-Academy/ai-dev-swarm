@@ -127,15 +127,14 @@ For each proposed research topic, clearly specify:
 
 Ask user: "Please check the Stage Proposal in `04-tech-research/README.md`. Update it directly or tell me how to update it."
 
-### Step 3: Execute Research Topics Sequentially
+### Step 3: Create All Research READMEs
 
 Once user approves `04-tech-research/README.md`:
 
-#### 3.1 Execute Each Research Topic (One at a Time)
+#### 3.1 Create All Research README Files
 
-For each research topic in the approved plan:
+For **each** research topic in the approved plan, create the README file:
 
-**Step A: Create Research README**
 - Create research project folder `research-x-name/`
 - Create project `research-x-name/README.md`
 - In the `README.md`, outline the project:
@@ -143,16 +142,29 @@ For each research topic in the approved plan:
   - **Research Details:** Implementation plan and approach.
   - **Tools & Frameworks:** Recommend appropriate project manage tool and test framework based on the research type (e.g., `pnpm` for Node.js, `uv` for Python, `cmake` for C++, `pytest` for Python testing, `jest` for JS testing, `playwright` for web UI testing, etc.).
 
-**Step B: Request Plan Approval**
-- Ask user: "I have created the research plan in `research-x-name/README.md`. Please review and update it if needed. Let me know when you approve it to start implementation."
+**Create ALL research README files before requesting approval.**
 
-**Step C: Implement & Test**
-- Once approved, set up project scaffolding and install dependencies.
+#### 3.2 Request Approval for All Research Plans
+
+After creating all `research-x-name/README.md` files:
+- Provide a summary of all research plans created
+- Ask user: "I have created research plans for all topics. Please review and update each `research-x-name/README.md` if needed. Let me know when you approve them to start implementation."
+
+### Step 4: Execute Research Topics Sequentially
+
+Once user approves all research README files:
+
+#### 4.1 Implement Each Research Topic (One at a Time)
+
+For each research topic in the approved plan:
+
+**Step A: Implement & Test**
+- Set up project scaffolding and install dependencies.
 - Implement the minimal code snippets to test assumptions.
 - Execute automated tests to verify the proof of concept.
 - Document findings and results.
 
-**Step D: Create Results File**
+**Step B: Create Results File**
 - Write `research-x-name-results.md` with:
   - Summary of research findings
   - API documentation and key information
@@ -160,35 +172,35 @@ For each research topic in the approved plan:
   - Test results and validation
   - Go/no-go recommendations
 
-**Step E: Request Final Approval**
+**Step C: Request Approval**
 - Ask user to review the implementation and results.
 - Allow user to request modifications or approve to proceed to next research.
 
-#### 3.2 Continue Until All Research Complete
+#### 4.2 Continue Until All Research Complete
 
-Repeat Step 3.1 for each research topic until all are completed.
+Repeat Step 4.1 for each research topic until all are completed.
 
-### Step 4: Finalize Stage
+### Step 5: Finalize Stage
 
 Once all research topics are completed and user approves:
 
-#### 4.1 Update README with Results
+#### 5.1 Update README with Results
 - Update `04-tech-research/README.md` to reflect all completed research
 - Add links to all research folders and results files
 - Include summary of key findings and decisions
 
-#### 4.2 Documentation Finalization
+#### 5.2 Documentation Finalization
 - Ensure all research folders have working code and tests
 - Verify all results files are complete and well-formatted
 - Confirm all third-party API documentation is saved
 
-#### 4.3 Prepare for Next Stage
+#### 5.3 Prepare for Next Stage
 - Summarize validated technical decisions for architecture stage
 - Document any constraints discovered that affect PRD or UX
 - List technology choices confirmed by research
 - Compile all code snippets and examples for reference
 
-#### 4.4 Announce Completion
+#### 5.4 Announce Completion
 
 Inform user:
 - "Stage 04 (Tech Research) is complete"

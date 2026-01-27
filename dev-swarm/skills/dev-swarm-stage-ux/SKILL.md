@@ -71,12 +71,14 @@ Select files from these options based on project needs:
 - `accessibility.md` - Accessibility requirements following WCAG guidelines
 
 **UI Mockups (for GUI projects):**
-- `design-ui-mockup/` - Pure HTML/CSS/JS mockups for all pages/screens (created after design system approval). Required for any web, mobile, or desktop app with a graphic user interface when HTML mockups can express workflow.
+- `design-ui-mockup/README.md` - Mockup proposal listing all pages/screens to be created (include in this approval step; mockup files created after design system approval). Required for any web, mobile, or desktop app with a graphic user interface when HTML mockups can express workflow.
 
 For each selected file, provide:
 - Short description
 - Why it's essential for this project
 - Key information it should include
+
+**Note:** If `design-ui-mockup/` is selected, include `design-ui-mockup/README.md` (mockup proposal) in this stage proposal for approval together with other files. The actual mockup HTML/CSS/JS files will be created in Step 4 after design system files are approved.
 
 #### 2.3 Request User Approval
 
@@ -93,6 +95,36 @@ Create each file listed in the approved README:
 - **For `.md` files:** Write comprehensive content based on personas, MVP requirements, and PRD
 - **For diagram folders:** Follow `dev-swarm/docs/mermaid-diagram-guide.md` to create related diagrams files
 - **For `.html` files:** Create functional preview pages demonstrating the design system with css/js as needed
+- **For `design-ui-mockup/README.md`:** Create the mockup proposal (see format below)
+
+**Mockup Proposal Format (for `design-ui-mockup/README.md`):**
+
+**Purpose Statement:**
+- These mockups are NOT the final design implementation
+- They serve as visual references for user review of the final layout, navigation flow, and overall user experience before actual development begins
+
+**Page/Screen List:**
+Based on wireframes and user flows, list all pages/screens to be created:
+- Page name
+- Brief description
+- Key components/sections on this page
+- Navigation links to other pages
+
+**Shared Assets:**
+- `styles.css` - Design system styles (colors, typography, spacing, buttons)
+- `navigation.js` - Inter-page navigation simulation
+
+**Proposed Structure:**
+```
+design-ui-mockup/
+├── README.md           # This proposal (will become review instructions after approval)
+├── index.html          # Entry point / landing page
+├── home.html           # Home/dashboard
+├── login.html          # Authentication screens
+├── [feature].html      # Feature-specific pages
+├── styles.css          # Shared design system styles
+└── navigation.js       # Inter-page navigation
+```
 
 **Quality Guidelines:**
 - Base design decisions on user personas and their needs
@@ -102,7 +134,7 @@ Create each file listed in the approved README:
 
 #### 3.2 Request User Approval for Files
 
-After creating all files:
+After creating all files (including `design-ui-mockup/README.md` if applicable):
 - Provide a summary of what was created
 - Highlight key design decisions and rationale
 - Ask: "Please review the UX design files. You can update or delete files, or let me know how to modify them."
@@ -111,20 +143,15 @@ After creating all files:
 
 **Trigger Condition:** Execute this step if:
 - The project has a GUI component (web app, mobile app, desktop app)
-- `design-ui-preview.html` was created and approved by user
-  
+- `design-ui-mockup/README.md` was created and approved by user in Step 3
+
 UI mockups are required for GUI projects where HTML pages can represent the workflow, including this project.
 
-#### 4.1 Create Mockup Folder
+#### 4.1 Create Mockup Files
 
-Create the `06-ux/design-ui-mockup/` folder with pure HTML/CSS/JS mockups.
+Create all mockup files based on the approved `design-ui-mockup/README.md`:
 
-**Purpose:** These mockups are NOT the final design implementation. They serve as visual references for user review of the final layout, navigation flow, and overall user experience before actual development begins.
-
-#### 4.2 Mockup Requirements
-
-For each page/screen defined in wireframes and user flows, create:
-
+**For each page/screen listed in the approved proposal, create:**
 - **Individual HTML files:** One file per page/screen (e.g., `home.html`, `login.html`, `dashboard.html`, `settings.html`)
 - **Shared CSS:** `styles.css` - Apply design system (colors, typography, spacing, buttons)
 - **Navigation JS:** `navigation.js` - Enable clicking between pages to simulate user flow
@@ -136,27 +163,15 @@ For each page/screen defined in wireframes and user flows, create:
 - Include **all interactive states** (hover, active, disabled) where applicable
 - Show **responsive breakpoints** if responsive design is required
 
-**Structure Example:**
-```
-design-ui-mockup/
-├── index.html          # Entry point / landing page
-├── home.html           # Home/dashboard
-├── login.html          # Authentication screens
-├── [feature].html      # Feature-specific pages
-├── styles.css          # Shared design system styles
-├── navigation.js       # Inter-page navigation
-└── README.md           # Instructions for reviewing mockups
-```
+#### 4.2 Update Mockup README
 
-#### 4.3 Create Mockup README
-
-Create `06-ux/design-ui-mockup/README.md` with:
+After creating all mockup files, update `06-ux/design-ui-mockup/README.md` to include:
 - How to open and navigate the mockups (open index.html in browser)
-- List of all pages/screens included
-- Navigation flow instructions
+- Complete list of all pages/screens created
+- Navigation flow instructions (which pages link to which)
 - Notes on placeholder content
 
-#### 4.4 Request User Approval for Mockups
+#### 4.3 Request User Approval for Mockups
 
 After creating all mockups:
 - Provide a summary of pages/screens created
