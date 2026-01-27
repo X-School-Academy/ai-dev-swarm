@@ -27,6 +27,5 @@ dependencies = [
 
 [tool.uv.workspace]
 members = [
-    "webui",
     "scripts/*",
 ]

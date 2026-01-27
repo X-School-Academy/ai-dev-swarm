@@ -12,8 +12,7 @@ py_scripts/
 ├── dev-swarm-mcp.py      # Simple script (root level)
 ├── screen_stream.py      # Simple script (root level)
 ├── use_computer.py       # Simple script (root level)
-├── webui/                # Complex app: FastAPI backend
-│   ├── pyproject.toml    # App-specific dependencies
+├── webui/                # FastAPI backend (uses root deps)
 │   └── *.py              # App source code
 └── scripts/              # Additional standalone scripts (optional)
     └── example.py        # Single-file scripts go here
@@ -59,20 +58,17 @@ Example MCP config snippet:
 
 ```bash
 # From py_scripts root
-uv run --package webui uvicorn main:app --reload --port 8001
+uv run uvicorn webui.main:app --reload --port 8001
 
 # Or from webui folder
 cd webui && uv run uvicorn main:app --reload --port 8001
 ```
 
-### Adding Dependencies to WebUI
+### Adding Dependencies
 
 ```bash
-# From py_scripts root
-uv add --package webui <package>
-
-# Or from webui folder
-cd webui && uv add <package>
+# Dependencies go in root pyproject.toml
+uv add <package>
 ```
 
 ## Adding Simple Scripts
