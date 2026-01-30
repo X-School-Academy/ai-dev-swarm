@@ -241,6 +241,26 @@ export default function Home() {
     return selectedStage.files.some((f) => f === `${folder}/README.md`);
   }, [selectedStage, stageConfig]);
 
+  // Check if development-plan.md exists (for Sprints Plan step)
+  const hasDevelopmentPlan = useMemo(() => {
+    if (!selectedStage || !stageConfig) return false;
+    const folder = stageConfig.folder;
+    return selectedStage.files.some((f) => f === `${folder}/development-plan.md`);
+  }, [selectedStage, stageConfig]);
+
+  // Check if sprint folders exist (for Sprints Backlogs step)
+  const hasSprintFolders = useMemo(() => {
+    if (!stageConfig || stageConfig.type !== "sprints") return false;
+    const folder = stageConfig.folder;
+    for (const f of selectedStage?.files || []) {
+      if (!f.startsWith(`${folder}/`)) continue;
+      const rel = f.slice(folder.length + 1);
+      if (rel === "README.md" || rel === "development-plan.md") continue;
+      if (rel.includes("/")) return true;
+    }
+    return false;
+  }, [selectedStage, stageConfig]);
+
   // Get items in current browsing folder (files + subfolders)
   const currentFolderItems = useMemo(() => {
     const prefix = folderStack.length > 0 ? folderStack.join("/") + "/" : "";
@@ -1672,15 +1692,24 @@ export default function Home() {
               {dynamicProgressSteps.map((step, idx) => {
                 const isStageFilesStep = step.key === "stage-files";
                 const isProposalStep = step.key === "proposal";
+                const isPlanStep = step.key === "plan";
+                const isBacklogsStep = step.key === "backlogs";
                 const isInitIdeas = stageConfig?.type === "init-ideas";
+                const isSprints = stageConfig?.type === "sprints";
                 const isStageFilesDisabled = isStageFilesStep && hasOnlyReadme;
                 const isProposalDisabled = isProposalStep && isInitIdeas && !hasReadme;
-                const isDisabled = isStageFilesDisabled || isProposalDisabled;
+                const isPlanDisabled = isPlanStep && isSprints && !hasDevelopmentPlan;
+                const isBacklogsDisabled = isBacklogsStep && isSprints && !hasSprintFolders;
+                const isDisabled = isStageFilesDisabled || isProposalDisabled || isPlanDisabled || isBacklogsDisabled;
                 const disabledTooltip = isProposalDisabled
                   ? "Create proposal first"
-                  : isStageFilesDisabled
-                    ? "Create stage files first"
-                    : undefined;
+                  : isPlanDisabled
+                    ? "Create development plan first"
+                    : isBacklogsDisabled
+                      ? "Create sprint backlogs first"
+                      : isStageFilesDisabled
+                        ? "Create stage files first"
+                        : undefined;
                 return (
                   <div key={step.key} className="flex items-center">
                       <button
