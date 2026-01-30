@@ -1075,42 +1075,49 @@ export default function Home() {
         </button>
       )}
       <div className="flex flex-wrap gap-2">
-        {currentFolderItems.map((item) => (
-          <button
-            key={item.name}
-            type="button"
-            onClick={() => {
-              if (item.isFolder) {
-                const indexPath = `${item.relativePath}/index.html`;
-                if (stageFiles.includes(indexPath)) {
-                  openStaticSite(`${item.relativePath}/index.html`);
+        {currentFolderItems.map((item) => {
+          const isStaticFolder = item.isFolder && stageFiles.includes(`${item.relativePath}/index.html`);
+          return (
+            <button
+              key={item.name}
+              type="button"
+              onClick={() => {
+                if (item.isFolder) {
+                  const indexPath = `${item.relativePath}/index.html`;
+                  if (stageFiles.includes(indexPath)) {
+                    openStaticSite(`${item.relativePath}/index.html`);
+                  } else {
+                    setFolderStack((prev) => [...prev, item.name]);
+                  }
+                } else if (item.name.toLowerCase().endsWith(".html")) {
+                  openStaticSite(item.relativePath);
                 } else {
-                  setFolderStack((prev) => [...prev, item.name]);
+                  void loadDocument(item.fullPath);
                 }
-              } else if (item.name.toLowerCase().endsWith(".html")) {
-                openStaticSite(item.relativePath);
-              } else {
-                void loadDocument(item.fullPath);
-              }
-            }}
-            className={`flex items-center gap-2 rounded-lg px-3 py-2 text-sm transition border ${
-              currentPath === item.fullPath
-                ? "bg-[var(--color-accent)] text-white border-[var(--color-accent)] shadow-md shadow-[var(--color-accent)]/10"
-                : item.isFolder
-                  ? "bg-[var(--color-surface-alt)] text-[var(--color-text-primary)] border-[var(--color-border)] hover:border-[var(--color-accent)] hover:shadow-sm"
-                  : "bg-transparent text-[var(--color-text-secondary)] border-transparent hover:bg-[var(--color-surface-alt)] hover:text-[var(--color-text-primary)]"
-            }`}
-          >
-            {item.isFolder ? (
-              <Folder className={`h-4 w-4 ${currentPath === item.fullPath ? "text-white" : "text-[var(--color-accent-cyan)]"}`} />
-            ) : item.name.toLowerCase().endsWith(".md") ? (
-              <FileText className="h-4 w-4 opacity-70" />
-            ) : (
-              <File className="h-4 w-4 opacity-70" />
-            )}
-            <span className="truncate max-w-[140px]">{item.name}</span>
-          </button>
-        ))}
+              }}
+              className={`flex items-center gap-2 rounded-lg px-3 py-2 text-sm transition border ${
+                currentPath === item.fullPath
+                  ? "bg-[var(--color-accent)] text-white border-[var(--color-accent)] shadow-md shadow-[var(--color-accent)]/10"
+                  : item.isFolder
+                    ? "bg-[var(--color-surface-alt)] text-[var(--color-text-primary)] border-[var(--color-border)] hover:border-[var(--color-accent)] hover:shadow-sm"
+                    : "bg-transparent text-[var(--color-text-secondary)] border-transparent hover:bg-[var(--color-surface-alt)] hover:text-[var(--color-text-primary)]"
+              }`}
+            >
+              {isStaticFolder ? (
+                <Globe className={`h-4 w-4 ${currentPath === item.fullPath ? "text-white" : "text-[var(--color-accent-cyan)]"}`} />
+              ) : item.isFolder ? (
+                <Folder className={`h-4 w-4 ${currentPath === item.fullPath ? "text-white" : "text-[var(--color-accent-cyan)]"}`} />
+              ) : item.name.toLowerCase().endsWith(".md") ? (
+                <FileText className="h-4 w-4 opacity-70" />
+              ) : item.name.toLowerCase().endsWith(".html") ? (
+                <Globe className="h-4 w-4 text-[var(--color-accent-cyan)] opacity-70" />
+              ) : (
+                <File className="h-4 w-4 opacity-70" />
+              )}
+              <span className="truncate max-w-[140px]">{item.name}</span>
+            </button>
+          );
+        })}
       </div>
     </div>
   );
@@ -1149,7 +1156,7 @@ export default function Home() {
                 {item.name.toLowerCase().endsWith(".md") ? (
                     <FileText className="h-4 w-4" />
                 ) : (
-                    <Globe className="h-4 w-4" />
+                    <Globe className="h-4 w-4 text-[var(--color-accent-cyan)]" />
                 )}
                 <span>{item.name}</span>
             </button>
@@ -1254,42 +1261,49 @@ export default function Home() {
           {folderStack.length > 0 ? "Up Directory" : "Back to sprints"}
         </button>
         <div className="flex flex-wrap gap-2">
-          {items.map((item) => (
-            <button
-              key={item.name}
-              type="button"
-              onClick={() => {
-                if (item.isFolder) {
-                  const indexPath = `${item.relativePath}/index.html`;
-                  if (stageFiles.includes(indexPath)) {
-                    openStaticSite(`${item.relativePath}/index.html`);
+          {items.map((item) => {
+            const isStaticFolder = item.isFolder && stageFiles.includes(`${item.relativePath}/index.html`);
+            return (
+              <button
+                key={item.name}
+                type="button"
+                onClick={() => {
+                  if (item.isFolder) {
+                    const indexPath = `${item.relativePath}/index.html`;
+                    if (stageFiles.includes(indexPath)) {
+                      openStaticSite(`${item.relativePath}/index.html`);
+                    } else {
+                      setFolderStack((prev) => [...prev, item.name]);
+                    }
+                  } else if (item.name.toLowerCase().endsWith(".html")) {
+                    openStaticSite(item.relativePath);
                   } else {
-                    setFolderStack((prev) => [...prev, item.name]);
+                    void loadDocument(item.fullPath);
                   }
-                } else if (item.name.toLowerCase().endsWith(".html")) {
-                  openStaticSite(item.relativePath);
-                } else {
-                  void loadDocument(item.fullPath);
-                }
-              }}
-              className={`flex items-center gap-2 rounded-lg px-3 py-2 text-sm transition border ${
-                currentPath === item.fullPath
-                  ? "bg-[var(--color-accent)] text-white border-[var(--color-accent)] shadow-md"
-                  : item.isFolder
-                    ? "bg-[var(--color-surface-alt)] text-[var(--color-text-primary)] border-[var(--color-border)] hover:border-[var(--color-accent)]"
-                    : "bg-transparent text-[var(--color-text-secondary)] border-transparent hover:bg-[var(--color-surface-alt)] hover:text-[var(--color-text-primary)]"
-              }`}
-            >
-                {item.isFolder ? (
-                <Folder className={`h-4 w-4 ${currentPath === item.fullPath ? "text-white" : "text-[var(--color-accent-cyan)]"}`} />
+                }}
+                className={`flex items-center gap-2 rounded-lg px-3 py-2 text-sm transition border ${
+                  currentPath === item.fullPath
+                    ? "bg-[var(--color-accent)] text-white border-[var(--color-accent)] shadow-md"
+                    : item.isFolder
+                      ? "bg-[var(--color-surface-alt)] text-[var(--color-text-primary)] border-[var(--color-border)] hover:border-[var(--color-accent)]"
+                      : "bg-transparent text-[var(--color-text-secondary)] border-transparent hover:bg-[var(--color-surface-alt)] hover:text-[var(--color-text-primary)]"
+                }`}
+              >
+                {isStaticFolder ? (
+                  <Globe className={`h-4 w-4 ${currentPath === item.fullPath ? "text-white" : "text-[var(--color-accent-cyan)]"}`} />
+                ) : item.isFolder ? (
+                  <Folder className={`h-4 w-4 ${currentPath === item.fullPath ? "text-white" : "text-[var(--color-accent-cyan)]"}`} />
                 ) : item.name.toLowerCase().endsWith(".md") ? (
-                <FileText className="h-4 w-4 opacity-70" />
+                  <FileText className="h-4 w-4 opacity-70" />
+                ) : item.name.toLowerCase().endsWith(".html") ? (
+                  <Globe className="h-4 w-4 text-[var(--color-accent-cyan)] opacity-70" />
                 ) : (
-                <File className="h-4 w-4 opacity-70" />
+                  <File className="h-4 w-4 opacity-70" />
                 )}
-              <span>{item.name}</span>
-            </button>
-          ))}
+                <span>{item.name}</span>
+              </button>
+            );
+          })}
         </div>
       </div>
     );
