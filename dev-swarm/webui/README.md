@@ -86,4 +86,3 @@ The file is re-read on every request, so changes take effect immediately without
 
 - **Claude Code** — `claude --print --dangerously-skip-permissions`
 - **OpenAI Codex** — `codex --approval-mode full-auto -q`
-- **Gemini CLI** — `gemini --yolo`
