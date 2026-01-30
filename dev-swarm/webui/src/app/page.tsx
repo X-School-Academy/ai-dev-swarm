@@ -234,6 +234,13 @@ export default function Home() {
     return mdFiles.length === 0 || (mdFiles.length === 1 && mdFiles[0] === `${folder}/README.md`);
   }, [selectedStage, stageConfig]);
 
+  // Check if README.md exists in stage folder (for init-ideas Proposal step)
+  const hasReadme = useMemo(() => {
+    if (!selectedStage || !stageConfig) return false;
+    const folder = stageConfig.folder;
+    return selectedStage.files.some((f) => f === `${folder}/README.md`);
+  }, [selectedStage, stageConfig]);
+
   // Get items in current browsing folder (files + subfolders)
   const currentFolderItems = useMemo(() => {
     const prefix = folderStack.length > 0 ? folderStack.join("/") + "/" : "";
@@ -1664,14 +1671,23 @@ export default function Home() {
             <div className="flex items-center gap-1 border-b border-[var(--color-border)] bg-[var(--color-surface)]/50 backdrop-blur-sm px-6 py-2 overflow-x-auto shrink-0 z-10">
               {dynamicProgressSteps.map((step, idx) => {
                 const isStageFilesStep = step.key === "stage-files";
-                const isDisabled = isStageFilesStep && hasOnlyReadme;
+                const isProposalStep = step.key === "proposal";
+                const isInitIdeas = stageConfig?.type === "init-ideas";
+                const isStageFilesDisabled = isStageFilesStep && hasOnlyReadme;
+                const isProposalDisabled = isProposalStep && isInitIdeas && !hasReadme;
+                const isDisabled = isStageFilesDisabled || isProposalDisabled;
+                const disabledTooltip = isProposalDisabled
+                  ? "Create proposal first"
+                  : isStageFilesDisabled
+                    ? "Create stage files first"
+                    : undefined;
                 return (
                   <div key={step.key} className="flex items-center">
                       <button
                           type="button"
                           onClick={() => !isDisabled && setActiveProgressStep(step.key)}
                           disabled={isDisabled}
-                          title={isDisabled ? "Create stage files first" : undefined}
+                          title={disabledTooltip}
                           className={`flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold transition whitespace-nowrap ${
                               step.key === activeProgressStep
                               ? "bg-[var(--color-accent)] text-white shadow-md shadow-[var(--color-accent)]/20"
