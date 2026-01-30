@@ -220,6 +220,20 @@ export default function Home() {
       .map((f) => f.slice(folder.length + 1)); // relative to stage folder
   }, [selectedStage, stageConfig]);
 
+  // Check if stage folder has no stage files to display (only README.md or no .md files at all)
+  const hasOnlyReadme = useMemo(() => {
+    if (!selectedStage || !stageConfig) return true;
+    const folder = stageConfig.folder;
+    const mdFiles = selectedStage.files.filter(
+      (f) =>
+        f.startsWith(`${folder}/`) &&
+        f.endsWith(".md") &&
+        !f.endsWith("SKIP.md")
+    );
+    // Disable if no .md files, or only README.md
+    return mdFiles.length === 0 || (mdFiles.length === 1 && mdFiles[0] === `${folder}/README.md`);
+  }, [selectedStage, stageConfig]);
+
   // Get items in current browsing folder (files + subfolders)
   const currentFolderItems = useMemo(() => {
     const prefix = folderStack.length > 0 ? folderStack.join("/") + "/" : "";
@@ -1648,27 +1662,35 @@ export default function Home() {
           {/* Progress Menu */}
           {stageConfig && dynamicProgressSteps.length > 0 && !isSkipped && (
             <div className="flex items-center gap-1 border-b border-[var(--color-border)] bg-[var(--color-surface)]/50 backdrop-blur-sm px-6 py-2 overflow-x-auto shrink-0 z-10">
-              {dynamicProgressSteps.map((step, idx) => (
-                <div key={step.key} className="flex items-center">
-                    <button
-                        type="button"
-                        onClick={() => setActiveProgressStep(step.key)}
-                        className={`flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold transition whitespace-nowrap ${
-                            step.key === activeProgressStep
-                            ? "bg-[var(--color-accent)] text-white shadow-md shadow-[var(--color-accent)]/20"
-                            : "text-[var(--color-text-secondary)] hover:bg-[var(--color-surface-alt)] hover:text-[var(--color-text-primary)]"
-                        }`}
-                        >
-                        <span className={`flex items-center justify-center h-4 w-4 rounded-full text-[9px] ${step.key === activeProgressStep ? "bg-white/20" : "bg-[var(--color-surface-alt)]"}`}>
-                            {idx + 1}
-                        </span>
-                        {step.label}
-                    </button>
-                    {idx < dynamicProgressSteps.length - 1 && (
-                        <ArrowRight className="h-3 w-3 text-[var(--color-text-secondary)] mx-1" />
-                    )}
-                </div>
-              ))}
+              {dynamicProgressSteps.map((step, idx) => {
+                const isStageFilesStep = step.key === "stage-files";
+                const isDisabled = isStageFilesStep && hasOnlyReadme;
+                return (
+                  <div key={step.key} className="flex items-center">
+                      <button
+                          type="button"
+                          onClick={() => !isDisabled && setActiveProgressStep(step.key)}
+                          disabled={isDisabled}
+                          title={isDisabled ? "Create stage files first" : undefined}
+                          className={`flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold transition whitespace-nowrap ${
+                              step.key === activeProgressStep
+                              ? "bg-[var(--color-accent)] text-white shadow-md shadow-[var(--color-accent)]/20"
+                              : isDisabled
+                                ? "text-[var(--color-text-secondary)] opacity-40 cursor-not-allowed"
+                                : "text-[var(--color-text-secondary)] hover:bg-[var(--color-surface-alt)] hover:text-[var(--color-text-primary)]"
+                          }`}
+                          >
+                          <span className={`flex items-center justify-center h-4 w-4 rounded-full text-[9px] ${step.key === activeProgressStep ? "bg-white/20" : isDisabled ? "bg-[var(--color-surface-alt)] opacity-50" : "bg-[var(--color-surface-alt)]"}`}>
+                              {idx + 1}
+                          </span>
+                          {step.label}
+                      </button>
+                      {idx < dynamicProgressSteps.length - 1 && (
+                          <ArrowRight className="h-3 w-3 text-[var(--color-text-secondary)] mx-1" />
+                      )}
+                  </div>
+                );
+              })}
             </div>
           )}
 
