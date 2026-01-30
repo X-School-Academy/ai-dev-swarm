@@ -17,15 +17,15 @@ Capture accessibility snapshot of the current page, this is better than screensh
 The schema below describes the `arguments` object in the request payload.
 ```json
 {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "properties": {
     "filename": {
-      "type": "string",
-      "description": "Save snapshot to markdown file instead of returning it in the response."
+      "description": "Save snapshot to markdown file instead of returning it in the response.",
+      "type": "string"
     }
   },
-  "additionalProperties": false,
-  "$schema": "http://json-schema.org/draft-07/schema#"
+  "additionalProperties": false
 }
 ```
 

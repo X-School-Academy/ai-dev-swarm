@@ -26,7 +26,7 @@ Every stage folder must contain at least one of the following:
 1. **`README.md`** - The stage proposal and summary document (required for active stages)
 2. **`SKIP.md`** - Skip reason document (only if stage is intentionally skipped)
 
-**00-init-ideas, 04-prd, 07-tech-specs, and 09-sprints are non-skippable stages**
+**00-init-ideas, 05-prd, 08-tech-specs, and 10-sprints are non-skippable stages**
 
 ### Writing Guidelines
 
@@ -35,6 +35,11 @@ Every stage folder must contain at least one of the following:
 - Avoid over-documentation
 - Write for experts, not beginners
 - No code snippets - guidelines and key info only
+
+## Prior Stage Reference Policy
+
+- When starting a new stage, do not re-read prior-stage files that were already reviewed in earlier stages unless the user indicates they changed.
+- If the user says prior-stage files were updated, re-read only the updated files and note the refresh.
 
 ## Create Stage Proposal Rules
 

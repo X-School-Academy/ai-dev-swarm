@@ -17,6 +17,7 @@ Evaluate JavaScript expression on page or element
 The schema below describes the `arguments` object in the request payload.
 ```json
 {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "properties": {
     "function": {
@@ -24,19 +25,18 @@ The schema below describes the `arguments` object in the request payload.
       "description": "() => { /* code */ } or (element) => { /* code */ } when element is provided"
     },
     "element": {
-      "type": "string",
-      "description": "Human-readable element description used to obtain permission to interact with the element"
+      "description": "Human-readable element description used to obtain permission to interact with the element",
+      "type": "string"
     },
     "ref": {
-      "type": "string",
-      "description": "Exact target element reference from the page snapshot"
+      "description": "Exact target element reference from the page snapshot",
+      "type": "string"
     }
   },
   "required": [
     "function"
   ],
-  "additionalProperties": false,
-  "$schema": "http://json-schema.org/draft-07/schema#"
+  "additionalProperties": false
 }
 ```
 

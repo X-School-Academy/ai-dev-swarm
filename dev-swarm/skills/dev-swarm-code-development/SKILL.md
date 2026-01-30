@@ -20,7 +20,7 @@ This skill implements backlogs through a structured feature-driven approach. As 
 This skill requires:
 - `04-prd/` - Product Requirements Document (business requirements and acceptance criteria)
 - `07-tech-specs/` - Engineering standards and constraints
-- `09-sprints/` folder with active sprint and backlogs
+- `10-sprints/` folder with active sprint and backlogs
 - `features/` folder with features-index.md (existing features knowledge base)
 - Understanding of the backlog type: FEATURE, CHANGE, BUG, or IMPROVE
 
@@ -29,7 +29,7 @@ This skill requires:
 **CRITICAL:** This skill follows a strict feature-driven approach where `feature-name` is the index for the entire project:
 
 **For Each Backlog:**
-1. Read `backlog` from `09-sprints/SPRINT-XX-descriptive-name/[BACKLOG_TYPE]-XX-[feature-name]-<sub-feature>.md`
+1. Read `backlog` from `10-sprints/SPRINT-XX-descriptive-name/[BACKLOG_TYPE]-XX-[feature-name]-<sub-feature>.md`
 2. Extract the `feature-name` from the backlog file name
 3. Read `features/features-index.md` to find the feature file
 4. Read feature documentation in this order:
@@ -37,7 +37,7 @@ This skill requires:
    - `features/flows/[feature-name].md` - User flows and process flows (if exists)
    - `features/contracts/[feature-name].md` - API/data contracts (if exists)
    - `features/impl/[feature-name].md` - Implementation notes (if exists)
-5. Locate source code at `src/` using `features/impl/[feature-name].md`
+5. Locate source code at `{SRC}/` using `features/impl/[feature-name].md`
 6. Implement the code following `07-tech-specs/`
 7. Update `backlog` with development notes
 
@@ -61,14 +61,14 @@ Follow these steps in order for coding development:
 
 1. **Identify the backlog:**
    - User specifies which backlog to work on
-   - Or you select next backlog from `09-sprints/` in order
+   - Or you select next backlog from `10-sprints/` in order
 
    ```
-   09-sprints/
+   10-sprints/
    └── SPRINT-XX-descriptive-name/
        └── [BACKLOG_TYPE]-XX-[feature-name]-<sub-feature>.md
    ```
-   - Locate the sprint README at `09-sprints/SPRINT-XX-descriptive-name/README.md` for required progress log updates
+   - Locate the sprint README at `10-sprints/SPRINT-XX-descriptive-name/README.md` for required progress log updates
 
 2. **Read the backlog file:**
    - Understand task description and requirements
@@ -97,15 +97,15 @@ Follow these steps in order for coding development:
 
 6. **Locate existing source code:**
    - Use `features/impl/[feature-name].md` to find code locations
-   - Navigate to `src/` directory
+   - Navigate to `{SRC}/` directory
    - Review existing code structure and patterns
    - Identify files to modify (CHANGE/BUG/IMPROVE) or create (FEATURE)
 
 7. **Understand codebase patterns:**
-   - Review existing code in `src/` using locations from `features/impl/[feature-name].md`
+   - Review existing code in `{SRC}/` using locations from `features/impl/[feature-name].md`
    - Note architectural patterns and integration points
 
-**DO NOT** read the entire codebase. Use `features/impl/[feature-name].md` to find only relevant files in `src/`.
+**DO NOT** read the entire codebase. Use `features/impl/[feature-name].md` to find only relevant files in `{SRC}/`.
 
 ### Step 1: Design the Implementation
 
@@ -130,9 +130,9 @@ Before writing code, create the feature design document:
 
 Once user approves the design:
 
-1. **Organize code in src/:**
+1. **Organize code in {SRC}/:**
    - Follow `dev-swarm/docs/source-code-structure.md` for file organization guidelines
-   - Place code in appropriate locations within `src/`
+   - Place code in appropriate locations within `{SRC}/`
    - Use file naming conventions defined in source-code-structure.md
 
 2. **Write the code:**
@@ -219,15 +219,15 @@ After code is complete, create implementation documentation:
 
 3. Update `features/features-index.md` if needed
 
-4. **Update or create `src/README.md` (Project Documentation):**
-   - **IMPORTANT**: Developers should maintain project documentation in `src/README.md`, NOT in the root README.md
+4. **Update or create `{SRC}/README.md` (Project Documentation):**
+   - **IMPORTANT**: Developers should maintain project documentation in `{SRC}/README.md`, NOT in the root README.md
    - Add or update feature documentation:
      - Feature overview and purpose
      - Installation and setup instructions
      - Usage examples and API documentation
      - Configuration options
      - Troubleshooting tips
-   - Keep `src/README.md` as the primary technical reference for developers
+   - Keep `{SRC}/README.md` as the primary technical reference for developers
    - Include links to `features/` documentation for detailed specs
 
 ### Step 4: Verify Against Test Plan
@@ -248,44 +248,56 @@ Before marking complete:
    - List any test results
    - Flag anything needing QA attention
 
-### Step 5: Update Backlog with Development Notes
+### Step 5: Finalize and Commit
 
-**CRITICAL:** Update the backlog.md file to track development progress:
+**CRITICAL:** Follow this process to safely commit changes and update tracking:
 
-1. **Update backlog status:**
-   - Change status from "Not Started" to "In Code Review"
-   - Add a "Development Notes" section if not present
+1. **Update Tracking Files:**
+   - Update `backlog.md`:
+     - Change status from "Not Started" to "In Code Review"
+     - Add "Development Notes" section:
+       - **Files Created/Modified:** List changes
+       - **Implementation Approach:** Summary of work
+       - **Key Decisions:** Technical choices
+       - **Links:** To feature docs and impl docs
+   - Update `10-sprints/.../README.md`:
+     - Update status in table
+     - Add progress log entry
 
-2. **Document development findings:**
-   - **Files Created/Modified:** List all files changed with brief descriptions
-   - **Implementation Approach:** Summarize how requirements were implemented
-   - **Key Decisions:** Note any important technical decisions made
-   - **Integration Points:** Document how code integrates with other features
-   - **Known Issues:** Flag any potential issues for code review
-   - **Test Notes:** Any preliminary testing done during development
+2. **Request Human Review:**
+   - Present the work and the plan to commit
+   - Ask user: "Please review the changes. If approved, I will commit the code and update the backlog."
+   - **Wait for approval.**
 
-3. **Reference documentation created:**
-   - Link to `features/[feature-name].md`
-   - Link to `features/impl/[feature-name].md`
-   - Link to source code files in `src/` (locations documented in features/impl/[feature-name].md)
+3. **Commit the Code (Content):**
+   - Run `git add .` to stage all changes
+   - **Unstage** the backlog file and sprint README (`git reset HEAD <path-to-backlog> <path-to-sprint-readme>`) to keep metadata separate
+   - Check if there are staged changes:
+     - **If yes:**
+       - Draft conventional commit message (e.g., "feat: implement [feature-name]")
+       - Commit: `git commit -m "feat: ..."`
+       - Get Commit ID: `git rev-parse --short HEAD`
+     - **If no** (only docs/metadata changed):
+       - Skip to next step
 
-4. **Notify user:**
-   - Summarize what was implemented
-   - Reference documentation created
-   - Note any important decisions or tradeoffs
+4. **Update Backlog with Commit ID:**
+   - If a code commit was made, append "**Implementation Commit:** `[commit-id]`" to the "Development Notes" in `backlog.md`
+
+5. **Commit the Backlog (Metadata):**
+   - Stage `backlog.md` and sprint `README.md`
+   - Commit: `git commit -m "docs([feature-name]): update backlog status to In Code Review"`
+
+6. **Notify user:**
+   - Confirm completion
    - Suggest next step: "Ready for code review"
 
-5. **Update sprint README (README.md) (CRITICAL):**
-   - Update backlog status in the sprint backlog table
-   - Append a log entry in the sprint progress log for the Development step
-
-**These backlog.md and sprint README updates create the audit trail for code review and testing phases.**
+**This two-step commit process ensures code history is preserved before the backlog is updated with the commit reference.**
 
 ## Expected File Structure
 
 ```
 project-root/
-├── 09-sprints/
+├── 10-sprints/
 │   └── SPRINT-XX-descriptive-name/
 │       └── [BACKLOG_TYPE]-XX-[feature-name]-<sub-feature>.md # Backlog entry point
 │
@@ -299,7 +311,7 @@ project-root/
 │   └── impl/
 │       └── [feature-name].md               # Implementation notes (code locations)
 │
-└── src/                                     # Source code
+└── {SRC}/                                     # Source code
     ├── README.md                            # Project documentation (maintained by developers)
     └── [organized per dev-swarm/docs/source-code-structure.md guidelines]
 ```

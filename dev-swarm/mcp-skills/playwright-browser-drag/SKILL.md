@@ -17,6 +17,7 @@ Perform drag and drop between two elements
 The schema below describes the `arguments` object in the request payload.
 ```json
 {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "properties": {
     "startElement": {
@@ -42,8 +43,7 @@ The schema below describes the `arguments` object in the request payload.
     "endElement",
     "endRef"
   ],
-  "additionalProperties": false,
-  "$schema": "http://json-schema.org/draft-07/schema#"
+  "additionalProperties": false
 }
 ```
 

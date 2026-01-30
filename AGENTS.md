@@ -50,3 +50,7 @@ When a user requests something beyond your current abilities, search in this ord
 4. Execute role-specific tasks
 5. Request approval for major decisions
 6. Switch roles as development progresses
+
+## Project Configuration
+
+- **Source Code Root ({SRC})**: Defined in `ideas.md` (e.g., `src_root: app/`), or defaults to `src/`. All references to `{SRC}` in documentation or skills should be resolved to this path.

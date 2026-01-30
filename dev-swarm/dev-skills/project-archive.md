@@ -13,7 +13,7 @@ from `ideas.md` or when the user explicitly asks to archive.
 
 ## Required behavior (skill instructions)
 1. Determine the current project name:
-   - Prefer the title in `src/README.md` if it exists.
+   - Prefer the title in `{SRC}/README.md` if it exists.
    - Else use the title in `00-init-ideas/README.md` if it exists.
    - Else use the repo root `README.md` title.
    - If none exist, ask the user for a name.
@@ -24,12 +24,12 @@ from `ideas.md` or when the user explicitly asks to archive.
 3. Move the current project artifacts into the archive folder using `git mv`:
    - All stage folders `00-*` through `10-*`
    - `features/`
-   - `src/`
+   - `{SRC}/`
    - `ideas.md`
    - Leave `99-archive/` in place and do not touch unrelated files.
 
 4. Recreate empty stage folders for a fresh project:
-   - Create new `00-init-ideas/` through `10-deployment/`, `features/`, and `src/`.
+   - Create new `00-init-ideas/` through `11-deployment/`, `features/`, and `{SRC}/`.
    - Add a `.gitkeep` file in each new folder so git tracks them.
 
 5. If the user wants to start a new project from `ideas.md`:

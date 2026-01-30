@@ -1,6 +1,6 @@
 ---
 name: dev-swarm-draft-commit-message
-description: Draft a conventional commit message when the user asks to commit code.
+description: Draft a conventional commit message when the user asks to commit, commit changes, git commit, or save changes to git. Use when user says "commit", "commit this", "commit changes", "make a commit", or similar.
 metadata:
   short-description: Draft an informative commit message.
 ---
@@ -11,9 +11,11 @@ This skill drafts conventional commit messages that accurately summarize code ch
 
 ## When to Use This Skill
 
+- User says "commit" or "commit changes"
 - User asks to commit code changes
 - User requests a commit message draft
 - User wants to create a conventional commit message
+- User says "git commit" or "make a commit"
 - Before committing changes to version control
 
 ## Your Roles in This Skill

@@ -11,7 +11,7 @@ Version 1.0 | For Complete Beginners
 1. [Welcome to AI Dev Swarm](#welcome-to-ai-dev-swarm)
 2. [What You Can Build](#what-you-can-build)
 3. [Getting Started in 5 Minutes](#getting-started-in-5-minutes)
-4. [Understanding the 11-Stage Journey](#understanding-the-11-stage-journey)
+4. [Understanding the 12-Stage Journey](#understanding-the-12-stage-journey)
 5. [How to Work with AI Agents](#how-to-work-with-ai-agents)
 6. [Slash Commands - Your Quick Actions](#slash-commands---your-quick-actions)
 7. [Complete Workflow Examples](#complete-workflow-examples)
@@ -226,16 +226,16 @@ The AI will:
 
 ---
 
-## Understanding the 11-Stage Journey
+## Understanding the 12-Stage Journey
 
-AI Dev Swarm breaks product development into 11 clear stages. Each stage builds on the previous one.
+AI Dev Swarm breaks product development into 12 clear stages (0-11). Each stage builds on the previous one.
 
 ### The Big Picture
 
 **Think of it like building a house:**
-- Stages 0-4: Planning (blueprints, permits, budgets)
-- Stages 5-7: Design (architecture, materials, layout)
-- Stages 8-10: Building (construction, finishing, move-in)
+- Stages 0-5: Planning (blueprints, permits, budgets, feasibility)
+- Stages 6-8: Design (architecture, materials, layout)
+- Stages 9-11: Building (construction, finishing, move-in)
 
 ---
 
@@ -344,7 +344,32 @@ The simplest version you can launch to test your idea with real users.
 
 ---
 
-### Stage 4: Product Requirements (PRD)
+### Stage 4: Tech Research (Optional)
+**What happens:** Validate technical feasibility before committing to full development
+
+**AI does:**
+- Creates proof of concepts (PoCs)
+- Evaluates third-party APIs and services
+- Tests critical technical paths
+- Runs performance benchmarks
+- Identifies technical blockers early
+
+**You get:**
+- Feasibility assessment
+- PoC results and recommendations
+- Technology evaluation reports
+- Go/no-go recommendations
+
+**Time:** 1-4 hours (varies by complexity)
+**Your involvement:** Review findings, make go/no-go decision
+
+**When to skip:** Simple projects, well-understood technologies, personal tools
+
+**This stage can save you weeks by catching technical blockers early!**
+
+---
+
+### Stage 5: Product Requirements (PRD)
 **What happens:** Lock down WHAT the product does (not HOW)
 
 **AI documents:**
@@ -366,7 +391,7 @@ The simplest version you can launch to test your idea with real users.
 
 ---
 
-### Stage 5: UX Design
+### Stage 6: UX Design
 **What happens:** Design how users will interact with your product
 
 **AI creates:**
@@ -386,7 +411,7 @@ The simplest version you can launch to test your idea with real users.
 
 ---
 
-### Stage 6: Architecture
+### Stage 7: Architecture
 **What happens:** Design the system structure
 
 **AI decides:**
@@ -408,7 +433,7 @@ The simplest version you can launch to test your idea with real users.
 
 ---
 
-### Stage 7: Tech Specs
+### Stage 8: Tech Specs
 **What happens:** Choose technologies and set standards
 
 **AI specifies:**
@@ -432,7 +457,7 @@ The simplest version you can launch to test your idea with real users.
 
 ---
 
-### Stage 8: DevOps Setup
+### Stage 9: DevOps Setup
 **What happens:** Prepare the development environment
 
 **AI sets up:**
@@ -451,7 +476,7 @@ The simplest version you can launch to test your idea with real users.
 
 ---
 
-### Stage 9: Development Sprints
+### Stage 10: Development Sprints
 **What happens:** AI builds your product feature by feature
 
 **This is where the magic happens!**
@@ -491,7 +516,7 @@ Sprint: User Authentication
 
 ---
 
-### Stage 10: Deployment
+### Stage 11: Deployment
 **What happens:** Launch your product to the world
 
 **AI handles:**
@@ -509,6 +534,8 @@ Sprint: User Authentication
 
 **Time:** 2-4 hours
 **Your involvement:** Approve deployment plan, verify it works
+
+**Congratulations - Your product is LIVE!**
 
 ---
 
@@ -539,6 +566,7 @@ Think of them as specialized AI assistants. Each skill is like hiring an expert 
 | `dev-swarm-stage-market-research` | Market researcher who analyzes competitors | Validating your market |
 | `dev-swarm-stage-personas` | UX researcher who defines users | Understanding your audience |
 | `dev-swarm-stage-mvp` | Product manager who scopes MVP | Deciding what to build first |
+| `dev-swarm-stage-tech-research` | Technical lead who validates feasibility | Testing critical tech assumptions |
 | `dev-swarm-stage-prd` | Product manager who writes requirements | Documenting all features |
 | `dev-swarm-stage-ux` | UX designer who creates user flows | Designing the experience |
 | `dev-swarm-stage-architecture` | Software architect who designs system | Planning technical structure |
@@ -1204,35 +1232,41 @@ your-project/
 │   ├── out-of-scope.md
 │   └── success-metrics.md
 │
-├── 04-prd/                     # Stage 4: Requirements
+├── 04-tech-research/           # Stage 4: Technical feasibility (optional)
+│   ├── README.md
+│   ├── feasibility-assessment.md
+│   ├── poc-results.md
+│   └── poc/ (proof of concept code)
+│
+├── 05-prd/                     # Stage 5: Requirements
 │   ├── README.md
 │   ├── prd.md
 │   ├── functional-requirements.md
 │   └── non-functional-requirements.md
 │
-├── 05-ux/                      # Stage 5: UX design
+├── 06-ux/                      # Stage 6: UX design
 │   ├── README.md
 │   ├── user-flows.md
 │   ├── interaction-specs.md
 │   └── mockup/ (optional)
 │
-├── 06-architecture/            # Stage 6: System design
+├── 07-architecture/            # Stage 7: System design
 │   ├── README.md
 │   ├── system-overview.md
 │   └── architecture-diagram.md
 │
-├── 07-tech-specs/              # Stage 7: Technology choices
+├── 08-tech-specs/              # Stage 8: Technology choices
 │   ├── README.md
 │   ├── tech-stack.md
 │   ├── coding-standards.md
 │   └── testing-standards.md
 │
-├── 08-devops/                  # Stage 8: Development setup
+├── 09-devops/                  # Stage 9: Development setup
 │   ├── README.md
 │   ├── github-setup.md
 │   └── mcp-setup.md
 │
-├── 09-sprints/                 # Stage 9: Development work
+├── 10-sprints/                 # Stage 10: Development work
 │   ├── README.md
 │   ├── sprint-001/
 │   │   ├── README.md
@@ -1242,7 +1276,7 @@ your-project/
 │   └── sprint-002/
 │       └── ...
 │
-├── 10-deployment/              # Stage 10: Going live
+├── 11-deployment/              # Stage 11: Going live
 │   ├── README.md
 │   ├── infra/
 │   ├── releases/
@@ -1268,13 +1302,13 @@ your-project/
 
 ### Key Folders Explained
 
-**Planning Folders (00-04):**
-These contain documents describing WHAT you're building. No code here.
+**Planning Folders (00-05):**
+These contain documents describing WHAT you're building. No code here (except PoCs in 04).
 
-**Design Folders (05-07):**
+**Design Folders (06-08):**
 These describe HOW it works from user and system perspectives.
 
-**Development Folders (08-10):**
+**Development Folders (09-11):**
 This is where AI sets up tools and builds your product.
 
 **features/ - The Knowledge Base:**
@@ -1370,8 +1404,8 @@ Your first version won't be perfect. Plan for:
 ---
 
 ### 8. Understand the Difference Between Stages
-**Planning stages (0-4):** Can change easily, just documents
-**Implementation (9+):** Changes are harder, requires recoding
+**Planning stages (0-5):** Can change easily, just documents
+**Implementation (10+):** Changes are harder, requires recoding
 
 **Do lots of planning, then build once**
 
@@ -1403,9 +1437,9 @@ Plus hosting costs when you deploy (varies by service).
 
 **Q: Can I change my mind mid-project?**
 A: Yes, but:
-- Early stages (0-7): Easy to change
-- During development (9): Harder, may need to redo code
-- After deployment (10): Requires new development cycle
+- Early stages (0-8): Easy to change
+- During development (10): Harder, may need to redo code
+- After deployment (11): Requires new development cycle
 
 **Q: What if AI makes a mistake?**
 A:
@@ -1461,8 +1495,8 @@ A: Just create new backlogs:
 **Q: Can I skip stages?**
 A: Depends on project size:
 - L0-L1: Only need stage 0
-- L2: Can skip 1, 5, 6, 10
-- L3+: Should do all stages
+- L2: Can skip 1, 4, 6, 7, 11
+- L3+: Should do all stages (except optional 4-tech-research)
 
 AI will tell you which stages to skip.
 
@@ -1617,7 +1651,7 @@ You now have everything you need to build software products without coding knowl
 **The three keys to success:**
 1. **Clear vision** - Know what problem you're solving
 2. **Active participation** - Review, test, provide feedback
-3. **Trust the process** - Follow the 11 stages
+3. **Trust the process** - Follow the 12 stages
 
 **Start today:**
 1. Write your idea in ideas.md

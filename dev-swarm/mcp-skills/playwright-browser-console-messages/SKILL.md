@@ -17,22 +17,29 @@ Returns all console messages
 The schema below describes the `arguments` object in the request payload.
 ```json
 {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "properties": {
     "level": {
+      "default": "info",
+      "description": "Level of the console messages to return. Each level includes the messages of more severe levels. Defaults to \"info\".",
       "type": "string",
       "enum": [
         "error",
         "warning",
         "info",
         "debug"
-      ],
-      "default": "info",
-      "description": "Level of the console messages to return. Each level includes the messages of more severe levels. Defaults to \"info\"."
+      ]
+    },
+    "filename": {
+      "description": "Filename to save the console messages to. If not provided, messages are returned as text.",
+      "type": "string"
     }
   },
-  "additionalProperties": false,
-  "$schema": "http://json-schema.org/draft-07/schema#"
+  "required": [
+    "level"
+  ],
+  "additionalProperties": false
 }
 ```
 

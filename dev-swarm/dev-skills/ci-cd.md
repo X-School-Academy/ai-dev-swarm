@@ -1,6 +1,6 @@
 # CI/CD Standard Process Specification
 
-This document outlines the standard Continuous Integration (CI) and Continuous Deployment (CD) workflows to be implemented across the project lifecycle, specifically bridging Stage 8 (DevOps) and Stage 10 (Deployment).
+This document outlines the standard Continuous Integration (CI) and Continuous Deployment (CD) workflows to be implemented across the project lifecycle, specifically bridging Stage 8 (DevOps) and Stage 11 (Deployment).
 
 ## 1. Objectives
 - Establish robust automated testing and quality checks (CI).
@@ -25,33 +25,33 @@ The CI/CD process is divided into two distinct phases corresponding to the proje
         - **Jobs:** Linting (code style), Unit Tests, Build verification, Static Analysis.
         - **Runner:** Ubuntu-latest (standard), MacOS/Windows (if platform-specific).
 3.  **Implementation** (after user approval):
-    - Generate workflow file: `src/.github/workflows/ci.yml` (should link src/ to github repo first before create ci.yaml).
+    - Generate workflow file: `{SRC}/.github/workflows/ci.yml` (should link {SRC}/ to github repo first before create ci.yaml).
     - Configure necessary secrets if external services are involved in testing.
 4.  **Verification**:
     - Trigger a run by pushing a commit.
     - Verify all checks pass.
 
-### Phase 2: Continuous Deployment (Stage 10-Deployment)
+### Phase 2: Continuous Deployment (Stage 11-Deployment)
 **Focus:** Automated Release, Environment Management, Deployment.
 
 **Workflow in `dev-swarm-deployment` skill:**
 1.  **Requirement Gathering**:
-    - In `10-deployment/README.md`, explicitly add options for CD strategies (e.g., Release to GitHub, Deploy to Cloud, Publish Package).
+    - In `11-deployment/README.md`, explicitly add options for CD strategies (e.g., Release to GitHub, Deploy to Cloud, Publish Package).
 2.  **Design & Approval**:
-    - Create `10-deployment/cd-pipeline.md` detailing the CD strategy.
+    - Create `11-deployment/cd-pipeline.md` detailing the CD strategy.
     - **Key Components to Define:**
         - **Triggers:** Tag creation (`v*`), Release publication, Manual workflow dispatch.
         - **Environments:** Staging, Production (with approval gates if needed).
         - **Actions:** Docker build/push, Cloud provider deployment (AWS/GCP/Azure), NPM/PyPI publishing depending project type and user cho.
 3.  **Implementation** (after user approval):
-    - Generate workflow files: `src/.github/workflows/cd.yml`.
+    - Generate workflow files: `{SRC}/.github/workflows/cd.yml`.
     - Configure GitHub Repository Secrets (API Keys, Credentials).
     - Configure GitHub Environments for protection rules.
 
 
 ## 4. Tools & Technologies
 - **Orchestration:** GitHub Actions (Primary).
-- **Configuration:** YAML workflows in `src/.github/workflows/`.
+- **Configuration:** YAML workflows in `{SRC}/.github/workflows/`.
 - **Automation Support:**
     - **Playwright:** For browser-based configuration (creating secrets/environments if MCP tool is insufficient or not configured).
     - **GitHub MCP/AWS API MCP:** For programmatic repository management.

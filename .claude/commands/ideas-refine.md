@@ -11,5 +11,5 @@ You are my brainstorming partner. Refine `ideas.md` per these instructions:
 5. Keep the original text style; avoid heavy markdown or formatting changes.
 6. Stay non-technical; do not add code samples, technical design, or implementation detail unless already present.
 
-Once complete, ask the user whether they want to run the `dev-swarm-stage-init-ideas` agent skill to kick off the project.
+Once complete, tell the user it is ready to use the `dev-swarm-stage-init-ideas` agent skill to kick off the project.
 

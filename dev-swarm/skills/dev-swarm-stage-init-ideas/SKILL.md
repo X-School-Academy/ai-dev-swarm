@@ -46,10 +46,10 @@ Read the ideas file to understand the user's initial concept:
    - Create `SKIP.md` in that folder (if it doesn't already exist)
    - Content: "Stage excluded as per ideas.md configuration"
 
-**Note:** Non-skippable stages (00-init-ideas, 04-prd, 07-tech-specs, 09-sprints) cannot have SKIP.md files.
+**Note:** Non-skippable stages (00-init-ideas, 04-prd, 07-tech-specs, 10-sprints) cannot have SKIP.md files.
 
 **Stage list reference:**
-- 00-init-ideas, 01-market-research, 02-personas, 03-mvp, 04-prd, 05-ux, 06-architecture, 07-tech-specs, 08-devops, 09-sprints, 10-deployment
+- 00-init-ideas, 01-market-research, 02-personas, 03-mvp, 04-prd, 05-ux, 06-architecture, 07-tech-specs, 08-devops, 10-sprints, 11-deployment
 
 ### Step 3: Create Stage Proposal
 

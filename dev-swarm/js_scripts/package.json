@@ -1,0 +1,9 @@
+{
+  "name": "dev-swarm-js-scripts",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Shared JS/TS scripts for dev-swarm with common node_modules",
+  "devDependencies": {
+    "typescript": "^5"
+  }
+}

@@ -17,23 +17,23 @@ Wait for text to appear or disappear or a specified time to pass
 The schema below describes the `arguments` object in the request payload.
 ```json
 {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "properties": {
     "time": {
-      "type": "number",
-      "description": "The time to wait in seconds"
+      "description": "The time to wait in seconds",
+      "type": "number"
     },
     "text": {
-      "type": "string",
-      "description": "The text to wait for"
+      "description": "The text to wait for",
+      "type": "string"
     },
     "textGone": {
-      "type": "string",
-      "description": "The text to wait for to disappear"
+      "description": "The text to wait for to disappear",
+      "type": "string"
     }
   },
-  "additionalProperties": false,
-  "$schema": "http://json-schema.org/draft-07/schema#"
+  "additionalProperties": false
 }
 ```
 

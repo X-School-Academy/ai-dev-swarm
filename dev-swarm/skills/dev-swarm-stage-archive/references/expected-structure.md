@@ -15,16 +15,16 @@ project-root/
 ├── 06-architecture/ (empty with .gitkeep)
 ├── 07-tech-specs/ (empty with .gitkeep)
 ├── 08-devops/ (empty with .gitkeep)
-├── 09-sprints/ (empty with .gitkeep)
-├── 10-deployment/ (empty with .gitkeep)
+├── 10-sprints/ (empty with .gitkeep)
+├── 11-deployment/ (empty with .gitkeep)
 ├── features/ (empty with .gitkeep)
-├── src/ (empty with .gitkeep)
+├── {SRC}/ (empty with .gitkeep)
 └── 99-archive/
     └── {project-name}/
         ├── 00-init-ideas/
         ├── 01-market-research/
         ├── ... (all archived stage folders)
         ├── features/
-        ├── src/
+        ├── {SRC}/
         └── ideas.md (if it existed)
 ```

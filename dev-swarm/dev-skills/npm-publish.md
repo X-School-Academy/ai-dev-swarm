@@ -208,7 +208,7 @@ npm publish --access public
 
 ```
 node_modules
-src
+{SRC}
 tests
 .env
 ```
@@ -298,4 +298,3 @@ npm pack
 ```
 
 ---
-

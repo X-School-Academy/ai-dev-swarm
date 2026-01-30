@@ -1,0 +1,16 @@
+[
+  {
+    "id": "claude",
+    "name": "Claude Code",
+    "bin": "claude",
+    "args": ["--print", "--dangerously-skip-permissions", "{{prompt}}"],
+    "x_test_prompt": "how many r in strawberry?"
+  },
+  {
+    "id": "codex",
+    "name": "OpenAI Codex",
+    "bin": "codex",
+    "args": ["--full-auto", "exec", "{{prompt}}"],
+    "x_test_prompt": "how many r in strawberry?" 
+  }
+]

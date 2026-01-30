@@ -1,15 +1,15 @@
 ---
 name: dev-swarm-stage-deployment
-description: Deploy to production, configure infrastructure, set up monitoring, and prepare for launch. Use when starting stage 10 (deployment) or when user asks to deploy, go-live, or launch the product.
+description: Deploy to production, configure infrastructure, set up monitoring, and prepare for launch. Use when starting stage 11 (deployment) or when user asks to deploy, go-live, or launch the product.
 ---
 
-# Stage 10 - Deployment
+# Stage 11 - Deployment
 
 Deploy the fully developed and tested product to production environment, configure production infrastructure, set up monitoring and alerting, and prepare for launch including documentation and marketing readiness.
 
 ## When to Use This Skill
 
-- User asks to start stage 10 (deployment)
+- User asks to start stage 11 (deployment)
 - User wants to deploy to production or go-live
 - User asks about launch preparation or marketing readiness
 - User wants to set up production monitoring or infrastructure
@@ -26,7 +26,7 @@ See `dev-swarm/docs/general-dev-stage-rule.md` for the required role announcemen
 
 Before starting, verify previous stages:
 
-1. Check if stages `00-init-ideas/` through `09-sprints/` have content (not just `.gitkeep`)
+1. Check if stages `00-init-ideas/` through `10-sprints/` have content (not just `.gitkeep`)
 2. If any previous stage is empty and has no `SKIP.md`:
    - Ask user: "Stage {XX} is not complete. Would you like to skip it or start from that stage first?"
 
@@ -37,14 +37,15 @@ Before starting, verify previous stages:
 Read all files to understand the project:
 
 - `ideas.md`
-- `00-init-ideas/*.md` through `09-sprints/*.md` - All markdown files
-- **Critical:** Review `08-devops/execution-plan.md` to identify any Part 2 items (deferred to Stage 10) that need to be executed before deployment
+- `00-init-ideas/*.md` through `10-sprints/*.md` - All markdown files
+- **Critical:** Review `09-devops/execution-plan.md` to identify any Part 2 items (deferred to Stage 11) that need to be executed before deployment
+- **Source Code Location:** Use `{SRC}/` as the default source code root if not specified in project documentation
 
 ### Step 2: Create Stage Proposal
 
 **General Rules:** See `dev-swarm/docs/general-dev-stage-rule.md` → "Create Stage Proposal Rules" section.
 
-If this stage is skipped (has SKIP.md), execute the next non-skipped stage's agent skill. Otherwise, create the file `10-deployment/README.md` with the following content:
+If this stage is skipped (has SKIP.md), execute the next non-skipped stage's agent skill. Otherwise, create the file `11-deployment/README.md` with the following content:
 
 #### 2.1 Stage Goal
 
@@ -56,7 +57,7 @@ Brief the goal in 2-3 paragraphs:
 
 #### 2.2 Deferred Infrastructure Review
 
-Check `08-devops/execution-plan.md` Part 2 and list items that were deferred:
+Check `09-devops/execution-plan.md` Part 2 and list items that were deferred:
 - Which infrastructure items need to be set up now
 - What credentials/access is required
 - Estimated costs for production infrastructure
@@ -111,11 +112,11 @@ For each selected file, provide:
 
 #### 2.4 Request User Approval
 
-Ask user: "Please check the Stage Proposal in `10-deployment/README.md`. Update it directly or tell me how to update it."
+Ask user: "Please check the Stage Proposal in `11-deployment/README.md`. Update it directly or tell me how to update it."
 
 ### Step 3: Execute Stage Plan
 
-Once user approves `10-deployment/README.md`:
+Once user approves `11-deployment/README.md`:
 
 #### 3.1 Create All Planned Files
 
@@ -130,9 +131,11 @@ Create each file listed in the approved README:
 - Document all environment variables and secrets required
 - Provide clear rollback procedures for each deployment step
 - Include verification steps after each major deployment action
-- Reference sprint deliverables from `09-sprints/`
+- Reference sprint deliverables from `10-sprints/`
 - Ensure monitoring covers all critical system components
 - Document estimated costs for production infrastructure
+- **Source Code Management:** Package source code from `{SRC}/` directory (default) or as specified in project setup
+- **Git Management:** Create/update `.gitignore` file to exclude unnecessary files (logs, build artifacts, secrets, node_modules, etc.) from commits
 
 #### 3.2 Request User Approval for Files
 
@@ -147,7 +150,7 @@ After creating all files:
 Once user approves all files:
 
 #### 4.1 Documentation Finalization
-- Sync `10-deployment/README.md` to remove any deleted files
+- Sync `11-deployment/README.md` to remove any deleted files
 - Ensure all files are complete and well-formatted
 - Verify deployment plan aligns with architecture design
 - Confirm all setup steps are documented with prerequisites
@@ -162,12 +165,13 @@ Inform user:
 
 ### Step 5: Create Execution Plan
 
-Create `10-deployment/execution-plan.md` with deployment tasks organized into these sections:
+Create `11-deployment/execution-plan.md` with deployment tasks organized into these sections:
 
-**Part 1: Pre-Deployment (Infrastructure from Stage 08)**
-Items deferred from `08-devops/execution-plan.md` Part 2
+**Part 1: Pre-Deployment (Infrastructure from Stage 09)**
+Items deferred from `09-devops/execution-plan.md` Part 2
 
 **Part 2: Deployment Execution**
+- Source code preparation (from `{SRC}/` directory by default, ensure `.gitignore` excludes unnecessary files)
 - Code merge, database migration, application deployment, CDN configuration, DNS cutover
 
 **Part 3: Post-Deployment Verification**
@@ -219,7 +223,7 @@ Once user confirms deployment is successful:
 #### 8.1 Announce Completion
 
 Inform user:
-- "Stage 10 (Deployment) is complete - Product is LIVE!"
+- "Stage 11 (Deployment) is complete - Product is LIVE!"
 - Production URL and access information
 - Summary of infrastructure deployed
 - List of documentation delivered

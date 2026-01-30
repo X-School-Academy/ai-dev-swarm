@@ -17,6 +17,7 @@ List, create, close, or select a browser tab.
 The schema below describes the `arguments` object in the request payload.
 ```json
 {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "properties": {
     "action": {
@@ -30,15 +31,14 @@ The schema below describes the `arguments` object in the request payload.
       "description": "Operation to perform"
     },
     "index": {
-      "type": "number",
-      "description": "Tab index, used for close/select. If omitted for close, current tab is closed."
+      "description": "Tab index, used for close/select. If omitted for close, current tab is closed.",
+      "type": "number"
     }
   },
   "required": [
     "action"
   ],
-  "additionalProperties": false,
-  "$schema": "http://json-schema.org/draft-07/schema#"
+  "additionalProperties": false
 }
 ```
 

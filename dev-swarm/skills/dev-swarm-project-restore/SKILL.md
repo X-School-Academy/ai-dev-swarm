@@ -5,7 +5,7 @@ description: Restore a project from 99-archive, a remote git repo, or a local co
 
 # AI Builder - Project Restore
 
-This skill restores an existing project to the workspace root from an archive, remote git repo, or local codebase, including re-adding `src` and reconstructing missing docs when needed.
+This skill restores an existing project to the workspace root from an archive, remote git repo, or local codebase, including re-adding `{SRC}` and reconstructing missing docs when needed.
 
 ## When to Use This Skill
 
@@ -48,19 +48,19 @@ Record the source in your notes before proceeding.
 If the codebase has little or no documentation, follow `references/reverse-engineering.md` to reconstruct:
 - `ideas.md`
 - stage folders `00-*` through `10-*`
-- sprints and backlogs in `09-sprints/`
+- sprints and backlogs in `10-sprints/`
 - feature specs under `features/`
 
 ## Expected Output
 
 - Archived project content restored to workspace root
 - `ideas.md` present at the root
-- `src/` re-added as a submodule at the correct commit
+- `{SRC}/` re-added as a submodule at the correct commit
 - `99-archive/` retains the archived snapshot
 - Reconstructed stages, sprints, and features when docs were missing
 
 ## Key Principles
 
 - Keep the restore process reversible and traceable in git history
-- Prefer existing git history to restore the `src` submodule state
+- Prefer existing git history to restore the `{SRC}` submodule state
 - Ask for user approval before destructive or irreversible operations

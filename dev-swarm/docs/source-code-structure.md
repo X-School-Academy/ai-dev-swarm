@@ -1,10 +1,10 @@
 # Source Code Structure Guidelines
 
-This guide provides general guidelines for organizing the `src/` folder structure in projects.
+This guide provides general guidelines for organizing the `{SRC}/` folder structure in projects.
 
 ## Goal
 
-Give AI developers a consistent, searchable map for where code lives and how to add new code in `src/`.
+Give AI developers a consistent, searchable map for where code lives and how to add new code in `{SRC}/`.
 
 ## Structure Strategies
 
@@ -15,7 +15,7 @@ Choose a primary organization strategy based on project needs:
 Best for: Simple projects, single-team ownership, clear separation of concerns.
 
 ```
-src/
+{SRC}/
 ├── controllers/    # HTTP request handlers
 ├── services/       # Business logic
 ├── models/         # Data models
@@ -28,7 +28,7 @@ src/
 Best for: Medium-large projects, multiple teams, feature isolation.
 
 ```
-src/
+{SRC}/
 ├── auth/           # Authentication module
 ├── users/          # User management module
 ├── payments/       # Payment module
@@ -41,7 +41,7 @@ src/
 Best for: Projects with distinct frontend/backend, micro services, or multiple deployment targets.
 
 ```
-src/
+{SRC}/
 ├── frontend/
 │   ├── components/
 │   ├── pages/
@@ -60,7 +60,7 @@ src/
 Best for: Scripts, small utilities, prototypes.
 
 ```
-src/
+{SRC}/
 ├── main.py
 ├── utils.py
 ├── config.py
@@ -103,7 +103,7 @@ Choose one approach:
 
 Document your entry points clearly:
 
-- Main entry files: `src/main.ts`, `src/index.ts`, `src/server.ts`, `src/app.py`
+- Main entry files: `{SRC}/main.ts`, `{SRC}/index.ts`, `{SRC}/server.ts`, `{SRC}/app.py`
 - Where routing or application bootstrapping happens
 - CLI entry points if applicable
 
@@ -112,7 +112,7 @@ Document your entry points clearly:
 - Keep the structure as simple as possible while meeting requirements
 - Align to the approved tech stack
 - Support feature-driven development pattern
-- Update `src/README.md` when structure changes
+- Update `{SRC}/README.md` when structure changes
 
 ## Checklist
 

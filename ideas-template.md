@@ -15,9 +15,13 @@
 
 Select ONE option:
 
-- [ ] Use dev-swarm root project (for demo purposes)
-- [x] Create new GitHub remote repo for `src/` (recommended for production projects)
-- [ ] Create local git repo for `src/` (for small experiments/prototypes)
+- [ ] Use dev-swarm root project
+- [x] Create new GitHub remote repo for root of source code (recommended for production projects)
+- [ ] Create local git repo for root of source code (for small experiments/prototypes)
+
+## Source Code Location
+
+- `src/` directory
 
 ---
 
@@ -32,23 +36,24 @@ Uncheck the stages you want to exclude:
 
 ### Product Definition
 - [x] **03-mvp** - Define MVP scope and prioritize features
-- **04-prd** - Product Requirements Document with acceptance criteria
+- [x] **04-tech-research** - Research and evaluate technical solutions and libraries
+- **05-prd** - Product Requirements Document with acceptance criteria
 
 ### Design
-- [x] **05-ux** - UI/UX design, wireframes, and design system
+- [x] **06-ux** - UI/UX design, wireframes, and design system
 
 ### Technical Planning
-- [x] **06-architecture** - System architecture, tech stack, database schema
-- **07-tech-specs** - Technical specifications, API design, migrations
+- [x] **07-architecture** - System architecture, tech stack, database schema
+- **08-tech-specs** - Technical specifications, API design, migrations
 
 ### Implementation
-- [x] **08-devops** - CI/CD, containerization, cloud infrastructure
-- **09-sprints** - Agile sprints, backlog implementation, testing
+- [x] **09-devops** - CI/CD, containerization, cloud infrastructure
+- **10-sprints** - Agile sprints, backlog implementation, testing
 
 ### Release
-- [x] **10-deployment** - Production deployment, monitoring, launch
+- [x] **11-deployment** - Production deployment, monitoring, launch
 
-**00-init-ideas, 04-prd, 07-tech-specs, and 09-sprints are non-skippable stages**
+**00-init-ideas, 05-prd, 08-tech-specs, and 10-sprints are non-skippable stages**
 ---
 
 ## Problem Statement

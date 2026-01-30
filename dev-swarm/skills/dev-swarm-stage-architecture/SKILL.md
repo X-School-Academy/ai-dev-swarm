@@ -1,15 +1,15 @@
 ---
 name: dev-swarm-stage-architecture
-description: Design the complete system architecture including components, data flow, infrastructure, database schema, and API design. Use when starting stage 06 (architecture) or when user asks about system design, tech stack, or database schema.
+description: Design the complete system architecture including components, data flow, infrastructure, database schema, and API design. Use when starting stage 07 (architecture) or when user asks about system design, tech stack, or database schema.
 ---
 
-# Stage 06 - Architecture
+# Stage 07 - Architecture
 
 Design the complete system architecture including components, data flow, infrastructure, and technical decisions that will guide all subsequent development work.
 
 ## When to Use This Skill
 
-- User asks to start stage 06 (architecture)
+- User asks to start stage 07 (architecture)
 - User wants to design system architecture or select tech stack
 - User asks about database design, API architecture, or infrastructure
 
@@ -25,7 +25,7 @@ See `dev-swarm/docs/general-dev-stage-rule.md` for the required role announcemen
 
 Before starting, verify previous stages:
 
-1. Check if `00-init-ideas/` through `05-ux/` folders have content (not just `.gitkeep`)
+1. Check if `00-init-ideas/` through `06-ux/` folders have content (not just `.gitkeep`)
 2. If any previous stage is empty and has no `SKIP.md`:
    - Ask user: "Stage {XX} is not complete. Would you like to skip it or start from that stage first?"
 
@@ -36,20 +36,20 @@ Before starting, verify previous stages:
 Read all files to understand the project:
 
 - `ideas.md`
-- `00-init-ideas/*.md` through `05-ux/*.md` - All markdown files
+- `00-init-ideas/*.md` through `06-ux/*.md` - All markdown files
 
 ### Step 2: Create Stage Proposal
 
 **General Rules:** See `dev-swarm/docs/general-dev-stage-rule.md` → "Create Stage Proposal Rules" section.
 
-If this stage is skipped (has SKIP.md), execute the next non-skipped stage's agent skill. Otherwise, create the file `06-architecture/README.md` with the following content:
+If this stage is skipped (has SKIP.md), execute the next non-skipped stage's agent skill. Otherwise, create the file `07-architecture/README.md` with the following content:
 
 #### 2.1 Stage Goal
 
 Brief the goal in 2-3 paragraphs:
 - What this stage aims to achieve (define system architecture, tech stack, data models, APIs)
 - Why architecture design is critical before development begins
-- How this builds upon previous stages (UX flows, PRD requirements, MVP scope)
+- How this builds upon previous stages (UX flows, PRD requirements, MVP scope, tech research findings)
 - What deliverables will be produced
 
 #### 2.2 File Selection
@@ -58,8 +58,8 @@ Select files from these options based on project needs:
 
 **System Architecture:**
 - `system-architecture.md` - Overall system architecture describing components and interactions
-- `architecture-diagram/` - High-level system architecture diagrams 
-- `C4-component-diagram/` - C4 model diagrams: Context, Containers, Components 
+- `architecture-diagram/` - High-level system architecture diagrams
+- `C4-component-diagram/` - C4 model diagrams: Context, Containers, Components
 **Technology Stack:**
 - `tech-stack.md` - Selected languages, frameworks, libraries, and tools
 - `tech-stack-rationale.md` - Detailed reasoning for each technology choice
@@ -74,7 +74,7 @@ Select files from these options based on project needs:
 
 **Infrastructure:**
 - `infrastructure-design.md` - Overview of infrastructure components
-- `infrastructure-diagram/` - Infrastructure topology diagrams 
+- `infrastructure-diagram/` - Infrastructure topology diagrams
 **Security & Scalability:**
 - `security-architecture.md` - Security design including authentication and authorization
 - `scalability-plan.md` - Scalability considerations and strategies
@@ -90,11 +90,11 @@ For each selected file, provide:
 
 #### 2.3 Request User Approval
 
-Ask user: "Please check the Stage Proposal in `06-architecture/README.md`. Update it directly or tell me how to update it."
+Ask user: "Please check the Stage Proposal in `07-architecture/README.md`. Update it directly or tell me how to update it."
 
 ### Step 3: Execute Stage Plan
 
-Once user approves `06-architecture/README.md`:
+Once user approves `07-architecture/README.md`:
 
 #### 3.1 Create All Planned Files
 
@@ -104,11 +104,12 @@ Create each file listed in the approved README:
 - **For diagram folders:** Follow `dev-swarm/docs/mermaid-diagram-guide.md` to create related diagrams files
 
 **Quality Guidelines:**
-- Base architecture decisions on PRD requirements and UX designs
-- Ensure tech stack choices align with team capabilities
+- Base architecture decisions on PRD requirements, UX designs, and tech research findings
+- Ensure tech stack choices align with team capabilities and validated assumptions
 - Design for MVP scope first, with considerations for future scalability
 - Include clear component boundaries and interfaces
 - Document all major architectural decisions and trade-offs
+- Reference any constraints or recommendations from tech research stage
 
 #### 3.2 Request User Approval for Files
 
@@ -122,7 +123,7 @@ After creating all files:
 Once user approves all files:
 
 #### 4.1 Documentation Finalization
-- Sync `06-architecture/README.md` to remove any deleted files
+- Sync `07-architecture/README.md` to remove any deleted files
 - Ensure all files are complete and well-formatted
 - Check that all diagrams render correctly
 
@@ -133,10 +134,10 @@ Once user approves all files:
 #### 4.3 Announce Completion
 
 Inform user:
-- "Stage 06 (Architecture) is complete"
+- "Stage 07 (Architecture) is complete"
 - Summary of deliverables created
 - Key architectural decisions made
-- "Ready to proceed to Stage 07 (Tech Specs) when you are"
+- "Ready to proceed to Stage 08 (Tech Specs) when you are"
 
 ## Stage Completion Rules
 

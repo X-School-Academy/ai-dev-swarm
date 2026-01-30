@@ -17,18 +17,18 @@ Upload one or multiple files
 The schema below describes the `arguments` object in the request payload.
 ```json
 {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "properties": {
     "paths": {
+      "description": "The absolute paths to the files to upload. Can be single file or multiple files. If omitted, file chooser is cancelled.",
       "type": "array",
       "items": {
         "type": "string"
-      },
-      "description": "The absolute paths to the files to upload. Can be single file or multiple files. If omitted, file chooser is cancelled."
+      }
     }
   },
-  "additionalProperties": false,
-  "$schema": "http://json-schema.org/draft-07/schema#"
+  "additionalProperties": false
 }
 ```
 

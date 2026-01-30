@@ -1,15 +1,15 @@
 ---
 name: dev-swarm-stage-prd
-description: Create a comprehensive Product Requirements Document defining complete product behavior, functional and non-functional requirements, and user flows. Use when starting stage 04 (prd) or when user asks to define product requirements or acceptance criteria.
+description: Create a comprehensive Product Requirements Document defining complete product behavior, functional and non-functional requirements, and user flows. Use when starting stage 05 (prd) or when user asks to define product requirements or acceptance criteria.
 ---
 
-# Stage 04 - PRD (Product Requirements Document)
+# Stage 05 - PRD (Product Requirements Document)
 
 Create a comprehensive Product Requirements Document that defines the complete product behavior, including functional requirements, non-functional requirements, user flows, acceptance criteria, and all specifications needed to guide development.
 
 ## When to Use This Skill
 
-- User asks to start stage 04 (prd)
+- User asks to start stage 05 (prd)
 - User wants to define product requirements or acceptance criteria
 - User asks about functional or non-functional requirements
 
@@ -25,7 +25,7 @@ See `dev-swarm/docs/general-dev-stage-rule.md` for the required role announcemen
 
 Before starting, verify previous stages:
 
-1. Check if `00-init-ideas/` through `03-mvp/` folders have content (not just `.gitkeep`)
+1. Check if `00-init-ideas/` through `04-tech-research/` folders have content (not just `.gitkeep`)
 2. If any previous stage is empty and has no `SKIP.md`:
    - Ask user: "Stage {XX} is not complete. Would you like to skip it or start from that stage first?"
 
@@ -36,13 +36,13 @@ Before starting, verify previous stages:
 Read all files to understand the project:
 
 - `ideas.md`
-- `00-init-ideas/*.md` through `03-mvp/*.md` - All markdown files
+- `00-init-ideas/*.md` through `04-tech-research/*.md` - All markdown files
 
 ### Step 2: Create Stage Proposal
 
 **General Rules:** See `dev-swarm/docs/general-dev-stage-rule.md` → "Create Stage Proposal Rules" section.
 
-If this stage is skipped (has SKIP.md), execute the next non-skipped stage's agent skill. Otherwise, create the file `04-prd/README.md` with the following content:
+If this stage is skipped (has SKIP.md), execute the next non-skipped stage's agent skill. Otherwise, create the file `05-prd/README.md` with the following content:
 
 #### 2.1 Stage Goal
 
@@ -83,11 +83,11 @@ For each selected file, provide:
 
 #### 2.3 Request User Approval
 
-Ask user: "Please check the Stage Proposal in `04-prd/README.md`. Update it directly or tell me how to update it."
+Ask user: "Please check the Stage Proposal in `05-prd/README.md`. Update it directly or tell me how to update it."
 
 ### Step 3: Execute Stage Plan
 
-Once user approves `04-prd/README.md`:
+Once user approves `05-prd/README.md`:
 
 #### 3.1 Create All Planned Files
 
@@ -97,11 +97,12 @@ Create each file listed in the approved README:
 - **For diagram folders:** Follow `dev-swarm/docs/mermaid-diagram-guide.md` to create related diagrams files
 
 **Quality Guidelines:**
-- Base requirements on personas, user stories, and MVP scope
+- Base requirements on personas, user stories, MVP scope, and tech research findings
 - Write functional requirements that are specific and testable
 - Define non-functional requirements with quantifiable targets
 - Ensure acceptance criteria use clear Given/When/Then format
 - Include both happy path and error scenarios in user flows
+- Incorporate any constraints discovered during tech research
 
 #### 3.2 Request User Approval for Files
 
@@ -115,7 +116,7 @@ After creating all files:
 Once user approves all files:
 
 #### 4.1 Documentation Finalization
-- Sync `04-prd/README.md` to remove any deleted files
+- Sync `05-prd/README.md` to remove any deleted files
 - Ensure all files are complete and well-formatted
 - Check that all diagrams render correctly
 
@@ -126,10 +127,10 @@ Once user approves all files:
 #### 4.3 Announce Completion
 
 Inform user:
-- "Stage 04 (PRD) is complete"
+- "Stage 05 (PRD) is complete"
 - Summary of deliverables created
 - Key requirements and constraints identified
-- "Ready to proceed to Stage 05 (UX) when you are"
+- "Ready to proceed to Stage 06 (UX) when you are"
 
 ## Stage Completion Rules
 

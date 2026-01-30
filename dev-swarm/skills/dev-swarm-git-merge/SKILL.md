@@ -201,8 +201,8 @@ git push origin main
 
 ```bash
 git checkout develop
-git checkout feature/redesign -- src/components src/styles
-git add src/components src/styles
+git checkout feature/redesign -- {SRC}/components {SRC}/styles
+git add {SRC}/components {SRC}/styles
 git commit -m "Merge redesigned components and styles from feature/redesign"
 ```
 

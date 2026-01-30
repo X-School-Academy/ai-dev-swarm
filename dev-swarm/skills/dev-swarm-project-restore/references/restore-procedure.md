@@ -15,7 +15,7 @@
 
 Use `git mv` for tracked content. Use `mv` + `git add` for any untracked items.
 
-## Restore src Submodule
+## Restore {SRC} Submodule
 
 Use the submodule restore guide in `references/submodule-restore.md`.
 
@@ -23,7 +23,7 @@ Use the submodule restore guide in `references/submodule-restore.md`.
 
 1. Verify all stage folders exist at the root.
 2. Verify `ideas.md` exists at the root if it was part of the archived snapshot.
-3. Verify `src/` is a submodule and points to the expected commit.
+3. Verify `{SRC}/` is a submodule and points to the expected commit.
 4. Run `git status -s` and review with the user.
 
 ## User Approval
@@ -31,6 +31,6 @@ Use the submodule restore guide in `references/submodule-restore.md`.
 Summarize:
 - What was restored
 - The archive source folder
-- The `src` submodule commit
+- The `{SRC}` submodule commit
 
 Ask if the user wants to commit the changes.

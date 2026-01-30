@@ -23,8 +23,8 @@ This skill requires:
 - `04-prd/` - Product Requirements Document (business requirements and acceptance criteria)
 - `07-tech-specs/` - Engineering standards and constraints
 - `features/` folder with feature design and implementation docs
-- `09-sprints/` folder with backlog that was implemented
-- `src/` folder (organized as defined in source-code-structure.md)
+- `10-sprints/` folder with backlog that was implemented
+- `{SRC}/` folder (organized as defined in source-code-structure.md)
 - Access to source code files
 
 ## Feature-Driven Code Review Workflow
@@ -32,7 +32,7 @@ This skill requires:
 **CRITICAL:** This skill follows a strict feature-driven approach where `feature-name` is the index for the entire project:
 
 **For Each Backlog:**
-1. Read backlog.md from `09-sprints/SPRINT-XX-descriptive-name/[BACKLOG_TYPE]-XX-[feature-name]-<sub-feature>.md`
+1. Read backlog.md from `10-sprints/SPRINT-XX-descriptive-name/[BACKLOG_TYPE]-XX-[feature-name]-<sub-feature>.md`
 2. Extract the `feature-name` from the backlog file name
 3. Read `features/features-index.md` to find the feature file
 4. Read feature documentation in this order:
@@ -40,7 +40,7 @@ This skill requires:
    - `features/flows/[feature-name].md` - User flows and process flows (if exists)
    - `features/contracts/[feature-name].md` - API/data contracts (if exists)
    - `features/impl/[feature-name].md` - Implementation notes (if exists)
-5. Locate source code in `src/` using `features/impl/[feature-name].md`
+5. Locate source code in `{SRC}/` using `features/impl/[feature-name].md`
 6. Review code against design specs and coding standards
 7. Update `backlog.md` with review findings
 
@@ -70,6 +70,8 @@ The code review process:
 
 Follow these steps in order:
 
+**Checklist formatting rule:** Any checklist, acceptance criteria, or test plan must use Markdown task lists (e.g., `- [ ] item`) so QA can mark verification status.
+
 ### Step 0: Verify Prerequisites and Gather Context (Feature-Driven Approach)
 
 **IMPORTANT:** Follow this exact order to efficiently locate all relevant context:
@@ -79,11 +81,11 @@ Follow these steps in order:
    - Or review latest completed backlog from sprint
 
    ```
-   09-sprints/
+   10-sprints/
    └── SPRINT-XX-descriptive-name/
        └── [BACKLOG_TYPE]-XX-[feature-name]-<sub-feature>.md
    ```
-   - Locate the sprint README at `09-sprints/SPRINT-XX-descriptive-name/README.md` for required progress log updates
+   - Locate the sprint README at `10-sprints/SPRINT-XX-descriptive-name/README.md` for required progress log updates
 
 2. **Read the backlog file:**
    - Understand original task requirements
@@ -113,7 +115,7 @@ Follow these steps in order:
 
 6. **Locate source code:**
    - Use `features/impl/[feature-name].md` to find code locations
-   - Navigate to `src/[feature-name]/` directory
+   - Navigate to `{SRC}/[feature-name]/` directory
    - List all files mentioned in implementation docs
    - Identify files to review
 
@@ -248,7 +250,7 @@ For each issue found, create a backlog:
    - Medium: Performance issues, code quality
    - Low: Minor improvements, refactoring
 
-2. **Create backlog file in `09-sprints/`:**
+2. **Create backlog file in `10-sprints/`:**
 
    **Backlog Template:**
    ```markdown
@@ -315,42 +317,51 @@ For each issue found, create a backlog:
    - **Changes required**: Critical issues must be fixed
    - **Rejected**: Major redesign needed
 
-### Step 6: Update Backlog with Code Review Results
+### Step 6: Finalize and Commit
 
-**CRITICAL:** Update the backlog.md file to track code review progress:
+**CRITICAL:** Follow this process to safely commit changes and update tracking:
 
-1. **Update backlog status:**
-   - Change status from "In Code Review" to "In Testing" (if approved)
-   - Or change to "In Development" (if changes required)
-   - Add a "Code Review Notes" section if not present
+1. **Update Tracking Files:**
+   - Update `backlog.md`:
+     - Change status from "In Code Review" to "In Testing" (if approved) or "In Development"
+     - Add "Code Review Notes" section:
+       - **Review Summary:** Overall assessment
+       - **Issues Found:** Count of issues
+       - **Decision:** Approved/Rejected
+       - **Links:** To created backlogs (CHANGE/BUG)
+   - Update feature documentation if needed
+   - Update `10-sprints/.../README.md`:
+     - Update status in table
+     - Add progress log entry
 
-2. **Document code review findings:**
-   - **Review Summary:** Overall assessment of code quality
-   - **Review Decision:** Approved, Approved with comments, Changes required, or Rejected
-   - **Issues Found:** Count of CHANGE/BUG/IMPROVE backlogs created
-   - **Security Assessment:** Security vulnerabilities found (if any)
-   - **Code Quality Score:** Rating based on quality dimensions
-   - **Positive Highlights:** What was done well
-   - **Areas for Improvement:** General suggestions for developer
-   - **Related Backlogs:** Link to created CHANGE/BUG/IMPROVE backlogs
+2. **Request Human Review:**
+   - Present the review findings and plan to commit
+   - Ask user: "Please review the findings. If approved, I will commit and update the backlog."
+   - **Wait for approval.**
 
-3. **Update feature documentation:**
-   - Update `features/impl/[feature-name].md` with review findings
-   - Note any important discoveries or patterns
-   - Document known limitations identified
-   - Add review insights for future reference
+3. **Commit the Code/Fixes (Content):**
+   - Run `git add .` to stage all changes
+   - **Unstage** the backlog file and sprint README (`git reset HEAD <path-to-backlog> <path-to-sprint-readme>`)
+   - Check if there are staged changes (e.g., new bug backlogs or minor fixes):
+     - **If yes:**
+       - Draft conventional commit message (e.g., "docs: code review findings for [feature-name]")
+       - Commit: `git commit -m "docs: ..."`
+       - Get Commit ID: `git rev-parse --short HEAD`
+     - **If no** (only current backlog updated):
+       - Skip to next step
 
-4. **Notify user:**
-   - Summarize code review results
-   - Report approval/rejection status
-   - List critical issues found
-   - Recommend next steps (fix issues, proceed to testing, etc.)
+4. **Update Backlog with Commit ID:**
+   - If a commit was made, append "**Review Commit:** `[commit-id]`" to the "Code Review Notes" in `backlog.md`
 
-5. **Update sprint README (README.md) (CRITICAL):**
-   - Update backlog status in the sprint backlog table
-   - Append a log entry in the sprint progress log for the Code Review step
+5. **Commit the Backlog (Metadata):**
+   - Stage `backlog.md` and sprint `README.md`
+   - Commit: `git commit -m "docs([feature-name]): update backlog status to In Testing"`
 
-**These backlog.md and sprint README updates create the audit trail showing code review was completed and results.**
+6. **Notify user:**
+   - Confirm completion
+   - Suggest next step: "Ready for testing" or "Back to development"
+
+**This two-step commit process ensures history is preserved before the backlog is updated with the commit reference.**
 
 ## Expected Workflow
 
@@ -484,7 +495,7 @@ If Changes Required → Back to Development
 1. Read backlog: "User can upload profile picture"
 2. Read features/profile-upload.md: Understand design
 3. Read features/impl/profile-upload.md: Find changed files
-4. Review src/api/upload.ts: Check implementation
+4. Review {SRC}/api/upload.ts: Check implementation
 5. Find issue: No file size validation (security risk)
 6. Create bug backlog: "Add file size validation to upload"
 7. Find improvement: Could use image compression
@@ -496,7 +507,7 @@ If Changes Required → Back to Development
 ```
 1. Read backlog: "Fix login error for special characters"
 2. Read features/user-authentication.md: Understand auth system
-3. Review src/auth/validator.ts: Check fix
+3. Review {SRC}/auth/validator.ts: Check fix
 4. Verify: Fix properly escapes special characters
 5. Check: No new vulnerabilities introduced
 6. Test: Can verify with test plan
@@ -507,7 +518,7 @@ If Changes Required → Back to Development
 ```
 1. Read backlog: "Optimize dashboard API response time"
 2. Read features/dashboard-api.md: Understand optimization approach
-3. Review src/api/dashboard.ts: Check caching implementation
+3. Review {SRC}/api/dashboard.ts: Check caching implementation
 4. Find issue: Cache invalidation logic missing
 5. Create change backlog: "Add cache invalidation to dashboard"
 6. Find opportunity: Could optimize database query further

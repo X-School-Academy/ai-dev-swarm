@@ -1,15 +1,15 @@
 ---
 name: dev-swarm-stage-devops
-description: Set up DevOps infrastructure including GitHub repositories, CI/CD pipelines, containerization, and cloud infrastructure (AWS, RunPod). Use when starting stage 08 (devops) or when user asks about CI/CD, Docker, or cloud setup.
+description: Set up DevOps infrastructure including GitHub repositories, CI/CD pipelines, containerization, and cloud infrastructure (AWS, RunPod). Use when starting stage 09 (devops) or when user asks about CI/CD, Docker, or cloud setup.
 ---
 
-# Stage 08 - DevOps
+# Stage 09 - DevOps
 
 Set up the complete DevOps infrastructure including GitHub repositories, CI/CD pipelines, containerization, cloud infrastructure (AWS, RunPod), and monitoring to enable seamless development and deployment workflows.
 
 ## When to Use This Skill
 
-- User asks to start stage 08 (devops)
+- User asks to start stage 09 (devops)
 - User wants to set up CI/CD pipelines or Docker containers
 - User asks about GitHub Actions, AWS setup, or cloud infrastructure
 
@@ -25,7 +25,7 @@ See `dev-swarm/docs/general-dev-stage-rule.md` for the required role announcemen
 
 Before starting, verify previous stages:
 
-1. Check if `00-init-ideas/` through `07-tech-specs/` folders have content (not just `.gitkeep`)
+1. Check if `00-init-ideas/` through `08-tech-specs/` folders have content (not just `.gitkeep`)
 2. If any previous stage is empty and has no `SKIP.md`:
    - Ask user: "Stage {XX} is not complete. Would you like to skip it or start from that stage first?"
 
@@ -36,13 +36,13 @@ Before starting, verify previous stages:
 Read all files to understand the project:
 
 - `ideas.md`
-- `00-init-ideas/*.md` through `07-tech-specs/*.md` - All markdown files
+- `00-init-ideas/*.md` through `08-tech-specs/*.md` - All markdown files
 
 ### Step 2: Create Stage Proposal
 
 **General Rules:** See `dev-swarm/docs/general-dev-stage-rule.md` → "Create Stage Proposal Rules" section.
 
-If this stage is skipped (has SKIP.md), execute the next non-skipped stage's agent skill. Otherwise, create the file `08-devops/README.md` with the following content:
+If this stage is skipped (has SKIP.md), execute the next non-skipped stage's agent skill. Otherwise, create the file `09-devops/README.md` with the following content:
 
 #### 2.1 Stage Goal
 
@@ -59,7 +59,7 @@ Select files from these options based on project needs:
 **DevOps Strategy & Overview:**
 - `devops-overview.md` - DevOps strategy overview
 - `environment-config.md` - Environment configurations (dev, staging, production)
-- `execution-plan.md` - Checklist of infrastructure tasks (Stage 08 vs Stage 10)
+- `execution-plan.md` - Checklist of infrastructure tasks (Stage 09 vs Stage 11)
 
 **Repository & Version Control:**
 - `github-setup.md` - GitHub repository setup
@@ -105,11 +105,11 @@ For each selected file, provide:
 
 #### 2.3 Request User Approval
 
-Ask user: "Please check the Stage Proposal in `08-devops/README.md`. Update it directly or tell me how to update it."
+Ask user: "Please check the Stage Proposal in `09-devops/README.md`. Update it directly or tell me how to update it."
 
 ### Step 3: Create Documentation
 
-Once user approves `08-devops/README.md`:
+Once user approves `09-devops/README.md`:
 
 #### 3.1 Create All Planned Files
 
@@ -136,15 +136,15 @@ After creating all files:
 
 ### Step 4: Create Execution Plan
 
-Create `08-devops/execution-plan.md` with tasks organized into:
+Create `09-devops/execution-plan.md` with tasks organized into:
 
-**Part 1: Execute in Stage 08 (Development Setup)**
+**Part 1: Execute in Stage 09 (Development Setup)**
 - GitHub repository setup
 - Local Docker development environment
 - CI pipeline setup
 - Development environment configuration
 
-**Part 2: Execute in Stage 10 (Production Deployment)**
+**Part 2: Execute in Stage 11 (Production Deployment)**
 - AWS account & IAM setup
 - EC2 instance provisioning
 - Production database setup
@@ -165,17 +165,17 @@ Execute only the checked items from the execution plan:
 Once user confirms infrastructure is working:
 
 #### 6.1 Documentation Finalization
-- Sync `08-devops/README.md` to remove any deleted files
+- Sync `09-devops/README.md` to remove any deleted files
 - Record actual resource IDs, URLs created
 - Document any deviations from the original plan
 
 #### 6.2 Announce Completion
 
 Inform user:
-- "Stage 08 (DevOps) is complete"
+- "Stage 09 (DevOps) is complete"
 - Summary of documentation created
 - Summary of infrastructure provisioned
-- "Ready to proceed to Stage 09 (Sprints) when you are"
+- "Ready to proceed to Stage 10 (Sprints) when you are"
 
 ## Stage Completion Rules
 
