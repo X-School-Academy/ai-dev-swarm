@@ -34,6 +34,17 @@ const g = globalThis as unknown as {
 if (g.__agentActiveRun === undefined) g.__agentActiveRun = null;
 if (g.__agentRunCounter === undefined) g.__agentRunCounter = 0;
 
+function isAgentExecuteEnabled(): boolean {
+  const envPath = path.resolve(process.cwd(), "..", ".env");
+  try {
+    const raw = fs.readFileSync(envPath, "utf-8");
+    const match = raw.match(/^WEBUI_AGENT_EXECUTE\s*=\s*(.+)$/m);
+    return match ? match[1].trim().toLowerCase() === "true" : false;
+  } catch {
+    return false;
+  }
+}
+
 function isoNow(): string {
   return new Date().toISOString();
 }
@@ -94,6 +105,11 @@ export function isRunActive(): boolean {
 }
 
 export function startRun(stageId: string, prompt: string, agentId: string): AgentRun {
+  if (!isAgentExecuteEnabled()) {
+    throw new Error(
+      "AI agent execution is disabled. Please set WEBUI_AGENT_EXECUTE=true in dev-swarm/.env at your own risk without running a dedicated machine or docker container."
+    );
+  }
   if (isRunActive()) throw new Error("A run is already active");
 
   const configs = loadAgentConfigs();
