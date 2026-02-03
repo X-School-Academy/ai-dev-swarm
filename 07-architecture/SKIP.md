@@ -1,0 +1,1 @@
+Stage excluded as per ideas.md configuration
