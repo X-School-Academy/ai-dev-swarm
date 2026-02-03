@@ -1,0 +1,54 @@
+{
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "@playwright/mcp@latest"
+      ],
+      "disabled": false
+    },
+    "dart": {
+      "command": "dart",
+      "args": [
+        "mcp-server"
+      ],
+      "disabled": false
+    },
+    "context7": {
+      "type": "http",
+      "url": "https://mcp.context7.com/mcp",
+      "disabled": false
+    },
+    "backgroundProcess": {
+      "command": [
+        "pnpm",
+        "dlx",
+        "github:angelinx-h/background-process-mcp#v1.0.0",
+        "--listen-port",
+        "31337"
+      ],
+      "disabled": false
+    },
+    "awslabs.aws-api-mcp-server": {
+      "command": "uvx",
+      "args": [
+        "awslabs.aws-api-mcp-server@latest"
+      ],
+      "env": {
+        "AWS_ACCESS_KEY_ID": "${AWS_ACCESS_KEY_ID}",
+        "AWS_SECRET_ACCESS_KEY": "${AWS_SECRET_ACCESS_KEY}",
+        "AWS_REGION": "${AWS_REGION}"
+      },
+      "disabled": false
+    },
+    "github": {
+      "type": "http",
+      "url": "https://api.githubcopilot.com/mcp/",
+      "headers": {
+        "Authorization": "Bearer ${GITHUB_MCP_PAT}",
+        "X-MCP-Toolsets": "actions"
+      },
+      "disabled": true
+    }
+  }
+}

@@ -1,0 +1,155 @@
+awslabs-aws-api-mcp-server-call-aws: >
+  To run an exact AWS CLI command, execute a validated `aws ...` command for direct AWS operations when you already know the precise service and parameters; use instead of suggesting commands.
+
+awslabs-aws-api-mcp-server-suggest-aws-commands: >
+  To get possible AWS CLI commands from a natural-language request, suggest candidate `aws ...` commands when the exact service, operation, or syntax is unclear; use before call-aws.
+
+background-process-clear-process: >
+  To remove a finished background process from the manager list, clear a stopped process after it exits so it no longer appears in listings.
+
+background-process-get-process-output: >
+  To read logs from a managed background process, fetch recent output (head or tail) for a process so you can inspect its stdout/stderr.
+
+background-process-get-server-status: >
+  To check if the Background Process Manager is running, get the server status and confirm it is available.
+
+background-process-list-processes: >
+  To see all managed background jobs, list processes so you can find their IDs, states, and names.
+
+background-process-run-command-sync: >
+  To run a short command and wait for the result, execute a synchronous shell command via the manager and return full output.
+
+background-process-start-process: >
+  To start a long-running background task, launch a managed process such as a server or watcher and keep it tracked.
+
+background-process-stop-process: >
+  To stop a managed background task, terminate a running process by ID to shut it down cleanly.
+
+context7-query-docs: >
+  To fetch up-to-date docs and code examples from Context7 for a known library, query by a resolved library ID after running resolve-library-id (max 3 calls).
+
+context7-resolve-library-id: >
+  To find the Context7-compatible library ID for a package or product name, resolve the library ID before querying docs unless the user already provided an /org/project ID (max 3 calls).
+
+dart-add-roots: >
+  To register project roots for Dart tooling access, add one or more root paths before using other Dart tools on those projects.
+
+dart-analyze-files: >
+  To run static analysis across a Dart or Flutter project, analyze files to find compile and lint errors.
+
+dart-connect-dart-tooling-daemon: >
+  To connect to the Dart Tooling Daemon for editor/runtime data, connect using a user-provided DTD URI before using related Dart tools.
+
+dart-create-project: >
+  To scaffold a new Dart or Flutter project, create a fresh project structure and starter files.
+
+dart-dart-fix: >
+  To apply automated Dart fixes, run `dart fix --apply` on the given roots to resolve suggested changes.
+
+dart-dart-format: >
+  To format Dart code consistently, run `dart format .` on the given roots to apply standard formatting.
+
+dart-get-active-location: >
+  To get the current cursor location from the connected editor, retrieve the active location after connecting to the Dart Tooling Daemon.
+
+dart-get-runtime-errors: >
+  To read recent runtime errors from a running Dart or Flutter app, fetch runtime errors after connecting to the Dart Tooling Daemon.
+
+dart-get-selected-widget: >
+  To find the currently selected Flutter widget in the running app, get the selected widget after connecting to the Dart Tooling Daemon.
+
+dart-get-widget-tree: >
+  To inspect the Flutter widget tree of the running app, retrieve the widget hierarchy after connecting to the Dart Tooling Daemon.
+
+dart-hot-reload: >
+  To apply latest code changes to a running Flutter app, trigger hot reload after connecting to the Dart Tooling Daemon.
+
+dart-hover: >
+  To view hover details such as docs and types at a cursor position, get hover information for a file location.
+
+dart-pub: >
+  To run Dart or Flutter pub commands like `pub get` or `pub add`, execute a pub command for the given roots.
+
+dart-pub-dev-search: >
+  To search pub.dev for relevant Dart packages, query by keywords and return download counts, topics, license, and publisher.
+
+dart-remove-roots: >
+  To remove previously registered Dart project roots, revoke tool access by removing those roots.
+
+dart-resolve-workspace-symbol: >
+  To search for symbols across Dart workspaces, resolve a symbol name to find definitions or catch spelling errors.
+
+dart-run-tests: >
+  To run Dart or Flutter tests with the agent-centric test runner, execute tests using this tool instead of shell `dart test` or `flutter test`.
+
+dart-set-widget-selection-mode: >
+  To enable or disable widget selection mode in a running Flutter app, set selection mode after connecting to the Dart Tooling Daemon.
+
+dart-signature-help: >
+  To see function or method signatures at a cursor position, get signature help for the API being called.
+
+playwright-browser-click: >
+  To click a page element in the browser, perform a click on buttons, links, or controls during Playwright automation.
+
+playwright-browser-close: >
+  To close the current Playwright page, close the page to end the session or free resources.
+
+playwright-browser-console-messages: >
+  To read console logs from the current page, retrieve console messages for debugging JavaScript output.
+
+playwright-browser-drag: >
+  To drag and drop between elements on a web page, perform a drag interaction from a source to a target.
+
+playwright-browser-evaluate: >
+  To run JavaScript in the page context, evaluate an expression on the page or a specific element for inspection or manipulation.
+
+playwright-browser-file-upload: >
+  To upload files through a file input, provide one or more file paths for a page file chooser.
+
+playwright-browser-fill-form: >
+  To fill multiple form fields at once, set values for inputs, checkboxes, and selects in a single call.
+
+playwright-browser-handle-dialog: >
+  To accept or dismiss browser dialogs like alert/confirm/prompt, handle the dialog so automation can continue.
+
+playwright-browser-hover: >
+  To hover over a page element, trigger hover states such as menus or tooltips.
+
+playwright-browser-install: >
+  To install the Playwright browser defined in config, run this when the browser is missing or not installed.
+
+playwright-browser-navigate: >
+  open a URL, open a web page, open web browser, or navigate the current page in the web browser to a new URL.
+
+playwright-browser-navigate-back: >
+  To go back in browser history, navigate to the previous page from the current page.
+
+playwright-browser-network-requests: >
+  To inspect network activity since page load, list network requests to review API calls and resources.
+
+playwright-browser-press-key: >
+  To press a keyboard key in the page, send a key press for shortcuts or input behavior.
+
+playwright-browser-resize: >
+  To resize the browser window, change viewport size to test responsive layouts.
+
+playwright-browser-run-code: >
+  To run a custom Playwright script on the page, execute a code snippet for advanced interactions.
+
+playwright-browser-select-option: >
+  To choose an option in a dropdown, select one or more values in a select element.
+
+playwright-browser-snapshot: >
+  To capture an accessibility snapshot of the current page, take a structured snapshot for UI inspection.
+
+playwright-browser-tabs: >
+  To manage browser tabs, list, create, select, or close Playwright tabs.
+
+playwright-browser-take-screenshot: >
+  To take a screenshot of a page or element, capture an image for visual verification.
+
+playwright-browser-type: >
+  To type text into an editable field, enter text into inputs or textareas.
+
+playwright-browser-wait-for: >
+  To wait for page state changes, wait for text to appear or disappear or for a timeout.

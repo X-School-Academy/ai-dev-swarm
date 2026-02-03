@@ -1,0 +1,17 @@
+---
+description: Process backlog with development, review, and test
+argument-hint: [backlog-name]
+---
+
+Process the backlog through the complete workflow: development, review, and test.
+
+Backlog file location: @09-sprints/**/*{$ARGUMENTS}*.md
+
+Workflow:
+1. Use agent skill `dev-swarm-code-development` to implement the backlog
+2. Use agent skill `dev-swarm-code-review` to review the implementation
+3. Use agent skill `dev-swarm-code-test` to test the implementation
+
+Backlog name: $ARGUMENTS
+
+Please locate the backlog file and execute the complete workflow.

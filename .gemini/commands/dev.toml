@@ -1,0 +1,12 @@
+description = "Develop backlog implementation only"
+prompt = """
+Implement the backlog using the development workflow.
+
+Backlog file location: @09-sprints/**/*{{args}}*.md
+
+Use agent skill `dev-swarm-code-development` to implement the backlog.
+
+Backlog name: {{args}}
+
+Please locate the backlog file and execute the development phase.
+"""

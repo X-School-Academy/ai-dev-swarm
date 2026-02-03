@@ -21,7 +21,12 @@ Discord support: https://juniorit.ai/virtual-office
 
 ## How It Works
 
-Fork and clone this project, then work with `Claude Code` and `OpenAI Codex` by default via Agent Skills integration.
+Fork and clone this project, then work with AI Code Agent below by default via Agent Skills integration.
+
+- `Claude Code`
+- `OpenAI Codex`
+- `GitHub Copilot CLI`
+- `opencode`
 
 For `Gemini CLI` or other AI Agents that do not support Agent skills natively, you can use them as an MCP server by configuring:
 
@@ -32,13 +37,17 @@ For `Gemini CLI` or other AI Agents that do not support Agent skills natively, y
       "command": "uvx",
       "args": [
         "skillz@latest",
-        "/project-root-absolute-path/dev-swarms/skills",
+        "/project-root-absolute-path/dev-swarm/skills",
         "--verbose"
       ]
     }
   }
 }
+
+// refer to `.gemini/settings.json`
 ```
+
+📖 **New to AI Dev Swarm?** Check out the [Complete User Manual](USER-MANUAL.md) for a step-by-step guide designed for non-technical users.
 
 Start with your ideas in `ideas.md`, then progress through structured stages:
 
@@ -49,49 +58,39 @@ Start with your ideas in `ideas.md`, then progress through structured stages:
 - **Stage 3: MVP** - Define minimum viable product scope and success metrics
 - **Stage 4: PRD** - Create comprehensive product requirements document
 
-**Design & Architecture (Stages 5-7)**
+### Design & Architecture (Stages 5-7)
 - **Stage 5: UX Design** - Design user flows, interactions, and mockups
 - **Stage 6: Architecture** - Define system components, data flow, and deployment boundaries
 - **Stage 7: Tech Specs** - Specify tech stack, security, coding standards, and theme guidelines
 
-**Development & Deployment (Stages 8-10)**
+### Development & Deployment (Stages 8-10)
 - **Stage 8: DevOps** - Setup development environment, GitHub, MCP tools, and Docker
 - **Stage 9: Sprints** - AI-accelerated feature development with backlogs and testing
 - **Stage 10: Deployment** - Deploy to staging/production with CI/CD pipelines
 
-## Key Features
+## Key Features (Planned)
 
-**Feature-Driven Development**
-- Organize work into small, testable backlogs (feature/change/bug/improve)
-- Maintain a features knowledge base for efficient context management
-- Track progress through sprints with clear acceptance criteria
-
-**AI-Powered Development Workflow**
-- Specialized AI agents for each stage (Product Manager, Tech Architect, UX Designer, etc.)
-- Code development, review, and testing automated with AI assistance
-- Comprehensive documentation generated throughout the lifecycle
-
-**Quality & Standards**
-- Built-in code review and testing phases
-- Security-first approach (OWASP, authentication, authorization)
-- Conventional commits and structured git workflow
-- End-user test plans for every sprint
-
-## Repository Structure
-
-See `dev-swarms/docs/repository-structure.md` for the complete folder structure and file organization.
+- **MCP Protocol Integration**: Standard stdio transport for maximum compatibility
+- **Automatic Skill Discovery**: Dynamically discovers and registers all dev-swarm skills
+- **Context Injection**: Injects skill instructions into AI agent sessions
+- **Smart Path Resolution**: Handles file paths relative to project root
+- **Python + FastMCP**: Modern, reliable implementation with uv for dependency management
 
 ## Getting Started
 
-1. Create your initial ideas in `ideas.md`
-2. Run the init-ideas skill to formalize your project documentation
-3. Progress through each stage sequentially
-4. Use AI agents to accelerate development and maintain quality
+**For Beginners:**
+1. Read the [Complete User Manual](USER-MANUAL.md) - designed for non-technical users
+2. Write your ideas in `ideas.md`
+3. Use `/stage 0` command to start your AI-powered development journey
 
-Each stage builds upon the previous, ensuring alignment from business goals through to implementation.
+**For Experienced Users:**
+1. Review the initial project documentation in `00-init-ideas/`
+2. Follow the dev-swarm methodology through each stage
+3. Use AI agents to accelerate development and maintain quality
 
 ## Skills Available
 
+This project uses the dev-swarm framework skills:
 - **init-ideas** - Project kickoff and idea formalization
 - **market-research** - Market validation and competitive analysis
 - **personas** - User personas and story creation
@@ -110,7 +109,11 @@ Each stage builds upon the previous, ensuring alignment from business goals thro
 
 ## Documentation
 
-All project documentation is organized in numbered folders (00-10) representing each stage, with supporting documentation in `features/` for the knowledge base and `99-archive/` for completed work.
+- **[User Manual](USER-MANUAL.md)** - Complete beginner-friendly guide covering all stages, workflows, and examples
+- **Repository Structure** - See `dev-swarm/docs/repository-structure.md` for folder organization
+- **Stage Documentation** - Organized in numbered folders (00-10) representing each development stage
+- **Knowledge Base** - Feature documentation in `features/` for AI reference
+- **Archive** - Completed work in `99-archive/`
 
 ## 🤝 Want to Contribute?
 
@@ -136,3 +139,9 @@ Let’s redefine how products are built in the AI era.
 One idea. One person. One AI swarm. 🚀
 
 Join our Discord server for discussion: https://juniorit.ai/virtual-office
+
+## License
+
+This project is licensed under the GNU Affero General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
+
+This project may include open source code with other licenses. These codes will keep their original licenses.
