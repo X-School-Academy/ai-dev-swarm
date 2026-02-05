@@ -48,6 +48,8 @@ For other AI Agents that do not support Agent skills natively, you can use them 
 
 ### Web UI (Optional)
 
+![Web UI](dev-swarm/assets/webui-screenshot.png)
+
 A visual web interface is available as an alternative to the command-line workflow.
 
 ```bash
